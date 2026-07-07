@@ -36,17 +36,21 @@
       customElements.define('collection-component', StandardEvents.createViewEventElement());
       customElements.define(
         'product-component',
-        StandardEvents.createViewEventElement(HTMLElement, { defaultTrigger: 'intersect' }),
+        StandardEvents.createViewEventElement(HTMLElement, { defaultTrigger: 'intersect' })
       );
 
-      document.addEventListener('DOMContentLoaded', () => {
-        const template = document.querySelector('main[data-template]')?.dataset.template || '';
-        document.dispatchEvent(
-          new StandardEvents.PageViewEvent({
-            page: { template, title: document.title, url: window.location.href },
-          })
-        );
-      }, { once: true });
+      document.addEventListener(
+        'DOMContentLoaded',
+        () => {
+          const template = document.querySelector('main[data-template]')?.dataset.template || '';
+          document.dispatchEvent(
+            new StandardEvents.PageViewEvent({
+              page: { template, title: document.title, url: window.location.href },
+            })
+          );
+        },
+        { once: true }
+      );
     </script>
 
     <script src="{{ 'constants.js' | asset_url }}" defer="defer"></script>
@@ -271,6 +275,137 @@
         font-weight: var(--font-body-weight);
       }
 
+      /* Helvetica Neue Font Family */
+      @font-face {
+        font-family: 'Helvetica Neue';
+        src: url('{{ "HelveticaNeue - 100.otf" | asset_url }}') format('opentype');
+        font-weight: 100;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica Neue';
+        src: url('{{ "HelveticaNeue - 200.otf" | asset_url }}') format('opentype');
+        font-weight: 200;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica Neue';
+        src: url('{{ "HelveticaNeue - 300.otf" | asset_url }}') format('opentype');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica Neue';
+        src: url('{{ "HelveticaNeue - 400.otf" | asset_url }}') format('opentype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica Neue';
+        src: url('{{ "HelveticaNeue - 500.otf" | asset_url }}') format('opentype');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica Neue';
+        src: url('{{ "HelveticaNeue - 600.otf" | asset_url }}') format('opentype');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica Neue';
+        src: url('{{ "HelveticaNeue - 700.otf" | asset_url }}') format('opentype');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Helvetica Neue';
+        src: url('{{ "HelveticaNeue - 800.otf" | asset_url }}') format('opentype');
+        font-weight: 800;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Proxima Nova A Font Family */
+      @font-face {
+        font-family: 'Proxima Nova A';
+        src: url('{{ "ProximaNovaA-100.ttf" | asset_url }}') format('truetype');
+        font-weight: 100;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Proxima Nova A';
+        src: url('{{ "ProximaNovaA-200.ttf" | asset_url }}') format('truetype');
+        font-weight: 200;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Proxima Nova A';
+        src: url('{{ "ProximaNovaA-300.ttf" | asset_url }}') format('truetype');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Proxima Nova A';
+        src: url('{{ "ProximaNovaA-400.ttf" | asset_url }}') format('truetype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Proxima Nova A';
+        src: url('{{ "ProximaNovaA-500.ttf" | asset_url }}') format('truetype');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Proxima Nova A';
+        src: url('{{ "ProximaNovaA-600.ttf" | asset_url }}') format('truetype');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: 'Proxima Nova A';
+        src: url('{{ "ProximaNovaA-700.ttf" | asset_url }}') format('truetype');
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+      }
+
+      /* Aurum Font Family */
+      @font-face {
+        font-family: 'Aurum';
+        src: url('{{ "aurum.regular.otf" | asset_url }}') format('opentype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
       @media screen and (min-width: 750px) {
         body {
           font-size: 1.6rem;
@@ -319,6 +454,12 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400..700;1,400..700&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap"
+      rel="stylesheet"
+    >
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">

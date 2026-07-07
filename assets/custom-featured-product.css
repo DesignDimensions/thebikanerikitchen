@@ -1,0 +1,160 @@
+.custom-featured-product-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1440/1024;
+}
+
+.custom-featured-product-container img:nth-child(1) {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+}
+
+.custom-featured-product-container img:nth-child(2) {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+}
+
+.custom-featured-product-left-cta_container img {
+    position: unset !important;
+}
+
+.custom-featured-product-left img {
+    height: 100% !important;
+    width: 100% !important;
+    z-index: -1;
+}
+
+.custom-featured-product-container .page-width {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    height: 80%;
+    margin-top: 10%;
+}
+
+.custom-featured-product-left {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.custom-featured-product-left p {
+    margin: 0;
+}
+
+.custom-featured-product-left-inner_upper p:nth-child(1) {
+    font-family: "Proxima Nova A", serif;
+    color: #181818;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 18px;
+    letter-spacing: 4px;
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.custom-featured-product-left-inner_upper p:nth-child(2) {
+    font-family: "Baskervville", serif;
+    color: #181818;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 34px;
+    letter-spacing: 3px;
+    text-align: left;
+}
+
+.custom-featured-product-left-description {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 22px;
+    margin-top: 18px;
+}
+
+.custom-featured-product-left .custom-featured-product-left-description p {
+    font-family: 'Helvetica Neue';
+    color: #181818;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 23px;
+    letter-spacing: 1px;
+    text-align: left;
+    margin-top: 17px;
+    text-transform: none;
+    margin-bottom: 0;
+    margin: 0;
+}
+
+.custom-featured-product-left-inner_lower p {
+    font-family: "Piazzolla", serif;
+    font-size: 20px;
+    color: #181818;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.custom-featured-product-left-inner_lower button {
+    font-family: "Piazzolla", serif;
+    font-size: 24px;
+    color: #181818;
+    font-weight: 600;
+    text-decoration: underline;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.custom-featured-product-right {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    justify-content: start;
+    align-items: start;
+    display: flex;
+}
+
+.custom-featured-product-right hr {
+    border: none;
+    background: #fff;
+    width: 100%;
+    height: 1px;
+    margin: 0;
+}
+
+.custom-featured-product-right p {
+    color: #fff;
+    font-family: "Piazzolla", serif;
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 19px;
+    letter-spacing: 1px;
+    text-align: right;
+    margin: -8px 0 0 0;
+    text-wrap: nowrap;
+    padding-left: 15px;
+}
+
+.custom-featured-product-left-cta_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.custom-featured-product-left-cta_container img {
+    width: 60px !important;
+}

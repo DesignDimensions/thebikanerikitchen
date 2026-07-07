@@ -1,0 +1,27 @@
+.custom-banner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-banner_desktop-image {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.custom-banner_mobile-image {
+    width: 100%;
+    height: auto;
+    display: none;
+}
+
+@media(max-width: 768px) {
+    .custom-banner_desktop-image {
+        display: none;
+    }
+
+    .custom-banner_mobile-image {
+        display: flex;
+    }
+}

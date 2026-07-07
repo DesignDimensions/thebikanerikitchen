@@ -78,7 +78,7 @@
 
 {%- style -%}
   .header {
-    padding: {{ section.settings.padding_top | times: 0.5 | round: 0 }}px 3rem {{ section.settings.padding_bottom | times: 0.5 | round: 0 }}px 3rem;
+    padding: 38px 5rem 23px 5rem;
   }
 
   .section-header {
@@ -89,13 +89,6 @@
   @media screen and (min-width: 750px) {
     .section-header {
       margin-bottom: {{ section.settings.margin_bottom }}px;
-    }
-  }
-
-  @media screen and (min-width: 990px) {
-    .header {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
 {%- endstyle -%}
@@ -180,15 +173,9 @@
       {%- endif -%}
     {%- endif -%}
 
-    {%- liquid
-      if section.settings.menu != blank
-        if section.settings.menu_type_desktop == 'dropdown'
-          render 'header-dropdown-menu'
-        elsif section.settings.menu_type_desktop != 'drawer'
-          render 'header-mega-menu'
-        endif
-      endif
-    %}
+    {%- if section.settings.menu != blank -%}
+      {% render 'header-dropdown-menu', menu: section.settings.menu, menu_id_prefix: 'HeaderMenuPrimary', nav_class: 'header__inline-menu--primary' %}
+    {%- endif -%}
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
@@ -247,9 +234,13 @@
           </localization-form>
         {%- endif -%}
       </div>
+          {%- assign secondary_menu = linklists[section.settings.secondary_menu] -%}
+    {%- if secondary_menu != blank -%}
+      {% render 'header-dropdown-menu', menu: secondary_menu, menu_id_prefix: 'HeaderMenuSecondary', nav_class: 'header__inline-menu--secondary' %}
+    {%- endif -%}
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
-      {%- if shop.customer_accounts_enabled -%}
+      {% comment %} {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
           class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
@@ -276,7 +267,7 @@
             -%}
           </span>
         </a>
-      {%- endif -%}
+      {%- endif -%} {% endcomment %}
 
       {%- for block in section.blocks -%}
         {%- case block.type -%}
@@ -518,6 +509,11 @@
       "id": "menu",
       "default": "main-menu",
       "label": "t:sections.header.settings.menu.label"
+    },
+    {
+      "type": "text",
+      "id": "secondary_menu",
+      "label": "Secondary menu handle"
     },
     {
       "type": "select",

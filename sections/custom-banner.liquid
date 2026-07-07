@@ -1,0 +1,37 @@
+{{ 'custom-banner.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-banner-container">
+  <img
+    src="{{ section.settings.banner_image | image_url }}"
+    alt="{{ section.settings.banner_image.alt | escape }}"
+    class="custom-banner_desktop-image"
+  >
+  <img
+    src="{{ section.settings.mobile_banner_image | image_url  }}"
+    alt="{{ section.settings.mobile_banner_image.alt | escape }}"
+    class="custom-banner_mobile-image"
+  >
+</div>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_banner_image",
+      "label": "Mobile Banner Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Banner"
+    }
+  ]
+}
+{% endschema %}

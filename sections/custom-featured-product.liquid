@@ -1,0 +1,103 @@
+{{ 'custom-featured-product.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-featured-product-container">
+  <img src="{{ section.settings.bg_left_image | image_url }}" alt="{{ section.settings.bg_left_image.alt | escape }}">
+  <img src="{{ section.settings.bg_right_image | image_url }}" alt="{{ section.settings.bg_right_image.alt | escape }}">
+  {% assign product = section.settings.featured_product %}
+  <div class="page-width">
+    <div class="custom-featured-product-left">
+      <img
+        src="{{ section.settings.featured-product-left-bg | image_url }}"
+        alt="{{ section.settings.featured-product-left-bg .alt | escape }}"
+      >
+      <div class="custom-featured-product-left-inner_upper">
+        <p>{{ section.settings.top_left_caption }}</p>
+        <p>{{ section.settings.heading }}</p>
+        <div class="custom-featured-product-left-description">
+          <p>{{ section.settings.description }}</p>
+        </div>
+      </div>
+      <div class="custom-featured-product-left-inner_lower">
+        <p>{{ section.settings.size }}</p>
+        <div class="custom-featured-product-left-cta_container">
+          <img src="{{ section.settings.icon | image_url }}" alt="{{ section.settings.icon.alt | escape }}">
+          <button onclick="">{{ section.settings.cta }}</button>
+        </div>
+      </div>
+    </div>
+    <div class="custom-featured-product-right">
+      <hr>
+      <p>{{ section.settings.top_right_caption }}</p>
+    </div>
+    <h2>{{ product.title }}</h2>
+    <p>{{ product.description }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Featured Product",
+  "settings": [
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Featured Product"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_left_image",
+      "label": "Background Left Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_right_image",
+      "label": "Background Right Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured-product-left-bg",
+      "label": "Featured Product Left Background"
+    },
+    {
+      "type": "text",
+      "id": "top_left_caption",
+      "label": "Top Left Caption"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "text",
+      "id": "size",
+      "label": "Size"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "cta",
+      "label": "CTA Text"
+    },
+    {
+      "type": "text",
+      "id": "top_right_caption",
+      "label": "Top Right Caption"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Featured Product"
+    }
+  ]
+}
+{% endschema %}
