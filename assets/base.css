@@ -2509,6 +2509,18 @@ input[type='checkbox'] {
   margin-left: 0;
 }
 
+.section-heading {
+  text-align: center;
+  font-family: "Baskervville", serif;
+  color: #181818;
+  font-size: 50px;
+  font-weight: 500;
+  line-height: 52px;
+  letter-spacing: 3px;
+  max-width: 77%;
+  margin: 0 auto 35px;
+}
+
 .header__heading,
 .header__heading-link {
   flex-shrink: 0;

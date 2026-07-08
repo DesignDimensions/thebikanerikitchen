@@ -1,0 +1,336 @@
+.custom-home-testimonials-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.6;
+  overflow: hidden;
+  background: #cdb68d;
+}
+
+.custom-home-testimonials-bg-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.custom-home-testimonials-corner {
+  position: absolute;
+  z-index: 5;
+  left: 12px;
+  bottom: 12px;
+  width: 30px;
+  height: auto;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-corner {
+    left: 32px;
+    bottom: 28px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .custom-home-testimonials-corner {
+    left: 48px;
+    bottom: 36px;
+  }
+}
+
+.custom-home-testimonials-arrow {
+  position: absolute;
+  z-index: 5;
+  right: 12px;
+  bottom: 26px;
+  width: 21%;
+  height: auto;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-arrow {
+    right: 40px;
+    bottom: 40px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .custom-home-testimonials-arrow {
+    right: 64px;
+    bottom: 48px;
+  }
+}
+
+.custom-home-testimonials-content {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px 20px;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-content {
+    padding: 48px 40px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .custom-home-testimonials-content {
+    padding: 56px 64px;
+  }
+}
+
+.custom-home-testimonials-header {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.custom-home-testimonials-caption {
+  margin: 0 0 10px;
+  font-family: 'Proxima Nova A', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: #181810;
+}
+
+.custom-home-testimonials-heading {
+  margin: 0 auto 20px;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-heading {
+    font-size: 42px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .custom-home-testimonials-heading {
+    font-size: 54px;
+  }
+}
+
+.custom-home-testimonials-carousel {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 16px;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-carousel {
+    gap: 16px;
+    margin-top: 24px;
+  }
+}
+
+.custom-home-testimonials-viewport {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+.custom-home-testimonials-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-home-testimonials-viewport.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+}
+
+.custom-home-testimonials-track {
+  display: flex;
+  width: 100%;
+  gap: 14px;
+}
+
+.custom-home-testimonials-viewport.is-dragging .custom-home-testimonials-track {
+  pointer-events: none;
+  user-select: none;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-track {
+    gap: 24px;
+  }
+}
+
+.custom-home-testimonials-card {
+  position: relative;
+  flex: 0 0 100%;
+  max-width: 100%;
+  align-self: stretch;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-card {
+    flex: 0 0 calc((100% - 24px) / 2);
+    max-width: calc((100% - 24px) / 2);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .custom-home-testimonials-card {
+    flex: 0 0 calc((100% - 48px) / 3.2);
+    max-width: calc((100% - 48px) / 3.2);
+  }
+}
+
+.custom-home-testimonials-card-face {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #F7EEE5;
+  border-radius: 4px;
+  padding: 22px 20px;
+  box-shadow: 0 20px 40px rgba(30, 16, 8, 0.18);
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-card-face {
+    padding: 30px 28px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .custom-home-testimonials-card-face {
+    padding: 36px 32px;
+  }
+}
+
+.custom-home-testimonials-quote {
+  flex: 1;
+  min-height: 0;
+}
+
+.custom-home-testimonials-quote p {
+  margin: 0;
+  font-family: 'Baskerville', serif;
+  font-size: 26px;
+  line-height: 1.5;
+  color: #2b1810;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.custom-home-testimonials-quote p:first-child::before {
+  content: '\201C';
+}
+
+.custom-home-testimonials-quote p:last-child::after {
+  content: '\201D';
+}
+
+.custom-home-testimonials-person {
+  position: relative;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.custom-home-testimonials-avatar {
+  display: block;
+  width: 52px;
+  height: fit-content;
+  object-fit: cover;
+  margin-bottom: 12px;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-avatar {
+    width: 64px;
+    margin-bottom: 12px;
+  }
+}
+
+.custom-home-testimonials-name {
+  margin: 0;
+  font-family: 'Piazzolla', serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1;
+  color: #1a0f07;
+}
+
+.custom-home-testimonials-location {
+  margin: 3px 0 0;
+  font-family: 'Piazzolla', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #181818;
+}
+
+.custom-home-testimonials-dot {
+  display: block;
+  color: #8a7561;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.custom-home-testimonials-nav {
+  position: relative;
+  z-index: 4;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid rgba(43, 24, 16, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 253, 238, 0.55);
+  color: #2b1810;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
+}
+
+.custom-home-testimonials-nav:hover {
+  background: #fffdee;
+  border-color: #2b1810;
+}
+
+.custom-home-testimonials-nav-icon {
+  width: 13px;
+  height: 13px;
+}
+
+.custom-home-testimonials-nav-next .custom-home-testimonials-nav-icon {
+  transform: rotate(180deg);
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-nav {
+    width: 48px;
+    height: 48px;
+  }
+
+  .custom-home-testimonials-nav-icon {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-home-testimonials-viewport {
+    scroll-behavior: auto !important;
+  }
+}

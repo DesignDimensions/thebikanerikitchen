@@ -12,6 +12,7 @@
     top: 0;
     left: 0;
     width: 50%;
+    height: auto;
 }
 
 .custom-featured-product-container img:nth-child(2) {
@@ -19,6 +20,7 @@
     top: 0;
     right: 0;
     width: 50%;
+    height: auto;
 }
 
 .custom-featured-product-left-cta_container img {
@@ -34,10 +36,14 @@
 .custom-featured-product-container .page-width {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     height: 80%;
-    margin-top: 10%;
+    transform: translate(-50%, -50%);
+    width: 100%;
 }
 
 .custom-featured-product-left {

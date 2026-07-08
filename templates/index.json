@@ -125,6 +125,222 @@
       ],
       "name": "Custom Image Carousel",
       "settings": {}
+    },
+    "custom_home_values_Fk3bUf": {
+      "type": "custom-home-values",
+      "blocks": {
+        "value_DE3bCT": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_1321317983_1.png",
+            "title": "Made in high Oleic sunflower oil"
+          }
+        },
+        "value_iXAcUw": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_1321317983_2.png",
+            "title": "No re-use of oil, ensuring purity of taste"
+          }
+        },
+        "value_8pQkUR": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_1321317983_3.png",
+            "title": "Slow-cooked using Bhatti, the traditional way of cooking."
+          }
+        },
+        "value_W467ek": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_1321317983_4.png",
+            "title": "Made with low sodium salt"
+          }
+        },
+        "value_8mgV7n": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/Frame_1321317983_5.png",
+            "title": "Prepared by skilled hands in small batches"
+          }
+        }
+      },
+      "block_order": [
+        "value_DE3bCT",
+        "value_iXAcUw",
+        "value_8pQkUR",
+        "value_W467ek",
+        "value_8mgV7n"
+      ],
+      "name": "Custom Home Values",
+      "settings": {
+        "section_heading": "Prepared with discipline that remains unchanged."
+      }
+    },
+    "custom_blogs_carousel_LcgrGA": {
+      "type": "custom-blogs-carousel",
+      "blocks": {
+        "slide_7xGQwy": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_46.jpg",
+            "tag_1": "CULTURE",
+            "tag_2": "TECHNIQUES",
+            "tag_3": "Traditions",
+            "caption": "Rituals",
+            "heading": "The Discipline of Marwadi Kitchens",
+            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "cta_text": "Read More",
+            "link": "shopify://blogs/news"
+          }
+        },
+        "slide_amw3Ht": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_46.jpg",
+            "tag_1": "CULTURE",
+            "tag_2": "TECHNIQUES",
+            "tag_3": "Traditions",
+            "caption": "Rituals",
+            "heading": "The Discipline of Marwadi Kitchens",
+            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "cta_text": "Read More",
+            "link": "shopify://blogs/news"
+          }
+        },
+        "slide_U3kqPV": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_46.jpg",
+            "tag_1": "CULTURE",
+            "tag_2": "TECHNIQUES",
+            "tag_3": "Traditions",
+            "caption": "Rituals",
+            "heading": "The Discipline of Marwadi Kitchens",
+            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "cta_text": "Read More",
+            "link": "shopify://blogs/news"
+          }
+        },
+        "slide_4LjnHX": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_46.jpg",
+            "tag_1": "CULTURE",
+            "tag_2": "TECHNIQUES",
+            "tag_3": "Traditions",
+            "caption": "Rituals",
+            "heading": "The Discipline of Marwadi Kitchens",
+            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "cta_text": "Read More",
+            "link": "shopify://blogs/news"
+          }
+        },
+        "slide_KtFEnP": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Frame_46.jpg",
+            "tag_1": "CULTURE",
+            "tag_2": "TECHNIQUES",
+            "tag_3": "Traditions",
+            "caption": "Rituals",
+            "heading": "The Discipline of Marwadi Kitchens",
+            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "cta_text": "Read More",
+            "link": "shopify://blogs/news"
+          }
+        }
+      },
+      "block_order": [
+        "slide_7xGQwy",
+        "slide_amw3Ht",
+        "slide_U3kqPV",
+        "slide_4LjnHX",
+        "slide_KtFEnP"
+      ],
+      "name": "Custom Blogs Carousel",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_home_testimonials_hpAUPY": {
+      "type": "custom-home-testimonials",
+      "blocks": {
+        "testimonial_jJPj9G": {
+          "type": "testimonial",
+          "settings": {
+            "content": "<p>The first thing you notice is the texture. Fine, even, and unmistakably light. It doesn’t feel like what you’re used to.</p>",
+            "image": "shopify://shop_images/7fff504b3c627dc131a31f513b53e465_1.jpg",
+            "name": "Sunaina Kapoor",
+            "location": "New Delhi"
+          }
+        },
+        "testimonial_VrjhC6": {
+          "type": "testimonial",
+          "settings": {
+            "content": "<p>It’s not aggressive in flavour. It’s balanced. You keep going back to it without realising.</p>",
+            "image": "shopify://shop_images/Frame_1321319374.jpg",
+            "name": "Sam Mathew",
+            "location": "Goa"
+          }
+        },
+        "testimonial_gMDPAL": {
+          "type": "testimonial",
+          "settings": {
+            "content": "<p>There’s a certain care in it. You can tell it hasn’t been rushed or overworked.</p>",
+            "image": "shopify://shop_images/7fff504b3c627dc131a31f513b53e465_1_1.jpg",
+            "name": "Latika Grover",
+            "location": "Mumbai"
+          }
+        },
+        "testimonial_jhxBaj": {
+          "type": "testimonial",
+          "settings": {
+            "content": "<p>The first thing you notice is the texture. Fine, even, and unmistakably light. It doesn’t feel like what you’re used to.</p>",
+            "image": "shopify://shop_images/7fff504b3c627dc131a31f513b53e465_1.jpg",
+            "name": "Sunaina Kapoor",
+            "location": "New Delhi"
+          }
+        },
+        "testimonial_4HDFCL": {
+          "type": "testimonial",
+          "settings": {
+            "content": "<p>It’s not aggressive in flavour. It’s balanced. You keep going back to it without realising.</p>",
+            "image": "shopify://shop_images/Frame_1321319374.jpg",
+            "name": "Sam Mathew",
+            "location": "Goa"
+          }
+        },
+        "testimonial_GaVRXG": {
+          "type": "testimonial",
+          "settings": {
+            "content": "<p>There’s a certain care in it. You can tell it hasn’t been rushed or overworked.</p>",
+            "image": "shopify://shop_images/7fff504b3c627dc131a31f513b53e465_1_1.jpg",
+            "name": "Latika Grover",
+            "location": "Mumbai"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_jJPj9G",
+        "testimonial_VrjhC6",
+        "testimonial_gMDPAL",
+        "testimonial_jhxBaj",
+        "testimonial_4HDFCL",
+        "testimonial_GaVRXG"
+      ],
+      "name": "Custom Home Testimonials",
+      "settings": {
+        "background_image": "shopify://shop_images/Frame_1321319399.jpg",
+        "background_image_mobile": "shopify://shop_images/Frame_1321319441.jpg",
+        "corner_image": "shopify://shop_images/Vector_2.png",
+        "arrow_image": "shopify://shop_images/Vector_22_2.png",
+        "caption": "Testimonials",
+        "heading": "From the table!",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
@@ -133,6 +349,9 @@
     "custom_featured_collection_TzThmV",
     "custom_audio_player_hKJxNx",
     "custom_banner_text_jUVQVz",
-    "custom_images_grid_carousal_9HXCxw"
+    "custom_images_grid_carousal_9HXCxw",
+    "custom_home_values_Fk3bUf",
+    "custom_blogs_carousel_LcgrGA",
+    "custom_home_testimonials_hpAUPY"
   ]
 }

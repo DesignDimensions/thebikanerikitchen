@@ -1,0 +1,51 @@
+.custom-home_values-container {
+    background-color: #FFFDEE;
+}
+
+.custom-home_values-heading {
+    margin: 0;
+    padding: 60px 0 20px;
+}
+
+.custom-home_values-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding-bottom: 60px;
+}
+
+.custom-home_values-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 19%;
+}
+
+.custom-home_values-item-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 9%;
+    row-gap: 40px;
+}
+
+.custom-home_values-icon {
+    display: flex;
+    width: 100%;
+    height: auto;
+}
+
+.custom-home_values-title {
+    color: #181818;
+    text-align: center;
+    margin: 20px 0 0;
+    font-size: 20px;
+    font-family: 'Helvetica Neue';
+    width: 100%;
+    line-height: 25px;
+    font-weight: 400;
+}

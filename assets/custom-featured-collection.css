@@ -13,17 +13,6 @@
     margin-bottom: 12px;
 }
 
-.collection__title h2 {
-    text-align: center;
-    font-family: "Baskervville", serif;
-    color: #181818;
-    font-size: 40px;
-    font-weight: 500;
-    line-height: 32px;
-    letter-spacing: 3px;
-    margin-bottom: 35px;
-}
-
 slider-component product-component .card-wrapper .card .card__information {
     padding: 0px;
 }
