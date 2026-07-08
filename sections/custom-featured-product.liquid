@@ -1,14 +1,31 @@
 {{ 'custom-featured-product.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 <div class="custom-featured-product-container">
-  <img src="{{ section.settings.bg_left_image | image_url }}" alt="{{ section.settings.bg_left_image.alt | escape }}">
-  <img src="{{ section.settings.bg_right_image | image_url }}" alt="{{ section.settings.bg_right_image.alt | escape }}">
+  <img
+    src="{{ section.settings.bg_left_image | image_url }}"
+    alt="{{ section.settings.bg_left_image.alt | escape }}"
+    width="{{ section.settings.bg_left_image.width }}"
+    height="{{ section.settings.bg_left_image.height }}"
+  >
+  <img
+    src="{{ section.settings.bg_right_image | image_url }}"
+    alt="{{ section.settings.bg_right_image.alt | escape }}"
+    width="{{ section.settings.bg_right_image.width }}"
+    height="{{ section.settings.bg_right_image.height }}"
+  >
   {% assign product = section.settings.featured_product %}
+  {% assign featured_variant = product.selected_or_first_available_variant %}
+  {% if featured_variant == null and product != blank %}
+    {% assign featured_variant = product.variants.first %}
+  {% endif %}
   <div class="page-width">
     <div class="custom-featured-product-left">
       <img
-        src="{{ section.settings.featured-product-left-bg | image_url }}"
-        alt="{{ section.settings.featured-product-left-bg .alt | escape }}"
+        src="{{ section.settings['featured-product-left-bg'] | image_url }}"
+        alt="{{ section.settings['featured-product-left-bg'].alt | escape }}"
+        width="{{ section.settings['featured-product-left-bg'].width }}"
+        height="{{ section.settings['featured-product-left-bg'].height }}"
       >
       <div class="custom-featured-product-left-inner_upper">
         <p>{{ section.settings.top_left_caption }}</p>
@@ -20,8 +37,45 @@
       <div class="custom-featured-product-left-inner_lower">
         <p>{{ section.settings.size }}</p>
         <div class="custom-featured-product-left-cta_container">
-          <img src="{{ section.settings.icon | image_url }}" alt="{{ section.settings.icon.alt | escape }}">
-          <button onclick="">{{ section.settings.cta }}</button>
+          <img
+            src="{{ section.settings.icon | image_url }}"
+            alt="{{ section.settings.icon.alt | escape }}"
+            width="{{ section.settings.icon.width }}"
+            height="{{ section.settings.icon.height }}"
+          >
+          {% if product != blank and featured_variant != null %}
+            {% assign product_form_id = 'custom-featured-product-form-' | append: section.id %}
+            <product-form class="product-form" data-hide-errors="false" data-section-id="{{ section.id }}">
+              <div class="product-form__error-message-wrapper" role="alert" hidden>
+                <span class="product-form__error-message"></span>
+              </div>
+              {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+                <input type="hidden" name="id" value="{{ featured_variant.id }}" class="product-variant-id">
+                <input type="hidden" name="quantity" value="1">
+                <div class="product-form__buttons">
+                  <button
+                    type="submit"
+                    name="add"
+                    class="product-form__submit custom-featured-product__cta"
+                    {% unless featured_variant.available %}
+                      disabled
+                    {% endunless %}
+                  >
+                    <span class="custom-featured-product__button-text">
+                      {% if featured_variant.available %}
+                        {{ section.settings.cta }}
+                      {% else %}
+                        Sold out
+                      {% endif %}
+                    </span>
+                    {% render 'loading-spinner' %}
+                  </button>
+                </div>
+              {%- endform -%}
+            </product-form>
+          {% else %}
+            <button type="button" disabled>{{ section.settings.cta }}</button>
+          {% endif %}
         </div>
       </div>
     </div>
@@ -29,8 +83,6 @@
       <hr>
       <p>{{ section.settings.top_right_caption }}</p>
     </div>
-    <h2>{{ product.title }}</h2>
-    <p>{{ product.description }}</p>
   </div>
 </div>
 

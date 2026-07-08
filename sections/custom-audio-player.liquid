@@ -1,0 +1,104 @@
+{{ 'custom-audio-player.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-audio-player.js' | asset_url }}" defer="defer"></script>
+
+<div class="custom-audio-player-container" data-section-id="{{ section.id }}" data-default-language="{{ section.settings.default_language }}">
+  <img
+    src="{{ section.settings.banner_image | image_url }}"
+    alt="{{ section.settings.banner_image.alt | escape }}"
+    class="custom-audio-player_desktop-image"
+  >
+  <img
+    src="{{ section.settings.mobile_banner_image | image_url  }}"
+    alt="{{ section.settings.mobile_banner_image.alt | escape }}"
+    class="custom-audio-player_mobile-image"
+  >
+
+  <div class="custom-audio-player-overlay">
+    <div class="custom-audio-player-card">
+      <h1 class="custom-audio-player-heading">{{ section.settings.heading }}</h1>
+      <div class="custom-audio-player-controls">
+        <button type="button" class="custom-audio-player-playpause" aria-pressed="false">Play</button>
+        <div class="custom-audio-player-progress-bar">
+          <div class="custom-audio-player-progress-fill"></div>
+        </div>
+        <div class="custom-audio-player-current-time">0:00</div>
+      </div>
+
+      <div class="custom-audio-player-language-switcher">
+        <button type="button" class="custom-audio-player-language-button" data-language="hi">हिन्दी</button>
+        <button type="button" class="custom-audio-player-language-button" data-language="en">ENGLISH</button>
+      </div>
+
+      <div class="custom-audio-player-subtitles">
+        {% assign subtitles = section.settings.subtitles | split: '||' %}
+        {% for subtitle in subtitles %}
+          {% assign parts = subtitle | split: '::' %}
+          <div class="custom-audio-player-subtitle-row" data-start="{{ parts[0] }}" data-end="{{ parts[1] }}">
+            <div class="custom-audio-player-subtitle-text custom-audio-player-subtitle-hi">{{ parts[2] }}</div>
+            <div class="custom-audio-player-subtitle-text custom-audio-player-subtitle-en">{{ parts[3] }}</div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <audio class="custom-audio-player-audio" preload="metadata" src="{{ section.settings.audio_url }}"></audio>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Audio Player",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Desktop BG Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_banner_image",
+      "label": "Mobile BG Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Aao Sune Kahani Bikaneri Bhujia Ki"
+    },
+    {
+      "type": "url",
+      "id": "audio_url",
+      "label": "Audio URL",
+      "info": "Paste the direct URL to an audio file."
+    },
+    {
+      "type": "select",
+      "id": "default_language",
+      "label": "Default Subtitle Language",
+      "options": [
+        {
+          "value": "hi",
+          "label": "Hindi"
+        },
+        {
+          "value": "en",
+          "label": "English"
+        }
+      ],
+      "default": "hi"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitles",
+      "label": "Subtitles",
+      "default": "0::5::पहली पंक्ति हिंदी::First line English||5::10::दूसरी पंक्ति हिंदी::Second line English",
+      "info": "Use 'start::end::Hindi text::English text' for each row, joined with '||'"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Audio Player"
+    }
+  ]
+}
+{% endschema %}

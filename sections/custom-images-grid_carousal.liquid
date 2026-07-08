@@ -1,0 +1,51 @@
+{{ 'custom-images-grid_carousal.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="custom-images-grid_carousal-container"
+  data-section-id="{{ section.id }}"
+  data-default-language="{{ section.settings.default_language }}"
+>
+  {% for block in section.blocks %}
+    {% if block.settings.desktop_image and block.settings.mobile_image %}
+      <img
+        src="{{ block.settings.desktop_image | image_url }}"
+        alt="{{ block.settings.desktop_image.alt | escape }}"
+        class="custom-images-grid_carousal-desktop-image"
+      >
+      <img
+        src="{{ block.settings.mobile_image | image_url  }}"
+        alt="{{ block.settings.mobile_image.alt | escape }}"
+        class="custom-images-grid_carousal-mobile-image"
+      >
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Custom Image Carousel",
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "desktop_image",
+          "label": "Desktop Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Image Carousel"
+    }
+  ]
+}
+{% endschema %}

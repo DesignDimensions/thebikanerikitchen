@@ -43,10 +43,10 @@
     "inputs_shadow_horizontal_offset": 0,
     "inputs_shadow_vertical_offset": 4,
     "inputs_shadow_blur": 5,
-    "card_style": "standard",
+    "card_style": "card",
     "card_image_padding": 0,
     "card_text_alignment": "left",
-    "card_color_scheme": "scheme-2",
+    "card_color_scheme": "scheme-e41ba56d-f51d-47f6-8e6e-e04c8cbcade2",
     "card_border_thickness": 0,
     "card_border_opacity": 10,
     "card_corner_radius": 0,
@@ -123,7 +123,7 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
-    "cart_type": "notification",
+    "cart_type": "drawer",
     "show_vendor": false,
     "show_cart_note": false,
     "cart_drawer_collection": "",
@@ -196,6 +196,17 @@
           "button": "#ffffff",
           "button_label": "#570f13",
           "secondary_button_label": "#ffffff",
+          "shadow": "#121212"
+        }
+      },
+      "scheme-e41ba56d-f51d-47f6-8e6e-e04c8cbcade2": {
+        "settings": {
+          "background": "#570f13",
+          "background_gradient": "",
+          "text": "#fffdee",
+          "button": "#121212",
+          "button_label": "#ffffff",
+          "secondary_button_label": "#fffdee",
           "shadow": "#121212"
         }
       }

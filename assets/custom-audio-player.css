@@ -1,0 +1,38 @@
+.custom-audio-player-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1440/1024;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-audio-player_desktop-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.custom-audio-player_mobile-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+@media(max-width: 768px) {
+    .custom-audio-player_desktop-image {
+        display: none;
+    }
+
+    .custom-audio-player_mobile-image {
+        display: block;
+    }
+}
