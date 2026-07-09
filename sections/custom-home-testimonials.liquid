@@ -52,10 +52,10 @@
       {%- if bg_image != blank -%}
         <picture>
           {%- if bg_image_mobile != blank -%}
-            <source media="(max-width: 749px)" srcset="{{ bg_image_mobile | image_url: width: 1600 }}">
+            <source media="(max-width: 749px)" srcset="{{ bg_image_mobile | image_url }}">
           {%- endif -%}
           <img
-            src="{{ bg_image | image_url: width: 2400 }}"
+            src="{{ bg_image | image_url }}"
             alt=""
             width="{{ bg_image.width }}"
             height="{{ bg_image.height }}"
@@ -70,7 +70,7 @@
 
     {%- if section.settings.corner_image != blank -%}
       <img
-        src="{{ section.settings.corner_image | image_url: width: 200 }}"
+        src="{{ section.settings.corner_image | image_url }}"
         alt=""
         width="{{ section.settings.corner_image.width }}"
         height="{{ section.settings.corner_image.height }}"
@@ -81,7 +81,7 @@
 
     {%- if section.settings.arrow_image != blank -%}
       <img
-        src="{{ section.settings.arrow_image | image_url: width: 500 }}"
+        src="{{ section.settings.arrow_image | image_url }}"
         alt=""
         width="{{ section.settings.arrow_image.width }}"
         height="{{ section.settings.arrow_image.height }}"
@@ -124,7 +124,7 @@
                   <div class="custom-home-testimonials-person">
                     {%- if block.settings.image != blank -%}
                       <img
-                        src="{{ block.settings.image | image_url: width: 160 }}"
+                        src="{{ block.settings.image | image_url }}"
                         alt=""
                         width="{{ block.settings.image.width }}"
                         height="{{ block.settings.image.height }}"

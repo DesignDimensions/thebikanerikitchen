@@ -124,7 +124,9 @@
         "image_Q8mn7i"
       ],
       "name": "Custom Image Carousel",
-      "settings": {}
+      "settings": {
+        "images_per_view": 4
+      }
     },
     "custom_home_values_Fk3bUf": {
       "type": "custom-home-values",
@@ -338,8 +340,65 @@
         "arrow_image": "shopify://shop_images/Vector_22_2.png",
         "caption": "Testimonials",
         "heading": "From the table!",
+        "autoplay": true,
+        "autoplay_speed": 3,
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "custom_image_content_cDqBtQ": {
+      "type": "custom-image-content",
+      "name": "Custom Image Content",
+      "settings": {
+        "bg_image": "shopify://shop_images/Frame_1321317927.jpg",
+        "portrait": "shopify://shop_images/Frame_1321317929_1.jpg",
+        "header": "BEHIND THE CRAFT",
+        "title": "The Karigars",
+        "content": "<p>For <strong>Dhiman Singhji</strong>, the work has never been about making more, but making it right. Years of practice have shaped a way of working where the hand leads, and the eye decides when a batch is ready. There is a quiet satisfaction in knowing that the method remains unchanged. In a time where most things are made by machines, he believes there are still a few who understand the value of craft done by hand. To him, it is not just preparation, but a responsibility to keep the original form of these recipes intact.</p>"
+      }
+    },
+    "custom_bg_heading_ykifF8": {
+      "type": "custom-bg-heading",
+      "name": "Custom BG Heading",
+      "settings": {
+        "heading": "Follow Us",
+        "heading_color": "#ff6344",
+        "background_color": "#570f13"
+      }
+    },
+    "custom_images_grid_carousal_apkUXw": {
+      "type": "custom-images-grid_carousal",
+      "blocks": {
+        "image_c99Ppc": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
+          }
+        },
+        "image_qdG9Ee": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
+          }
+        },
+        "image_bqrefi": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317934_1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_c99Ppc",
+        "image_qdG9Ee",
+        "image_bqrefi"
+      ],
+      "name": "Custom Image Carousel",
+      "settings": {
+        "images_per_view": 3
       }
     }
   },
@@ -352,6 +411,9 @@
     "custom_images_grid_carousal_9HXCxw",
     "custom_home_values_Fk3bUf",
     "custom_blogs_carousel_LcgrGA",
-    "custom_home_testimonials_hpAUPY"
+    "custom_home_testimonials_hpAUPY",
+    "custom_image_content_cDqBtQ",
+    "custom_bg_heading_ykifF8",
+    "custom_images_grid_carousal_apkUXw"
   ]
 }

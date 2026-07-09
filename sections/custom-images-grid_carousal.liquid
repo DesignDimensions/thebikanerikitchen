@@ -4,6 +4,7 @@
   class="custom-images-grid_carousal-container"
   data-section-id="{{ section.id }}"
   data-default-language="{{ section.settings.default_language }}"
+  style="--images-per-view: {{ section.settings.images_per_view }};"
 >
   {% for block in section.blocks %}
     {% if block.settings.desktop_image and block.settings.mobile_image %}
@@ -24,6 +25,17 @@
 {% schema %}
 {
   "name": "Custom Image Carousel",
+  "settings": [
+    {
+      "type": "range",
+      "id": "images_per_view",
+      "label": "Images per row (desktop)",
+      "min": 1,
+      "max": 8,
+      "step": 1,
+      "default": 4
+    }
+  ],
   "blocks": [
     {
       "type": "image",

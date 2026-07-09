@@ -1,0 +1,51 @@
+{{ 'custom-image-content.css' | asset_url | stylesheet_tag }}
+<div style="background: url({{ section.settings.bg_image | image_url }})" class="custom-image-content-container">
+  <div class="page-width custom-image-content-inner">
+    <img src="{{ section.settings.portrait | image_url }}">
+    <div class="custom-image-content-inner-container">
+      <p>{{ section.settings.header }}</p>
+      <h3>{{ section.settings.title }}</h3>
+      <div class="custom-image-content-description">
+        {{ section.settings.content }}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Image Content",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "portrait",
+      "label": "Portrait Image"
+    },
+    {
+      "type": "text",
+      "id": "header",
+      "label": "Header Text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title Text"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Image Content"
+    }
+  ]
+}
+{% endschema %}

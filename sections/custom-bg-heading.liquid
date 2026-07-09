@@ -1,0 +1,49 @@
+<style>
+  .custom-bg-heading {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font-size: 50px;
+    font-family: 'Baskervville';
+    text-align: left;
+    width: 100%;
+    line-height: 50px;
+  }
+</style>
+<div
+  style="color: {{ section.settings.heading_color }}; background-color: {{ section.settings.background_color }}"
+  class="custom-bg-heading-container"
+>
+  <p
+    class="page-width custom-bg-heading"
+  >
+    {{ section.settings.heading }}
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "Custom BG Heading",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "heading_color",
+      "label": "Heading Color"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom BG Heading"
+    }
+  ]
+}
+{% endschema %}

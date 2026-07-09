@@ -7,7 +7,7 @@
 
 .custom-images-grid_carousal-desktop-image {
     display: block;
-    width: 25%;
+    width: calc(100% / var(--images-per-view, 4));
     height: auto;
 }
 
