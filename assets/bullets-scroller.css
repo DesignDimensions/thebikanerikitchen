@@ -70,14 +70,14 @@
 .bullets-scroller-item {
   position: relative;
   display: inline-flex;
-  align-items: baseline;
-  gap: 24px;
+  align-items: center;
+  gap: 40px;
   white-space: nowrap;
   font-family: 'Baskervville', serif;
-  font-size: 19px;
+  font-size: 16px;
   letter-spacing: 0.02em;
   color: var(--bullets-scroller-color, #181818);
-  padding: 0 24px 0 0;
+  padding: 0 40px 0 0;
 }
 
 .bullets-scroller-word {
@@ -93,8 +93,10 @@
 
 .bullets-scroller-dot {
   display: inline-block;
-  font-size: 10px;
+  font-size: 25px;
+  font-weight: 800;
   opacity: 0.65;
+  line-height: 5px;
   backface-visibility: hidden;
   will-change: transform, opacity;
 }
