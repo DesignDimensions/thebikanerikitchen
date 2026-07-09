@@ -13,7 +13,7 @@
       "type": "custom-banner",
       "name": "Custom Banner",
       "settings": {
-        "banner_image": "shopify://shop_images/Wireframe_-_4.jpg",
+        "banner_image": "shopify://shop_images/Wireframe_-_4_1.jpg",
         "mobile_banner_image": "shopify://shop_images/Frame_5.jpg"
       }
     },
@@ -22,9 +22,9 @@
       "name": "Custom Featured Product",
       "settings": {
         "featured_product": "dry-fruit-mix",
-        "bg_left_image": "shopify://shop_images/Frame_3_1.jpg",
-        "bg_right_image": "shopify://shop_images/Frame_4.jpg",
-        "featured-product-left-bg": "shopify://shop_images/Frame_1321319393_1.jpg",
+        "bg_left_image": "shopify://shop_images/Frame_3_2.jpg",
+        "bg_right_image": "shopify://shop_images/Frame_4_1.jpg",
+        "featured-product-left-bg": "shopify://shop_images/Frame_1321319393_3.jpg",
         "top_left_caption": "Our First",
         "heading": "Bikaneri Bhujia",
         "description": "<p>Prepared with deliberate restraint, the method remains untouched by time. Pressed by hand and lowered into measured heat, it is watched, not timed, and lifted at the exact moment of completion.</p><p>What emerges is continuity, fine, even strands with a composed crispness and a taste that concludes cleanly.</p><p>Preserved in this manner, the recipe is not interpreted, but honoured as it has always been.</p>",
@@ -173,36 +173,36 @@
         "value_DE3bCT": {
           "type": "value",
           "settings": {
-            "icon": "shopify://shop_images/Frame_1321317983_1.png",
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_27_59_PM_1.png",
             "title": "Made in high Oleic sunflower oil"
           }
         },
         "value_iXAcUw": {
           "type": "value",
           "settings": {
-            "icon": "shopify://shop_images/Frame_1321317983_2.png",
-            "title": "No re-use of oil, ensuring purity of taste"
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_29_49_PM_1.png",
+            "title": "No re-use of oil, for purity of taste"
           }
         },
         "value_8pQkUR": {
           "type": "value",
           "settings": {
-            "icon": "shopify://shop_images/Frame_1321317983_3.png",
-            "title": "Slow-cooked using Bhatti, the traditional way of cooking."
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_31_29_PM_1.png",
+            "title": "Slow-cooked in traditional Bhatti"
           }
         },
         "value_W467ek": {
           "type": "value",
           "settings": {
-            "icon": "shopify://shop_images/Frame_1321317983_4.png",
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_33_11_PM_1.png",
             "title": "Made with low sodium salt"
           }
         },
         "value_8mgV7n": {
           "type": "value",
           "settings": {
-            "icon": "shopify://shop_images/Frame_1321317983_5.png",
-            "title": "Prepared by skilled hands in small batches"
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_35_34_PM_1.png",
+            "title": "Prepared by skilled hands in batches"
           }
         }
       },

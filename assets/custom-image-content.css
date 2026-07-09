@@ -40,9 +40,9 @@
 .custom-image-content-inner-container p:first-child {
     margin: 0;
     font-family: 'Proxima Nova A';
-    font-size: 19px;
+    font-size: 13px;
     font-weight: 500;
-    letter-spacing: 8px;
+    letter-spacing: 5px;
 }
 
 .custom-image-content-inner-container h3 {

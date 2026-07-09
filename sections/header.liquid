@@ -78,7 +78,7 @@
 
 {%- style -%}
   .header {
-    padding: 38px 5rem 23px 5rem;
+    padding: 46px 5rem 24px 5rem;
   }
 
   .section-header {
@@ -174,7 +174,11 @@
     {%- endif -%}
 
     {%- if section.settings.menu != blank -%}
-      {% render 'header-dropdown-menu', menu: section.settings.menu, menu_id_prefix: 'HeaderMenuPrimary', nav_class: 'header__inline-menu--primary' %}
+      {% render 'header-dropdown-menu',
+        menu: section.settings.menu,
+        menu_id_prefix: 'HeaderMenuPrimary',
+        nav_class: 'header__inline-menu--primary'
+      %}
     {%- endif -%}
 
     {%- if section.settings.logo_position == 'middle-center' -%}
@@ -234,40 +238,46 @@
           </localization-form>
         {%- endif -%}
       </div>
-          {%- assign secondary_menu = linklists[section.settings.secondary_menu] -%}
-    {%- if secondary_menu != blank -%}
-      {% render 'header-dropdown-menu', menu: secondary_menu, menu_id_prefix: 'HeaderMenuSecondary', nav_class: 'header__inline-menu--secondary' %}
-    {%- endif -%}
+      {%- assign secondary_menu = linklists[section.settings.secondary_menu] -%}
+      {%- if secondary_menu != blank -%}
+        {% render 'header-dropdown-menu',
+          menu: secondary_menu,
+          menu_id_prefix: 'HeaderMenuSecondary',
+          nav_class: 'header__inline-menu--secondary'
+        %}
+      {%- endif -%}
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
-      {% comment %} {%- if shop.customer_accounts_enabled -%}
-        <a
-          href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-          class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
-          rel="nofollow"
-        >
-          {%- if section.settings.enable_customer_avatar -%}
-            <account-icon>
-              {%- if customer and customer.has_avatar? -%}
-                {{ customer | avatar }}
-              {%- else -%}
-                <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-              {%- endif -%}
-            </account-icon>
-          {%- else -%}
-            <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
-          {%- endif -%}
-          <span class="visually-hidden">
-            {%- liquid
-              if customer
-                echo 'customer.account_fallback' | t
-              else
-                echo 'customer.log_in' | t
-              endif
-            -%}
-          </span>
-        </a>
-      {%- endif -%} {% endcomment %}
+      {% comment %}
+        {%- if shop.customer_accounts_enabled -%}
+          <a
+            href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+            class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
+            rel="nofollow"
+          >
+            {%- if section.settings.enable_customer_avatar -%}
+              <account-icon>
+                {%- if customer and customer.has_avatar? -%}
+                  {{ customer | avatar }}
+                {%- else -%}
+                  <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                {%- endif -%}
+              </account-icon>
+            {%- else -%}
+              <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+            {%- endif -%}
+            <span class="visually-hidden">
+              {%- liquid
+                if customer
+                  echo 'customer.account_fallback' | t
+                else
+                  echo 'customer.log_in' | t
+                endif
+              -%}
+            </span>
+          </a>
+        {%- endif -%}
+      {% endcomment %}
 
       {%- for block in section.blocks -%}
         {%- case block.type -%}
@@ -275,28 +285,26 @@
             {% render block %}
         {%- endcase -%}
       {%- endfor -%}
-
-    
     </div>
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
-        <span class="svg-wrapper">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_823.png?v=1783590048"
-            alt=""
-            width="44"
-            height="44"
-          >
-        </span>
-        <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
-        {%- if cart != empty -%}
-          <div class="cart-count-bubble">
-            {%- if cart.item_count < 100 -%}
-              <span aria-hidden="true">{{ cart.item_count }}</span>
-            {%- endif -%}
-            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-          </div>
-        {%- endif -%}
-      </a>
+    <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <span class="svg-wrapper">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_823.png?v=1783590048"
+          alt=""
+          width="44"
+          height="44"
+        >
+      </span>
+      <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+      {%- if cart != empty -%}
+        <div class="cart-count-bubble">
+          {%- if cart.item_count < 100 -%}
+            <span aria-hidden="true">{{ cart.item_count }}</span>
+          {%- endif -%}
+          <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+        </div>
+      {%- endif -%}
+    </a>
   </header>
 </{{ header_tag }}>
 

@@ -3,12 +3,14 @@
     justify-content: start;
     align-items: start;
     width: 100%;
+    height: 80vh;
 }
 
 .custom-images-grid_carousal-desktop-image {
     display: block;
     width: calc(100% / var(--images-per-view, 4));
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .custom-images-grid_carousal-mobile-image {

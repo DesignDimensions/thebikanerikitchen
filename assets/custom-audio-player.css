@@ -1,7 +1,8 @@
 .custom-audio-player-container {
     position: relative;
     width: 100%;
-    aspect-ratio: 1440/1024;
+    /* aspect-ratio: 1440/1024; */
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -120,7 +121,7 @@
 .custom-audio-player-progress-fill {
     height: 100%;
     width: 0%;
-    background: #FF6344;
+    background: #181818;
     transition: width 0.1s linear;
 }
 

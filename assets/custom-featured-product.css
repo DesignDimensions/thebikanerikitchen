@@ -4,7 +4,8 @@
     align-items: center;
     position: relative;
     width: 100%;
-    aspect-ratio: 1440/1024;
+    /* aspect-ratio: 1440/780; */
+    height: 100vh;
 }
 
 .custom-featured-product-container img:nth-child(1) {
@@ -12,7 +13,8 @@
     top: 0;
     left: 0;
     width: 50%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .custom-featured-product-container img:nth-child(2) {
@@ -20,7 +22,8 @@
     top: 0;
     right: 0;
     width: 50%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .custom-featured-product-left-cta_container img {
@@ -41,7 +44,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 80%;
+    height: 85vh !important;
     transform: translate(-50%, -50%);
     width: 100%;
 }
@@ -50,6 +53,8 @@
     position: relative;
     width: 50%;
     height: 100%;
+    object-fit: cover;
+    /* aspect-ratio: 656 / 685; */
     padding: 60px 40px;
     display: flex;
     flex-direction: column;
@@ -63,10 +68,10 @@
 .custom-featured-product-left-inner_upper p:nth-child(1) {
     font-family: "Proxima Nova A", serif;
     color: #181818;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 500;
-    line-height: 18px;
-    letter-spacing: 4px;
+    line-height: 14px;
+    letter-spacing: 5px;
     text-align: left;
     text-transform: uppercase;
     margin-bottom: 20px;
@@ -75,7 +80,7 @@
 .custom-featured-product-left-inner_upper p:nth-child(2) {
     font-family: "Baskervville", serif;
     color: #181818;
-    font-size: 36px;
+    font-size: 39px;
     font-weight: 500;
     line-height: 34px;
     letter-spacing: 3px;
@@ -94,10 +99,10 @@
 .custom-featured-product-left .custom-featured-product-left-description p {
     font-family: 'Helvetica Neue';
     color: #181818;
-    font-size: 13px;
+    font-size: 13.5px;
     font-weight: 300;
     line-height: 23px;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     text-align: left;
     margin-top: 17px;
     text-transform: none;
@@ -214,7 +219,7 @@
         background-color: #FFFDEE;
     }
 
-    .custom-featured-product-left > img {
+    .custom-featured-product-left>img {
         display: none;
     }
 
