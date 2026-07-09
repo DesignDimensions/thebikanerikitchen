@@ -94,20 +94,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     };
 
-    // Correct once scrolling has settled, so a native smooth-scroll or
-    // touch-momentum animation never gets cut short mid-flight.
-    let settleTimer = null;
-    viewport.addEventListener('scroll', () => {
-      clearTimeout(settleTimer);
-      settleTimer = setTimeout(correctBounds, 120);
-    });
-
     const stepForward = () => {
       viewport.scrollBy({ left: cardStep, behavior: reduceMotion ? 'auto' : 'smooth' });
     };
     const stepBackward = () => {
       viewport.scrollBy({ left: -cardStep, behavior: reduceMotion ? 'auto' : 'smooth' });
     };
+
+    // Free-form dragging/touch/wheel scrolling can come to rest mid-card;
+    // snap onto the same card grid stepForward/stepBackward use so Next/Prev
+    // stay in sync. Handled entirely in JS (no CSS scroll-snap) so there's
+    // no race between a native snap correction and this smooth animation.
+    const snapToNearestCard = () => {
+      const nearestIndex = Math.round(viewport.scrollLeft / cardStep);
+      viewport.scrollTo({ left: nearestIndex * cardStep, behavior: reduceMotion ? 'auto' : 'smooth' });
+    };
+
+    // Correct once scrolling has settled, so a native smooth-scroll or
+    // touch-momentum animation never gets cut short mid-flight.
+    let settleTimer = null;
+    viewport.addEventListener('scroll', () => {
+      clearTimeout(settleTimer);
+      settleTimer = setTimeout(() => {
+        correctBounds();
+        if (!isDragging) snapToNearestCard();
+      }, 120);
+    });
 
     let autoplayTimer = null;
     const stopAutoplay = () => {
@@ -154,6 +166,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isDragging) return;
       isDragging = false;
       viewport.classList.remove('is-dragging');
+      clearTimeout(settleTimer);
+      snapToNearestCard();
       scheduleResume();
     };
     viewport.addEventListener('pointerup', endDrag);
