@@ -16,9 +16,8 @@
         "background_color": "#D0AA5D",
         "text_color": "#181818",
         "separator": "•",
-        "speed": 26,
+        "speed": 25,
         "direction": "normal",
-        "pause_on_hover": true,
         "fallback_bullets": ""
       }
     },
