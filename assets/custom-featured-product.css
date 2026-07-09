@@ -180,3 +180,94 @@
 .custom-featured-product__cta.loading .custom-featured-product__button-text {
     display: none;
 }
+
+@media screen and (max-width: 989px) {
+    .custom-featured-product-container {
+        aspect-ratio: unset;
+        display: block;
+    }
+
+    .custom-featured-product-container img:nth-child(1) {
+        display: none;
+    }
+
+    .custom-featured-product-container img:nth-child(2) {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .custom-featured-product-container .page-width {
+        position: static;
+        transform: none;
+        top: auto;
+        left: auto;
+        height: auto;
+        width: 100%;
+        display: block;
+    }
+
+    .custom-featured-product-left {
+        width: 100%;
+        height: auto;
+        padding: 32px 24px 40px;
+        background-color: #FFFDEE;
+    }
+
+    .custom-featured-product-left > img {
+        display: none;
+    }
+
+    .custom-featured-product-right {
+        display: none;
+    }
+
+    .custom-featured-product-left-inner_upper p:nth-child(1) {
+        font-size: 12px;
+        letter-spacing: 3px;
+        margin-bottom: 14px;
+    }
+
+    .custom-featured-product-left-inner_upper p:nth-child(2) {
+        font-size: 28px;
+        line-height: 30px;
+    }
+
+    .custom-featured-product-left-description {
+        gap: 16px;
+        margin-top: 14px;
+    }
+
+    .custom-featured-product-left .custom-featured-product-left-description p {
+        font-size: 14px;
+        line-height: 22px;
+    }
+
+    .custom-featured-product-left-inner_lower {
+        margin-top: 28px;
+    }
+
+    .custom-featured-product-left-inner_lower p {
+        font-size: 17px;
+        margin-bottom: 20px;
+    }
+
+    .custom-featured-product-left-inner_lower button {
+        font-size: 19px;
+    }
+
+    .custom-featured-product-left-cta_container img {
+        width: 48px !important;
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .custom-featured-product-left {
+        padding: 28px 20px 36px;
+    }
+
+    .custom-featured-product-left-inner_upper p:nth-child(2) {
+        font-size: 24px;
+        line-height: 27px;
+    }
+}

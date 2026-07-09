@@ -49,3 +49,29 @@
     line-height: 25px;
     font-weight: 400;
 }
+
+@media screen and (max-width: 749px) {
+    .custom-home_values-heading {
+        padding: 40px 0 4px;
+    }
+
+    .custom-home_values-inner {
+        gap: 28px;
+        padding-bottom: 44px;
+    }
+
+    .custom-home_values-item-container {
+        gap: 8%;
+        row-gap: 32px;
+    }
+
+    .custom-home_values-item {
+        max-width: 42%;
+    }
+
+    .custom-home_values-title {
+        margin-top: 14px;
+        font-size: 14px;
+        line-height: 19px;
+    }
+}

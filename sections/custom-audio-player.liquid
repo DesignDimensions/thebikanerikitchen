@@ -15,29 +15,55 @@
 
   <div class="custom-audio-player-overlay">
     <div class="custom-audio-player-card">
-      <h1 class="custom-audio-player-heading">{{ section.settings.heading }}</h1>
+      <h1 class="section-heading custom-audio-player-heading">{{ section.settings.heading }}</h1>
       <div class="custom-audio-player-controls">
-        <button type="button" class="custom-audio-player-playpause" aria-pressed="false">Play</button>
+        <button type="button" class="custom-audio-player-playpause" aria-pressed="false" aria-label="Play">
+          <span class="custom-audio-player-icon custom-audio-player-icon-play" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="currentColor"><path d="M4.5 2.7c0-.8.87-1.3 1.56-.9l7.2 4.3a1.03 1.03 0 0 1 0 1.8l-7.2 4.3c-.69.4-1.56-.1-1.56-.9v-8.6z"/></svg>
+          </span>
+          <span class="custom-audio-player-icon custom-audio-player-icon-pause" aria-hidden="true">
+            <svg viewBox="0 0 16 16" fill="currentColor"><rect x="3" y="2.5" width="3.2" height="11" rx="1"/><rect x="9.8" y="2.5" width="3.2" height="11" rx="1"/></svg>
+          </span>
+        </button>
         <div class="custom-audio-player-progress-bar">
           <div class="custom-audio-player-progress-fill"></div>
         </div>
         <div class="custom-audio-player-current-time">0:00</div>
       </div>
 
+      {%- if section.blocks.size > 0 -%}
+        <div class="custom-audio-player-subtitles">
+          <div class="custom-audio-player-subtitles-track">
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign time_parts = block.settings.start_time | split: ':'
+                assign start_seconds = 0
+                if time_parts.size == 2
+                  assign start_seconds = time_parts[0] | times: 60 | plus: time_parts[1]
+                elsif time_parts.size == 1
+                  assign start_seconds = time_parts[0] | plus: 0
+                endif
+              -%}
+              <div
+                class="custom-audio-player-subtitle-line"
+                data-start="{{ start_seconds }}"
+                {{ block.shopify_attributes }}
+              >
+                {%- if block.settings.hindi != blank -%}
+                  <p class="custom-audio-player-subtitle-text custom-audio-player-subtitle-hi">{{ block.settings.hindi }}</p>
+                {%- endif -%}
+                {%- if block.settings.english != blank -%}
+                  <p class="custom-audio-player-subtitle-text custom-audio-player-subtitle-en">{{ block.settings.english }}</p>
+                {%- endif -%}
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+
       <div class="custom-audio-player-language-switcher">
         <button type="button" class="custom-audio-player-language-button" data-language="hi">हिन्दी</button>
         <button type="button" class="custom-audio-player-language-button" data-language="en">ENGLISH</button>
-      </div>
-
-      <div class="custom-audio-player-subtitles">
-        {% assign subtitles = section.settings.subtitles | split: '||' %}
-        {% for subtitle in subtitles %}
-          {% assign parts = subtitle | split: '::' %}
-          <div class="custom-audio-player-subtitle-row" data-start="{{ parts[0] }}" data-end="{{ parts[1] }}">
-            <div class="custom-audio-player-subtitle-text custom-audio-player-subtitle-hi">{{ parts[2] }}</div>
-            <div class="custom-audio-player-subtitle-text custom-audio-player-subtitle-en">{{ parts[3] }}</div>
-          </div>
-        {% endfor %}
       </div>
 
       <audio class="custom-audio-player-audio" preload="metadata" src="{{ section.settings.audio_url }}"></audio>
@@ -86,18 +112,50 @@
         }
       ],
       "default": "hi"
-    },
+    }
+  ],
+  "blocks": [
     {
-      "type": "textarea",
-      "id": "subtitles",
-      "label": "Subtitles",
-      "default": "0::5::पहली पंक्ति हिंदी::First line English||5::10::दूसरी पंक्ति हिंदी::Second line English",
-      "info": "Use 'start::end::Hindi text::English text' for each row, joined with '||'"
+      "type": "subtitle_line",
+      "name": "Subtitle line",
+      "settings": [
+        {
+          "type": "text",
+          "id": "start_time",
+          "label": "Start time",
+          "info": "Format m:ss — the point in the track where this line should highlight, e.g. 0:05.",
+          "default": "0:00"
+        },
+        {
+          "type": "textarea",
+          "id": "hindi",
+          "label": "Hindi text"
+        },
+        {
+          "type": "textarea",
+          "id": "english",
+          "label": "English text"
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Custom Audio Player"
+      "name": "Custom Audio Player",
+      "blocks": [
+        {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:00"
+          }
+        },
+        {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:05"
+          }
+        }
+      ]
     }
   ]
 }

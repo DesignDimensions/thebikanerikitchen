@@ -66,14 +66,53 @@
     },
     "custom_audio_player_hKJxNx": {
       "type": "custom-audio-player",
+      "blocks": {
+        "subtitle_line_fnTTcV": {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:00",
+            "hindi": "",
+            "english": "In the sands of Bikaner, where little grew and nothing was wasted, the"
+          }
+        },
+        "subtitle_line_iHfzmb": {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:04",
+            "hindi": "",
+            "english": "kitchens learned to listen. We watched as humble moth beans were"
+          }
+        },
+        "subtitle_line_XaiNUe": {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:8",
+            "hindi": "",
+            "english": "ground and shaped, pressed through careful hands and lowered into"
+          }
+        },
+        "subtitle_line_hUrimG": {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:11",
+            "hindi": "",
+            "english": "patient heat."
+          }
+        }
+      },
+      "block_order": [
+        "subtitle_line_fnTTcV",
+        "subtitle_line_iHfzmb",
+        "subtitle_line_XaiNUe",
+        "subtitle_line_hUrimG"
+      ],
       "name": "Custom Audio Player",
       "settings": {
         "banner_image": "shopify://shop_images/Wireframe_-_5_1.jpg",
         "mobile_banner_image": "shopify://shop_images/Frame_1321317972.jpg",
         "heading": "Aao Sune Kahani Bikaneri Bhujia Ki",
-        "audio_url": "",
-        "default_language": "en",
-        "subtitles": ""
+        "audio_url": "https://cdn.shopify.com/s/files/1/0764/0953/6706/files/freesound-community-002145-a-conversation-with-a-neighbor-53032_3pVsHulM.mp3?v=1783592407",
+        "default_language": "en"
       }
     },
     "custom_banner_text_jUVQVz": {

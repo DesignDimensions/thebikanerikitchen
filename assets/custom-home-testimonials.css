@@ -307,3 +307,17 @@
     scroll-behavior: auto !important;
   }
 }
+
+@media screen and (max-width: 749px) {
+  .custom-home-testimonials-corner {
+    left: 1.5rem;
+    bottom: 1.5rem;
+    width: 20px;
+  }
+
+  .custom-home-testimonials-arrow {
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 15%;
+  }
+}

@@ -40,7 +40,7 @@
     font-style: italic;
 }
 
-@media(max-width: 768px) {
+@media(max-width: 749px) {
     .custom-banner-text-container {
         aspect-ratio: 402/258;
     }
@@ -51,5 +51,19 @@
 
     .custom-banner-text_mobile-image {
         display: block;
+    }
+
+    .custom-banner-text-container p {
+        width: 85%;
+        font-size: 30px;
+        line-height: 38px;
+    }
+}
+
+@media screen and (min-width: 750px) and (max-width: 989px) {
+    .custom-banner-text-container p {
+        width: 80%;
+        font-size: 42px;
+        line-height: 52px;
     }
 }

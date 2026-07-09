@@ -7,11 +7,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressFill = container.querySelector('.custom-audio-player-progress-fill');
     const currentTime = container.querySelector('.custom-audio-player-current-time');
     const languageButtons = container.querySelectorAll('.custom-audio-player-language-button');
-    const subtitleRows = Array.from(container.querySelectorAll('.custom-audio-player-subtitle-row'));
+    const subtitlesViewport = container.querySelector('.custom-audio-player-subtitles');
+    const subtitlesTrack = container.querySelector('.custom-audio-player-subtitles-track');
+    const lines = Array.from(container.querySelectorAll('.custom-audio-player-subtitle-line'));
 
     if (!audio || !playButton) return;
 
     let activeLanguage = container.dataset.defaultLanguage || 'hi';
+    let activeLine = null;
 
     const formatTime = (seconds) => {
       if (!seconds || Number.isNaN(seconds)) return '0:00';
@@ -28,33 +31,40 @@ document.addEventListener('DOMContentLoaded', () => {
         button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
 
-      subtitleRows.forEach((row) => {
-        const hiText = row.querySelector('.custom-audio-player-subtitle-hi');
-        const enText = row.querySelector('.custom-audio-player-subtitle-en');
+      lines.forEach((line) => {
+        const hiText = line.querySelector('.custom-audio-player-subtitle-hi');
+        const enText = line.querySelector('.custom-audio-player-subtitle-en');
         if (hiText) hiText.style.display = language === 'hi' ? 'block' : 'none';
         if (enText) enText.style.display = language === 'en' ? 'block' : 'none';
       });
     };
 
     const setPlayState = (isPlaying) => {
-      playButton.textContent = isPlaying ? 'Pause' : 'Play';
+      playButton.classList.toggle('is-playing', isPlaying);
+      playButton.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
       playButton.dataset.playing = isPlaying ? 'true' : 'false';
     };
 
-    const highlightCurrentSubtitle = () => {
+    const updateActiveLine = () => {
+      if (!lines.length) return;
       const time = audio.currentTime;
-      let activeRow = null;
+      let current = lines[0];
 
-      subtitleRows.forEach((row) => {
-        const start = parseFloat(row.dataset.start) || 0;
-        const end = parseFloat(row.dataset.end) || 0;
-        const isActive = time >= start && time < end;
-        row.classList.toggle('active', isActive);
-        if (isActive) activeRow = row;
+      lines.forEach((line) => {
+        const start = parseFloat(line.dataset.start) || 0;
+        if (start <= time) current = line;
       });
 
-      if (activeRow) {
-        activeRow.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      if (current === activeLine) return;
+
+      if (activeLine) activeLine.classList.remove('active');
+      current.classList.add('active');
+      activeLine = current;
+
+      if (subtitlesViewport && subtitlesTrack) {
+        const centerOffset =
+          subtitlesViewport.clientHeight / 2 - current.offsetTop - current.clientHeight / 2;
+        subtitlesTrack.style.transform = `translateY(${centerOffset}px)`;
       }
     };
 
@@ -82,13 +92,16 @@ document.addEventListener('DOMContentLoaded', () => {
       setPlayState(!audio.paused);
       progressFill.style.width = audio.duration ? `${(audio.currentTime / audio.duration) * 100}%` : '0%';
       currentTime.textContent = formatTime(audio.currentTime);
-      highlightCurrentSubtitle();
+      updateActiveLine();
     });
+
+    audio.addEventListener('seeked', updateActiveLine);
 
     audio.addEventListener('ended', () => {
       setPlayState(false);
     });
 
     updateLanguage(activeLanguage);
+    updateActiveLine();
   });
 });

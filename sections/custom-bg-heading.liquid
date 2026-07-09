@@ -8,6 +8,24 @@
     width: 100%;
     line-height: 50px;
   }
+
+  @media screen and (max-width: 749px) {
+    .custom-bg-heading {
+      padding-top: 32px;
+      padding-bottom: 28px;
+      font-size: 30px;
+      line-height: 34px;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .custom-bg-heading {
+      padding-top: 40px;
+      padding-bottom: 40px;
+      font-size: 38px;
+      line-height: 40px;
+    }
+  }
 </style>
 <div
   style="color: {{ section.settings.heading_color }}; background-color: {{ section.settings.background_color }}"
