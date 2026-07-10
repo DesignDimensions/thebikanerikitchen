@@ -5,7 +5,7 @@
   color: rgb(var(--color-foreground));
 }
 
-.price > * {
+.price>* {
   display: inline-block;
   vertical-align: top;
 }
@@ -25,6 +25,12 @@
 
 .price__regular .price-item--regular {
   margin-right: 0;
+}
+
+product-info .price-item--regular {
+  font-family: 'Piazzolla';
+  font-size: 32px;
+  line-height: 28px;
 }
 
 .price:not(.price--show-badge) .price-item--last:last-of-type {

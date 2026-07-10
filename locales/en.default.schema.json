@@ -2017,6 +2017,35 @@
             }
           }
         },
+        "discount_callout": {
+          "name": "Discount callout",
+          "settings": {
+            "image": {
+              "label": "Icon"
+            },
+            "text": {
+              "label": "Text",
+              "info": "Use [[code]] where the discount code should appear."
+            },
+            "discount_code": {
+              "label": "Discount code"
+            }
+          }
+        },
+        "product_reviews": {
+          "name": "Product reviews",
+          "settings": {
+            "trust_text_1": {
+              "label": "Trust badge 1"
+            },
+            "trust_text_2": {
+              "label": "Trust badge 2"
+            },
+            "trust_text_3": {
+              "label": "Trust badge 3"
+            }
+          }
+        },
         "pickup_availability": {
           "name": "Pickup availability"
         },

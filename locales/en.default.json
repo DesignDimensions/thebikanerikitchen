@@ -112,6 +112,33 @@
       "description": "Description",
       "read_more": "Read More",
       "show_less": "Show Less",
+      "discount_callout": {
+        "copied": "Copied!"
+      },
+      "reviews": {
+        "verified_reviews": {
+          "one": "{{ count }} Verified Review",
+          "other": "{{ count }} Verified Reviews"
+        },
+        "previous": "Previous review",
+        "next": "Next review",
+        "write_a_review": "Write a review",
+        "thank_you": "Thanks! Your review has been submitted for approval.",
+        "form": {
+          "name": "Name",
+          "location": "Location",
+          "email": "Email",
+          "rating": "Rating",
+          "rating_placeholder": "Select a rating",
+          "rating_5": "Excellent",
+          "rating_4": "Good",
+          "rating_3": "Average",
+          "rating_2": "Fair",
+          "rating_1": "Poor",
+          "review": "Your review",
+          "submit": "Submit review"
+        }
+      },
       "inventory_in_stock": "In stock",
       "inventory_in_stock_show_count": "{{ quantity }} in stock",
       "inventory_low_stock": "Low stock",
@@ -134,6 +161,7 @@
       "nested_label": "{{ title }} for {{ parent_title }}",
       "quantity": {
         "label": "Quantity",
+        "add_label": "Add Quantity",
         "input_label": "Quantity for {{ product }}",
         "increase": "Increase quantity for {{ product }}",
         "decrease": "Decrease quantity for {{ product }}",

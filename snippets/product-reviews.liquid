@@ -1,0 +1,154 @@
+{% comment %}
+  Renders the product reviews carousel, a "write a review" form, and a trust-badge row.
+  Reads published entries from the `tbk_product_review` metaobject, filtered to this product.
+  Accepts:
+  - block: {Object} block object with settings: trust_text_1, trust_text_2, trust_text_3
+  - product: {Object}
+
+  Usage:
+  {% render 'product-reviews', block: block, product: product %}
+{% endcomment %}
+{%- liquid
+  assign all_reviews = shop.metaobjects.tbk_product_review.values
+  assign review_count = 0
+  for review in all_reviews
+    if review.product.value.id == product.id
+      assign review_count = review_count | plus: 1
+    endif
+  endfor
+-%}
+
+<div class="product-reviews-wrapper" {{ block.shopify_attributes }}>
+  {%- if review_count > 0 -%}
+    <product-reviews-carousel class="product-reviews" data-section-id="{{ section.id }}">
+      <div class="product-reviews__header">
+        <p class="product-reviews__count">
+          {{ 'products.product.reviews.verified_reviews' | t: count: review_count }}
+        </p>
+        <p class="product-reviews__pagination">
+          <span class="product-reviews__pagination-current">1</span>
+          <span aria-hidden="true">&nbsp;|&nbsp;</span>
+          <span class="product-reviews__pagination-total">{{ review_count }}</span>
+        </p>
+      </div>
+      <div class="product-reviews__divider"></div>
+      <div class="product-reviews__body">
+        <button
+          type="button"
+          class="product-reviews__nav product-reviews__nav--prev"
+          disabled
+          aria-label="{{ 'products.product.reviews.previous' | t }}"
+        >
+          <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+        </button>
+
+        <ul class="product-reviews__list list-unstyled">
+          {%- assign matched_index = -1 -%}
+          {%- for review in all_reviews -%}
+            {%- if review.product.value.id != product.id -%}
+              {%- continue -%}
+            {%- endif -%}
+            {%- assign matched_index = matched_index | plus: 1 -%}
+            <li
+              class="product-reviews__item"
+              {% unless matched_index == 0 %}hidden{% endunless %}
+              data-review-index="{{ matched_index }}"
+            >
+              <blockquote class="product-reviews__quote">
+                <p>&ldquo;{{ review.review_body.value }}&rdquo;</p>
+              </blockquote>
+              <div class="product-reviews__rating" aria-hidden="true">
+                {%- assign rating_value = review.rating.value | default: 0 -%}
+                {%- for i in (1..5) -%}
+                  <span class="product-reviews__star{% if i <= rating_value %} is-filled{% endif %}">
+                    {{- 'icon-star.svg' | inline_asset_content -}}
+                  </span>
+                {%- endfor -%}
+              </div>
+              <p class="product-reviews__author">
+                {{- review.reviewer_name.value -}}
+                {%- if review.reviewer_location.value != blank -%}
+                  , {{ review.reviewer_location.value }}
+                {%- endif -%}
+              </p>
+            </li>
+          {%- endfor -%}
+        </ul>
+
+        <button
+          type="button"
+          class="product-reviews__nav product-reviews__nav--next"
+          {% if review_count <= 1 %}disabled{% endif %}
+          aria-label="{{ 'products.product.reviews.next' | t }}"
+        >
+          <span class="svg-wrapper">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+        </button>
+      </div>
+      <div class="product-reviews__divider"></div>
+    </product-reviews-carousel>
+  {%- endif -%}
+
+  <div class="product-reviews__trust-row">
+    {%- if block.settings.trust_text_1 != blank -%}
+      <span>{{ block.settings.trust_text_1 }}</span>
+    {%- endif -%}
+    {%- if block.settings.trust_text_2 != blank -%}
+      <span aria-hidden="true" class="product-reviews__trust-divider">|</span>
+      <span>{{ block.settings.trust_text_2 }}</span>
+    {%- endif -%}
+    {%- if block.settings.trust_text_3 != blank -%}
+      <span aria-hidden="true" class="product-reviews__trust-divider">|</span>
+      <span>{{ block.settings.trust_text_3 }}</span>
+    {%- endif -%}
+  </div>
+
+  <details class="product-reviews__write" {% if form.posted_successfully? %}open{% endif %}>
+    <summary>{{ 'products.product.reviews.write_a_review' | t }}</summary>
+    <div class="product-reviews__write-content">
+      {%- form 'contact', class: 'product-reviews__form' -%}
+        {%- if form.posted_successfully? -%}
+          <p class="product-reviews__form-success">{{ 'products.product.reviews.thank_you' | t }}</p>
+        {%- endif -%}
+        <input type="hidden" name="contact[subject]" value="New product review">
+        <input type="hidden" name="contact[product]" value="{{ product.title | escape }}">
+        <input type="hidden" name="contact[product_handle]" value="{{ product.handle }}">
+        <input type="hidden" name="contact[product_url]" value="{{ shop.url }}{{ product.url }}">
+        <input type="hidden" name="contact[body]" class="product-reviews__body-field" value="">
+
+        <div class="product-reviews__form-row">
+          <label for="ReviewName-{{ section.id }}">{{ 'products.product.reviews.form.name' | t }}</label>
+          <input type="text" id="ReviewName-{{ section.id }}" name="contact[name]" required>
+        </div>
+        <div class="product-reviews__form-row">
+          <label for="ReviewLocation-{{ section.id }}">{{ 'products.product.reviews.form.location' | t }}</label>
+          <input type="text" id="ReviewLocation-{{ section.id }}" name="contact[location]">
+        </div>
+        <div class="product-reviews__form-row">
+          <label for="ReviewEmail-{{ section.id }}">{{ 'products.product.reviews.form.email' | t }}</label>
+          <input type="email" id="ReviewEmail-{{ section.id }}" name="contact[email]" required>
+        </div>
+        <div class="product-reviews__form-row">
+          <label for="ReviewRating-{{ section.id }}">{{ 'products.product.reviews.form.rating' | t }}</label>
+          <select id="ReviewRating-{{ section.id }}" name="contact[rating]" required>
+            <option value="">{{ 'products.product.reviews.form.rating_placeholder' | t }}</option>
+            <option value="5">5 - {{ 'products.product.reviews.form.rating_5' | t }}</option>
+            <option value="4">4 - {{ 'products.product.reviews.form.rating_4' | t }}</option>
+            <option value="3">3 - {{ 'products.product.reviews.form.rating_3' | t }}</option>
+            <option value="2">2 - {{ 'products.product.reviews.form.rating_2' | t }}</option>
+            <option value="1">1 - {{ 'products.product.reviews.form.rating_1' | t }}</option>
+          </select>
+        </div>
+        <div class="product-reviews__form-row">
+          <label for="ReviewBody-{{ section.id }}">{{ 'products.product.reviews.form.review' | t }}</label>
+          <textarea id="ReviewBody-{{ section.id }}" name="contact[review_text]" rows="4" required></textarea>
+        </div>
+
+        <button type="submit" class="button button--primary">
+          {{ 'products.product.reviews.form.submit' | t }}
+        </button>
+      {%- endform -%}
+    </div>
+  </details>
+</div>
+
+<script src="{{ 'product-reviews.js' | asset_url }}" defer="defer"></script>

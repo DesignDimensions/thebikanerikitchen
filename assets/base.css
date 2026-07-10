@@ -1943,15 +1943,15 @@ input[type='checkbox'] {
   text-align: center;
   background-color: transparent;
   border: 0;
-  padding: 0 0.5rem;
-  width: 100%;
+  padding: 0 0rem;
+  width: 40%;
   flex-grow: 1;
   -webkit-appearance: none;
   appearance: none;
 }
 
 .quantity__button {
-  width: calc(4.5rem / var(--font-body-scale));
+  width: 30%;
   flex-shrink: 0;
   font-size: 1.8rem;
   border: 0;

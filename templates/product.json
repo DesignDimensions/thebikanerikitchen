@@ -45,6 +45,7 @@
         },
         "quantity_selector": {
           "type": "quantity_selector",
+          "disabled": true,
           "settings": {}
         },
         "buy_buttons": {
@@ -53,6 +54,18 @@
             "show_dynamic_checkout": false,
             "show_gift_card_recipient": false
           }
+        },
+        "discount_callout": {
+          "type": "discount_callout",
+          "settings": {
+            "image": "shopify://shop_images/Vector_10.png",
+            "text": "<p>Use code <strong>[[code]]</strong> to avail <strong>10% off</strong></p>",
+            "discount_code": "TBK10"
+          }
+        },
+        "product_reviews": {
+          "type": "product_reviews",
+          "settings": {}
         }
       },
       "block_order": [
@@ -61,7 +74,9 @@
         "variant_picker",
         "price",
         "quantity_selector",
-        "buy_buttons"
+        "buy_buttons",
+        "discount_callout",
+        "product_reviews"
       ],
       "settings": {
         "enable_sticky_info": true,

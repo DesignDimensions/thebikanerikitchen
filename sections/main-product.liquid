@@ -74,7 +74,7 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
-    <div >
+    <div>
       <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {% render 'product-media-gallery', variant_images: variant_images %}
@@ -107,33 +107,38 @@
                     </a>
                   </div>
                 {%- when 'price' -%}
-                  <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
-                    {%- render 'price',
-                      product: product,
-                      use_variant: true,
-                      show_badges: true,
-                      price_class: 'price--large'
-                    -%}
+                  <div class="pdp-prices-container">
+                    <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
+                      {%- render 'price',
+                        product: product,
+                        use_variant: true,
+                        show_badges: true,
+                        price_class: 'price--large'
+                      -%}
+                    </div>
+                    <p class="pdp-price-note-text">(Inclusive of all taxes.)</p>
                   </div>
                   {%- if product.quantity_price_breaks_configured? -%}
                     <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                       <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                     </div>
                   {%- endif -%}
-                  {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                    <div class="product__tax caption rte">
-                      {%- if cart.duties_included and cart.taxes_included -%}
-                        {{ 'products.product.duties_and_taxes_included' | t }}
-                      {%- elsif cart.taxes_included -%}
-                        {{ 'products.product.taxes_included' | t }}
-                      {%- elsif cart.duties_included -%}
-                        {{ 'products.product.duties_included' | t }}
-                      {%- endif -%}
-                      {%- if shop.shipping_policy.body != blank -%}
-                        {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
-                      {%- endif -%}
-                    </div>
-                  {%- endif -%}
+                  {% comment %}
+                    {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
+                      <div class="product__tax caption rte">
+                        {%- if cart.duties_included and cart.taxes_included -%}
+                          {{ 'products.product.duties_and_taxes_included' | t }}
+                        {%- elsif cart.taxes_included -%}
+                          {{ 'products.product.taxes_included' | t }}
+                        {%- elsif cart.duties_included -%}
+                          {{ 'products.product.duties_included' | t }}
+                        {%- endif -%}
+                        {%- if shop.shipping_policy.body != blank -%}
+                          {{ 'products.product.shipping_policy_html' | t: link: shop.shipping_policy.url }}
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  {% endcomment %}
                   <div {{ block.shopify_attributes }}>
                     {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
                     {%- form 'product', product, id: product_form_installment_id, class: 'installment caption-large' -%}
@@ -194,7 +199,10 @@
                   </p>
                 {%- when 'description' -%}
                   {%- if product.description != blank -%}
-                    <product-description-toggle class="product__description-wrapper quick-add-hidden" {{ block.shopify_attributes }}>
+                    <product-description-toggle
+                      class="product__description-wrapper quick-add-hidden"
+                      {{ block.shopify_attributes }}
+                    >
                       <div class="product__description rte">
                         {{ product.description }}
                       </div>
@@ -508,13 +516,17 @@
                     product_form_id: product_form_id
                   %}
                 {%- when 'buy_buttons' -%}
-                  {%- render 'buy-buttons',
+                  {%- render 'buy-buttons-pdp-v2',
                     block: block,
                     product: product,
                     product_form_id: product_form_id,
                     section_id: section.id,
                     show_pickup_availability: true
                   -%}
+                {%- when 'discount_callout' -%}
+                  {%- render 'discount-callout', block: block -%}
+                {%- when 'product_reviews' -%}
+                  {%- render 'product-reviews', block: block, product: product -%}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
                     <div class="rating-wrapper">
@@ -956,6 +968,55 @@
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        }
+      ]
+    },
+    {
+      "type": "discount_callout",
+      "name": "t:sections.main-product.blocks.discount_callout.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.main-product.blocks.discount_callout.settings.image.label"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "t:sections.main-product.blocks.discount_callout.settings.text.label",
+          "info": "t:sections.main-product.blocks.discount_callout.settings.text.info",
+          "default": "<p>Use code <strong>[[code]]</strong> to avail <strong>10% off</strong></p>"
+        },
+        {
+          "type": "text",
+          "id": "discount_code",
+          "label": "t:sections.main-product.blocks.discount_callout.settings.discount_code.label",
+          "default": "TBK10"
+        }
+      ]
+    },
+    {
+      "type": "product_reviews",
+      "name": "t:sections.main-product.blocks.product_reviews.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "trust_text_1",
+          "label": "t:sections.main-product.blocks.product_reviews.settings.trust_text_1.label",
+          "default": "Free shipping above 1299"
+        },
+        {
+          "type": "text",
+          "id": "trust_text_2",
+          "label": "t:sections.main-product.blocks.product_reviews.settings.trust_text_2.label",
+          "default": "Secure payments"
+        },
+        {
+          "type": "text",
+          "id": "trust_text_3",
+          "label": "t:sections.main-product.blocks.product_reviews.settings.trust_text_3.label",
+          "default": "COD available"
         }
       ]
     },
