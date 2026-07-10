@@ -745,6 +745,51 @@ class SliderComponent extends HTMLElement {
     this.slider.addEventListener('scroll', this.update.bind(this));
     this.prevButton.addEventListener('click', this.onButtonClick.bind(this));
     this.nextButton.addEventListener('click', this.onButtonClick.bind(this));
+
+    if (this.classList.contains('thumbnail-slider')) {
+      this.enableMouseDragScroll();
+    }
+  }
+
+  enableMouseDragScroll() {
+    let isDown = false;
+    let dragged = false;
+    let startX = 0;
+    let scrollStart = 0;
+
+    const stopDragging = () => {
+      isDown = false;
+      this.slider.classList.remove('is-dragging');
+    };
+
+    this.slider.addEventListener('mousedown', (event) => {
+      isDown = true;
+      dragged = false;
+      this.slider.classList.add('is-dragging');
+      startX = event.pageX;
+      scrollStart = this.slider.scrollLeft;
+    });
+
+    window.addEventListener('mouseup', stopDragging);
+    this.slider.addEventListener('mouseleave', stopDragging);
+
+    this.slider.addEventListener('mousemove', (event) => {
+      if (!isDown) return;
+      const delta = event.pageX - startX;
+      if (Math.abs(delta) > 3) dragged = true;
+      this.slider.scrollLeft = scrollStart - delta;
+    });
+
+    this.slider.addEventListener(
+      'click',
+      (event) => {
+        if (dragged) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+      },
+      true
+    );
   }
 
   initPages() {

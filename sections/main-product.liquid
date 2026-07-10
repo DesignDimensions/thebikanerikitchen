@@ -74,7 +74,7 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <product-component view-event-payload="{{ product | standard_event_data: 'view', context: 'page' | escape }}">
-    <div class="page-width">
+    <div >
       <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
         <div class="grid__item product__media-wrapper">
           {% render 'product-media-gallery', variant_images: variant_images %}
@@ -194,9 +194,25 @@
                   </p>
                 {%- when 'description' -%}
                   {%- if product.description != blank -%}
-                    <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
-                      {{ product.description }}
-                    </div>
+                    <product-description-toggle class="product__description-wrapper quick-add-hidden" {{ block.shopify_attributes }}>
+                      <div class="product__description rte">
+                        {{ product.description }}
+                      </div>
+                      <div class="product__description-toggle-wrap">
+                        <button
+                          type="button"
+                          class="product__description-toggle"
+                          aria-expanded="false"
+                          hidden
+                          data-read-more="{{ 'products.product.read_more' | t | escape }}"
+                          data-show-less="{{ 'products.product.show_less' | t | escape }}"
+                        >
+                          {{ 'products.product.read_more' | t }}
+                        </button>
+                      </div>
+                    </product-description-toggle>
+                    <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
+                    <script src="{{ 'product-description.js' | asset_url }}" defer="defer"></script>
                   {%- endif -%}
                 {%- when 'sku' -%}
                   <p
