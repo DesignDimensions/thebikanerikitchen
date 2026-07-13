@@ -1,0 +1,65 @@
+{{ 'pdp_fold_2.css' | asset_url | stylesheet_tag }}
+
+<div class="pdp-fold-2-container">
+  <div class="pdp-fold-2-left">
+    <h3 class="pdp-fold-2-heading">{{ section.settings.pdp_fold_2_left_heading }}</h3>
+    <ul class="pdp-fold-2-left-bullets-container list-unstyled">
+      {% for block in section.blocks %}
+        <li class="pdp-fold-2-bullet">
+          <img class="pdp-fold-2-bullet-icon" src="{{ block.settings.bullet_icon | image_url }}" alt="" loading="lazy">
+          <span class="pdp-fold-2-bullet-text">{{ block.settings.bullet_text }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="pdp-fold-2-right">
+    <img
+      class="pdp-fold-2-right-image"
+      src="{{ section.settings.pdp_fold_2_right_image | image_url }}"
+      alt=""
+      loading="lazy"
+    >
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "PDP Fold 2",
+  "settings": [
+    {
+      "type": "text",
+      "id": "pdp_fold_2_left_heading",
+      "label": "Left Heading",
+      "default": "Prepared with a discipline that remains unchanged."
+    },
+    {
+      "type": "image_picker",
+      "id": "pdp_fold_2_right_image",
+      "label": "Right Image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "bullet",
+      "name": "Bullet",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "bullet_icon",
+          "label": "Bullet Icon"
+        },
+        {
+          "type": "text",
+          "id": "bullet_text",
+          "label": "Bullet Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Fold 2"
+    }
+  ]
+}
+{% endschema %}

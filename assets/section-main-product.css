@@ -1776,15 +1776,18 @@ a.product__text {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 1.4rem;
+  margin-bottom: 0px;
+  border-bottom: solid 2px #181818;
+  padding-bottom: 8px;
 }
 
 .product-reviews__count,
 .product-reviews__pagination {
   margin: 0;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 12px;
   letter-spacing: 0.02em;
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
 }
 
 .product-reviews__divider {
@@ -1794,7 +1797,7 @@ a.product__text {
 .product-reviews__body {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 30px;
   padding: 2.4rem 0;
 }
 
@@ -1803,13 +1806,13 @@ a.product__text {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background-color: #d9d9d9;
-  color: #181818;
+  background-color: #18181866;
+  color: #FFFDEE;
 }
 
 .product-reviews__nav--next {
@@ -1819,12 +1822,12 @@ a.product__text {
 
 .product-reviews__nav[disabled] {
   cursor: not-allowed;
-  opacity: 0.6;
+  opacity: 60%;
 }
 
 .product-reviews__nav .svg-wrapper {
-  width: 0.9rem;
-  height: 0.9rem;
+  width: 70%;
+  height: auto;
 }
 
 .product-reviews__nav--prev .svg-wrapper {
@@ -1838,40 +1841,64 @@ a.product__text {
 .product-reviews__list {
   flex: 1;
   min-width: 0;
+  display: grid;
+}
+
+.product-reviews__item {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.product-reviews__item.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .product-reviews__quote {
-  margin: 0 0 1.6rem 0;
+  margin: 0 0 13px 0;
+  border: none;
+  padding: 0;
 }
 
 .product-reviews__quote p {
   margin: 0;
-  font-size: 17px;
-  font-weight: 300;
+  font-size: 16px;
   line-height: 1.6;
   color: #181818;
+  font-family: 'Helvetica Neue';
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: .5px;
 }
 
 .product-reviews__rating {
   display: flex;
-  gap: 0.3rem;
-  margin-bottom: 1rem;
+  gap: 1px;
+  margin-bottom: 0;
+}
+
+.product-reviews__star {
+  line-height: 1px;
 }
 
 .product-reviews__star svg {
-  width: 16px;
-  height: 16px;
-  fill: #d9d9d9;
+  width: auto;
+  height: 25px;
+  fill: #e2542d42;
 }
 
 .product-reviews__star.is-filled svg {
-  fill: #E2542D;
+  fill: #FF6344;
 }
 
 .product-reviews__author {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 700;
+  margin: 5px 0 0 0;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: 'Helvetica Neue';
 }
 
 .product-reviews__trust-row {
@@ -1879,12 +1906,13 @@ a.product__text {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.6rem 0;
+  padding: 10px 0 0;
   border-top: 1px solid #181818;
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 400;
+  letter-spacing: .5px;
   text-transform: uppercase;
+  font-family: 'Helvetica Neue';
 }
 
 .product-reviews__trust-divider {
@@ -1892,45 +1920,3 @@ a.product__text {
   opacity: 0.4;
 }
 
-.product-reviews__write {
-  margin-top: 1.5rem;
-}
-
-.product-reviews__write summary {
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
-}
-
-.product-reviews__write-content {
-  margin-top: 1.5rem;
-  max-width: 44rem;
-}
-
-.product-reviews__form-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-bottom: 1.2rem;
-}
-
-.product-reviews__form-row label {
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.product-reviews__form-row input,
-.product-reviews__form-row select,
-.product-reviews__form-row textarea {
-  font-family: 'Helvetica Neue', sans-serif;
-  border: 1px solid #181818;
-  background-color: #FFFDEE;
-  padding: 1rem 1.2rem;
-}
-
-.product-reviews__form-success {
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}

@@ -65,7 +65,11 @@
         },
         "product_reviews": {
           "type": "product_reviews",
-          "settings": {}
+          "settings": {
+            "trust_text_1": "Free shipping above 1299",
+            "trust_text_2": "Secure payments",
+            "trust_text_3": "COD available"
+          }
         }
       },
       "block_order": [
@@ -92,6 +96,58 @@
         "enable_video_looping": true,
         "padding_top": 0,
         "padding_bottom": 0
+      }
+    },
+    "pdp_fold_2_NqQJ3V": {
+      "type": "pdp_fold_2",
+      "blocks": {
+        "bullet_ygJwxf": {
+          "type": "bullet",
+          "settings": {
+            "bullet_icon": "shopify://shop_images/Vector_11.png",
+            "bullet_text": "Made in high Oleic sunflower oil"
+          }
+        },
+        "bullet_pA86gH": {
+          "type": "bullet",
+          "settings": {
+            "bullet_icon": "shopify://shop_images/Vector_11.png",
+            "bullet_text": "No re-use of oil, ensuring purity of taste"
+          }
+        },
+        "bullet_WXYB7z": {
+          "type": "bullet",
+          "settings": {
+            "bullet_icon": "shopify://shop_images/Vector_11.png",
+            "bullet_text": "Slow-cooked using Bhatti."
+          }
+        },
+        "bullet_Pch9ha": {
+          "type": "bullet",
+          "settings": {
+            "bullet_icon": "shopify://shop_images/Vector_11.png",
+            "bullet_text": "Made with low sodium salt"
+          }
+        },
+        "bullet_TwH9Cf": {
+          "type": "bullet",
+          "settings": {
+            "bullet_icon": "shopify://shop_images/Vector_11.png",
+            "bullet_text": "Prepared by skilled hands in small batches"
+          }
+        }
+      },
+      "block_order": [
+        "bullet_ygJwxf",
+        "bullet_pA86gH",
+        "bullet_WXYB7z",
+        "bullet_Pch9ha",
+        "bullet_TwH9Cf"
+      ],
+      "name": "PDP Fold 2",
+      "settings": {
+        "pdp_fold_2_left_heading": "Prepared with a discipline that remains unchanged.",
+        "pdp_fold_2_right_image": "shopify://shop_images/285bceeea26480ed0b49aec08387c6ade0defff5.jpg"
       }
     },
     "disclosures": {
@@ -127,6 +183,7 @@
   "order": [
     "bullets_scroller_qaQmhr",
     "main",
+    "pdp_fold_2_NqQJ3V",
     "disclosures",
     "related-products"
   ]
