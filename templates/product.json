@@ -150,15 +150,55 @@
         "pdp_fold_2_right_image": "shopify://shop_images/285bceeea26480ed0b49aec08387c6ade0defff5.jpg"
       }
     },
-    "disclosures": {
-      "type": "disclosures",
+    "custom_audio_player_TKQxJw": {
+      "type": "custom-audio-player",
+      "blocks": {
+        "subtitle_line_GhiDAA": {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:00",
+            "hindi": "",
+            "english": "In the sands of Bikaner, where little grew and nothing was wasted, the"
+          }
+        },
+        "subtitle_line_qYwneA": {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:04",
+            "hindi": "",
+            "english": "kitchens learned to listen. We watched as humble moth beans were"
+          }
+        },
+        "subtitle_line_UaN7pK": {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:8",
+            "hindi": "",
+            "english": "ground and shaped, pressed through careful hands and lowered into"
+          }
+        },
+        "subtitle_line_aTQRMG": {
+          "type": "subtitle_line",
+          "settings": {
+            "start_time": "0:11",
+            "hindi": "",
+            "english": "patient heat."
+          }
+        }
+      },
+      "block_order": [
+        "subtitle_line_GhiDAA",
+        "subtitle_line_qYwneA",
+        "subtitle_line_UaN7pK",
+        "subtitle_line_aTQRMG"
+      ],
+      "name": "Custom Audio Player",
       "settings": {
-        "heading": "Disclosures",
-        "heading_size": "h2",
-        "open_by_default": false,
-        "color_scheme": "",
-        "padding_top": 36,
-        "padding_bottom": 0
+        "banner_image": "shopify://shop_images/Wireframe_-_5_1.jpg",
+        "mobile_banner_image": "shopify://shop_images/Frame_1321317972.jpg",
+        "heading": "Aao Sune Kahani Bikaneri Bhujia Ki",
+        "audio_url": "https://cdn.shopify.com/s/files/1/0764/0953/6706/files/freesound-community-002145-a-conversation-with-a-neighbor-53032_3pVsHulM.mp3?v=1783592407",
+        "default_language": "en"
       }
     },
     "related-products": {
@@ -178,13 +218,44 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "custom_featured_collection_4hUABe": {
+      "type": "custom-featured-collection",
+      "name": "Custom Featured Coll",
+      "settings": {
+        "collection": "frontpage",
+        "products_to_show": 4,
+        "title": "The Bhandaar",
+        "heading_subtitle": "Store",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 4,
+        "enable_desktop_slider": true,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "scheme-e41ba56d-f51d-47f6-8e6e-e04c8cbcade2",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
     }
   },
   "order": [
     "bullets_scroller_qaQmhr",
     "main",
     "pdp_fold_2_NqQJ3V",
-    "disclosures",
-    "related-products"
+    "custom_audio_player_TKQxJw",
+    "related-products",
+    "custom_featured_collection_4hUABe"
   ]
 }
