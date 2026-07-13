@@ -203,6 +203,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -248,6 +249,102 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "custom_pdp_faqs_Rmdrqr": {
+      "type": "custom_pdp_faqs",
+      "blocks": {
+        "faq_PAdHmQ": {
+          "type": "faq",
+          "settings": {
+            "question": "What makes this Bikaneri Bhujia different?",
+            "answer": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
+          }
+        },
+        "faq_EhG9wL": {
+          "type": "faq",
+          "settings": {
+            "question": "What ingredients are used?",
+            "answer": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
+          }
+        },
+        "faq_TqKq7p": {
+          "type": "faq",
+          "settings": {
+            "question": "How is the texture different from regular bhujia?",
+            "answer": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
+          }
+        },
+        "faq_78Jjbf": {
+          "type": "faq",
+          "settings": {
+            "question": "How should it be stored?",
+            "answer": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
+          }
+        },
+        "faq_Hdj7Nh": {
+          "type": "faq",
+          "settings": {
+            "question": "What is the shelf life?",
+            "answer": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_PAdHmQ",
+        "faq_EhG9wL",
+        "faq_TqKq7p",
+        "faq_78Jjbf",
+        "faq_Hdj7Nh"
+      ],
+      "name": "Custom PDP FAQs",
+      "settings": {
+        "heading": "FAQ",
+        "right_image": "shopify://shop_images/96e2c0a3813b6b7a94d036d770d910b074ad9b1c.jpg"
+      }
+    },
+    "custom_bg_heading_KyQTB7": {
+      "type": "custom-bg-heading",
+      "name": "Custom BG Heading",
+      "settings": {
+        "heading": "Follow Us",
+        "heading_color": "#ff6344",
+        "background_color": "#570f13"
+      }
+    },
+    "custom_images_grid_carousal_rpkJNV": {
+      "type": "custom-images-grid_carousal",
+      "blocks": {
+        "image_G6fEz4": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
+          }
+        },
+        "image_Y8Nk4Q": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
+          }
+        },
+        "image_bhiH97": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317934_1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_G6fEz4",
+        "image_Y8Nk4Q",
+        "image_bhiH97"
+      ],
+      "name": "Custom Image Carousel",
+      "settings": {
+        "images_per_view": 3
+      }
     }
   },
   "order": [
@@ -256,6 +353,9 @@
     "pdp_fold_2_NqQJ3V",
     "custom_audio_player_TKQxJw",
     "related-products",
-    "custom_featured_collection_4hUABe"
+    "custom_featured_collection_4hUABe",
+    "custom_pdp_faqs_Rmdrqr",
+    "custom_bg_heading_KyQTB7",
+    "custom_images_grid_carousal_rpkJNV"
   ]
 }
