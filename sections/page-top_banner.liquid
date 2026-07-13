@@ -1,0 +1,30 @@
+{{ 'page-top_banner.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign top_video = page.metafields.custom.top_video.value
+  assign top_video_source = top_video.sources | sort: 'width' | last
+-%}
+
+<div class="page-top-banner-container">
+  {%- if top_video_source -%}
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="{{ top_video_source.url }}" type="{{ top_video_source.mime_type }}">
+    </video>
+  {%- endif -%}
+  <div class="page-top-banner-container-inner">
+    <p>{{ page.title }}</p>
+    <hr>
+    <p>{{ shop.name }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Page Top Banner",
+  "presets": [
+    {
+      "name": "Page Top Banner"
+    }
+  ]
+}
+{% endschema %}

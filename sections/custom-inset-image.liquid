@@ -1,0 +1,54 @@
+{{ 'custom-inset-image.css' | asset_url | stylesheet_tag }}
+
+<div class="custom-inset-image-section">
+  <div class="page-width">
+    <div class="custom-inset-image-wrap">
+      {%- if section.settings.image != blank -%}
+        <picture>
+          {%- if section.settings.image_mobile != blank -%}
+            <source media="(max-width: 749px)" srcset="{{ section.settings.image_mobile | image_url }}">
+          {%- endif -%}
+          <img
+            src="{{ section.settings.image | image_url }}"
+            alt="{{ section.settings.image.alt | escape }}"
+            width="{{ section.settings.image.width }}"
+            height="{{ section.settings.image.height }}"
+            loading="lazy"
+            class="custom-inset-image-img"
+          >
+        </picture>
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'custom-inset-image-img placeholder-svg' }}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Inset Image",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (mobile)",
+      "info": "Optional. Falls back to the image above when not set."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Inset Image"
+    }
+  ]
+}
+{% endschema %}

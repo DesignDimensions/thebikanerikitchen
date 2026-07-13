@@ -1,0 +1,15 @@
+.custom-inset-image-section {
+  background-color: #FFFDEE;
+}
+
+.custom-inset-image-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.custom-inset-image-img,
+.custom-inset-image-wrap .placeholder-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}

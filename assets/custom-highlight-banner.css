@@ -1,0 +1,49 @@
+.custom-highlight-banner-container {
+  width: 100%;
+}
+
+.custom-highlight-banner-inner {
+  padding-top: 140px;
+  padding-bottom: 140px;
+  text-align: left;
+}
+
+.custom-highlight-banner-eyebrow {
+  margin: 0 0 16px;
+  font-family: 'Proxima Nova A', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.custom-highlight-banner-heading {
+  text-align: left;
+  max-width: 800px;
+  margin: 0 0 24px;
+}
+
+.custom-highlight-banner-body {
+  max-width: 640px;
+}
+
+.custom-highlight-banner-body p {
+  margin: 0;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  font-weight: 300;
+  opacity: 0.85;
+}
+
+@media screen and (max-width: 749px) {
+  .custom-highlight-banner-inner {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .custom-highlight-banner-eyebrow {
+    font-size: 13px;
+    letter-spacing: 3px;
+  }
+}
