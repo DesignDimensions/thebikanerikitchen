@@ -2,24 +2,32 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
+{%- if section.settings.filter_type == 'minimal' -%}
+  <script src="{{ 'card-product-shop.js' | asset_url }}" defer="defer"></script>
+  {% comment %} card-product-shop's add-to-cart form always needs <product-form>, regardless of the quick_add setting {% endcomment %}
+  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
-{%- unless section.settings.quick_add == 'none' -%}
-  {{ 'quick-add.css' | asset_url | stylesheet_tag }}
-{%- endunless -%}
+{%- if section.settings.filter_type != 'minimal' -%}
+  {%- unless section.settings.quick_add == 'none' -%}
+    {{ 'quick-add.css' | asset_url | stylesheet_tag }}
+  {%- endunless -%}
 
-{%- if section.settings.quick_add == 'standard' -%}
-  <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
-{%- endif -%}
+  {%- if section.settings.quick_add == 'standard' -%}
+    <script src="{{ 'quick-add.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
 
-{%- if section.settings.quick_add == 'bulk' -%}
-  <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
-  <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+  {%- if section.settings.quick_add == 'bulk' -%}
+    <script src="{{ 'quick-add-bulk.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'quick-order-list.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
 {%- endif -%}
 
 {%- style -%}
@@ -34,6 +42,12 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  {%- if section.settings.filter_type == 'minimal' -%}
+    .section-{{ section.id }}-padding {
+      background-color: #FFFDEE;
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 <collection-component
@@ -104,6 +118,11 @@
       <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
         {{ 'component-facets.css' | asset_url | stylesheet_tag }}
         <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
+        {%- if section.settings.filter_type == 'minimal' -%}
+          {% comment %} Loaded after component-card.css/component-facets.css so its rules always win on equal specificity {% endcomment %}
+          {{ 'card-product-shop.css' | asset_url | stylesheet_tag }}
+          {{ 'facets-minimal.css' | asset_url | stylesheet_tag }}
+        {%- endif -%}
         {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
           <aside
             aria-labelledby="verticalTitle"
@@ -169,19 +188,27 @@
                       style="--animation-order: {{ forloop.index }};"
                     {% endif %}
                   >
-                    {% render 'card-product',
-                      card_product: product,
-                      media_aspect_ratio: section.settings.image_ratio,
-                      image_shape: section.settings.image_shape,
-                      show_secondary_image: section.settings.show_secondary_image,
-                      show_vendor: section.settings.show_vendor,
-                      show_rating: section.settings.show_rating,
-                      lazy_load: lazy_load,
-                      skip_styles: skip_card_product_styles,
-                      quick_add: section.settings.quick_add,
-                      section_id: section.id,
-                      product_view_context: 'collection'
-                    %}
+                    {% if section.settings.filter_type == 'minimal' %}
+                      {% render 'card-product-shop',
+                        card_product: product,
+                        lazy_load: lazy_load,
+                        section_id: section.id
+                      %}
+                    {% else %}
+                      {% render 'card-product',
+                        card_product: product,
+                        media_aspect_ratio: section.settings.image_ratio,
+                        image_shape: section.settings.image_shape,
+                        show_secondary_image: section.settings.show_secondary_image,
+                        show_vendor: section.settings.show_vendor,
+                        show_rating: section.settings.show_rating,
+                        lazy_load: lazy_load,
+                        skip_styles: skip_card_product_styles,
+                        quick_add: section.settings.quick_add,
+                        section_id: section.id,
+                        product_view_context: 'collection'
+                      %}
+                    {% endif %}
                   </li>
                   {%- assign skip_card_product_styles = true -%}
                 {%- endfor -%}
@@ -376,6 +403,10 @@
         {
           "value": "drawer",
           "label": "t:sections.main-collection-product-grid.settings.filter_type.options__3.label"
+        },
+        {
+          "value": "minimal",
+          "label": "Minimal (Sort By / Filters bar)"
         }
       ],
       "default": "horizontal",

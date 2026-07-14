@@ -34,6 +34,177 @@
   data-collection-handle="{{ results.handle }}"
   data-template="{{ template.name }}"
 >
+  {%- if filter_type == 'minimal' -%}
+    <facet-filters-form class="shop-facets-form">
+      <form id="FacetFiltersForm">
+        {%- if results.terms -%}
+          <input type="hidden" name="q" value="{{ results.terms | escape }}">
+          <input name="options[prefix]" type="hidden" value="last">
+        {%- endif -%}
+        {% if results.current_vendor or results.current_type %}
+          <input type="hidden" name="q" value="{{ results.current_vendor }}{{ results.current_type }}">
+        {% endif %}
+
+        <div class="shop-facets">
+          {%- if enable_sorting -%}
+            {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
+            <details
+              id="Details-SortBy-{{ section.id }}"
+              class="js-filter disclosure-has-popup shop-facets__disclosure"
+              data-index="sort"
+            >
+                <summary class="shop-facets__trigger" aria-expanded="false">
+                  <span class="svg-wrapper">
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_1321316479_1.png?v=1784018133"
+                      alt=""
+                      class="icon icon-sort"
+                      width="57"
+                      height="72"
+                    >
+                  </span>
+                  <span>Sort By</span>
+                </summary>
+                <div class="shop-facets__panel">
+                  <div class="shop-facets__panel-header">
+                    <span class="svg-wrapper">
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_1321316479_1.png?v=1784018133"
+                      alt=""
+                      class="icon icon-sort"
+                      width="57"
+                      height="72"
+                    >
+                  </span>
+                    <span class="shop-facets__panel-title">Sort By</span>
+                    <span class="svg-wrapper shop-facets__panel-caret">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+                  </div>
+                  <fieldset class="shop-facets__group">
+                    <legend class="shop-facets__group-label">Price</legend>
+                    {%- for option in results.sort_options -%}
+                      {%- if option.value == 'price-ascending' or option.value == 'price-descending' -%}
+                        <label class="shop-facets__radio">
+                          <input
+                            type="radio"
+                            name="sort_by"
+                            value="{{ option.value | escape }}"
+                            {% if option.value == sort_by %}
+                              checked
+                            {% endif %}
+                          >
+                          <span class="shop-facets__radio-dot"></span>
+                          {%- if option.value == 'price-ascending' -%}
+                            Low to High
+                          {%- else -%}
+                            High to Low
+                          {%- endif -%}
+                        </label>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </fieldset>
+                  <facet-remove class="shop-facets__clear-wrapper">
+                    <a href="{{ results_url }}" class="shop-facets__clear">Clear all</a>
+                  </facet-remove>
+                </div>
+            </details>
+          {%- endif -%}
+
+          {%- if enable_filtering -%}
+            <details
+              id="Details-Filters-{{ section.id }}"
+              class="js-filter disclosure-has-popup shop-facets__disclosure shop-facets__disclosure--right"
+              data-index="filters"
+            >
+                <summary class="shop-facets__trigger" aria-expanded="false">
+                  <span class="svg-wrapper">
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_1321316480.png?v=1784018131"
+                      alt=""
+                      class="icon icon-filter"
+                      width="77"
+                      height="55"
+                    >
+                  </span>
+                  <span>Filters</span>
+                </summary>
+                <div class="shop-facets__panel">
+                  <div class="shop-facets__panel-header">
+                    <span class="svg-wrapper">
+                    <img
+                      src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_1321316480.png?v=1784018131"
+                      alt=""
+                      class="icon icon-filter"
+                      width="77"
+                      height="55"
+                    >
+                  </span>
+                    <span class="shop-facets__panel-title">Filters</span>
+                    <span class="svg-wrapper shop-facets__panel-caret">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+                  </div>
+                  {%- for filter in results.filters -%}
+                    {%- if filter.type != 'price_range' -%}
+                      <fieldset class="shop-facets__group">
+                        <legend class="shop-facets__group-label">{{ filter.label | escape }}</legend>
+                        {%- for value in filter.values -%}
+                          {%- liquid
+                            assign input_id = 'ShopFilter-' | append: filter.param_name | escape | append: '-' | append: forloop.index
+                            assign is_disabled = false
+                            if value.count == 0 and value.active == false
+                              assign is_disabled = true
+                            endif
+                          -%}
+                          <label for="{{ input_id }}" class="shop-facets__radio{% if is_disabled %} disabled{% endif %}">
+                            <input
+                              type="checkbox"
+                              id="{{ input_id }}"
+                              name="{{ value.param_name }}"
+                              value="{{ value.value }}"
+                              {% if value.active %}
+                                checked
+                              {% endif %}
+                              {% if is_disabled %}
+                                disabled
+                              {% endif %}
+                            >
+                            <span class="shop-facets__radio-dot"></span>
+                            {{ value.label | escape }}
+                          </label>
+                        {%- endfor -%}
+                      </fieldset>
+                    {%- endif -%}
+                  {%- endfor -%}
+                  <facet-remove class="shop-facets__clear-wrapper">
+                    <a href="{{ results_url }}" class="shop-facets__clear">Clear all</a>
+                  </facet-remove>
+                </div>
+            </details>
+          {%- endif -%}
+        </div>
+      </form>
+    </facet-filters-form>
+
+    <div class="product-count light shop-facets__count visually-hidden" role="status">
+      <h2 class="product-count__text text-body">
+        <span
+          id="ProductCount"
+          data-product-count="{{ results.products_count | default: results.results_count }}"
+          data-total-count="{{ results.all_products_count | default: results.products_count | default: results.results_count }}"
+        >
+          {%- if results.results_count -%}
+            {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
+          {%- elsif results.products_count == results.all_products_count -%}
+            {{ 'products.facets.product_count_simple' | t: count: results.products_count }}
+          {%- else -%}
+            {{
+              'products.facets.product_count'
+              | t: product_count: results.products_count, count: results.all_products_count
+            }}
+          {%- endif -%}
+        </span>
+      </h2>
+      {%- render 'loading-spinner' -%}
+    </div>
+  {%- else -%}
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
     <facet-filters-form class="facets small-hide">
       <form
@@ -942,5 +1113,6 @@
         </div>
       </form>
     </facet-filters-form>
+  {%- endif -%}
   {%- endif -%}
 </div>

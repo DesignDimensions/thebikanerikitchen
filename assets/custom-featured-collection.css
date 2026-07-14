@@ -2,17 +2,6 @@
     background-color: #FFFDEE;
 }
 
-.collection__subtitle {
-    font-family: "Proxima Nova A", serif;
-    color: #181818;
-    font-size: 15px;
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-weight: 500;
-    margin-bottom: 12px;
-}
-
 slider-component product-component .card-wrapper .card .card__information {
     padding: 0px;
 }

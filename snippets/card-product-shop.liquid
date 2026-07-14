@@ -1,0 +1,111 @@
+{% comment %}
+  Renders a product card for the minimal "shop" collection grid style: edge-to-edge
+  image, dark footer with title/price, a pack-size picker, and Add to Cart.
+
+  Accepts:
+  - card_product: {Object} Product Liquid object
+  - lazy_load: {Boolean} Image should be lazy loaded. Default: true (optional)
+  - section_id: {String} The ID of the section that contains this card.
+
+  Usage:
+  {% render 'card-product-shop', card_product: product, section_id: section.id %}
+{% endcomment %}
+
+{%- liquid
+  assign current_variant = card_product.selected_or_first_available_variant
+  assign form_id = 'shop-card-' | append: section_id | append: '-' | append: card_product.id
+-%}
+
+<product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: 'collection' | escape }}">
+  <div class="shop-card">
+    <a href="{{ card_product.url }}" class="shop-card__media" tabindex="-1" aria-hidden="true">
+      {%- if card_product.featured_media -%}
+        <img
+          srcset="
+            {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
+            {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
+            {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
+            {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
+          "
+          src="{{ card_product.featured_media | image_url: width: 533 }}"
+          sizes="(min-width: 750px) 40vw, 90vw"
+          alt="{{ card_product.featured_media.alt | escape }}"
+          class="shop-card__image"
+          {% unless lazy_load == false %}
+            loading="lazy"
+          {% endunless %}
+          width="{{ card_product.featured_media.width }}"
+          height="{{ card_product.featured_media.height }}"
+        >
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'shop-card__image placeholder-svg' }}
+      {%- endif -%}
+    </a>
+
+    <div class="shop-card__footer">
+      <h3 class="shop-card__title">
+        <a href="{{ card_product.url }}" class="shop-card__title-link">{{ card_product.title | escape }}</a>
+      </h3>
+
+      <product-form data-section-id="{{ section_id }}">
+        {%- form 'product', card_product, id: form_id, class: 'shop-card__form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+          <input
+            type="hidden"
+            name="id"
+            value="{{ current_variant.id }}"
+            class="shop-card__variant-id"
+            {% if current_variant.available == false %}
+              disabled
+            {% endif %}
+          >
+
+          <div class="shop-card__meta">
+            <span class="shop-card__price">{{ current_variant.price | money_without_trailing_zeros }}</span>
+            {%- if card_product.variants_count > 1 -%}
+              <select class="shop-card__size-select" aria-label="{{ 'products.product.product_variants' | t }}">
+                {%- for variant in card_product.variants -%}
+                  <option
+                    value="{{ variant.id }}"
+                    data-price="{{ variant.price | money_without_trailing_zeros }}"
+                    {% if variant.id == current_variant.id %}
+                      selected
+                    {% endif %}
+                    {% if variant.available == false %}
+                      disabled
+                    {% endif %}
+                  >
+                    {{ variant.title }}
+                  </option>
+                {%- endfor -%}
+              </select>
+            {%- else -%}
+              <span class="shop-card__size">{{ current_variant.title }}</span>
+            {%- endif -%}
+          </div>
+
+          <hr class="shop-card__divider">
+
+          <button
+            type="submit"
+            name="add"
+            class="shop-card__add"
+            data-sold-out-message="true"
+            {% if current_variant.available == false %}
+              disabled
+            {% endif %}
+          >
+            <span>
+              {%- if current_variant.available -%}
+                Add To Cart
+              {%- else -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- endif -%}
+            </span>
+            <span class="sold-out-message hidden">{{ 'products.product.sold_out' | t }}</span>
+            {%- render 'loading-spinner' -%}
+          </button>
+        {%- endform -%}
+      </product-form>
+    </div>
+  </div>
+</product-component>

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://fs0kxn-v1.myshopify.com/collections/the-bhandaar?preview_theme_id=153864831170\" --max-time 15 -o /tmp/claude-1000/-home-mvenstrix-Shopify-thebikanerikitchen/7e358920-02d7-44fe-b976-4639405b562a/scratchpad/live3.html)",
+      "Bash(curl -sI \"https://fs0kxn-v1.myshopify.com/collections/the-bhandaar?preview_theme_id=153864831170\" --max-time 15)",
+      "Bash(curl -s -c cookies.txt -b cookies.txt -L \"https://fs0kxn-v1.myshopify.com/collections/the-bhandaar?preview_theme_id=153864831170\" --max-time 15 -o live4.html)",
+      "Bash(curl -s -c cookies.txt -b cookies.txt \"https://fs0kxn-v1.myshopify.com/collections/the-bhandaar\" --max-time 15 -o live5.html)",
+      "Bash(curl -s \"http://127.0.0.1:9292/collections/the-bhandaar\" --max-time 15 -o /tmp/claude-1000/-home-mvenstrix-Shopify-thebikanerikitchen/7e358920-02d7-44fe-b976-4639405b562a/scratchpad/local.html -w \"HTTP %{http_code}\\\\n\")",
+      "Bash(curl -s \"http://127.0.0.1:9292/cdn/shop/t/2/assets/facets-minimal.css?v=8642956173335928631784012897\" --max-time 15 -o /tmp/claude-1000/-home-mvenstrix-Shopify-thebikanerikitchen/7e358920-02d7-44fe-b976-4639405b562a/scratchpad/served-facets-minimal.css)",
+      "Bash(grep -E \"^\\\\.[a-zA-Z]|^[a-z]+\\\\s*[,{]|^\\\\s*\\\\.\")",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s \"http://127.0.0.1:9292/collections/the-bhandaar\" --max-time 15 -o /tmp/claude-1000/-home-mvenstrix-Shopify-thebikanerikitchen/7e358920-02d7-44fe-b976-4639405b562a/scratchpad/local2.html)"
+    ]
+  }
+}
