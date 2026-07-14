@@ -26,7 +26,7 @@
 
 .custom-footer__icon--two svg,
 .custom-footer__icon--two img {
-  width: clamp(1.6rem, 1.8vw, 2.1rem);
+  width: clamp(3rem, 1.8vw, 6.1rem);
   color: rgb(var(--color-foreground));
 }
 
@@ -111,7 +111,7 @@
 
 .custom-footer__social.list-social {
   justify-content: flex-end;
-  gap: 1rem;
+  gap: 2rem;
   margin: 0;
 }
 
@@ -121,8 +121,8 @@
 }
 
 .custom-footer__social .list-social__link {
-  width: 3.6rem;
-  height: 3.6rem;
+  width: 3rem;
+  height: auto;
   padding: 0;
   justify-content: center;
   /* border: 1px solid var(--custom-footer-accent);

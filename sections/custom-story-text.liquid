@@ -1,4 +1,5 @@
 {{ 'custom-story-text.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-story-text.js' | asset_url }}" defer="defer"></script>
 
 <div class="custom-story-text custom-story-text--{{ section.settings.layout }}">
   <div class="page-width custom-story-text-inner">

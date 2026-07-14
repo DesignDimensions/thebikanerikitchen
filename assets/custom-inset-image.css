@@ -5,6 +5,7 @@
 .custom-inset-image-wrap {
   position: relative;
   width: 100%;
+  overflow: hidden;
 }
 
 .custom-inset-image-img,

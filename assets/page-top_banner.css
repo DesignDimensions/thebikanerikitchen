@@ -3,11 +3,24 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    min-height: 80vh;
+    background-color: #181818;
+    overflow: hidden;
 }
 
 .page-top-banner-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 749px) {
+    .page-top-banner-container {
+        min-height: 60vh;
+    }
 }
 
 .page-top-banner-container-inner {

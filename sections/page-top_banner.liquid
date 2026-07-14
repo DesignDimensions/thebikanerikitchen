@@ -1,4 +1,5 @@
 {{ 'page-top_banner.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'page-top_banner.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   assign top_video = page.metafields.custom.top_video.value

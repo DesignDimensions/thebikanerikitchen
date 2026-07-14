@@ -67,6 +67,29 @@
       <script src="{{ 'animations.js' | asset_url }}" defer="defer"></script>
     {%- endif -%}
 
+    <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'gsap-reveal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'lenis.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'smooth-scroll.js' | asset_url }}" defer="defer"></script>
+    <style>
+      html.lenis,
+      html.lenis body {
+        height: auto;
+      }
+
+      .lenis.lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+
+      .lenis.lenis-stopped {
+        overflow: hidden;
+      }
+
+      .lenis.lenis-smooth [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+    </style>
+
     {{ content_for_header }}
 
     {%- liquid
