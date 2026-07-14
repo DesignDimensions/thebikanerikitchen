@@ -1,0 +1,227 @@
+.blog-listing-grid {
+  width: 100%;
+}
+
+.blog-listing-grid-empty-state {
+  padding: 3rem 0;
+  text-align: center;
+  font-family: var(--font-body-family);
+  opacity: 0.7;
+}
+
+.blog-listing-grid-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.6rem;
+}
+
+@media screen and (min-width: 750px) {
+  .blog-listing-grid-list {
+    grid-template-columns: 30% 70%;
+    gap: 2.4rem;
+  }
+
+  .blog-listing-grid-item {
+    grid-column: var(--grid-col, auto);
+  }
+}
+
+.blog-listing-grid-item {
+  display: block;
+  color: currentColor;
+  text-decoration: none;
+}
+
+.blog-listing-grid-item-link {
+  display: block;
+  color: currentColor;
+  text-decoration: none;
+  height: 100%;
+}
+
+.blog-listing-grid-item-media {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+@media screen and (min-width: 750px) {
+  .blog-listing-grid-item-media {
+    aspect-ratio: var(--grid-aspect, 4 / 3);
+  }
+}
+
+.blog-listing-grid-item-image,
+.blog-listing-grid-item-media .placeholder-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.blog-listing-grid-item .blog-listing-grid-item-image {
+  filter: grayscale();
+  transition: all 0.3s ease-in;
+}
+
+.blog-listing-grid-item:hover .blog-listing-grid-item-image {
+  filter: none;
+  transition: all 0.3s ease-in;
+}
+
+.blog-listing-grid-item-link:hover .blog-listing-grid-item-image {
+  transform: scale(1.04);
+}
+
+.blog-listing-grid-item-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0) 28%,
+      rgba(0, 0, 0, 0) 62%,
+      rgba(0, 0, 0, 0.5) 100%);
+  pointer-events: none;
+}
+
+.blog-listing-grid-item-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.6rem 1.8rem;
+  color: currentColor;
+}
+
+.blog-listing-grid-item-index {
+  margin: 0 0 0.4em;
+  font-family: var(--font-body-family);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: currentColor;
+}
+
+.blog-listing-grid-item-title {
+  margin: 0;
+  max-width: 32rem;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: 1.5rem;
+  line-height: 1.25;
+  text-decoration: underline;
+  text-underline-offset: 0.24em;
+  color: currentColor;
+}
+
+.blog-listing-grid-item-icons {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.6rem 1.8rem;
+}
+
+.blog-listing-grid-item-icon {
+  display: block;
+  height: auto;
+}
+
+.blog-listing-grid-item-icon--star {
+  width: 25px;
+  flex-shrink: 0;
+}
+
+.blog-listing-grid-item-icon--arrow {
+  width: 100%;
+  max-width: 13rem;
+  flex-shrink: 1;
+}
+
+.blog-listing-grid-heading {
+  max-width: 80%;
+  margin: 0 auto 2.4rem;
+  text-align: center;
+}
+
+.blog-listing-grid-subtitle {
+  color: #181818;
+  margin: 0 0 16px;
+  font-family: 'Proxima Nova A', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.blog-listing-grid-title {
+  text-align: center;
+  font-family: "Baskervville", serif;
+  color: #181818;
+  font-size: 38px;
+  font-weight: 500;
+  line-height: 50px;
+  letter-spacing: 1px;
+  max-width: unset;
+  margin: 0 0 24px;
+}
+
+.blog-listing-grid-description {
+  font-family: var(--font-body-family);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #181818;
+}
+
+.blog-listing-grid-description p {
+  margin: 0;
+  font-family: 'Helvetica Neue';
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.blog-listing-grid-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 0 0 2.8rem;
+}
+
+.blog-listing-grid-filter {
+  padding: 0.5em 1.3em;
+  border: 1px solid #181818;
+  border-radius: 0;
+  background: transparent;
+  color: #181818;
+  font-family: 'Helvetica Neue';
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 300;
+}
+
+.blog-listing-grid-filter:hover {
+  opacity: 0.8;
+}
+
+.blog-listing-grid-filter.is-active {
+  background-color: #181818;
+  color: #FFFDEE;
+}
+
+.blog-listing-grid-item[hidden] {
+  display: none;
+}

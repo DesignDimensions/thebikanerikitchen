@@ -1,0 +1,115 @@
+.blog-listing-header {
+  width: 100%;
+}
+
+.blog-listing-header-inner {
+  display: flex;
+  gap: 1.6rem;
+  align-items: start;
+  justify-content: space-between;
+}
+
+.blog-listing-header-col--heading {
+  order: 1;
+  width: fit-content;
+  max-width: 34%;
+}
+
+.blog-listing-header-col--content {
+  order: 2;
+  width: 40%;
+}
+
+.blog-listing-header-col--action {
+  width: fit-content;
+  order: 3;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media screen and (min-width: 750px) {
+  .blog-listing-header-col--action {
+    justify-content: flex-end;
+  }
+}
+
+.blog-listing-header-heading {
+  margin: 0;
+  font-family: 'Baskervville';
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 1;
+  color: #FFFDEE;
+}
+
+.blog-listing-header-title {
+  margin: 0;
+  font-family: 'Helvetica Neue';
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: underline;
+  color: #FFFDEE;
+  line-height: 20px;
+}
+
+.blog-listing-header-description-wrap {
+  position: relative;
+  overflow: hidden;
+  height: calc(var(--truncate-lines, 3.5) * 1.6em);
+  transition: none;
+}
+
+.blog-listing-header-description-wrap::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 2.2em;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--blog-listing-header-bg) 88%);
+  opacity: 1;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.blog-listing-header-description-wrap.is-expanded::after {
+  opacity: 0;
+}
+
+.blog-listing-header-description {
+  font-size: 1rem;
+  line-height: 1.6em;
+  color: currentColor;
+}
+
+.blog-listing-header-description p {
+  margin: 0 0 1em;
+}
+
+.blog-listing-header-description p:last-child {
+  margin: 0;
+  font-family: 'Helvetica Neue';
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 300;
+  color: #FFFDEE;
+}
+
+.blog-listing-header-toggle {
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
+  font-family: 'Baskervville';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1;
+  color: #FFFDEE;
+  border: none;
+  background-color: transparent;
+}
+
+.blog-listing-header-toggle:hover {
+  opacity: 0.75;
+}
+
+.blog-listing-header-toggle-label[hidden] {
+  display: none;
+}
