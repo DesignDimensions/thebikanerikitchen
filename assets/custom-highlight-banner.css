@@ -19,12 +19,8 @@
 
 .custom-highlight-banner-heading {
   text-align: left;
-  max-width: 800px;
+  max-width: unset;
   margin: 0 0 24px;
-}
-
-.custom-highlight-banner-body {
-  max-width: 640px;
 }
 
 .custom-highlight-banner-body p {
