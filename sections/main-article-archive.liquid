@@ -26,6 +26,7 @@
 
   assign reflection_left = article.metafields.custom.reflection_left
   assign reflection_right = article.metafields.custom.reflection_right
+  assign under_reflection = article.metafields.custom.under_reflection
 
   assign note_text = article.metafields.custom.archive_note_text
 
@@ -66,111 +67,116 @@
   {%- endif -%}
 
   <div class="archive-article__content">
-  {%- if intro_heading != blank or intro_text.value != blank or section.settings.show_share_button -%}
-    <div class="archive-article__intro page-width">
-      <div class="archive-article__intro-col archive-article__intro-col--heading">
-        {%- if intro_heading != blank -%}
-          <h1 class="archive-article__intro-heading">{{ intro_heading | newline_to_br }}</h1>
-        {%- endif -%}
-        {%- if section.settings.show_share_button -%}
-          <div class="archive-article__share">
-            {% render 'share-button', share_link: share_url, share_label: section.settings.share_label, id: 'main' %}
-          </div>
-        {%- endif -%}
+    {%- if intro_heading != blank or intro_text.value != blank or section.settings.show_share_button -%}
+      <div class="archive-article__intro page-width">
+        <div class="archive-article__intro-col archive-article__intro-col--heading">
+          {%- if intro_heading != blank -%}
+            <h1 class="archive-article__intro-heading">{{ intro_heading | newline_to_br }}</h1>
+          {%- endif -%}
+          {%- if section.settings.show_share_button -%}
+            <div class="archive-article__share">
+              {% render 'share-button', share_link: share_url, share_label: section.settings.share_label, id: 'main' %}
+            </div>
+          {%- endif -%}
+        </div>
+        <div class="archive-article__intro-col archive-article__intro-col--body">
+          {%- if intro_text.value != blank -%}
+            <div class="archive-article__intro-body rte">{{ intro_text | metafield_tag }}</div>
+          {%- endif -%}
+        </div>
       </div>
-      <div class="archive-article__intro-col archive-article__intro-col--body">
-        {%- if intro_text.value != blank -%}
-          <div class="archive-article__intro-body rte">{{ intro_text | metafield_tag }}</div>
-        {%- endif -%}
-      </div>
-    </div>
-  {%- endif -%}
+    {%- endif -%}
 
-  {%- if image_1 != blank -%}
-    <div class="archive-article__image page-width">
-      {{
-        image_1
-        | image_url: width: 2000
-        | image_tag:
-          class: 'archive-article__image-media',
-          alt: image_1_alt,
-          loading: 'lazy',
-          sizes: '(min-width: 750px) calc(100vw - 10rem), 100vw',
-          widths: '750, 1100, 1500, 2000'
-      }}
-    </div>
-  {%- endif -%}
-
-  {%- if quote_intro.value != blank or quote_text.value != blank -%}
-    <div class="archive-article__split page-width">
-      <div class="archive-article__split-col rte">{{ quote_intro | metafield_tag }}</div>
-      <hr class="archive-article__split-divider">
-      <div class="archive-article__split-col archive-article__split-col--quote rte">
-        {{- quote_text | metafield_tag -}}
+    {%- if image_1 != blank -%}
+      <div class="archive-article__image page-width">
+        {{
+          image_1
+          | image_url: width: 2000
+          | image_tag:
+            class: 'archive-article__image-media',
+            alt: image_1_alt,
+            loading: 'lazy',
+            sizes: '(min-width: 750px) calc(100vw - 10rem), 100vw',
+            widths: '750, 1100, 1500, 2000'
+        }}
       </div>
-    </div>
-  {%- endif -%}
+    {%- endif -%}
 
-  {%- if image_2 != blank or image_3 != blank -%}
-    <div class="archive-article__duo page-width">
-      <div class="archive-article__duo-item">
-        {%- if image_2 != blank -%}
-          {{
-            image_2
-            | image_url: width: 1200
-            | image_tag:
-              class: 'archive-article__duo-media',
-              alt: image_2_alt,
-              loading: 'lazy',
-              sizes: '(min-width: 750px) 50vw, 100vw',
-              widths: '375, 550, 750, 1000, 1200'
-          }}
-        {%- endif -%}
-        {%- if image_2_caption.value != blank -%}
-          <div class="archive-article__duo-caption rte">{{ image_2_caption | metafield_tag }}</div>
-        {%- endif -%}
+    {%- if quote_intro.value != blank or quote_text.value != blank -%}
+      <div class="archive-article__split page-width">
+        <div class="archive-article__split-col rte">{{ quote_intro | metafield_tag }}</div>
+        <hr class="archive-article__split-divider">
+        <div class="archive-article__split-col archive-article__split-col--quote rte">
+          {{- quote_text | metafield_tag -}}
+        </div>
       </div>
-      <div class="archive-article__duo-item">
-        {%- if image_3 != blank -%}
-          {{
-            image_3
-            | image_url: width: 1200
-            | image_tag:
-              class: 'archive-article__duo-media',
-              alt: image_3_alt,
-              loading: 'lazy',
-              sizes: '(min-width: 750px) 50vw, 100vw',
-              widths: '375, 550, 750, 1000, 1200'
-          }}
-        {%- endif -%}
-        {%- if image_3_caption.value != blank -%}
-          <div class="archive-article__duo-caption rte">{{ image_3_caption | metafield_tag }}</div>
-        {%- endif -%}
-      </div>
-    </div>
-  {%- endif -%}
+    {%- endif -%}
 
-  {%- if reflection_left.value != blank or reflection_right.value != blank -%}
-    <div class="archive-article__split archive-article__split--body page-width">
-      <div class="archive-article__split-col rte">{{ reflection_left | metafield_tag }}</div>
-      <hr class="archive-article__split-divider">
-      <div class="archive-article__split-col rte">{{ reflection_right | metafield_tag }}</div>
-    </div>
-  {%- endif -%}
-
-  {%- if note_text.value != blank -%}
-    <div
-      class="archive-article__note"
-      style="background-color: {{ section.settings.note_bg_color }}; color: {{ section.settings.note_text_color }};"
-    >
-      <div class="page-width archive-article__note-inner">
-        {%- if section.settings.note_label != blank -%}
-          <p class="archive-article__note-label">{{ section.settings.note_label | escape }}</p>
-        {%- endif -%}
-        <div class="archive-article__note-body rte">{{ note_text | metafield_tag }}</div>
+    {%- if image_2 != blank or image_3 != blank -%}
+      <div class="archive-article__duo page-width">
+        <div class="archive-article__duo-item">
+          {%- if image_2 != blank -%}
+            {{
+              image_2
+              | image_url: width: 1200
+              | image_tag:
+                class: 'archive-article__duo-media',
+                alt: image_2_alt,
+                loading: 'lazy',
+                sizes: '(min-width: 750px) 50vw, 100vw',
+                widths: '375, 550, 750, 1000, 1200'
+            }}
+          {%- endif -%}
+          {%- if image_2_caption.value != blank -%}
+            <div class="archive-article__duo-caption rte">{{ image_2_caption | metafield_tag }}</div>
+          {%- endif -%}
+        </div>
+        <div class="archive-article__duo-item">
+          {%- if image_3 != blank -%}
+            {{
+              image_3
+              | image_url: width: 1200
+              | image_tag:
+                class: 'archive-article__duo-media',
+                alt: image_3_alt,
+                loading: 'lazy',
+                sizes: '(min-width: 750px) 50vw, 100vw',
+                widths: '375, 550, 750, 1000, 1200'
+            }}
+          {%- endif -%}
+          {%- if image_3_caption.value != blank -%}
+            <div class="archive-article__duo-caption rte">{{ image_3_caption | metafield_tag }}</div>
+          {%- endif -%}
+        </div>
       </div>
-    </div>
-  {%- endif -%}
+    {%- endif -%}
+
+    {%- if reflection_left.value != blank or reflection_right.value != blank -%}
+      <div class="archive-article__split archive-article__split--body page-width">
+        <div class="archive-article__split-col rte">{{ reflection_left | metafield_tag }}</div>
+        <hr class="archive-article__split-divider">
+        <div class="archive-article__split-col rte">{{ reflection_right | metafield_tag }}</div>
+      </div>
+    {%- endif -%}
+    {%- if under_reflection.value != blank -%}
+      <div class="page-width under_reflection_copy">
+        {{ under_reflection | metafield_tag }}
+      </div>
+    {%- endif -%}
+
+    {%- if note_text.value != blank -%}
+      <div
+        class="archive-article__note"
+        style="background-color: {{ section.settings.note_bg_color }}; color: {{ section.settings.note_text_color }};"
+      >
+        <div class="page-width archive-article__note-inner">
+          {%- if section.settings.note_label != blank -%}
+            <p class="archive-article__note-label">{{ section.settings.note_label | escape }}</p>
+          {%- endif -%}
+          <div class="archive-article__note-body rte">{{ note_text | metafield_tag }}</div>
+        </div>
+      </div>
+    {%- endif -%}
   </div>
 </article>
 

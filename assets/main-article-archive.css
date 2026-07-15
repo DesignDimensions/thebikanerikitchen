@@ -186,6 +186,30 @@
   align-items: start;
 }
 
+.under_reflection_copy p {
+  color: #181818;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
+}
+
+.under_reflection_copy strong {
+  font-size: 35px;
+  font-family: 'Ouma Devanagari';
+  color: #181818;
+  margin-bottom: -25px;
+}
+
+.under_reflection_copy em {
+  font-size: 18px;
+  font-family: 'Baskervville';
+  color: #181818;
+}
+
 .archive-article__split-divider {
   width: 1px;
   height: 100%;
