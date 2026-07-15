@@ -45,6 +45,9 @@
       "type": "blog-listing-grid",
       "name": "Blog Listing Grid",
       "settings": {
+        "subtitle": "",
+        "title": "",
+        "description": "",
         "blog": "rituals",
         "posts_to_show": 6,
         "star_icon": "shopify://shop_images/Vector_12.png",

@@ -128,3 +128,60 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Ouma Devanagari Font Family */
+@font-face {
+  font-family: 'Ouma Devanagari';
+  src: url('{{ "Ouma_Devanagari_100.otf" | asset_url }}') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ouma Devanagari';
+  src: url('{{ "Ouma_Devanagari_200.otf" | asset_url }}') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ouma Devanagari';
+  src: url('{{ "Ouma_Devanagari_300.otf" | asset_url }}') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ouma Devanagari';
+  src: url('{{ "Ouma_Devanagari_400.otf" | asset_url }}') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ouma Devanagari';
+  src: url('{{ "Ouma_Devanagari_500.otf" | asset_url }}') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ouma Devanagari';
+  src: url('{{ "Ouma_Devanagari_600.otf" | asset_url }}') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ouma Devanagari';
+  src: url('{{ "Ouma_Devanagari_700.otf" | asset_url }}') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
