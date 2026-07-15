@@ -1,0 +1,75 @@
+.error-404 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 500px;
+  padding: 40px 24px;
+}
+
+.error-404__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.error-404__overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+}
+
+.error-404__card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1180px;
+  padding: 56px 40px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.error-404__eyebrow {
+  margin: 0 0 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.error-404__heading {
+  margin: 0 0 24px;
+  line-height: 1.15;
+}
+
+.error-404__subtext {
+  margin: 0 0 40px;
+  font-size: 1.7rem;
+}
+
+.error-404__button {
+  display: block;
+  width: 100%;
+  padding: 22px 24px;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 750px) {
+  .error-404__card {
+    padding: 88px 96px 0;
+  }
+
+  .error-404__subtext {
+    font-size: 1.8rem;
+  }
+}

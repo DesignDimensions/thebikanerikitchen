@@ -1,1 +1,1 @@
-{"sections":{"main":{"type":"main-404","settings":{}}},"order":["main"]}
+{"sections":{"main":{"type":"main-404","disabled":true,"settings":{}},"custom_404":{"type":"custom-404","settings":{}}},"order":["main","custom_404"]}
