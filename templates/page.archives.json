@@ -17,19 +17,16 @@
         "padding_bottom": 28
       }
     },
-    "custom_banner_gDRCgf": {
-      "type": "custom-banner",
-      "name": "Custom Banner",
-      "settings": {
-        "banner_image": "shopify://shop_images/Wireframe_-_4_2.jpg",
-        "mobile_banner_image": "shopify://shop_images/Frame_5_1.jpg"
-      }
+    "page_top_banner_8XrMf7": {
+      "type": "page-top_banner",
+      "name": "Page Top Banner",
+      "settings": {}
     },
-    "blog_listing_header": {
+    "blog_listing_header_cdQy3z": {
       "type": "blog-listing-header",
       "name": "Blog Listing Header",
       "settings": {
-        "heading": "The Rituals",
+        "heading": "The Desert Never Wasted Anything",
         "title": "The Desert Never Wasted Anything",
         "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
         "truncate_lines": 3.5,
@@ -41,10 +38,57 @@
         "padding_bottom": 48
       }
     },
-    "blog_listing_grid": {
+    "blog_listing_grid_RCFHHB": {
       "type": "blog-listing-grid",
+      "blocks": {
+        "pill_AiLL4C": {
+          "type": "pill",
+          "settings": {
+            "title": "All",
+            "tag": ""
+          }
+        },
+        "pill_DKHkdk": {
+          "type": "pill",
+          "settings": {
+            "title": "Category1",
+            "tag": "Category1"
+          }
+        },
+        "pill_qgpWD7": {
+          "type": "pill",
+          "settings": {
+            "title": "Category2",
+            "tag": "Category2"
+          }
+        },
+        "pill_x7emJ6": {
+          "type": "pill",
+          "settings": {
+            "title": "Category3",
+            "tag": "Category3"
+          }
+        },
+        "pill_j9geWJ": {
+          "type": "pill",
+          "settings": {
+            "title": "Category4",
+            "tag": "Category4"
+          }
+        }
+      },
+      "block_order": [
+        "pill_AiLL4C",
+        "pill_DKHkdk",
+        "pill_qgpWD7",
+        "pill_x7emJ6",
+        "pill_j9geWJ"
+      ],
       "name": "Blog Listing Grid",
       "settings": {
+        "subtitle": "LOREM IPSUM",
+        "title": "The land shaped the recipe long before the recipe shaped the culture.",
+        "description": "<p>From deserts and coastlines to forests and river plains, every region developed its own relationship with ingredients, preservation and taste.</p>",
         "blog": "rituals",
         "posts_to_show": 6,
         "star_icon": "shopify://shop_images/Vector_12.png",
@@ -55,59 +99,7 @@
         "padding_bottom": 48
       }
     },
-    "custom_banner_text_JgCy7f": {
-      "type": "custom-banner-text",
-      "name": "Custom Banner Text",
-      "settings": {
-        "banner_image": "shopify://shop_images/Frame_12.jpg",
-        "mobile_banner_image": "shopify://shop_images/Frame_1321319440_1.jpg",
-        "heading": "<p>From <em>the </em>royal Kitchen to <em>your </em>Celebrations</p>"
-      }
-    },
-    "custom_images_grid_carousal_TcYrrr": {
-      "type": "custom-images-grid_carousal",
-      "blocks": {
-        "image_WiBUG7": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_11_1.jpg",
-            "mobile_image": "shopify://shop_images/Frame_8_1.jpg"
-          }
-        },
-        "image_hFYm9e": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_9.jpg",
-            "mobile_image": "shopify://shop_images/Frame_9_1.jpg"
-          }
-        },
-        "image_aRDBP9": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_10.jpg",
-            "mobile_image": "shopify://shop_images/Frame_11_2.jpg"
-          }
-        },
-        "image_Cc664F": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_8.jpg",
-            "mobile_image": "shopify://shop_images/Frame_10_1.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_WiBUG7",
-        "image_hFYm9e",
-        "image_aRDBP9",
-        "image_Cc664F"
-      ],
-      "name": "Custom Image Carousel",
-      "settings": {
-        "images_per_view": 4
-      }
-    },
-    "custom_bg_heading_xfjNxk": {
+    "custom_bg_heading_pQRJpx": {
       "type": "custom-bg-heading",
       "name": "Custom BG Heading",
       "settings": {
@@ -116,24 +108,24 @@
         "background_color": "#570f13"
       }
     },
-    "custom_images_grid_carousal_RR4hat": {
+    "custom_images_grid_carousal_UPCUxk": {
       "type": "custom-images-grid_carousal",
       "blocks": {
-        "image_WpYFVe": {
+        "image_twzPw8": {
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
             "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
           }
         },
-        "image_f3xmQT": {
+        "image_AWDtpA": {
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
             "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
           }
         },
-        "image_xT6Mxh": {
+        "image_MWUqxe": {
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
@@ -142,9 +134,9 @@
         }
       },
       "block_order": [
-        "image_WpYFVe",
-        "image_f3xmQT",
-        "image_xT6Mxh"
+        "image_twzPw8",
+        "image_AWDtpA",
+        "image_MWUqxe"
       ],
       "name": "Custom Image Carousel",
       "settings": {
@@ -154,12 +146,10 @@
   },
   "order": [
     "main",
-    "custom_banner_gDRCgf",
-    "blog_listing_header",
-    "blog_listing_grid",
-    "custom_banner_text_JgCy7f",
-    "custom_images_grid_carousal_TcYrrr",
-    "custom_bg_heading_xfjNxk",
-    "custom_images_grid_carousal_RR4hat"
+    "page_top_banner_8XrMf7",
+    "blog_listing_header_cdQy3z",
+    "blog_listing_grid_RCFHHB",
+    "custom_bg_heading_pQRJpx",
+    "custom_images_grid_carousal_UPCUxk"
   ]
 }
