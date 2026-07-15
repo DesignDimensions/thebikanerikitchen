@@ -1,0 +1,142 @@
+.contact-page__row {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.contact-page__row+.contact-page__row {
+  margin-top: var(--contact-page-row-gap, 4px);
+}
+
+.contact-page__col {
+  width: 100%;
+}
+
+@media screen and (min-width: 750px) {
+  .contact-page__col {
+    width: 50%;
+  }
+}
+
+.contact-page__intro,
+.contact-page__form {
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-page__form {
+  aspect-ratio: 1/1;
+}
+
+.contact-page__title {
+  margin: 0 0 10px;
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+}
+
+.contact-page__rich-text {
+  font-family: 'Helvetica Neue';
+  font-size: 17px;
+  line-height: 23px;
+  font-weight: 400;
+  max-width: 600px;
+}
+
+.contact-page__rich-text p {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  gap: 10px;
+}
+
+.contact-page__rich-text p strong {
+  font-weight: 600;
+}
+
+.contact-page__rich-text>*+* {
+  margin-top: 1.4em;
+}
+
+.contact-page__image {
+  min-height: 320px;
+  aspect-ratio: 1/1;
+}
+
+.contact-page__image-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact-page__map {
+  min-height: 320px;
+}
+
+.contact-page__map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border: 0;
+}
+
+.contact-page__form-heading {
+  margin: 0 0 28px;
+  max-width: 600px;
+  text-align: left;
+  width: 100%;
+}
+
+.contact-page__form-el {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.contact-page__field-input {
+  width: 100%;
+  padding: 16px 18px;
+  border: 1px solid rgba(18, 18, 18, 0.3);
+  border-radius: 2px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: inherit;
+}
+
+textarea.contact-page__field-input {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.contact-page__field-input::placeholder {
+  color: rgba(18, 18, 18, 0.55);
+}
+
+.contact-page__submit {
+  margin-top: 8px;
+  padding: 16px 24px;
+  border: none;
+  background: #181818;
+  color: #ffffff;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.contact-page__submit:hover {
+  opacity: 0.9;
+}
+
+.contact-page__form-message {
+  margin: 0 0 16px;
+}

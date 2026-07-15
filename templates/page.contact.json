@@ -1,25 +1,45 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-page",
+      "disabled": true,
       "settings": {
         "padding_top": 36,
         "padding_bottom": 36
       }
     },
-    "form": {
-      "type": "contact-form",
+    "contact_page": {
+      "type": "custom-contact-page",
       "settings": {
-        "heading": "",
-        "heading_size": "h1",
-        "color_scheme": "scheme-1",
-        "padding_top": 36,
-        "padding_bottom": 36
+        "heading": "Contact Us",
+        "body": "<p><strong>You can write to us at Care@thebikanerikitchen.in</strong><br/><br/><strong>ADDRESS<br/></strong>M-283,Greater Kailash Part-2, New Delhi-110048<br/><strong>EMAIL ID<br/></strong>Care@thebikanerikitchen.co.in<br/><strong>NOTE: </strong>We work only on weekdays from Monday - Friday. Our Operational hours are 10:00 AM - 04:00 PM</p>",
+        "intro_background_color": "#fffdee",
+        "intro_text_color": "#121212",
+        "image": "shopify://shop_images/Frame_1321317992.png",
+        "map_embed_url": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d265823.37069130666!2d76.9284228!3d28.6442853!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e1!3m2!1sen!2sin!4v1784116461057!5m2!1sen!2sin\" width=\"600\" height=\"450\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"strict-origin-when-cross-origin\"></iframe>",
+        "form_heading": "Get in Touch!",
+        "form_background_color": "#fffdee",
+        "form_text_color": "#121212",
+        "name_placeholder": "Name",
+        "email_placeholder": "E-Mail",
+        "phone_placeholder": "Phone Number",
+        "message_placeholder": "Tell us something you want to know.",
+        "submit_label": "Submit",
+        "row_gap": 4
       }
     }
   },
   "order": [
     "main",
-    "form"
+    "contact_page"
   ]
 }

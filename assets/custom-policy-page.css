@@ -1,0 +1,139 @@
+.policy-page__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.policy-page__title {
+  margin: 0;
+  text-align: left;
+  font-family: 'Baskervville';
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.policy-page__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.policy-page__content p,
+.policy-page__content span {
+  margin: 0 0 40px 0;
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 27px;
+  letter-spacing: .5px;
+}
+
+@media screen and (min-width: 750px) {
+  .policy-page__layout {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 48px;
+  }
+
+  .policy-page__title {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .policy-page__nav {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .policy-page__content {
+    grid-column: 2;
+    grid-row: 2;
+  }
+}
+
+.policy-page__nav {
+  align-self: start;
+}
+
+@media screen and (min-width: 750px) {
+  .policy-page__nav {
+    position: sticky;
+    top: 32px;
+  }
+}
+
+.policy-page__nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  border-radius: 4px;
+}
+
+.policy-page__nav-item {
+  margin: 0;
+}
+
+.policy-page__nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #181818;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 27px;
+  letter-spacing: .5px;
+}
+
+.policy-page__nav-link:hover {
+  opacity: 1;
+}
+
+.policy-page__nav-dot {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  position: relative;
+}
+
+.policy-page__nav-dot::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.policy-page__nav-link--active .policy-page__nav-dot::after {
+  opacity: 1;
+}
+
+.policy-page__content>*+* {
+  margin-top: 1.6em;
+}
+
+.policy-page__content h2 {
+  font-size: 2.2rem;
+  margin: 0 0 0.6em;
+}
+
+.policy-page__content h3 span {
+  font-size: 23px;
+  margin: 0 0 20px;
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  letter-spacing: 1px;
+  line-height: 1;
+}
