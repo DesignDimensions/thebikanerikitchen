@@ -59,16 +59,20 @@
   text-align: right;
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 769px) and (max-width: 989px) {
   .custom-practices-heading {
     max-width: 90%;
   }
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 768px) {
   .custom-practices {
     padding-top: 48px;
     padding-bottom: 48px;
+  }
+
+  .custom-practices-list {
+    margin-top: 30px;
   }
 
   .custom-practices-heading,
@@ -76,13 +80,61 @@
     max-width: 100%;
   }
 
+  .custom-practices-body p {
+    font-size: 20px;
+    line-height: 28px;
+  }
+
   .custom-practices-image {
     margin-bottom: 32px;
   }
 
   .custom-practices-row {
-    grid-template-columns: 1fr;
-    gap: 6px;
+    grid-template-columns: minmax(110px, 140px) 1fr;
+    gap: 16px;
+    align-items: start;
+    padding: 22px 0;
+  }
+
+  .custom-practices-row-label,
+  .custom-practices-row-description {
+    font-size: 17px;
+    line-height: 24px;
+  }
+
+  .custom-practices-row-description {
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .custom-practices {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  .custom-practices-body {
+    margin-bottom: 40px;
+  }
+
+  .custom-practices-body p {
+    font-size: 17px;
+    line-height: 25px;
+  }
+
+  .custom-practices-image {
+    margin-bottom: 24px;
+  }
+
+  .custom-practices-row {
+    grid-template-columns: minmax(95px, 120px) 1fr;
+    gap: 12px;
     padding: 18px 0;
+  }
+
+  .custom-practices-row-label,
+  .custom-practices-row-description {
+    font-size: 15px;
+    line-height: 22px;
   }
 }

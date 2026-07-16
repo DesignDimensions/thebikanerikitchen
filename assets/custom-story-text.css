@@ -39,13 +39,13 @@
   margin-top: 1em;
 }
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
+@media screen and (min-width: 769px) and (max-width: 989px) {
   .custom-story-text--stacked .custom-story-text-heading {
     max-width: 85%;
   }
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 768px) {
   .custom-story-text {
     padding-top: 48px;
     padding-bottom: 48px;
@@ -63,5 +63,26 @@
   .custom-story-text-heading,
   .custom-story-text--stacked .custom-story-text-heading {
     max-width: 100%;
+  }
+
+  .custom-story-text-body p {
+    font-size: 17px;
+    line-height: 25px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .custom-story-text {
+    padding-top: 36px;
+    padding-bottom: 36px;
+  }
+
+  .custom-story-text-inner {
+    gap: 16px;
+  }
+
+  .custom-story-text-body p {
+    font-size: 17px;
+    line-height: 25px;
   }
 }

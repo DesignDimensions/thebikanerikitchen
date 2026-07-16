@@ -19,7 +19,7 @@
     height: auto;
 }
 
-@media(max-width: 749px) {
+@media(max-width: 768px) {
     .custom-images-grid_carousal-container {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
@@ -33,5 +33,11 @@
     .custom-images-grid_carousal-mobile-image {
         display: block;
         scroll-snap-align: start;
+    }
+}
+
+@media(max-width: 400px) {
+    .custom-images-grid_carousal-mobile-image {
+        width: 85%;
     }
 }

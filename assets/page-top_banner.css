@@ -17,9 +17,39 @@
     object-fit: cover;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 768px) {
     .page-top-banner-container {
         min-height: 60vh;
+    }
+
+    .page-top-banner-container-inner {
+        flex-direction: column;
+    }
+
+    .page-top-banner-container-inner hr {
+        width: 1px !important;
+        height: 150px;
+        margin: 20px 0 !important;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .page-top-banner-container {
+        min-height: 50vh;
+    }
+
+    .page-top-banner-container-inner {
+        width: 92%;
+    }
+
+    .page-top-banner-container-inner p:first-of-type,
+    .page-top-banner-container-inner p:last-of-type {
+        letter-spacing: 2px;
+        font-size: 12px;
+    }
+
+    .page-top-banner-container-inner hr {
+        margin: 0 6px;
     }
 }
 

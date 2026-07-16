@@ -21,7 +21,7 @@
       <div class="custom-inset-image-wrap custom-practices-image">
         <picture>
           {%- if section.settings.image_mobile != blank -%}
-            <source media="(max-width: 749px)" srcset="{{ section.settings.image_mobile | image_url }}">
+            <source media="(max-width: 768px)" srcset="{{ section.settings.image_mobile | image_url }}">
           {%- endif -%}
           <img
             src="{{ section.settings.image | image_url }}"

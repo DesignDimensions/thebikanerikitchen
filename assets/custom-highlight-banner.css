@@ -32,14 +32,35 @@
   opacity: 0.85;
 }
 
-@media screen and (max-width: 749px) {
+@media screen and (max-width: 768px) {
   .custom-highlight-banner-inner {
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 44px;
+    padding-bottom: 44px;
   }
 
   .custom-highlight-banner-eyebrow {
     font-size: 13px;
     letter-spacing: 3px;
+  }
+
+  .custom-highlight-banner-body p {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .custom-highlight-banner-eyebrow {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .custom-highlight-banner-heading {
+    margin-bottom: 18px;
+  }
+
+  .custom-highlight-banner-body p {
+    font-size: 15px;
+    line-height: 1.6;
   }
 }
