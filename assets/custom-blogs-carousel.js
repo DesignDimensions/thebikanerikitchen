@@ -5,14 +5,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const slides = Array.from(root.querySelectorAll('.custom-blogs-carousel-slide'));
     if (slides.length === 0) return;
 
+    const viewport = root.querySelector('.custom-blogs-carousel-viewport');
     const prevButton = root.querySelector('.custom-blogs-carousel-nav-prev');
     const nextButton = root.querySelector('.custom-blogs-carousel-nav-next');
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const hasGsap = typeof window.gsap !== 'undefined';
+    const mobileHeightQuery = window.matchMedia('(max-width: 749px)');
 
     let currentIndex = slides.findIndex((slide) => slide.classList.contains('is-active'));
     if (currentIndex === -1) currentIndex = 0;
     let isAnimating = false;
+
+    // On mobile, slides stay position:absolute (so the crossfade still
+    // works), but that means the viewport (height: auto, no in-flow
+    // children) collapses to 0 — which in turn forces every slide's own
+    // box to 0 via inset:0, squeezing their flex content before we ever
+    // get to measure it. Briefly taking the slide out of absolute
+    // positioning breaks that circular constraint so its true natural
+    // height can be read, then position is restored before anything paints.
+    const syncViewportHeight = (slide = slides[currentIndex]) => {
+      if (!viewport || !slide) return;
+      if (!mobileHeightQuery.matches) {
+        viewport.style.height = '';
+        return;
+      }
+      const prevPosition = slide.style.position;
+      slide.style.position = 'static';
+      const height = slide.scrollHeight;
+      slide.style.position = prevPosition;
+      viewport.style.height = `${height}px`;
+    };
 
     const parts = (slide) => ({
       el: slide,
@@ -26,11 +48,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const snapTo = (index) => {
       slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+      syncViewportHeight(slides[index]);
     };
 
     const animateInstant = (outgoing, incoming) => {
       outgoing.el.classList.remove('is-active');
       incoming.el.classList.add('is-active');
+      syncViewportHeight(incoming.el);
       isAnimating = false;
     };
 
@@ -40,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
       incoming.el.classList.add('is-active');
       incoming.el.style.zIndex = 2;
       outgoing.el.style.zIndex = 1;
+      syncViewportHeight(incoming.el);
 
       gsap.set(incoming.image, { scale: 1.12, opacity: 0 });
       gsap.set(incoming.tags, { opacity: 0, y: 16 });
@@ -125,6 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     snapTo(currentIndex);
+
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => syncViewportHeight(), 150);
+    });
+
+    if (typeof mobileHeightQuery.addEventListener === 'function') {
+      mobileHeightQuery.addEventListener('change', () => syncViewportHeight());
+    } else if (typeof mobileHeightQuery.addListener === 'function') {
+      // Safari < 14 fallback
+      mobileHeightQuery.addListener(() => syncViewportHeight());
+    }
 
     root.addEventListener('shopify:block:select', (event) => {
       const index = slides.indexOf(event.target);

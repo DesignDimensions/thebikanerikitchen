@@ -8,7 +8,11 @@
     height: 100vh;
 }
 
-.custom-featured-product-container img:nth-child(1) {
+.bg-image--mobile {
+    display: none;
+}
+
+.bg-image--left.bg-image--desktop {
     position: absolute;
     top: 0;
     left: 0;
@@ -17,7 +21,7 @@
     object-fit: cover;
 }
 
-.custom-featured-product-container img:nth-child(2) {
+.bg-image--right.bg-image--desktop {
     position: absolute;
     top: 0;
     right: 0;
@@ -30,9 +34,18 @@
     position: unset !important;
 }
 
-.custom-featured-product-left img {
+/* Desktop: pass through so .custom-featured-product-left stays a
+   direct flex item of .page-width, unaffected by this wrapper. */
+.custom-featured-product-left-wrap {
+    display: contents;
+}
+
+.custom-featured-product-left>img:first-child {
+    position: absolute;
+    inset: 0;
     height: 100% !important;
     width: 100% !important;
+    object-fit: cover;
     z-index: -1;
 }
 
@@ -168,6 +181,7 @@
 
 .custom-featured-product-left-cta_container img {
     width: 60px !important;
+    height: auto;
 }
 
 .custom-featured-product__button-text {
@@ -190,13 +204,17 @@
     .custom-featured-product-container {
         aspect-ratio: unset;
         display: block;
+        height: auto;
+        min-height: 0;
     }
 
-    .custom-featured-product-container img:nth-child(1) {
+    .bg-image--desktop {
         display: none;
     }
 
-    .custom-featured-product-container img:nth-child(2) {
+    /* Trunk/grass photo shows at its complete, uncropped height */
+    .bg-image--right.bg-image--mobile {
+        display: block;
         position: static;
         width: 100%;
         height: auto;
@@ -209,38 +227,84 @@
         left: auto;
         height: auto;
         width: 100%;
+        max-width: none;
+        padding: 0;
+        margin: 0;
         display: block;
     }
 
-    .custom-featured-product-left {
+    /* Sizes itself to wrap just the card (so the pattern image below
+       can fill exactly that box), keeping .custom-featured-product-right
+       positioned against the container/photo instead. */
+    .custom-featured-product-left-wrap {
+        display: block;
+        position: relative;
+    }
+
+    /* Patterned image sizes itself to the wrapper, which is itself
+       sized to fit the card's content — no viewport units. */
+    .bg-image--left.bg-image--mobile {
+        display: block;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+
+    /* Overlays the top of .bg-image--right.bg-image--mobile, which is
+       the first element in normal flow inside the container. */
+    .custom-featured-product-right {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: auto;
-        padding: 32px 24px 40px;
-        background-color: #FFFDEE;
+        z-index: 2;
+        box-sizing: border-box;
+        padding: 74px 0 0;
+        align-items: flex-start;
     }
 
-    .custom-featured-product-left>img {
-        display: none;
+    .custom-featured-product-right hr {
+        width: 47%;
     }
 
-    .custom-featured-product-right {
-        display: none;
+    .custom-featured-product-right p {
+        font-size: 13px;
+        letter-spacing: 2px;
+    }
+
+    .custom-featured-product-left {
+        height: auto;
+        padding: 28px 24px 32px;
+        box-sizing: border-box;
+        width: 90%;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(1) {
-        font-size: 12px;
+        font-size: 11px;
         letter-spacing: 3px;
         margin-bottom: 14px;
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(2) {
-        font-size: 28px;
-        line-height: 30px;
+        font-size: 24px;
+        line-height: 27px;
+        font-weight: 600;
     }
 
-    .custom-featured-product-left-description {
+    .custom-featured-product-left-description p {
         gap: 16px;
         margin-top: 14px;
+        font-size: 13px !important;
+        font-weight: 300 !important;
+        line-height: 16px !important;
     }
 
     .custom-featured-product-left .custom-featured-product-left-description p {
@@ -264,11 +328,15 @@
     .custom-featured-product-left-cta_container img {
         width: 48px !important;
     }
+
+    .custom-featured-product-container .page-width {
+        height: unset !important;
+    }
 }
 
 @media screen and (max-width: 420px) {
     .custom-featured-product-left {
-        padding: 28px 20px 36px;
+        padding: 48px 30px 48px;
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(2) {

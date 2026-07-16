@@ -93,23 +93,26 @@
     }
 
     .custom-image-content-inner-container p:first-child {
-        font-size: 14px;
+        font-size: 11px;
         letter-spacing: 5px;
     }
 
     .custom-image-content-inner-container h3 {
         margin: 10px 0;
-        font-size: 32px;
+        font-size: 36px;
     }
 
     .custom-image-content-inner-container .custom-image-content-description p {
         font-size: 15px;
         line-height: 24px;
+        letter-spacing: 1px;
     }
 }
 
 @media screen and (max-width: 420px) {
     .custom-image-content-inner img {
-        width: 65%;
+        width: 100%;
+        max-width: unset;
+        margin: 0;
     }
 }

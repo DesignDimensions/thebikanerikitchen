@@ -10,9 +10,11 @@
   margin-bottom: 8px;
   padding-top: 0;
 }
-.facets-container{
+
+.facets-container {
   padding-top: 0;
 }
+
 .shop-facets__disclosure {
   position: relative;
 }
@@ -205,4 +207,17 @@ details[open]>.shop-facets__panel {
   .shop-facets__panel {
     width: 240px;
   }
+}
+
+@media (max-width: 768px) {
+  .shop-facets__trigger {
+    font-size: 14px;
+  }
+
+  .shop-facets .shop-facets__disclosure:first-of-type img {
+    width: 12px;
+  }
+  .shop-facets .shop-facets__disclosure:last-of-type img {
+    width: 17px;
+}
 }

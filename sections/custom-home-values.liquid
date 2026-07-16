@@ -8,6 +8,15 @@
     <div class="custom-home_values-item-container">
       {% for block in section.blocks %}
         {% if block.settings.icon and block.settings.title %}
+          {% if forloop.last %}
+            <div class="custom-home_values-item custom-home_values-item--extra">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Vector_13.png?v=1784200077"
+                alt=""
+                class="custom-home_values-icon custom-home_values-icon--extra"
+              >
+            </div>
+          {% endif %}
           <div class="custom-home_values-item">
             <img
               src="{{ block.settings.icon | image_url }}"

@@ -49,7 +49,17 @@
     font-weight: 300;
 }
 
+.custom-home_values-item--extra {
+    display: none;
+}
+
 @media screen and (max-width: 749px) {
+    .custom-home_values-item--extra {
+        display: flex;
+        width: 18% !important;
+        padding-bottom: 30px;
+    }
+
     .custom-home_values-heading {
         padding: 40px 0 4px;
     }
@@ -60,12 +70,13 @@
     }
 
     .custom-home_values-item-container {
-        gap: 8%;
         row-gap: 32px;
+        width: 93%;
+        align-items: center;
     }
 
     .custom-home_values-item {
-        max-width: 42%;
+        width: 30%;
     }
 
     .custom-home_values-title {

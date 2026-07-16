@@ -292,15 +292,50 @@
 }
 
 @media screen and (max-width: 749px) {
+
+  /* custom-home-testimonials.js sets this element's height inline to
+     match .custom-home-testimonials-content's real (header + top
+     padding + carousel + bottom padding) height. An inline style
+     always wins over the aspect-ratio set inline per-section (from
+     the mobile background image), which could otherwise squeeze the
+     top padding away when it's shorter than the content needs. */
+
   .custom-home-testimonials-corner {
-    left: 1.5rem;
-    bottom: 1.5rem;
-    width: 20px;
+    left: 4.5rem;
+    bottom: 4.5rem;
+    width: 30px;
   }
 
-  .custom-home-testimonials-arrow {
-    right: 1.5rem;
-    bottom: 1.5rem;
-    width: 15%;
+  .custom-home-testimonials-card {
+    flex: 0 0 80%;
+    max-width: 80%;
+  }
+
+  .custom-home-testimonials-quote p {
+    margin: 0 0 50px !important;
+    font-size: 24px;
+  }
+
+  /* Mirrors .custom-home-testimonials-corner's mobile position —
+     same bottom offset, opposite (right) corner — instead of the
+     desktop-only bottom: 8rem/right: 6rem, which lands under the
+     card carousel on short mobile viewports. */
+  .custom-home-testimonials-arrow-container {
+    right: 4.5rem;
+    bottom: 5rem;
+    width: 120px;
+  }
+
+  .custom-home-testimonials-content {
+    padding: 62px 20px 120px;
+  }
+
+  .custom-home-testimonials-nav {
+    width: 34%;
+    max-width: unset;
+  }
+
+  .custom-home-testimonials-caption {
+    font-size: 11px;
   }
 }

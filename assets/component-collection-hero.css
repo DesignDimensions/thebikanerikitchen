@@ -84,6 +84,9 @@
   .collection-hero__image-container {
     height: 20rem;
   }
+  .collection-hero__title{
+    margin-top: 50px !important;
+  }
 }
 
 @media screen and (min-width: 750px) {

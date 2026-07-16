@@ -23,7 +23,9 @@
       "settings": {
         "featured_product": "dry-fruit-mix",
         "bg_left_image": "shopify://shop_images/Frame_3_2.jpg",
+        "bg_left_image_mobile": "shopify://shop_images/Frame_1321317943.png",
         "bg_right_image": "shopify://shop_images/Frame_4_1.jpg",
+        "bg_right_image_mobile": "shopify://shop_images/Frame_1321317942.png",
         "featured-product-left-bg": "shopify://shop_images/Frame_1321319393_3.jpg",
         "top_left_caption": "Our First",
         "heading": "Bikaneri Bhujia",
@@ -108,8 +110,8 @@
       ],
       "name": "Custom Audio Player",
       "settings": {
-        "banner_image": "shopify://shop_images/Wireframe_-_5_1.jpg",
-        "mobile_banner_image": "shopify://shop_images/Frame_1321317972.jpg",
+        "banner_image": "shopify://shop_images/Wireframe_-_6_1.png",
+        "mobile_banner_image": "shopify://shop_images/Frame_1321317972.png",
         "heading": "Aao Sune Kahani Bikaneri Bhujia Ki",
         "audio_url": "https://cdn.shopify.com/s/files/1/0764/0953/6706/files/freesound-community-002145-a-conversation-with-a-neighbor-53032_3pVsHulM.mp3?v=1783592407",
         "default_language": "en"

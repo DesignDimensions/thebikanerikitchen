@@ -44,3 +44,16 @@ slider-component product-component .card-wrapper .card .card__content .quick-add
     font-weight: 300;
     line-height: 16px;
 }
+
+/* Carousel showing exactly 1.2 cards per view (one full card + a
+   peek of the next), overriding Dawn's fixed 3rem peek subtraction
+   with a proportional width so the ratio holds at any viewport. */
+@media screen and (max-width: 989px) {
+    .custom-featured-collection__grid.grid--peek.grid--1-col-tablet-down .grid__item {
+        width: calc(72.333% - var(--grid-mobile-horizontal-spacing));
+        max-width: calc(72.333% - var(--grid-mobile-horizontal-spacing));
+    }
+}
+.collection  .slider-buttons{
+    display: none;
+}

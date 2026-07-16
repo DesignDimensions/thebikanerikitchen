@@ -458,6 +458,10 @@ table:not([class]) th {
   .small-hide {
     display: none !important;
   }
+
+  .collection__subtitle {
+    font-size: 12px !important;
+  }
 }
 
 @media screen and (min-width: 750px) and (max-width: 989px) {
@@ -2577,19 +2581,16 @@ input[type='checkbox'] {
 
 @media screen and (max-width: 749px) {
   .section-heading {
-    font-size: 28px;
-    line-height: 32px;
+    font-size: 30px;
+    line-height: 30px;
     letter-spacing: 1.5px;
-    max-width: 100%;
+    max-width: 80%;
     margin: 0 auto 20px;
   }
-}
 
-@media screen and (min-width: 750px) and (max-width: 989px) {
-  .section-heading {
-    font-size: 38px;
-    line-height: 42px;
-    max-width: 90%;
+  .clp-section-heading {
+    font-size: 35px !important;
+    line-height: 30px !important;
   }
 }
 

@@ -2,17 +2,28 @@
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 <div class="custom-featured-product-container">
+  {% assign bg_left_image_mobile = section.settings.bg_left_image_mobile | default: section.settings.bg_left_image %}
+  {% assign bg_right_image_mobile = section.settings.bg_right_image_mobile | default: section.settings.bg_right_image %}
   <img
+    class="bg-image bg-image--left bg-image--desktop"
     src="{{ section.settings.bg_left_image | image_url }}"
     alt="{{ section.settings.bg_left_image.alt | escape }}"
     width="{{ section.settings.bg_left_image.width }}"
     height="{{ section.settings.bg_left_image.height }}"
   >
   <img
+    class="bg-image bg-image--right bg-image--desktop"
     src="{{ section.settings.bg_right_image | image_url }}"
     alt="{{ section.settings.bg_right_image.alt | escape }}"
     width="{{ section.settings.bg_right_image.width }}"
     height="{{ section.settings.bg_right_image.height }}"
+  >
+  <img
+    class="bg-image bg-image--right bg-image--mobile"
+    src="{{ bg_right_image_mobile | image_url }}"
+    alt="{{ bg_right_image_mobile.alt | escape }}"
+    width="{{ bg_right_image_mobile.width }}"
+    height="{{ bg_right_image_mobile.height }}"
   >
   {% assign product = section.settings.featured_product %}
   {% assign featured_variant = product.selected_or_first_available_variant %}
@@ -20,6 +31,14 @@
     {% assign featured_variant = product.variants.first %}
   {% endif %}
   <div class="page-width">
+    <div class="custom-featured-product-left-wrap">
+      <img
+        class="bg-image bg-image--left bg-image--mobile"
+        src="{{ bg_left_image_mobile | image_url }}"
+        alt="{{ bg_left_image_mobile.alt | escape }}"
+        width="{{ bg_left_image_mobile.width }}"
+        height="{{ bg_left_image_mobile.height }}"
+      >
     <div class="custom-featured-product-left">
       <img
         src="{{ section.settings['featured-product-left-bg'] | image_url }}"
@@ -49,7 +68,13 @@
               <div class="product-form__error-message-wrapper" role="alert" hidden>
                 <span class="product-form__error-message"></span>
               </div>
-              {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+              {%- form 'product',
+                product,
+                id: product_form_id,
+                class: 'form',
+                novalidate: 'novalidate',
+                data-type: 'add-to-cart-form'
+              -%}
                 <input type="hidden" name="id" value="{{ featured_variant.id }}" class="product-variant-id">
                 <input type="hidden" name="quantity" value="1">
                 <div class="product-form__buttons">
@@ -79,6 +104,7 @@
         </div>
       </div>
     </div>
+    </div>
     <div class="custom-featured-product-right">
       <hr>
       <p>{{ section.settings.top_right_caption }}</p>
@@ -102,8 +128,20 @@
     },
     {
       "type": "image_picker",
+      "id": "bg_left_image_mobile",
+      "label": "Background Left Image (Mobile)",
+      "info": "Optional. Falls back to the desktop image if not set."
+    },
+    {
+      "type": "image_picker",
       "id": "bg_right_image",
       "label": "Background Right Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_right_image_mobile",
+      "label": "Background Right Image (Mobile)",
+      "info": "Optional. Falls back to the desktop image if not set."
     },
     {
       "type": "image_picker",

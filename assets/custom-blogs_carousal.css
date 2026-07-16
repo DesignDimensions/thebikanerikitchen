@@ -355,3 +355,47 @@
         transition: none !important;
     }
 }
+
+/* Mobile: no fixed 100vh box and no image cropping. The viewport's
+   height is set inline by custom-blogs-carousel.js to match the
+   active slide's natural (image + content) height and updates on
+   slide change and resize. */
+@media screen and (max-width: 749px) {
+    .custom-blogs-carousel-description p {
+        margin-top: 90px !important;
+    }
+
+    .custom-blogs-carousel-cta-text {
+        font-size: 17px;
+        text-decoration: underline 1px;
+        text-underline-offset: 4px;
+    }
+
+    .custom-blogs-carousel-cta-arrow-icon {
+        width: 30px;
+    }
+
+    .custom-blogs-carousel-viewport {
+        height: auto;
+        overflow: visible;
+        transition: height 0.35s ease;
+    }
+
+    .custom-blogs-carousel-media {
+        height: auto;
+    }
+
+    .custom-blogs-carousel-image {
+        position: static;
+        display: block;
+        height: auto;
+        object-fit: unset;
+    }
+
+}
+
+@media screen and (max-width: 749px) and (prefers-reduced-motion: reduce) {
+    .custom-blogs-carousel-viewport {
+        transition: none;
+    }
+}

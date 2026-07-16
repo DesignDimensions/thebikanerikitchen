@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach((root) => {
     const viewport = root.querySelector('.custom-home-testimonials-viewport');
     const track = root.querySelector('.custom-home-testimonials-track');
+    const content = root.querySelector('.custom-home-testimonials-content');
     const originalCards = Array.from(root.querySelectorAll('.custom-home-testimonials-card'));
     const prevButton = root.querySelector('.custom-home-testimonials-nav-prev');
     const nextButton = root.querySelector('.custom-home-testimonials-nav-next');
@@ -14,6 +15,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealEnabled = root.dataset.animationsEnabled === 'true' && !reduceMotion && hasGsap;
     const autoScrollEnabled = root.dataset.autoplay === 'true' && !reduceMotion;
     const autoplayInterval = (parseFloat(root.dataset.autoplaySpeed) || 3) * 1000;
+    const mobileHeightQuery = window.matchMedia('(max-width: 749px)');
+
+    // .custom-home-testimonials-content is position:absolute;inset:0, so
+    // the container (sized via aspect-ratio) can't know its true height.
+    // Its header/carousel children are flex-shrink:0, so they always
+    // render at natural size and overflow visibly when squeezed — which
+    // means content.scrollHeight already reports the real height we need,
+    // no temporary repositioning required.
+    const syncContainerHeight = () => {
+      if (!content) return;
+      if (!mobileHeightQuery.matches) {
+        root.style.height = '';
+        return;
+      }
+      root.style.height = `${content.scrollHeight}px`;
+    };
 
     const realCount = originalCards.length;
     const getCardsPerView = () => {
@@ -59,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (nextButton) nextButton.style.display = hide ? 'none' : '';
     };
     updateNav();
+    syncContainerHeight();
 
     if (!canLoop) {
       if (revealEnabled) initReveal();
@@ -203,8 +221,16 @@ document.addEventListener('DOMContentLoaded', () => {
         setWidth = track.scrollWidth / COPIES;
         cardStep = setWidth / realCount;
         correctBounds();
+        syncContainerHeight();
       }, 150);
     });
+
+    if (typeof mobileHeightQuery.addEventListener === 'function') {
+      mobileHeightQuery.addEventListener('change', syncContainerHeight);
+    } else if (typeof mobileHeightQuery.addListener === 'function') {
+      // Safari < 14 fallback
+      mobileHeightQuery.addListener(syncContainerHeight);
+    }
 
     if (revealEnabled) initReveal();
 

@@ -23,6 +23,7 @@
     .custom-images-grid_carousal-container {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
+        height: fit-content;
     }
 
     .custom-images-grid_carousal-desktop-image {

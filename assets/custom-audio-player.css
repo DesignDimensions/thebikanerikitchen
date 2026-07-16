@@ -6,6 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .custom-audio-player_desktop-image {
@@ -19,12 +20,8 @@
 }
 
 .custom-audio-player_mobile-image {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     display: none;
 }
 
@@ -207,7 +204,102 @@
     display: none;
 }
 
+.custom-audio-player_puppet_right-image {
+    position: absolute;
+    top: -50px;
+    right: 12%;
+    width: 19rem;
+    animation: puppet-bob-right 3.4s ease-in-out infinite;
+    will-change: transform;
+}
+
+.custom-audio-player_puppet_left-image {
+    position: absolute;
+    top: -340px;
+    left: 12%;
+    width: 19rem;
+    animation: puppet-bob-left 4.2s ease-in-out infinite;
+    animation-delay: -1.1s;
+    will-change: transform;
+}
+
+/* Two different periods/offsets so the puppets drift in and out of
+   sync instead of bobbing like a mirrored pair. */
+@keyframes puppet-bob-right {
+
+    0%,
+    100% {
+        transform: translateY(-200px);
+    }
+
+    50% {
+        transform: translateY(50px);
+    }
+}
+
+@keyframes puppet-bob-left {
+
+    0%,
+    100% {
+        transform: translateY(140px);
+    }
+
+    50% {
+        transform: translateY(-160px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .custom-audio-player_puppet_right-image,
+    .custom-audio-player_puppet_left-image {
+        animation: none;
+    }
+}
+
 @media(max-width: 749px) {
+    .custom-audio-player-container {
+        height: unset;
+    }
+
+    .section-template--21320554414274__custom_featured_collection_TzThmV-padding {
+        padding-bottom: 50px;
+    }
+
+    .custom-audio-player_puppet_right-image {
+        right: -5%;
+        width: 9rem;
+    }
+
+    @keyframes puppet-bob-right {
+
+        0%,
+        100% {
+            transform: translateY(30px);
+        }
+
+        50% {
+            transform: translateY(-40px);
+        }
+    }
+
+    @keyframes puppet-bob-left {
+
+        0%,
+        100% {
+            transform: translateY(250px);
+        }
+
+        50% {
+            transform: translateY(70px);
+        }
+    }
+
+    .custom-audio-player_puppet_left-image {
+        left: -5%;
+        width: 9rem;
+    }
+
     .custom-audio-player_desktop-image {
         display: none;
     }
@@ -217,7 +309,8 @@
     }
 
     .custom-audio-player-overlay {
-        padding: 20px;
+        padding: 85px 65px 65px;
+        align-items: start;
     }
 
     .custom-audio-player-card {
@@ -225,8 +318,13 @@
     }
 
     .custom-audio-player-heading {
-        font-size: 22px;
+        font-size: 30px;
         margin-bottom: 18px;
+        line-height: 37px;
+        text-align: left;
+        width: 100%;
+        max-width: unset;
+        margin: 0 0 20px 4px;
     }
 
     .custom-audio-player-controls {
@@ -235,8 +333,8 @@
     }
 
     .custom-audio-player-playpause {
-        width: 38px;
-        height: 38px;
+        width: 32px;
+        height: 32px;
     }
 
     .custom-audio-player-icon {
@@ -251,7 +349,7 @@
 
     .custom-audio-player-language-button {
         font-size: 12px;
-        letter-spacing: 1.5px;
+        letter-spacing: 2.5px;
     }
 
     .custom-audio-player-subtitles {
@@ -260,11 +358,5 @@
 
     .custom-audio-player-subtitle-text {
         font-size: 13px;
-    }
-}
-
-@media screen and (min-width: 750px) and (max-width: 989px) {
-    .custom-audio-player-heading {
-        font-size: 27px;
     }
 }

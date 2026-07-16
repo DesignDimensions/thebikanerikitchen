@@ -164,13 +164,39 @@
   stroke: #FFFDEE;
 }
 
-@media screen and (max-width: 479px) {
+@media(max-width:768px) {
   .shop-card__footer {
     padding: 16px 14px 14px;
   }
 
   .shop-card__title {
-    font-size: 16px;
-    margin-bottom: 12px;
+    font-size: 15px;
+    margin-bottom: 5px;
   }
+
+  .shop-card__size-select {
+    font-size: 19px;
+  }
+
+  .shop-card__meta {
+    margin-bottom: 8px;
+  }
+
+  .shop-card__add {
+    font-size: 19px;
+  }
+
+  .shop-card__price {
+    font-size: 20px;
+  }
+
+  #product-grid li {
+    width: 100%;
+    max-width: unset;
+  }
+
+  .shop-card__media {
+    aspect-ratio: unset;
+  }
+
 }

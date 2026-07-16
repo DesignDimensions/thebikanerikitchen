@@ -91,6 +91,81 @@
       margin-bottom: {{ section.settings.margin_bottom }}px;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    .header {
+      --mobile-icon-size: 4.8rem;
+      padding: 20px 2rem;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    /* Invisible spacer mirrors the burger icon on the left, so the
+       two-icon cluster on the right (search + cart) doesn't pull the
+       logo off center. */
+    .header::after {
+      content: '';
+      order: 2;
+      flex: 0 0 var(--mobile-icon-size);
+      height: var(--mobile-icon-size);
+    }
+
+    header-drawer {
+      order: 1;
+      flex: 0 0 auto;
+      margin-left: 0;
+    }
+
+    .header__heading,
+    .header__heading-link {
+      order: 3;
+      flex: 1 1 auto;
+      text-align: center;
+      padding: 0;
+      min-width: 0;
+    }
+
+    .header__heading-logo-wrapper {
+      display: inline-block;
+      margin: 0 auto;
+    }
+
+    .header__heading-logo {
+      height: 45px;
+      width: auto;
+      max-width: 100%;
+    }
+
+    .header__icons {
+      order: 4;
+      flex: 0 0 auto;
+      margin-left: 0;
+      gap: 1rem;
+    }
+
+    .header__icon--cart {
+      order: 5;
+      flex: 0 0 auto;
+      margin-right: 0;
+    }
+
+    .header__icon,
+    .header__icon--cart .icon {
+      width: var(--mobile-icon-size);
+      height: var(--mobile-icon-size);
+    }
+
+    .header__icon .svg-wrapper {
+      width: 48px;
+      height: 48px;
+    }
+
+    .header__icon .icon {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
 {%- endstyle -%}
 
 <script src="{{ 'cart-notification.js' | asset_url }}" defer="defer"></script>
