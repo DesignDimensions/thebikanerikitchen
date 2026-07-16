@@ -53,6 +53,11 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+
+
+}
+
 .page-top-banner-container-inner {
     position: absolute;
     top: 50%;
@@ -89,5 +94,6 @@
 .page-top-banner-container-inner hr {
     background: #FFFDEE;
     width: 100%;
+    display: flex !important;
     margin: 0 10px;
 }
