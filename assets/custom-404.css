@@ -5,7 +5,7 @@
   justify-content: center;
   overflow: hidden;
   min-height: 500px;
-  padding: 40px 24px;
+  padding: 150px 24px;
 }
 
 .error-404__bg {
@@ -36,11 +36,12 @@
 }
 
 .error-404__eyebrow {
-  margin: 0 0 20px;
+  margin: 0 0 15px;
   font-size: 1.3rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.3em;
   text-transform: uppercase;
+  font-family: 'Proxima Nova A';
 }
 
 .error-404__heading {
@@ -49,27 +50,28 @@
 }
 
 .error-404__subtext {
-  margin: 0 0 40px;
-  font-size: 1.7rem;
+  margin: 0 0 24px;
+  font-size: 20px;
+  font-family: 'Helvetica Neue';
+  font-weight: 300;
 }
 
 .error-404__button {
   display: block;
   width: 100%;
-  padding: 22px 24px;
+  padding: 16px 24px;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 2px;
   font-size: 1.4rem;
   text-align: center;
+  font-family: 'Helvetica Neue';
+  font-weight: 200;
+  line-height: 12px;
 }
 
 @media screen and (min-width: 750px) {
   .error-404__card {
-    padding: 88px 96px 0;
-  }
-
-  .error-404__subtext {
-    font-size: 1.8rem;
+    padding: 88px 96px;
   }
 }
