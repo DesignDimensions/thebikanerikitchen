@@ -194,8 +194,8 @@
       ],
       "name": "Custom Audio Player",
       "settings": {
-        "banner_image": "shopify://shop_images/Wireframe_-_5_1.jpg",
-        "mobile_banner_image": "shopify://shop_images/Frame_1321317972.jpg",
+        "banner_image": "shopify://shop_images/Wireframe_-_6_1.png",
+        "mobile_banner_image": "shopify://shop_images/Frame_1321317972.png",
         "heading": "Aao Sune Kahani Bikaneri Bhujia Ki",
         "audio_url": "https://cdn.shopify.com/s/files/1/0764/0953/6706/files/freesound-community-002145-a-conversation-with-a-neighbor-53032_3pVsHulM.mp3?v=1783592407",
         "default_language": "en"
