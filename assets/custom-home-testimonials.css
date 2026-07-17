@@ -125,6 +125,13 @@
   -ms-overflow-style: none;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-x: contain;
+  /* Keeps the scroller on its own GPU layer so Safari doesn't repaint it
+     from scratch when correctBounds() jumps scrollLeft instantly to wrap
+     the loop — without this, that jump can show a blank frame (the cards
+     briefly vanish) on some iOS devices. */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  will-change: scroll-position;
 }
 
 .custom-home-testimonials-viewport::-webkit-scrollbar {
@@ -158,6 +165,10 @@
   flex: 0 0 100%;
   max-width: 100%;
   align-self: stretch;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 @media screen and (min-width: 750px) {

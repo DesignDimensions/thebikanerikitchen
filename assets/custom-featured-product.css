@@ -188,16 +188,26 @@
     display: inline-block;
 }
 
+.custom-featured-product__cta {
+    position: relative;
+}
+
 .custom-featured-product__cta .loading__spinner {
     display: none;
 }
 
 .custom-featured-product__cta.loading .loading__spinner {
-    display: inline-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .custom-featured-product__cta.loading .custom-featured-product__button-text {
-    display: none;
+    visibility: hidden;
 }
 
 @media screen and (max-width: 989px) {

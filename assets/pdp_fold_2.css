@@ -9,7 +9,7 @@
   width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
   padding: 4rem 4rem 4rem 4.8rem;
   box-sizing: border-box;
 }
@@ -63,24 +63,39 @@
 
 @media screen and (max-width: 749px) {
   .pdp-fold-2-container {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .pdp-fold-2-left {
-    flex: 1 1 auto;
-    max-width: 100%;
-    padding: 3rem 2rem;
+    width: 100%;
+    padding: 3rem 15px;
   }
 
   .pdp-fold-2-heading {
-    font-size: 2rem;
+    font-size: 29px;
+    line-height: 38px;
+    font-weight: 500;
+  }
+
+  .pdp-fold-2-bullet-text {
+    font-size: 15.5px;
+  }
+
+  .pdp-fold-2-bullet-icon {
+    width: 25px;
+  }
+
+  .pdp-fold-2-left-bullets-container {
+    gap: 25px;
   }
 
   .pdp-fold-2-right {
-    flex: 1 1 auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: unset;
   }
 
   .pdp-fold-2-right-image {
-    height: 320px;
+    max-height: 400px;
   }
 }

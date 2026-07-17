@@ -101,7 +101,10 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__menu-item {
   padding: 1.1rem 3rem;
   text-decoration: none;
-  font-size: 1.8rem;
+  font-size: 21px;
+  font-family: 'Proxima Nova A';
+  font-weight: 200;
+  color: #FF6344;
 }
 
 .menu-drawer summary.menu-drawer__menu-item {
@@ -113,12 +116,12 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__close-button:focus,
 .menu-drawer__menu-item:hover,
 .menu-drawer__close-button:hover {
-  color: rgb(var(--color-foreground));
-  background-color: rgba(var(--color-foreground), 0.04);
+  color: #FF6344;
+  background-color: rgba(255, 99, 68, 0.08);
 }
 
 .menu-drawer__menu-item--active:hover {
-  background-color: rgba(var(--color-foreground), 0.08);
+  background-color: rgba(255, 99, 68, 0.14);
 }
 
 .js .menu-drawer__menu-item .icon-caret {
@@ -161,6 +164,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   font-family: var(--font-body-family);
   font-style: var(--font-body-style);
   text-align: left;
+  color: #FF6344;
 }
 
 .menu-drawer__close-button .svg-wrapper {
@@ -191,13 +195,19 @@ details[open].menu-opening > .menu-drawer__submenu {
   }
 }
 
+.menu-drawer__utility-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .menu-drawer__account {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
   padding: 1rem 0;
   font-size: 1.4rem;
-  color: rgb(var(--color-foreground));
+  color: #FF6344;
   margin-bottom: 0;
 }
 
@@ -222,8 +232,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 .menu-drawer .list-social {
-  justify-content: flex-start;
-  margin-left: -1.25rem;
+  margin-right: -1.1rem;
 }
 
 .menu-drawer .list-social:empty {
@@ -232,6 +241,12 @@ details[open].menu-opening > .menu-drawer__submenu {
 
 .menu-drawer .list-social__link {
   padding: 1.1rem 1.1rem;
+  color: #FF6344;
+}
+
+.menu-drawer .list-social__item .icon {
+  height: 1.5rem;
+  width: 1.5rem;
 }
 
 @media screen and (max-width: 749px) {

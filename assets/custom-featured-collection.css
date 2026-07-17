@@ -37,7 +37,7 @@ slider-component product-component .card-wrapper .card .card__content .quick-add
     text-transform: capitalize;
 }
 
-.price__container {
+slider-component product-component .price__container {
     font-family: "Helvetica Neue", serif;
     font-size: 15px;
     color: #FFFDEE;

@@ -1078,7 +1078,8 @@ summary::-webkit-details-marker {
 @media screen and (max-width: 749px) {
   .grid--peek.slider--mobile {
     margin: 0;
-    width: 100%;
+    width: 100vw;
+    gap: 0 !important;
   }
 
   .grid--peek.slider--mobile .grid__item {

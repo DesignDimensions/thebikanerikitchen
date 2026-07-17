@@ -27,6 +27,8 @@
   flex-direction: column;
   transform: translateX(100%);
   transition: transform var(--duration-default) ease;
+  --color-button: 255, 253, 238;
+  --color-button-text: 87, 15, 19;
 }
 
 .drawer__inner-empty {
