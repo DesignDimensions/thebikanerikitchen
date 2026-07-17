@@ -69,7 +69,8 @@
     background: #181818;
     color: #FFFDEE;
     cursor: pointer;
-    transition: background 0.25s ease, transform 0.15s ease;
+    transition: background 0.25s ease;
+    transform-origin: center;
 }
 
 .custom-audio-player-playpause:hover {
@@ -77,6 +78,10 @@
 }
 
 .custom-audio-player-playpause:active {
+    /* Instant, untransitioned press feedback — kept even under
+       prefers-reduced-motion since it's direct input feedback, not an
+       autonomous animation. custom-audio-player.js layers a GSAP bounce
+       on top of the release when motion is allowed. */
     transform: scale(0.94);
 }
 
@@ -84,15 +89,12 @@
     display: flex;
     width: 16px;
     height: 16px;
+    transform-origin: center;
 }
 
 .custom-audio-player-icon svg {
     width: 100%;
     height: 100%;
-}
-
-.custom-audio-player-icon-play {
-    margin-left: 2px;
 }
 
 .custom-audio-player-icon-pause {
@@ -119,7 +121,11 @@
     height: 100%;
     width: 0%;
     background: #181818;
-    transition: width 0.1s linear;
+    /* No CSS transition here on purpose — JS drives this every animation
+       frame (see custom-audio-player.js), which is already continuous.
+       Layering a transition on top of per-frame updates would make each
+       frame's tiny step ease independently, reading as laggy/mushy instead
+       of smooth. */
 }
 
 .custom-audio-player-current-time {
@@ -131,6 +137,7 @@
 }
 
 .custom-audio-player-language-switcher {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,7 +145,23 @@
     margin-bottom: 20px;
 }
 
+.custom-audio-player-language-pill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 140px;
+    background: #fff;
+    z-index: 0;
+    pointer-events: none;
+    /* No CSS transition on purpose: JS positions this on load and GSAP
+       drives the slide on click. A CSS transition here would also fire
+       for the reduced-motion fallback, where the JS sets it instantly. */
+}
+
 .custom-audio-player-language-button {
+    position: relative;
+    z-index: 1;
     border: none;
     background: #ffffff30;
     padding: 10px 10px;
@@ -150,12 +173,11 @@
     text-transform: uppercase;
     color: #181818;
     cursor: pointer;
-    transition: color 0.2s ease, border-color 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
 }
 
-.custom-audio-player-language-button.active {
-    color: #181818;
-    background: #fff;
+.custom-audio-player-language-button:active {
+    transform: scale(0.96);
 }
 
 .custom-audio-player-subtitles {
@@ -169,20 +191,18 @@
 }
 
 .custom-audio-player-subtitles-track {
-    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    /* GSAP drives transform (see custom-audio-player.js); no CSS transition
+       here so its own easing isn't fighting a second one. */
     will-change: transform;
 }
 
 .custom-audio-player-subtitle-line {
     padding: 3px 0;
     opacity: 0.42;
-    /* transform: scale(0.97); */
-    transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .custom-audio-player-subtitle-line.active {
     opacity: 1;
-    /* transform: scale(1); */
 }
 
 .custom-audio-player-subtitle-text {
@@ -209,7 +229,7 @@
     top: -50px;
     right: 12%;
     width: 19rem;
-    animation: puppet-bob-right 3.4s ease-in-out infinite;
+    animation: puppet-bob-right 6s ease-in-out infinite;
     will-change: transform;
 }
 
@@ -218,7 +238,7 @@
     top: -340px;
     left: 12%;
     width: 19rem;
-    animation: puppet-bob-left 4.2s ease-in-out infinite;
+    animation: puppet-bob-left 8s ease-in-out infinite;
     animation-delay: -1.1s;
     will-change: transform;
 }
@@ -229,11 +249,11 @@
 
     0%,
     100% {
-        transform: translateY(-200px);
+        transform: translateY(-50px);
     }
 
     50% {
-        transform: translateY(50px);
+        transform: translateY(30px);
     }
 }
 
@@ -241,11 +261,11 @@
 
     0%,
     100% {
-        transform: translateY(140px);
+        transform: translateY(-200px);
     }
 
     50% {
-        transform: translateY(-160px);
+        transform: translateY(-70px);
     }
 }
 
@@ -267,7 +287,8 @@
     }
 
     .custom-audio-player_puppet_right-image {
-        right: -5%;
+        right: -7%;
+        animation: puppet-bob-right 10s ease-in-out infinite;
         width: 9rem;
     }
 
@@ -275,11 +296,11 @@
 
         0%,
         100% {
-            transform: translateY(30px);
+            transform: translateY(50px);
         }
 
         50% {
-            transform: translateY(-40px);
+            transform: translateY(-60px);
         }
     }
 
@@ -287,16 +308,16 @@
 
         0%,
         100% {
-            transform: translateY(250px);
+            transform: translateY(100px);
         }
 
         50% {
-            transform: translateY(70px);
+            transform: translateY(250px);
         }
     }
 
     .custom-audio-player_puppet_left-image {
-        left: -5%;
+        left: -8%;
         width: 9rem;
     }
 

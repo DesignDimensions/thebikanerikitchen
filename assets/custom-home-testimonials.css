@@ -1,7 +1,12 @@
 .custom-home-testimonials-container {
+  /* No aspect-ratio at any width: height comes from the content (header +
+     carousel), which is normal-flow now (see .custom-home-testimonials-content
+     below) — so it just grows to fit instead of clipping/overlapping
+     whenever a heading or card is taller than a ratio meant for the
+     background image would allow. */
   position: relative;
   width: 100%;
-  aspect-ratio: 1.6;
+  height: auto;
   overflow: hidden;
   background: #cdb68d;
 }
@@ -15,25 +20,36 @@
   object-position: center;
 }
 
+/* Corner logo + prev/next arrows sit in their own row below the carousel
+   (not position: absolute against the whole banner) — that way they're
+   always right under the cards, in a predictable spot, regardless of how
+   tall the heading above or the cards themselves end up being. */
+.custom-home-testimonials-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-footer {
+    margin-top: 28px;
+  }
+}
+
 .custom-home-testimonials-corner {
-  position: absolute;
-  z-index: 5;
-  left: 6rem;
-  bottom: 8rem;
+  flex-shrink: 0;
   width: 30px;
   height: auto;
 }
 
 .custom-home-testimonials-arrow-container {
   display: flex;
+  align-items: center;
   gap: 10px;
-  position: absolute;
-  z-index: 5;
-  right: 6rem;
-  bottom: 8rem;
-  width: 160px;
-  height: auto;
-  justify-content: space-between;
+  flex-shrink: 0;
+  margin-left: auto;
 }
 
 .custom-home-testimonials-arrow {
@@ -46,8 +62,12 @@
 }
 
 .custom-home-testimonials-content {
-  position: absolute;
-  inset: 0;
+  /* relative, not absolute: stays in normal flow at every width so the
+     container's height comes from it (header + carousel) instead of a
+     fixed aspect-ratio — position: relative (rather than static) only so
+     z-index: 2 keeps this painting above the absolutely-positioned
+     background image. */
+  position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -99,6 +119,14 @@
 }
 
 .custom-home-testimonials-carousel {
+  /* Single source of truth for the card grid: custom-home-testimonials.js
+     reads --cards-per-view via getComputedStyle instead of keeping its own
+     hardcoded breakpoint copy, so the carousel's "how many cards fit" math
+     and this CSS can never drift out of sync (that drift — CSS showing one
+     card count, JS assuming another — is what caused cards to overlap/clip
+     at various widths before). */
+  --cards-per-view: 1;
+  --card-gap: 14px;
   position: relative;
   flex-shrink: 0;
   display: flex;
@@ -109,8 +137,22 @@
 
 @media screen and (min-width: 750px) {
   .custom-home-testimonials-carousel {
+    --cards-per-view: 2;
+    --card-gap: 24px;
     gap: 16px;
     margin-top: 24px;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .custom-home-testimonials-carousel {
+    --cards-per-view: 3;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .custom-home-testimonials-carousel {
+    --cards-per-view: 4;
   }
 }
 
@@ -146,7 +188,7 @@
 .custom-home-testimonials-track {
   display: flex;
   width: 100%;
-  gap: 14px;
+  gap: var(--card-gap, 14px);
 }
 
 .custom-home-testimonials-viewport.is-dragging .custom-home-testimonials-track {
@@ -154,16 +196,14 @@
   user-select: none;
 }
 
-@media screen and (min-width: 750px) {
-  .custom-home-testimonials-track {
-    gap: 24px;
-  }
-}
-
 .custom-home-testimonials-card {
   position: relative;
-  flex: 0 0 100%;
-  max-width: 100%;
+  /* 80% (not a full 100%/1-card formula) below 750px is a deliberate
+     partial-card peek hinting the row scrolls; 750px and up shows whole
+     cards sized from --cards-per-view, so nothing is ever mid-card unless
+     the carousel is actually being dragged. */
+  flex: 0 0 80%;
+  max-width: 80%;
   align-self: stretch;
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
@@ -173,15 +213,8 @@
 
 @media screen and (min-width: 750px) {
   .custom-home-testimonials-card {
-    flex: 0 0 calc((100% - 24px) / 2);
-    max-width: calc((100% - 24px) / 2);
-  }
-}
-
-@media screen and (min-width: 990px) {
-  .custom-home-testimonials-card {
-    flex: 0 0 calc((100% - 48px) / 4.1);
-    max-width: calc((100% - 48px) / 4.1);
+    flex: 0 0 calc((100% - (var(--cards-per-view) - 1) * var(--card-gap)) / var(--cards-per-view));
+    max-width: calc((100% - (var(--cards-per-view) - 1) * var(--card-gap)) / var(--cards-per-view));
   }
 }
 
@@ -194,7 +227,6 @@
   background: #F7EEE5;
   border-radius: 4px;
   padding: 22px 20px;
-  box-shadow: 0 20px 40px rgba(30, 16, 8, 0.18);
 }
 
 @media screen and (min-width: 750px) {
@@ -283,13 +315,19 @@
 .custom-home-testimonials-nav {
   display: flex;
   align-items: center;
-  width: 43%;
-  max-width: 60px;
+  flex-shrink: 0;
+  width: 32px;
   padding: 0;
   border: none;
   background: none;
   cursor: pointer;
   transition: opacity 0.25s ease;
+}
+
+@media screen and (min-width: 750px) {
+  .custom-home-testimonials-nav {
+    width: 44px;
+  }
 }
 
 .custom-home-testimonials-nav:hover {
@@ -303,47 +341,20 @@
 }
 
 @media screen and (max-width: 749px) {
-
-  /* custom-home-testimonials.js sets this element's height inline to
-     match .custom-home-testimonials-content's real (header + top
-     padding + carousel + bottom padding) height. An inline style
-     always wins over the aspect-ratio set inline per-section (from
-     the mobile background image), which could otherwise squeeze the
-     top padding away when it's shorter than the content needs. */
-
-  .custom-home-testimonials-corner {
-    left: 4.5rem;
-    bottom: 4.5rem;
-    width: 30px;
-  }
-
-  .custom-home-testimonials-card {
-    flex: 0 0 80%;
-    max-width: 80%;
-  }
-
   .custom-home-testimonials-quote p {
     margin: 0 0 50px !important;
     font-size: 24px;
   }
 
-  /* Mirrors .custom-home-testimonials-corner's mobile position —
-     same bottom offset, opposite (right) corner — instead of the
-     desktop-only bottom: 8rem/right: 6rem, which lands under the
-     card carousel on short mobile viewports. */
-  .custom-home-testimonials-arrow-container {
-    right: 4.5rem;
-    bottom: 5rem;
-    width: 120px;
+  .custom-home-testimonials-nav {
+    width: 50px;
   }
 
   .custom-home-testimonials-content {
-    padding: 62px 20px 120px;
-  }
-
-  .custom-home-testimonials-nav {
-    width: 34%;
-    max-width: unset;
+    /* No more reserved 120px at the bottom: that was headroom for the old
+       absolutely-positioned arrow-container, which now sits in a normal
+       row below the carousel instead of floating over the banner. */
+    padding: 62px 20px 40px;
   }
 
   .custom-home-testimonials-caption {

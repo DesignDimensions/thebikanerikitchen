@@ -56,10 +56,56 @@
         "padding_top": 36,
         "padding_bottom": 60
       }
+    },
+    "custom_bg_heading_Fpa7Gm": {
+      "type": "custom-bg-heading",
+      "name": "Custom BG Heading",
+      "settings": {
+        "heading": "Follow Us",
+        "heading_color": "#ff6344",
+        "background_color": "#570f13"
+      }
+    },
+    "custom_images_grid_carousal_d3dKdf": {
+      "type": "custom-images-grid_carousal",
+      "blocks": {
+        "image_xG6QzE": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
+          }
+        },
+        "image_H4HDYL": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
+          }
+        },
+        "image_aLTKhr": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317934_1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_xG6QzE",
+        "image_H4HDYL",
+        "image_aLTKhr"
+      ],
+      "name": "Custom Image Carousel",
+      "settings": {
+        "images_per_view": 3
+      }
     }
   },
   "order": [
     "main",
-    "custom_policy_page_gXU97p"
+    "custom_policy_page_gXU97p",
+    "custom_bg_heading_Fpa7Gm",
+    "custom_images_grid_carousal_d3dKdf"
   ]
 }

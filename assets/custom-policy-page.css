@@ -53,6 +53,21 @@
     grid-column: 2;
     grid-row: 2;
   }
+
+  /* Mobile-only dropdown nav (see .policy-page__nav-mobile below) */
+  .policy-page__nav-mobile {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 749px) {
+
+  /* The sidebar nav is desktop-only below 750px — .policy-page__nav-mobile
+     (rendered after .policy-page__content, so it lands underneath it) is
+     the dropdown replacement instead. */
+  .policy-page__nav {
+    display: none;
+  }
 }
 
 .policy-page__nav {
@@ -120,6 +135,77 @@
   opacity: 1;
 }
 
+.policy-page__nav-mobile {
+  margin-top: 8px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.policy-page__nav-mobile-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 24px;
+  list-style: none;
+  cursor: pointer;
+  font-family: 'Helvetica Neue';
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.policy-page__nav-mobile-summary::-webkit-details-marker {
+  display: none;
+}
+
+.policy-page__nav-mobile-icon {
+  flex-shrink: 0;
+  display: flex;
+  width: 12px;
+  transform-origin: 50% 50%;
+}
+
+.policy-page__nav-mobile-icon .icon-caret {
+  position: static;
+  width: 100%;
+  height: auto;
+  right: auto;
+  top: auto;
+}
+
+/* Instant fallback rotation for when JS/GSAP isn't driving the icon (see
+   custom-policy-page.js, which adds --js only once it takes over). Scoped
+   away from the JS case so the two never fight over the transform property
+   at the same time — that fight was what made the icon appear to drift
+   sideways instead of rotating cleanly in place. */
+.policy-page__nav-mobile[open]:not(.policy-page__nav-mobile--js) .policy-page__nav-mobile-icon {
+  transform: rotate(180deg);
+}
+
+.policy-page__nav-mobile-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #fffdee;
+}
+
+.policy-page__nav-mobile-item+.policy-page__nav-mobile-item {
+  border-top: 1px solid rgba(24, 24, 24, 0.12);
+}
+
+.policy-page__nav-mobile-link {
+  display: block;
+  padding: 16px 24px;
+  text-decoration: none;
+  color: #181818;
+  font-family: 'Helvetica Neue';
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: .5px;
+}
+
 .policy-page__content>*+* {
   margin-top: 1.6em;
 }
@@ -136,4 +222,33 @@
   font-weight: 500;
   letter-spacing: 1px;
   line-height: 1;
+}
+
+@media(max-width:768px) {
+  .policy-page-template--21411759521986__custom_policy_page_gXU97p-padding {
+    padding-bottom: 0 !important;
+  }
+
+  .policy-page__inner {
+    padding: 0;
+  }
+
+  .policy-page__title {
+    padding: 0 1.5rem 0 !important;
+    margin: 20px 0 0;
+  }
+
+  .policy-page__content {
+    padding: 0 1.5rem !important;
+  }
+
+  .policy-page__content h3 span {
+    font-size: 18px !important;
+  }
+
+  .policy-page__content p,
+  .policy-page__content span {
+    margin: 0 0 30px 0;
+    line-height: 25px;
+  }
 }

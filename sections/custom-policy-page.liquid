@@ -1,4 +1,5 @@
 {{ 'custom-policy-page.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-policy-page.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
   .policy-page-{{ section.id }}-padding {
@@ -19,6 +20,15 @@
   }
 
   #shopify-section-{{ section.id }} .policy-page__nav-link--active {
+    color: {{ section.settings.nav_active_color }};
+  }
+
+  #shopify-section-{{ section.id }} .policy-page__nav-mobile-summary {
+    background-color: #E5D0A5;
+    color: #181818;
+  }
+
+  #shopify-section-{{ section.id }} .policy-page__nav-mobile-link--active {
     color: {{ section.settings.nav_active_color }};
   }
 {%- endstyle -%}
@@ -63,6 +73,46 @@
       <div class="policy-page__content rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         {{ page.content }}
       </div>
+
+      {%- if section.blocks.size > 0 -%}
+        {%- liquid
+          assign active_nav_label = page.title
+          for block in section.blocks
+            if block.settings.link != blank and block.settings.link == request.path
+              assign active_nav_label = block.settings.label
+            endif
+          endfor
+        -%}
+        <details class="policy-page__nav-mobile">
+          <summary class="policy-page__nav-mobile-summary">
+            <span class="policy-page__nav-mobile-label">{{ active_nav_label | escape }}</span>
+            <span class="policy-page__nav-mobile-icon" aria-hidden="true">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </summary>
+          <ul class="policy-page__nav-mobile-list" role="list">
+            {%- for block in section.blocks -%}
+              {%- liquid
+                assign is_active = false
+                if block.settings.link != blank and block.settings.link == request.path
+                  assign is_active = true
+                endif
+              -%}
+              <li class="policy-page__nav-mobile-item" {{ block.shopify_attributes }}>
+                <a
+                  href="{{ block.settings.link | default: '#' }}"
+                  class="policy-page__nav-mobile-link{% if is_active %} policy-page__nav-mobile-link--active{% endif %}"
+                  {% if is_active %}
+                    aria-current="page"
+                  {% endif %}
+                >
+                  {{ block.settings.label | escape }}
+                </a>
+              </li>
+            {%- endfor -%}
+          </ul>
+        </details>
+      {%- endif -%}
     </div>
   </div>
 </div>

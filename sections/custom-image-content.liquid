@@ -1,7 +1,9 @@
 {{ 'custom-image-content.css' | asset_url | stylesheet_tag }}
 <div style="background: url({{ section.settings.bg_image | image_url }})" class="custom-image-content-container">
   <div class="page-width custom-image-content-inner">
-    <img src="{{ section.settings.portrait | image_url }}">
+    <div class="custom-image-content-image" style="--portrait-ratio: {{ section.settings.portrait.aspect_ratio | default: 0.8 }};">
+      <img src="{{ section.settings.portrait | image_url }}" alt="" loading="lazy">
+    </div>
     <div class="custom-image-content-inner-container">
       <p>{{ section.settings.header }}</p>
       <h3>{{ section.settings.title }}</h3>

@@ -5,20 +5,13 @@
 {%- liquid
   assign bg_image = section.settings.background_image
   assign bg_image_mobile = section.settings.background_image_mobile
-  assign bg_ratio_desktop = bg_image.aspect_ratio | default: 1.6
-  assign bg_ratio_mobile = bg_image_mobile.aspect_ratio | default: bg_ratio_desktop
 -%}
 
 {%- style -%}
-  #CustomHomeTestimonials-{{ section.id }} {
-    aspect-ratio: {{ bg_ratio_mobile }};
-  }
-
-  @media screen and (min-width: 750px) {
-    #CustomHomeTestimonials-{{ section.id }} {
-      aspect-ratio: {{ bg_ratio_desktop }};
-    }
-  }
+  /* No aspect-ratio on the container at any width: its height comes from
+     its content instead (see custom-home-testimonials.css), so a long
+     heading or wrapped quote can't get clipped by a ratio sized for the
+     background image rather than what's actually inside it. */
 
   .custom-home-testimonials-section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -61,51 +54,6 @@
         {{ 'lifestyle-1' | placeholder_svg_tag: 'custom-home-testimonials-bg-image placeholder-svg' }}
       {%- endif -%}
     </div>
-
-    {%- if section.settings.corner_image != blank -%}
-      <img
-        src="{{ section.settings.corner_image | image_url }}"
-        alt=""
-        width="{{ section.settings.corner_image.width }}"
-        height="{{ section.settings.corner_image.height }}"
-        loading="lazy"
-        class="custom-home-testimonials-corner"
-      >
-    {%- endif -%}
-
-    {%- if section.settings.arrow_image != blank -%}
-      <div class="custom-home-testimonials-arrow-container">
-        <button
-          type="button"
-          class="custom-home-testimonials-nav custom-home-testimonials-nav-prev"
-          aria-label="{{ 'general.slider.previous_slide' | t }}"
-        >
-          <img
-            src="{{ section.settings.arrow_image | image_url }}"
-            alt=""
-            width="{{ section.settings.arrow_image.width }}"
-            style="transform: rotate(180deg);"
-            height="{{ section.settings.arrow_image.height }}"
-            loading="lazy"
-            class="custom-home-testimonials-arrow"
-          >
-        </button>
-        <button
-          type="button"
-          class="custom-home-testimonials-nav custom-home-testimonials-nav-next"
-          aria-label="{{ 'general.slider.next_slide' | t }}"
-        >
-          <img
-            src="{{ section.settings.arrow_image | image_url }}"
-            alt=""
-            width="{{ section.settings.arrow_image.width }}"
-            height="{{ section.settings.arrow_image.height }}"
-            loading="lazy"
-            class="custom-home-testimonials-arrow"
-          >
-        </button>
-      </div>
-    {%- endif -%}
 
     <div class="custom-home-testimonials-content">
       {%- if section.settings.caption != blank or section.settings.heading != blank -%}
@@ -163,6 +111,55 @@
           </div>
         </div>
       </div>
+
+      {%- if section.settings.corner_image != blank or section.settings.arrow_image != blank -%}
+        <div class="custom-home-testimonials-footer">
+          {%- if section.settings.corner_image != blank -%}
+            <img
+              src="{{ section.settings.corner_image | image_url }}"
+              alt=""
+              width="{{ section.settings.corner_image.width }}"
+              height="{{ section.settings.corner_image.height }}"
+              loading="lazy"
+              class="custom-home-testimonials-corner"
+            >
+          {%- endif -%}
+
+          {%- if section.settings.arrow_image != blank -%}
+            <div class="custom-home-testimonials-arrow-container">
+              <button
+                type="button"
+                class="custom-home-testimonials-nav custom-home-testimonials-nav-prev"
+                aria-label="{{ 'general.slider.previous_slide' | t }}"
+              >
+                <img
+                  src="{{ section.settings.arrow_image | image_url }}"
+                  alt=""
+                  width="{{ section.settings.arrow_image.width }}"
+                  style="transform: rotate(180deg);"
+                  height="{{ section.settings.arrow_image.height }}"
+                  loading="lazy"
+                  class="custom-home-testimonials-arrow"
+                >
+              </button>
+              <button
+                type="button"
+                class="custom-home-testimonials-nav custom-home-testimonials-nav-next"
+                aria-label="{{ 'general.slider.next_slide' | t }}"
+              >
+                <img
+                  src="{{ section.settings.arrow_image | image_url }}"
+                  alt=""
+                  width="{{ section.settings.arrow_image.width }}"
+                  height="{{ section.settings.arrow_image.height }}"
+                  loading="lazy"
+                  class="custom-home-testimonials-arrow"
+                >
+              </button>
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -194,12 +191,12 @@
     {
       "type": "image_picker",
       "id": "corner_image",
-      "label": "Decorative image — bottom left"
+      "label": "Decorative image — top left"
     },
     {
       "type": "image_picker",
       "id": "arrow_image",
-      "label": "Decorative image — bottom right"
+      "label": "Carousel prev/next arrow icon"
     },
     {
       "type": "header",

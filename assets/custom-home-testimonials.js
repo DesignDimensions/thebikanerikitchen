@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach((root) => {
     const viewport = root.querySelector('.custom-home-testimonials-viewport');
     const track = root.querySelector('.custom-home-testimonials-track');
-    const content = root.querySelector('.custom-home-testimonials-content');
+    const carousel = root.querySelector('.custom-home-testimonials-carousel');
     const originalCards = Array.from(root.querySelectorAll('.custom-home-testimonials-card'));
     const prevButton = root.querySelector('.custom-home-testimonials-nav-prev');
     const nextButton = root.querySelector('.custom-home-testimonials-nav-next');
@@ -15,29 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const revealEnabled = root.dataset.animationsEnabled === 'true' && !reduceMotion && hasGsap;
     const autoScrollEnabled = root.dataset.autoplay === 'true' && !reduceMotion;
     const autoplayInterval = (parseFloat(root.dataset.autoplaySpeed) || 3) * 1000;
-    const mobileHeightQuery = window.matchMedia('(max-width: 749px)');
-
-    // .custom-home-testimonials-content is position:absolute;inset:0, so
-    // the container (sized via aspect-ratio) can't know its true height.
-    // Its header/carousel children are flex-shrink:0, so they always
-    // render at natural size and overflow visibly when squeezed — which
-    // means content.scrollHeight already reports the real height we need,
-    // no temporary repositioning required.
-    const syncContainerHeight = () => {
-      if (!content) return;
-      if (!mobileHeightQuery.matches) {
-        root.style.height = '';
-        return;
-      }
-      root.style.height = `${content.scrollHeight}px`;
-    };
 
     const realCount = originalCards.length;
+    // Reads --cards-per-view straight off the carousel instead of keeping a
+    // second, hand-maintained copy of the CSS breakpoints in JS — those two
+    // silently drifting apart (CSS showing one card count, JS assuming
+    // another) is what caused cards to overlap/clip at various widths.
     const getCardsPerView = () => {
-      const width = window.innerWidth;
-      if (width >= 990) return 3;
-      if (width >= 750) return 2;
-      return 1;
+      if (!carousel) return 1;
+      const raw = getComputedStyle(carousel).getPropertyValue('--cards-per-view');
+      const value = parseFloat(raw);
+      return Number.isFinite(value) && value > 0 ? value : 1;
     };
 
     const canLoop = realCount > getCardsPerView();
@@ -76,7 +64,6 @@ document.addEventListener('DOMContentLoaded', () => {
       if (nextButton) nextButton.style.display = hide ? 'none' : '';
     };
     updateNav();
-    syncContainerHeight();
 
     if (!canLoop) {
       if (revealEnabled) initReveal();
@@ -123,9 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // snap onto the same card grid stepForward/stepBackward use so Next/Prev
     // stay in sync. Handled entirely in JS (no CSS scroll-snap) so there's
     // no race between a native snap correction and this smooth animation.
-    const snapToNearestCard = () => {
+    const snapToNearestCard = (instant = false) => {
       const nearestIndex = Math.round(viewport.scrollLeft / cardStep);
-      viewport.scrollTo({ left: nearestIndex * cardStep, behavior: reduceMotion ? 'auto' : 'smooth' });
+      viewport.scrollTo({ left: nearestIndex * cardStep, behavior: instant || reduceMotion ? 'auto' : 'smooth' });
     };
 
     // Correct once scrolling has settled, so a native smooth-scroll or
@@ -218,19 +205,17 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
+        // scrollLeft is a raw pixel value from before the resize; card width
+        // is a percentage, so it no longer lines up with a card boundary
+        // under the new cardStep unless we explicitly re-snap it — without
+        // this, every resize leaves the row visually offset, showing
+        // overlapping/cut-off cards instead of a clean set of whole ones.
         setWidth = track.scrollWidth / COPIES;
         cardStep = setWidth / realCount;
         correctBounds();
-        syncContainerHeight();
+        snapToNearestCard(true);
       }, 150);
     });
-
-    if (typeof mobileHeightQuery.addEventListener === 'function') {
-      mobileHeightQuery.addEventListener('change', syncContainerHeight);
-    } else if (typeof mobileHeightQuery.addListener === 'function') {
-      // Safari < 14 fallback
-      mobileHeightQuery.addListener(syncContainerHeight);
-    }
 
     if (revealEnabled) initReveal();
 

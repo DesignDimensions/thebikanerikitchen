@@ -15,15 +15,35 @@
     position: absolute;
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* stretch (not center) so the image and text card share the same
+       cross-axis size: height when row, width when column below. */
+    align-items: stretch;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%;
 }
 
-.custom-image-content-inner img {
+/* A wrapper carries the flex sizing/stretch and the <img> just fills it via
+   object-fit — percentage heights on a flex item that's itself a replaced
+   element (the <img> directly) don't reliably resolve against a sibling's
+   content-driven height across browsers, which is why the image kept
+   falling short of the text card's height. A plain block wrapper stretches
+   correctly every time; the absolutely-positioned image then just covers
+   whatever height that wrapper ends up with. */
+.custom-image-content-image {
+    position: relative;
     width: 37%;
+    overflow: hidden;
+}
+
+.custom-image-content-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .custom-image-content-inner-container {
@@ -32,6 +52,7 @@
     height: stretch;
     padding: 60px 40px;
     justify-content: center;
+    width: 63%;
     align-items: start;
     display: flex;
     flex-direction: column;
@@ -64,29 +85,6 @@
 }
 
 @media screen and (max-width: 989px) {
-    .custom-image-content-container {
-        aspect-ratio: unset;
-        height: auto;
-        padding: 40px 0;
-    }
-
-    .custom-image-content-inner {
-        position: static;
-        transform: none;
-        top: auto;
-        left: auto;
-        flex-direction: column;
-        align-items: stretch;
-        width: 100%;
-    }
-
-    .custom-image-content-inner img {
-        width: 55%;
-        max-width: 260px;
-        margin: 0 auto 28px;
-        display: block;
-    }
-
     .custom-image-content-inner-container {
         height: auto;
         padding: 32px 24px;
@@ -107,12 +105,38 @@
         line-height: 24px;
         letter-spacing: 1px;
     }
+
+    .custom-image-content-inner-container {
+        width: 100%;
+    }
+
+    .custom-image-content-image {
+        /* Column layout: width now matches the card below (align-items:
+           stretch, inherited from the base rule) instead of the fixed 37%
+           the row layout uses. The wrapper no longer gets a height from
+           flex stretch here (stretch affects width in column direction),
+           so it needs its own — aspect-ratio (from the portrait image's
+           real proportions, set inline per-section) keeps it exactly as
+           tall as the image needs, no cropping. */
+        width: 100%;
+        aspect-ratio: var(--portrait-ratio, 0.8);
+    }
+
+    .custom-image-content-inner {
+        position: static;
+        transform: none;
+        top: auto;
+        left: auto;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .custom-image-content-container {
+        aspect-ratio: unset;
+        height: auto;
+        padding: 40px 0;
+    }
+
 }
 
-@media screen and (max-width: 420px) {
-    .custom-image-content-inner img {
-        width: 100%;
-        max-width: unset;
-        margin: 0;
-    }
-}
+@media(max-width:768px) {}

@@ -20,7 +20,7 @@
 
 .contact-page__intro,
 .contact-page__form {
-  padding: 48px;
+  padding: 40px 25px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -139,4 +139,15 @@ textarea.contact-page__field-input {
 
 .contact-page__form-message {
   margin: 0 0 16px;
+}
+
+@media(max-width:768px) {
+
+  .contact-page__intro,
+  .contact-page__form {
+    padding: 35px 20px;
+  }
+  .contact-page__row--bottom{
+    flex-direction: column-reverse;
+  }
 }
