@@ -461,6 +461,7 @@ table:not([class]) th {
 
   .collection__subtitle {
     font-size: 12px !important;
+    margin-bottom: 5px !important;
   }
 }
 

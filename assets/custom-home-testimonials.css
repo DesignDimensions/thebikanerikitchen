@@ -343,7 +343,7 @@
 @media screen and (max-width: 749px) {
   .custom-home-testimonials-quote p {
     margin: 0 0 50px !important;
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .custom-home-testimonials-person {
@@ -363,5 +363,6 @@
 
   .custom-home-testimonials-caption {
     font-size: 11px;
+    margin-bottom: 5px !important;
   }
 }

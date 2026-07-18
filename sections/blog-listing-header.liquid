@@ -19,7 +19,7 @@
 <div
   class="blog-listing-header blog-listing-header-{{ section.id }}-padding"
   data-section-id="{{ section.id }}"
-  style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }}; --blog-listing-header-bg: {{ section.settings.background_color }};"
+  style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};"
 >
   <div class="page-width blog-listing-header-inner">
     <div class="blog-listing-header-col blog-listing-header-col--heading">
@@ -37,7 +37,7 @@
         <div
           class="blog-listing-header-description-wrap"
           data-description-wrap
-          style="--truncate-lines: {{ section.settings.truncate_lines }};"
+          style="--truncate-lines: {{ section.settings.truncate_lines | round }};"
         >
           <div class="blog-listing-header-description rte" data-description>
             {{ section.settings.description }}
@@ -53,6 +53,7 @@
           class="blog-listing-header-toggle"
           data-toggle
           aria-expanded="false"
+          hidden
         >
           <span class="blog-listing-header-toggle-label" data-label-more>{{ section.settings.read_more_label }}</span>
           <span class="blog-listing-header-toggle-label" data-label-less hidden>{{ section.settings.read_less_label }}</span>

@@ -99,24 +99,23 @@
 
 .blog-listing-header-description-wrap {
   position: relative;
+}
+
+.blog-listing-header-description-wrap .blog-listing-header-description {
+  position: relative;
   overflow: hidden;
-  height: calc(var(--truncate-lines, 3.5) * 1.6em);
-  transition: none;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--truncate-lines, 3);
 }
 
-.blog-listing-header-description-wrap::after {
-  content: '';
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 2.2em;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--blog-listing-header-bg) 88%);
-  opacity: 1;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
+.blog-listing-header-description-word {
+  display: inline-block;
 }
 
-.blog-listing-header-description-wrap.is-expanded::after {
-  opacity: 0;
+.blog-listing-header-description-word.is-hidden-word {
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .blog-listing-header-description {
