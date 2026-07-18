@@ -213,8 +213,8 @@
 
 @media screen and (min-width: 750px) {
   .custom-home-testimonials-card {
-    flex: 0 0 calc((100% - (var(--cards-per-view) - 1) * var(--card-gap)) / var(--cards-per-view));
-    max-width: calc((100% - (var(--cards-per-view) - 1) * var(--card-gap)) / var(--cards-per-view));
+    flex: 0 0 calc((100% - (var(--cards-per-view) - 0) * var(--card-gap)) / var(--cards-per-view));
+    max-width: calc((100% - (var(--cards-per-view) - 0) * var(--card-gap)) / var(--cards-per-view));
   }
 }
 
@@ -270,7 +270,7 @@
 .custom-home-testimonials-person {
   position: relative;
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 100px;
 }
 
 .custom-home-testimonials-avatar {
@@ -344,6 +344,10 @@
   .custom-home-testimonials-quote p {
     margin: 0 0 50px !important;
     font-size: 24px;
+  }
+
+  .custom-home-testimonials-person {
+    padding-top: 40px;
   }
 
   .custom-home-testimonials-nav {

@@ -2519,6 +2519,7 @@ input[type='checkbox'] {
   transition: width 0.3s cubic-bezier(0.52, 0, 0.61, 0.99);
 }
 
+
 @media screen and (max-width: 989px) {
   .header {
     flex-wrap: wrap;
@@ -2752,6 +2753,10 @@ details[open] .modal-overlay::after {
   left: 0;
   right: 0;
   height: 100vh;
+}
+
+.header__icons details[open] .modal-overlay::after {
+  display: none !important;
 }
 
 .search-modal {

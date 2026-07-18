@@ -5,7 +5,7 @@
 /* Dawn's default open animation (animateMenuOpen) would otherwise run at the
    same time as the GSAP timeline below, fighting it for the transform for
    its first 200ms. */
-details[open] > .search-modal.search-modal--fullscreen {
+details[open]>.search-modal.search-modal--fullscreen {
   animation: none;
 }
 
@@ -21,6 +21,16 @@ details[open] > .search-modal.search-modal--fullscreen {
   will-change: transform;
   z-index: 10000;
   overflow-y: auto;
+}
+
+/* .modal-overlay::after exists to dim the rest of the page below Dawn's
+   default compact search bar. The fullscreen panel already covers the whole
+   viewport itself, so this is just dead weight -- and since it extends
+   height:100vh below the (zero-height) .modal-overlay div, left alone it adds
+   a phantom extra 100vh of scrollable content inside this panel's own
+   overflow-y:auto, which is what made it scroll to double height. */
+.search-modal--fullscreen .modal-overlay {
+  display: none;
 }
 
 .search-modal--fullscreen .search-modal__content-bottom,
@@ -74,7 +84,7 @@ details[open] > .search-modal.search-modal--fullscreen {
   height: auto;
   min-width: 0;
   margin: 0;
-  padding: 0 0 18px;
+  padding: 0 0 10px;
   background: none;
   border: none;
   border-bottom: 1px solid rgba(255, 253, 238, 0.5);
@@ -82,24 +92,17 @@ details[open] > .search-modal.search-modal--fullscreen {
   color: #FFFDEE;
   text-align: center;
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 16px;
+  font-size: 17px;
   letter-spacing: 0.5px;
   box-shadow: none;
-  /* With text-align:center, an empty input's blinking caret sits dead-center
-     and cuts through the middle of the placeholder. Hide it until there's
-     real text to type a caret next to. */
-  caret-color: transparent;
-}
-
-.search-modal--fullscreen .field__input:not(:placeholder-shown) {
   caret-color: #FFFDEE;
+  font-weight: 300;
 }
 
 .search-modal--fullscreen .field__input::placeholder {
   opacity: 1;
   color: rgba(255, 253, 238, 0.7);
-  font-size: 20px;
-  font-weight: 500;
+  font-weight: 300;
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -126,8 +129,8 @@ details[open] > .search-modal.search-modal--fullscreen {
   margin: 0 0 18px;
   color: #FFFDEE;
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 400;
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -145,7 +148,9 @@ details[open] > .search-modal.search-modal--fullscreen {
   display: inline-block;
   color: rgba(255, 253, 238, 0.75);
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 17px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  font-weight: 300;
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
 }
@@ -174,8 +179,19 @@ details[open] > .search-modal.search-modal--fullscreen {
     padding: 6rem 2rem 3rem;
   }
 
-  .search-modal--fullscreen .field__input::placeholder {
+  .search-modal__popular-list {
+    text-align: center;
+  }
+
+  .search-modal--fullscreen .field__input {
     font-size: 16px;
+  }
+
+  .search-modal__popular-label {
+    text-align: center;
+  }
+
+  .search-modal--fullscreen .field__input::placeholder {
     letter-spacing: 1px;
   }
 
