@@ -2514,7 +2514,8 @@ input[type='checkbox'] {
 
 .header__heading-logo-wrapper {
   width: 100%;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   transition: width 0.3s cubic-bezier(0.52, 0, 0.61, 0.99);
 }
 
@@ -2859,6 +2860,7 @@ details[open]>.header__submenu {
   align-items: center;
   padding: 0;
   margin: 0;
+  z-index: 1;
 }
 
 /* .header__inline-menu--primary {

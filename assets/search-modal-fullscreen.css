@@ -1,0 +1,194 @@
+/* Full-screen takeover skin for the header search modal. Scoped entirely under
+   .search-modal--fullscreen so it doesn't touch the shared .search-modal /
+   .field component styles used elsewhere (cart, localization, etc). */
+
+/* Dawn's default open animation (animateMenuOpen) would otherwise run at the
+   same time as the GSAP timeline below, fighting it for the transform for
+   its first 200ms. */
+details[open] > .search-modal.search-modal--fullscreen {
+  animation: none;
+}
+
+.search-modal.search-modal--fullscreen {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  background-color: #570f13;
+  border-bottom: none;
+  opacity: 1;
+  will-change: transform;
+  z-index: 10000;
+  overflow-y: auto;
+}
+
+.search-modal--fullscreen .search-modal__content-bottom,
+.search-modal--fullscreen .search-modal__content-top {
+  top: 0;
+  bottom: 0;
+}
+
+.search-modal--fullscreen .search-modal__content {
+  padding: 8rem 2rem 4rem;
+  align-items: center;
+}
+
+.search-modal__inner {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Strip Dawn's boxed/floating-label field skin down to a bare underline */
+.search-modal--fullscreen .search-modal__form {
+  width: 100%;
+}
+
+.search-modal--fullscreen .field {
+  width: 100%;
+}
+
+.search-modal--fullscreen .field:before,
+.search-modal--fullscreen .field:after {
+  display: none;
+}
+
+.search-modal--fullscreen .field__label {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+.search-modal--fullscreen .field__input {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0 0 18px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(255, 253, 238, 0.5);
+  border-radius: 0;
+  color: #FFFDEE;
+  text-align: center;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  box-shadow: none;
+  /* With text-align:center, an empty input's blinking caret sits dead-center
+     and cuts through the middle of the placeholder. Hide it until there's
+     real text to type a caret next to. */
+  caret-color: transparent;
+}
+
+.search-modal--fullscreen .field__input:not(:placeholder-shown) {
+  caret-color: #FFFDEE;
+}
+
+.search-modal--fullscreen .field__input::placeholder {
+  opacity: 1;
+  color: rgba(255, 253, 238, 0.7);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.search-modal--fullscreen .field__input:focus,
+.search-modal--fullscreen .field__input:focus-visible {
+  box-shadow: none;
+  outline: none;
+  border-bottom-color: #FFFDEE;
+}
+
+.search-modal--fullscreen .search__button,
+.search-modal--fullscreen .reset__button {
+  display: none;
+}
+
+.search-modal__popular {
+  width: 100%;
+  margin-top: 52px;
+  text-align: left;
+}
+
+.search-modal__popular-label {
+  margin: 0 0 18px;
+  color: #FFFDEE;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.search-modal__popular-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.search-modal__popular-link {
+  display: inline-block;
+  color: rgba(255, 253, 238, 0.75);
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 17px;
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.search-modal__popular-link:hover {
+  color: #FFFDEE;
+  transform: translateX(4px);
+}
+
+.search-modal--fullscreen .search-modal__close-button {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: 44px;
+  height: 44px;
+  color: #FFFDEE;
+}
+
+.search-modal--fullscreen .search-modal__close-button .icon {
+  width: 20px;
+  height: 20px;
+}
+
+@media screen and (max-width: 749px) {
+  .search-modal--fullscreen .search-modal__content {
+    padding: 6rem 2rem 3rem;
+  }
+
+  .search-modal--fullscreen .field__input::placeholder {
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+
+  .search-modal__popular {
+    margin-top: 40px;
+  }
+
+  .search-modal__popular-link {
+    font-size: 16px;
+  }
+
+  .search-modal--fullscreen .search-modal__close-button {
+    top: 18px;
+    right: 18px;
+  }
+}

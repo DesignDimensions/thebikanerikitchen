@@ -42,6 +42,20 @@
       {%- endif -%}
     </a>
 
+    {%- if card_product.tags contains 'bestseller' -%}
+      <span class="shop-card__badge">Bestseller</span>
+    {%- endif -%}
+
+    <button type="button" class="shop-card__wishlist" aria-label="Add to wishlist">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Vector_1.svg?v=1784360472"
+        alt=""
+        width="22"
+        height="21"
+        loading="lazy"
+      >
+    </button>
+
     <div class="shop-card__footer">
       <h3 class="shop-card__title">
         <a href="{{ card_product.url }}" class="shop-card__title-link">{{ card_product.title | escape }}</a>

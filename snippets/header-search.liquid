@@ -3,10 +3,15 @@
 
   Accepts:
   - input_id: {String} Id for the search input element (required)
+  - popular_searches: {String} Newline-separated search shortcuts shown in the modal (optional)
 
   Usage:
-  {% render 'header-search', input_id: 'My-Id'%}
+  {% render 'header-search', input_id: 'My-Id', popular_searches: section.settings.popular_searches %}
 {% endcomment %}
+
+{% capture newline_char %}
+{% endcapture %}
+{%- assign popular_search_list = popular_searches | split: newline_char -%}
 
 <details-modal class="header__search">
   <details>
@@ -25,7 +30,7 @@
       </span>
     </summary>
     <div
-      class="search-modal modal__content gradient"
+      class="search-modal modal__content gradient search-modal--fullscreen"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
@@ -35,6 +40,7 @@
         class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}"
         tabindex="-1"
       >
+        <div class="search-modal__inner">
         {%- if settings.predictive_search_enabled -%}
           <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
         {%- else -%}
@@ -48,7 +54,7 @@
               type="search"
               name="q"
               value="{{ search.terms | escape }}"
-              placeholder="{{ 'general.search.search' | t }}"
+              placeholder="What are you looking for?"
               {%- if settings.predictive_search_enabled -%}
                 role="combobox"
                 aria-expanded="false"
@@ -93,16 +99,33 @@
         {%- else -%}
           </search-form>
         {%- endif -%}
-        <button
-          type="button"
-          class="search-modal__close-button modal__close-button link link--text focus-inset"
-          aria-label="{{ 'accessibility.close' | t }}"
-        >
-          <span class="svg-wrapper">
-            {{- 'icon-close.svg' | inline_asset_content -}}
-          </span>
-        </button>
+
+        {%- if popular_search_list.size > 0 -%}
+          <div class="search-modal__popular">
+            <p class="search-modal__popular-label">Popular searches:</p>
+            <ul class="search-modal__popular-list" role="list">
+              {%- for term in popular_search_list -%}
+                {%- assign term = term | strip -%}
+                {%- if term != blank -%}
+                  <li class="search-modal__popular-item">
+                    <a href="{{ routes.search_url }}?q={{ term | url_encode }}" class="search-modal__popular-link">{{ term }}</a>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+        </div>
       </div>
+      <button
+        type="button"
+        class="search-modal__close-button modal__close-button link link--text focus-inset"
+        aria-label="{{ 'accessibility.close' | t }}"
+      >
+        <span class="svg-wrapper">
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
+      </button>
     </div>
   </details>
 </details-modal>

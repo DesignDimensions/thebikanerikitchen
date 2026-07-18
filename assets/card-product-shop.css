@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  position: relative;
 }
 
 .shop-card__media {
@@ -32,6 +33,50 @@
 
 .shop-card:hover .shop-card__image {
   transform: scale(1.03);
+}
+
+.shop-card__badge {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 1;
+  background-color: #E5D0A5;
+  color: #570F13;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 10px 9px;
+  line-height: 11px;
+}
+
+.shop-card__wishlist {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.45));
+}
+
+.shop-card__wishlist img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.shop-card__wishlist:hover {
+  opacity: 0.8;
 }
 
 .shop-card__footer {
@@ -76,12 +121,12 @@
 }
 
 .shop-card__price {
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 400;
 }
 
 .shop-card__size {
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 300;
   color: #FFFDEE;
 }
@@ -95,14 +140,38 @@
   padding: 0 16px 0 0;
   color: #FFFDEE;
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 300;
   cursor: pointer;
+  color-scheme: dark;
+}
+
+.shop-card__size-select:hover {
+  color: #FFFDEE;
+  opacity: 0.85;
 }
 
 .shop-card__size-select:focus-visible {
   outline: 1px solid #FFFDEE;
   outline-offset: 2px;
+}
+
+.shop-card__size-select option {
+  background-color: #570f13;
+  color: #FFFDEE;
+  font-weight: 400;
+}
+
+.shop-card__size-select option:checked,
+.shop-card__size-select option:hover,
+.shop-card__size-select option:focus,
+.shop-card__size-select option:active {
+  background-color: #7a171c;
+  color: #FFFDEE;
+}
+
+.shop-card__size-select option:disabled {
+  color: rgba(255, 253, 238, 0.4);
 }
 
 .shop-card__divider {
