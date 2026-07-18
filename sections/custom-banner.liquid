@@ -1,22 +1,75 @@
 {{ 'custom-banner.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'custom-banner.js' | asset_url }}" defer="defer"></script>
 
-<div class="custom-banner-container">
-  <img
-    src="{{ section.settings.banner_image | image_url }}"
-    alt="{{ section.settings.banner_image.alt | escape }}"
-    class="custom-banner_desktop-image"
-  >
-  <img
-    src="{{ section.settings.mobile_banner_image | image_url  }}"
-    alt="{{ section.settings.mobile_banner_image.alt | escape }}"
-    class="custom-banner_mobile-image"
-  >
+<div class="custom-banner-pin-space" data-custom-banner-pin>
+  <div class="custom-banner-sticky" data-custom-banner-sticky>
+    <div class="custom-banner-container">
+      {%- if section.settings.media_type == 'video' and section.settings.banner_video != blank -%}
+        {{
+          section.settings.banner_video
+          | video_tag:
+            class: 'custom-banner_desktop-video',
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true
+        }}
+      {%- else -%}
+        <img
+          src="{{ section.settings.banner_image | image_url }}"
+          alt="{{ section.settings.banner_image.alt | escape }}"
+          class="custom-banner_desktop-image"
+        >
+      {%- endif -%}
+
+      {%- if section.settings.media_type == 'video' and section.settings.mobile_banner_video != blank -%}
+        {{
+          section.settings.mobile_banner_video
+          | video_tag:
+            class: 'custom-banner_mobile-video',
+            autoplay: true,
+            loop: true,
+            muted: true,
+            controls: false,
+            playsinline: true
+        }}
+      {%- else -%}
+        <img
+          src="{{ section.settings.mobile_banner_image | image_url }}"
+          alt="{{ section.settings.mobile_banner_image.alt | escape }}"
+          class="custom-banner_mobile-image"
+        >
+      {%- endif -%}
+    </div>
+  </div>
 </div>
 
 {% schema %}
 {
   "name": "Custom Banner",
   "settings": [
+    {
+      "type": "select",
+      "id": "media_type",
+      "label": "Media type",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image"
+        },
+        {
+          "value": "video",
+          "label": "Video"
+        }
+      ],
+      "default": "image"
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
     {
       "type": "image_picker",
       "id": "banner_image",
@@ -26,6 +79,20 @@
       "type": "image_picker",
       "id": "mobile_banner_image",
       "label": "Mobile Banner Image"
+    },
+    {
+      "type": "header",
+      "content": "Video"
+    },
+    {
+      "type": "video",
+      "id": "banner_video",
+      "label": "Banner Video"
+    },
+    {
+      "type": "video",
+      "id": "mobile_banner_video",
+      "label": "Mobile Banner Video"
     }
   ],
   "presets": [
