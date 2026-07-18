@@ -9,6 +9,16 @@ details[open]>.search-modal.search-modal--fullscreen {
   animation: none;
 }
 
+/* Dawn swaps the header's search icon for a close/X icon the instant [open]
+   is set on <details> -- plain CSS, no transition, so it happens a full frame
+   (at least) before the GSAP curtain even starts sliding in. That's the
+   "icon disappears, then separately the fullscreen search slides in" gap.
+   Keep the search icon showing the whole time instead; the curtain sliding
+   over it is the only transition that should be visible. */
+.header__search details[open] .header__icon-close {
+  display: none;
+}
+
 .search-modal.search-modal--fullscreen {
   position: fixed;
   inset: 0;
@@ -175,6 +185,14 @@ details[open]>.search-modal.search-modal--fullscreen {
 }
 
 @media screen and (max-width: 749px) {
+  .search-modal__inner {
+    width: 80%;
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    right: 10%;
+  }
+
   .search-modal--fullscreen .search-modal__content {
     padding: 6rem 2rem 3rem;
   }

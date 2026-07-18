@@ -2663,6 +2663,7 @@ input[type='checkbox'] {
 .header__icon--cart {
   position: relative;
   margin-right: 0;
+  margin-top: -3px;
 }
 
 .header__icon--cart img {
