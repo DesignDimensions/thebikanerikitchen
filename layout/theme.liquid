@@ -71,6 +71,9 @@
     <script src="{{ 'gsap-reveal.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'lenis.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'smooth-scroll.js' | asset_url }}" defer="defer"></script>
+    {{ 'site-animations.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'site-animations.js' | asset_url }}" defer="defer"></script>
     <style>
       html.lenis,
       html.lenis body {

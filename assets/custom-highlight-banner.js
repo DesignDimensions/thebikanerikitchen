@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.custom-highlight-banner-container').forEach((section) => {
+    // site-animations.js claims this section and runs the richer
+    // signature reveal instead.
+    if (section.dataset.haClaimed) return;
     const eyebrow = section.querySelector('.custom-highlight-banner-eyebrow');
     const heading = section.querySelector('.custom-highlight-banner-heading');
     const body = section.querySelector('.custom-highlight-banner-body');

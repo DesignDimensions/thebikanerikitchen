@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!window.initScrollReveal) return;
 
   document.querySelectorAll('.custom-practices').forEach((section) => {
+    // site-animations.js claims this section and runs the richer
+    // signature reveal instead.
+    if (section.dataset.haClaimed) return;
     const heading = section.querySelector('.custom-practices-heading');
     const body = section.querySelector('.custom-practices-body');
     const image = section.querySelector('.custom-practices-image .custom-inset-image-img, .custom-practices-image .placeholder-svg');

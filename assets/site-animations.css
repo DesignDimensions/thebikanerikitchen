@@ -1,0 +1,42 @@
+/* Support styles for the sitewide GSAP choreography (site-animations.js). */
+
+/* Masked word/char rise: the mask clips while the unit travels up into
+   place. The padding/negative-margin pair gives descenders and italic
+   overshoots room during the rise without changing the line box height;
+   the script releases overflow once the rise settles. */
+.ha-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.ha-unit {
+  display: inline-block;
+  vertical-align: top;
+  will-change: transform;
+}
+
+/* Cinematic open: a warm near-black veil over the hero media that the
+   intro timeline fades away. Sits inside .custom-banner-sticky. */
+.ha-hero-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: #170807;
+  pointer-events: none;
+}
+
+/* Scrubbed Ken Burns drifts scale media past their boxes; crop them so
+   neighbouring content never sees the overflow. */
+.custom-banner-text-container {
+  overflow: hidden;
+}
+
+/* The contact portrait un-clips while its photo settles from a scale —
+   without a crop the still-scaled photo would spill over the text column
+   for a beat after the clip releases. */
+.contact-page__image {
+  overflow: hidden;
+}

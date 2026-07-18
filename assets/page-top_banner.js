@@ -8,6 +8,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!hasGsap || reduceMotion || designMode) return;
 
   banners.forEach((banner) => {
+    // site-animations.js claims this banner and runs the richer
+    // signature reveal instead.
+    if (banner.dataset.haClaimed) return;
     const inner = banner.querySelector('.page-top-banner-container-inner');
     if (!inner) return;
 
