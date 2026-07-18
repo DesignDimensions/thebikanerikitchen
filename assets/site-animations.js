@@ -296,7 +296,17 @@
       onEnter(
         ctx.root,
         () => {
-          gsap.to(ctx.cards, { autoAlpha: 1, y: 0, scale: 1, duration: 1.15, ease: EASE_OUT, stagger: 0.09 });
+          gsap.to(ctx.cards, {
+            autoAlpha: 1,
+            y: 0,
+            scale: 1,
+            duration: 1.15,
+            ease: EASE_OUT,
+            stagger: 0.09,
+            // clearProps: a lingering transform would re-anchor any
+            // position:fixed content inside a card (quick-add modals).
+            onComplete: () => gsap.set(ctx.cards, { clearProps: 'transform' }),
+          });
           if (ctx.nav) gsap.to(ctx.nav, { autoAlpha: 1, duration: 0.8, delay: 0.6, ease: 'power2.out' });
         },
         'top 82%'
@@ -638,7 +648,13 @@
     },
   });
 
-  /* ---- Blog listing grid (rituals, archives) ---- */
+  /* ---- Blog listing grid (rituals, archives) ----
+   * Geometry-neutral by design: the section overlaps the pinned hero
+   * banner on rituals, where a lingering transform would hoist items
+   * into the positioned paint layer while the section background stays
+   * beneath the sticky hero. The whole reveal is a curtain clip on each
+   * item's media box (all item content lives inside it) — no transforms,
+   * and the CSS hover zoom on the images keeps working. */
   register('.blog-listing-grid', {
     prep(ctx) {
       const s = ctx.root;
@@ -646,13 +662,10 @@
       ctx.heading = prepHeading($('.blog-listing-grid-title', s));
       ctx.description = $('.blog-listing-grid-description', s);
       ctx.filters = $$('.blog-listing-grid-filter', s);
-      ctx.items = $$('.blog-listing-grid-item', s);
-      ctx.itemImgs = $$('.blog-listing-grid-item-image', s);
+      ctx.media = prep($$('.blog-listing-grid-item-media', s), { clipPath: CLIP_UP });
       prep([ctx.subtitle], { autoAlpha: 0, y: 16 });
       prep([ctx.description], { autoAlpha: 0, y: 18 });
       prep(ctx.filters, { autoAlpha: 0, y: 14 });
-      prep(ctx.items, { autoAlpha: 0, y: 48 });
-      prep(ctx.itemImgs, { scale: 1.08 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -662,12 +675,11 @@
         fadeRise(tl, ctx.description, 0.4, { duration: 0.85 });
         fadeRise(tl, ctx.filters, 0.5, { duration: 0.75, stagger: 0.06 });
       });
-      if (ctx.items.length) {
+      if (ctx.media.length) {
         onEnter(
-          ctx.items[0],
+          ctx.media[0],
           () => {
-            gsap.to(ctx.items, { autoAlpha: 1, y: 0, duration: 1.15, ease: EASE_OUT, stagger: 0.12 });
-            gsap.to(ctx.itemImgs, { scale: 1, duration: 1.8, ease: 'expo.out', stagger: 0.12 });
+            clipReveal(gsap.timeline(), ctx.media, 0, { duration: 1.4, stagger: 0.16 });
           },
           'top 84%'
         );
