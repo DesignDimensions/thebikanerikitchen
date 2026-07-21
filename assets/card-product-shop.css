@@ -73,19 +73,41 @@
   display: block;
   width: 100%;
   height: 100%;
+  overflow: visible;
+}
+
+.icon-heart__outline {
+  fill: none;
+  stroke: #fffdee;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.icon-heart__fill {
   fill: #fffdee;
-  transition:
-    fill 0.2s ease,
-    transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
-.shop-card__wishlist:hover {
-  opacity: 0.8;
+.shop-card__wishlist.is-wishlisted .icon-heart__fill {
+  opacity: 1;
 }
 
-.shop-card__wishlist.is-wishlisted svg {
-  fill: #570f13;
-  transform: scale(1.1);
+@keyframes wishlist-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.22);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.shop-card__wishlist.is-wishlisted {
+  animation: wishlist-pop 0.35s ease;
 }
 
 .shop-card__footer {

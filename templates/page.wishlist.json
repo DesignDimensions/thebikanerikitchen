@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -8,21 +17,74 @@
         "padding_bottom": 36
       }
     },
+    "custom_inset_image_XG4dxc": {
+      "type": "custom-inset-image",
+      "name": "Custom Inset Image",
+      "settings": {
+        "image": "shopify://shop_images/Frame_1321319356.jpg",
+        "image_mobile": "shopify://shop_images/Frame_1321319356.jpg"
+      }
+    },
     "wishlist_page": {
       "type": "custom-wishlist",
       "settings": {
-        "heading": "My Wishlist",
+        "subheading": "Ready When You Are",
+        "heading": "Loved Items",
         "empty_heading": "Your wishlist is empty",
         "empty_body": "Save products you love by tapping the heart icon on any product.",
-        "empty_button_label": "Continue Shopping",
-        "login_heading": "Log in to view your wishlist",
-        "login_body": "Sign in to see the products you've saved.",
-        "login_button_label": "Log In"
+        "empty_button_label": "Continue Shopping"
+      }
+    },
+    "custom_bg_heading_tzp7Le": {
+      "type": "custom-bg-heading",
+      "name": "Custom BG Heading",
+      "settings": {
+        "heading": "Follow Us",
+        "heading_color": "#ff6344",
+        "background_color": "#570f13"
+      }
+    },
+    "custom_images_grid_carousal_VwNM4r": {
+      "type": "custom-images-grid_carousal",
+      "blocks": {
+        "image_FpMrdc": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
+          }
+        },
+        "image_cCFxrT": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
+          }
+        },
+        "image_mt49PN": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
+            "mobile_image": "shopify://shop_images/Frame_1321317934_1.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "image_FpMrdc",
+        "image_cCFxrT",
+        "image_mt49PN"
+      ],
+      "name": "Custom Image Carousel",
+      "settings": {
+        "images_per_view": 3
       }
     }
   },
   "order": [
     "main",
-    "wishlist_page"
+    "custom_inset_image_XG4dxc",
+    "wishlist_page",
+    "custom_bg_heading_tzp7Le",
+    "custom_images_grid_carousal_VwNM4r"
   ]
 }

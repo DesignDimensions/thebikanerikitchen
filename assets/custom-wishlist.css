@@ -3,13 +3,11 @@
   padding-bottom: 60px;
 }
 
-.wishlist-page__heading {
-  margin: 0 0 32px;
-  text-align: left;
-  font-family: 'Baskervville';
-  font-weight: 500;
-  letter-spacing: 1px;
-}
+/*
+  .wishlist-page__heading intentionally has no rules of its own — it relies
+  entirely on .section-heading (shared with the collection page's "The
+  Bhandaar" heading) so the two stay visually identical.
+*/
 
 .wishlist-page__empty {
   display: flex;
@@ -20,6 +18,32 @@
   padding: 60px 20px;
   max-width: 440px;
   margin: 0 auto;
+}
+
+
+
+/*
+  [hidden] has the same specificity as a class selector, so without this the
+  display:flex/block rules above win the cascade (author styles load after
+  the browser default) and the hidden attribute is silently ignored.
+*/
+.wishlist-page__empty[hidden],
+.wishlist-page__shop-more[hidden],
+ul[data-wishlist-page][hidden] {
+  display: none;
+}
+
+.wishlist-page__shop-more {
+  display: block;
+  width: fit-content;
+  margin: 35px auto 0;
+  color: #181818;
+  font-family: 'Helvetica Neue';
+  font-size: 16px;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .wishlist-page__empty-heading {
@@ -39,6 +63,17 @@
   color: #181818;
 }
 
+.custom-inset-image-section .page-width {
+  margin-top: 0;
+  padding: unset;
+  margin: 0;
+  max-width: unset;
+}
+
+.clp-collection__subtitle {
+  margin-top: 0 !important;
+}
+
 @media screen and (max-width: 749px) {
   .wishlist-page {
     padding-top: 32px;
@@ -46,6 +81,15 @@
   }
 
   .wishlist-page__heading {
-    margin-bottom: 24px;
+    font-size: 35px;
+  }
+
+  .wishlist-page .grid__item {
+    width: 100% !important;
+    max-width: unset;
+  }
+
+  .wishlist-page .product-grid {
+    gap: 15px;
   }
 }

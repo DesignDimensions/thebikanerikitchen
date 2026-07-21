@@ -14,7 +14,44 @@
 {%- liquid
   assign current_variant = card_product.selected_or_first_available_variant
   assign form_id = 'shop-card-' | append: section_id | append: '-' | append: card_product.id
+  assign is_bestseller = false
+  if card_product.tags contains 'bestseller'
+    assign is_bestseller = true
+  endif
 -%}
+
+{%- comment -%}
+  Full card data, used by wishlist.js to rebuild this exact card structure
+  client-side on the wishlist page (which has no server-side product data to
+  render from — see MEMORY on the localStorage-only wishlist approach).
+{%- endcomment -%}
+{%- capture card_json -%}
+{
+  "id": {{ card_product.id | json }},
+  "title": {{ card_product.title | json }},
+  "url": {{ card_product.url | json }},
+  "bestseller": {{ is_bestseller | json }},
+  "imageAlt": {{ card_product.featured_media.alt | json }},
+  "image360": {{ card_product.featured_media | image_url: width: 360 | json }},
+  "image533": {{ card_product.featured_media | image_url: width: 533 | json }},
+  "image720": {{ card_product.featured_media | image_url: width: 720 | json }},
+  "imageFull": {{ card_product.featured_media | image_url | json }},
+  "imageWidth": {{ card_product.featured_media.width | json }},
+  "imageHeight": {{ card_product.featured_media.height | json }},
+  "currentVariantId": {{ current_variant.id | json }},
+  "variantsCount": {{ card_product.variants_count | json }},
+  "variants": [
+    {%- for variant in card_product.variants -%}
+      {
+        "id": {{ variant.id | json }},
+        "title": {{ variant.title | json }},
+        "price": {{ variant.price | money_without_trailing_zeros | json }},
+        "available": {{ variant.available | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ]
+}
+{%- endcapture -%}
 
 <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: 'collection' | escape }}">
   <div class="shop-card">
@@ -49,18 +86,14 @@
     {%- comment -%}
       Wishlist state lives in the browser's localStorage (see wishlist.js), not
       here — this button always renders "not wishlisted" server-side, and JS
-      syncs the real state (and the data-* snapshot below) on page load.
+      syncs the real state (using the data-card snapshot above) on page load.
     {%- endcomment -%}
     <button
       type="button"
       class="shop-card__wishlist"
       aria-label="{{ 'products.product.wishlist_add' | t }}"
       aria-pressed="false"
-      data-product-id="{{ card_product.id }}"
-      data-product-title="{{ card_product.title | escape }}"
-      data-product-url="{{ card_product.url }}"
-      data-product-image="{{ card_product.featured_media | image_url: width: 360 }}"
-      data-product-price="{{ current_variant.price | money_without_trailing_zeros | escape }}"
+      data-card="{{ card_json | escape }}"
     >
       {{ 'icon-heart.svg' | inline_asset_content }}
     </button>

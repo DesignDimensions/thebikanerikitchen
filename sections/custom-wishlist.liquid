@@ -4,10 +4,15 @@
 {% comment %} Loaded after component-card.css so its rules always win on equal specificity {% endcomment %}
 {{ 'card-product-shop.css' | asset_url | stylesheet_tag }}
 {{ 'custom-wishlist.css' | asset_url | stylesheet_tag }}
-{% comment %} Cards on this page are built client-side by wishlist.js from localStorage, so no add-to-cart form/JS is needed here. {% endcomment %}
+{% comment %} Cards on this page are rebuilt client-side by wishlist.js from localStorage using the same shop-card markup as card-product-shop.liquid, so its companion JS (size-select price sync, add-to-cart form) is needed here too. {% endcomment %}
+<script src="{{ 'card-product-shop.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 
 <div class="wishlist-page page-width">
+  {%- if section.settings.subheading != blank -%}
+    <p class="clp-collection__subtitle">{{ section.settings.subheading | escape }}</p>
+  {%- endif -%}
   {%- if section.settings.heading != blank -%}
     <h1 class="wishlist-page__heading section-heading">{{ section.settings.heading | escape }}</h1>
   {%- endif -%}
@@ -15,8 +20,16 @@
   {%- comment -%}
     Wishlist contents live in the browser's localStorage (see wishlist.js), not
     Liquid — this list starts empty and is populated client-side on load.
+    Grid columns match the collection page's product-grid section (2 desktop /
+    2 tablet-down) so card width is identical.
   {%- endcomment -%}
-  <ul class="grid product-grid grid--2-col-tablet-down grid--4-col-desktop" data-wishlist-page hidden></ul>
+  <ul class="grid product-grid grid--2-col-tablet-down grid--2-col-desktop" data-wishlist-page hidden></ul>
+
+  {%- if section.settings.shop_more_label != blank -%}
+    <a href="/collections/the-bhandaar" class="wishlist-page__shop-more" data-wishlist-shop-more hidden>
+      {{ section.settings.shop_more_label | escape }}
+    </a>
+  {%- endif -%}
 
   <div class="wishlist-page__empty" data-wishlist-empty hidden>
     {%- if section.settings.empty_heading != blank -%}
@@ -48,9 +61,21 @@
     },
     {
       "type": "text",
+      "id": "subheading",
+      "label": "Subheading (eyebrow)",
+      "default": "THE LIST"
+    },
+    {
+      "type": "text",
       "id": "heading",
       "label": "Heading",
       "default": "My Wishlist"
+    },
+    {
+      "type": "text",
+      "id": "shop_more_label",
+      "label": "\"Continue shopping\" link label (shown when the wishlist has items)",
+      "default": "Continue Shopping"
     },
     {
       "type": "header",

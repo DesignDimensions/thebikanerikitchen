@@ -1,6 +1,13 @@
 const WISHLIST_STORAGE_KEY = 'wishlist';
+const HEART_PATH_D =
+  'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z';
 const HEART_ICON_SVG =
-  '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-accordion icon-heart" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 5.24 8.515 3.773a4.433 4.433 0 0 0-6.21 0 4.293 4.293 0 0 0 0 6.128L10 17.495l7.695-7.593a4.293 4.293 0 0 0 0-6.128 4.433 4.433 0 0 0-6.21 0zm.765-2.177c2.113-2.084 5.538-2.084 7.65 0a5.29 5.29 0 0 1 0 7.55l-7.695 7.593a1.03 1.03 0 0 1-1.44 0l-7.696-7.594a5.29 5.29 0 0 1 0-7.549C3.697.98 7.122.98 9.234 3.063l.766.755z"/></svg>';
+  '<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-accordion icon-heart" viewBox="0 0 24 24">' +
+  `<path class="icon-heart__outline" d="${HEART_PATH_D}"/>` +
+  `<path class="icon-heart__fill" d="${HEART_PATH_D}"/>` +
+  '</svg>';
+const LOADING_SPINNER_SVG =
+  '<svg xmlns="http://www.w3.org/2000/svg" class="spinner" viewBox="0 0 66 66"><circle stroke-width="6" cx="33" cy="33" r="30" fill="none" class="path"/></svg>';
 
 function getWishlist() {
   try {
@@ -20,20 +27,14 @@ function isWishlisted(productId) {
 }
 
 function toggleWishlistItem(button) {
-  const productId = Number(button.dataset.productId);
+  const card = JSON.parse(button.dataset.card);
   const items = getWishlist();
-  const index = items.findIndex((item) => item.id === productId);
+  const index = items.findIndex((item) => item.id === card.id);
 
   if (index > -1) {
     items.splice(index, 1);
   } else {
-    items.push({
-      id: productId,
-      title: button.dataset.productTitle,
-      url: button.dataset.productUrl,
-      image: button.dataset.productImage,
-      price: button.dataset.productPrice,
-    });
+    items.push(card);
   }
 
   setWishlist(items);
@@ -46,58 +47,135 @@ function setButtonState(button, wishlisted) {
   button.setAttribute('aria-label', wishlisted ? window.wishlistStrings.remove : window.wishlistStrings.add);
 }
 
+function bindSizeSelect(select) {
+  select.addEventListener('change', () => {
+    const form = select.closest('form');
+    if (!form) return;
+
+    const option = select.options[select.selectedIndex];
+    const idInput = form.querySelector('.shop-card__variant-id');
+    const priceEl = form.querySelector('.shop-card__price');
+
+    if (idInput) idInput.value = option.value;
+    if (priceEl && option.dataset.price) priceEl.textContent = option.dataset.price;
+  });
+}
+
+function buildCardElement(item) {
+  const currentVariant = item.variants.find((variant) => variant.id === item.currentVariantId) || item.variants[0];
+  const available = currentVariant ? currentVariant.available : false;
+
+  const li = document.createElement('li');
+  li.className = 'grid__item';
+  li.innerHTML = `
+    <product-component>
+      <div class="shop-card">
+        <a class="shop-card__media" tabindex="-1" aria-hidden="true">
+          <img class="shop-card__image" loading="lazy" sizes="(min-width: 750px) 40vw, 90vw">
+        </a>
+        ${item.bestseller ? '<span class="shop-card__badge">Bestseller</span>' : ''}
+        <button type="button" class="shop-card__wishlist is-wishlisted" aria-pressed="true">${HEART_ICON_SVG}</button>
+        <div class="shop-card__footer">
+          <h3 class="shop-card__title"><a class="shop-card__title-link"></a></h3>
+          <product-form>
+            <form class="shop-card__form" novalidate="novalidate" data-type="add-to-cart-form" action="/cart/add" method="post">
+              <input type="hidden" name="id" class="shop-card__variant-id" value="${currentVariant ? currentVariant.id : ''}" ${available ? '' : 'disabled'}>
+              <div class="shop-card__meta">
+                <span class="shop-card__price">${currentVariant ? currentVariant.price : ''}</span>
+                ${
+                  item.variantsCount > 1
+                    ? `<select class="shop-card__size-select" aria-label="${window.wishlistStrings.variantsLabel}"></select>`
+                    : '<span class="shop-card__size"></span>'
+                }
+              </div>
+              <hr class="shop-card__divider">
+              <button type="submit" name="add" class="shop-card__add" data-sold-out-message="true" ${available ? '' : 'disabled'}>
+                <span>${available ? 'Add To Cart' : window.wishlistStrings.soldOut}</span>
+                <span class="sold-out-message hidden">${window.wishlistStrings.soldOut}</span>
+                <div class="loading__spinner hidden">${LOADING_SPINNER_SVG}</div>
+              </button>
+            </form>
+          </product-form>
+        </div>
+      </div>
+    </product-component>
+  `;
+
+  const mediaLink = li.querySelector('.shop-card__media');
+  mediaLink.href = item.url;
+
+  const img = li.querySelector('.shop-card__image');
+  img.src = item.image533 || item.imageFull || '';
+  img.alt = item.imageAlt || '';
+  if (item.imageWidth) img.width = item.imageWidth;
+  if (item.imageHeight) img.height = item.imageHeight;
+  img.srcset = [
+    item.image360 && `${item.image360} 360w`,
+    item.image533 && `${item.image533} 533w`,
+    item.image720 && `${item.image720} 720w`,
+    item.imageFull && item.imageWidth && `${item.imageFull} ${item.imageWidth}w`,
+  ]
+    .filter(Boolean)
+    .join(', ');
+
+  const titleLink = li.querySelector('.shop-card__title-link');
+  titleLink.href = item.url;
+  titleLink.textContent = item.title;
+
+  const wishlistButton = li.querySelector('.shop-card__wishlist');
+  wishlistButton.dataset.card = JSON.stringify(item);
+  wishlistButton.setAttribute('aria-label', window.wishlistStrings.remove);
+
+  if (item.variantsCount > 1) {
+    const select = li.querySelector('.shop-card__size-select');
+    item.variants.forEach((variant) => {
+      const option = document.createElement('option');
+      option.value = variant.id;
+      option.textContent = variant.title;
+      option.dataset.price = variant.price;
+      if (variant.id === item.currentVariantId) option.selected = true;
+      if (!variant.available) option.disabled = true;
+      select.appendChild(option);
+    });
+    bindSizeSelect(select);
+  } else if (currentVariant) {
+    li.querySelector('.shop-card__size').textContent = currentVariant.title;
+  }
+
+  return li;
+}
+
 function renderWishlistPage() {
   const list = document.querySelector('[data-wishlist-page]');
   if (!list) return;
 
   const items = getWishlist();
   const emptyState = document.querySelector('[data-wishlist-empty]');
+  const shopMoreLink = document.querySelector('[data-wishlist-shop-more]');
 
   list.innerHTML = '';
 
   if (items.length === 0) {
     list.hidden = true;
     if (emptyState) emptyState.hidden = false;
+    if (shopMoreLink) shopMoreLink.hidden = true;
     return;
   }
 
   list.hidden = false;
   if (emptyState) emptyState.hidden = true;
+  if (shopMoreLink) shopMoreLink.hidden = false;
 
   items.forEach((item) => {
-    const li = document.createElement('li');
-    li.className = 'grid__item';
-    li.innerHTML = `
-      <div class="shop-card">
-        <a href="${item.url}" class="shop-card__media">
-          <img src="${item.image}" alt="${item.title}" class="shop-card__image" loading="lazy">
-        </a>
-        <button
-          type="button"
-          class="shop-card__wishlist is-wishlisted"
-          aria-label="${window.wishlistStrings.remove}"
-          aria-pressed="true"
-          data-product-id="${item.id}"
-          data-product-title="${item.title}"
-          data-product-url="${item.url}"
-          data-product-image="${item.image}"
-          data-product-price="${item.price}"
-        >${HEART_ICON_SVG}</button>
-        <div class="shop-card__footer">
-          <h3 class="shop-card__title">
-            <a href="${item.url}" class="shop-card__title-link">${item.title}</a>
-          </h3>
-          <span class="shop-card__price">${item.price}</span>
-        </div>
-      </div>
-    `;
+    const li = buildCardElement(item);
     list.appendChild(li);
     bindWishlistButton(li.querySelector('.shop-card__wishlist'));
   });
 }
 
 function bindWishlistButton(button) {
-  setButtonState(button, isWishlisted(Number(button.dataset.productId)));
+  const card = JSON.parse(button.dataset.card);
+  setButtonState(button, isWishlisted(card.id));
 
   button.addEventListener('click', () => {
     const wishlisted = toggleWishlistItem(button);
