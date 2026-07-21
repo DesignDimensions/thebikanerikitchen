@@ -16,8 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const media = pinSpace.querySelectorAll(
       '.custom-banner_desktop-image, .custom-banner_desktop-video, .custom-banner_mobile-image, .custom-banner_mobile-video'
     );
+    const noCover = pinSpace.hasAttribute('data-custom-banner-no-cover');
     const sectionWrapper = pinSpace.closest('.shopify-section');
-    const nextSection = sectionWrapper ? sectionWrapper.nextElementSibling : null;
+    const nextSection = noCover ? null : sectionWrapper ? sectionWrapper.nextElementSibling : null;
 
     if (nextSection) nextSection.classList.add('custom-banner-cover-section');
 

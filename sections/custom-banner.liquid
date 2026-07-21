@@ -2,7 +2,13 @@
 <script src="{{ 'gsap.min.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'custom-banner.js' | asset_url }}" defer="defer"></script>
 
-<div class="custom-banner-pin-space" data-custom-banner-pin>
+<div
+  class="custom-banner-pin-space"
+  data-custom-banner-pin
+  {% if request.page_type == 'index' %}
+    data-custom-banner-no-cover
+  {% endif %}
+>
   <div class="custom-banner-sticky" data-custom-banner-sticky>
     <div class="custom-banner-container">
       {%- if section.settings.media_type == 'video' and section.settings.banner_video != blank -%}
