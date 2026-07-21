@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Tambahkan ke keranjang",
+      "wishlist_add": "Tambahkan ke wishlist",
+      "wishlist_remove": "Hapus dari wishlist",
       "description": "Deskripsi",
       "on_sale": "Obral",
       "product_variants": "Varian produk",

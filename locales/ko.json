@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "카트에 추가",
+      "wishlist_add": "위시리스트에 추가",
+      "wishlist_remove": "위시리스트에서 제거",
       "description": "설명",
       "on_sale": "할인",
       "product_variants": "제품 이형 상품",

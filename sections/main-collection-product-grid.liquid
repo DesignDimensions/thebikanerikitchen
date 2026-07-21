@@ -4,6 +4,7 @@
 
 {%- if section.settings.filter_type == 'minimal' -%}
   <script src="{{ 'card-product-shop.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
   {% comment %} card-product-shop's add-to-cart form always needs <product-form>, regardless of the quick_add setting {% endcomment %}
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}

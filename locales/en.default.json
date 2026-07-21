@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Add to cart",
+      "wishlist_add": "Add to wishlist",
+      "wishlist_remove": "Remove from wishlist",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",

@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Lisää ostoskoriin",
+      "wishlist_add": "Lisää toivelistalle",
+      "wishlist_remove": "Poista toivelistalta",
       "description": "Kuvaus",
       "on_sale": "Alennusmyynti",
       "quantity": {

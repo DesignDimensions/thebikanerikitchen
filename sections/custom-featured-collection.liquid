@@ -12,6 +12,7 @@
 {% comment %} Loaded after component-card.css so its rules always win on equal specificity {% endcomment %}
 {{ 'card-product-shop.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'card-product-shop.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
 {% comment %} card-product-shop's add-to-cart form always needs <product-form> {% endcomment %}
 <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
 

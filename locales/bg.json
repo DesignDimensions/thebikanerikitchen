@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Добавяне към количката",
+      "wishlist_add": "Добавяне към желани",
+      "wishlist_remove": "Премахване от желани",
       "description": "Описание",
       "on_sale": "Разпродажба",
       "quantity": {

@@ -45,6 +45,10 @@ product-info variant-selects {
   padding-left: 0;
 }
 
+.product__media-wrapper .global-media-settings {
+  border-color: transparent;
+}
+
 @media screen and (min-width: 750px) {
   .product__column-sticky {
     display: block;
@@ -1661,6 +1665,10 @@ a.product__text {
   max-width: calc(100% - calc(var(--media-border-width) * 2));
 }
 
+.product-media-container.media-fit-cover {
+  margin-left: -1px;
+}
+
 .product-media-container.constrain-height {
   /* arbitrary offset value based on average theme spacing and header height */
   --viewport-offset: 400px;
@@ -1725,6 +1733,7 @@ a.product__text {
 .product-media-container .product__modal-opener {
   display: block;
   position: relative;
+  margin-top: -1px;
 }
 
 @media screen and (min-width: 750px) {

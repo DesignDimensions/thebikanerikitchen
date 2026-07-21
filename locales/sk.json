@@ -109,6 +109,8 @@
   "products": {
     "product": {
       "add_to_cart": "Pridať do košíka",
+      "wishlist_add": "Pridať do zoznamu želaní",
+      "wishlist_remove": "Odstrániť zo zoznamu želaní",
       "description": "Popis",
       "on_sale": "Zľava",
       "product_variants": "Varianty produktu",

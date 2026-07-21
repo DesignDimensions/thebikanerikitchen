@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Hozzáadás a kosárhoz",
+      "wishlist_add": "Hozzáadás a kívánságlistához",
+      "wishlist_remove": "Eltávolítás a kívánságlistáról",
       "description": "Leírás",
       "on_sale": "Akciós",
       "product_variants": "Termékváltozatok",

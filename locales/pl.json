@@ -109,6 +109,8 @@
   "products": {
     "product": {
       "add_to_cart": "Dodaj do koszyka",
+      "wishlist_add": "Dodaj do listy życzeń",
+      "wishlist_remove": "Usuń z listy życzeń",
       "description": "Opis",
       "on_sale": "W promocji",
       "share": "Udostępnij ten produkt",

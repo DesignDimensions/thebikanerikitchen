@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Sepete ekle",
+      "wishlist_add": "İstek listesine ekle",
+      "wishlist_remove": "İstek listesinden kaldır",
       "description": "Açıklama",
       "on_sale": "İndirim",
       "quantity": {

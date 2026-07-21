@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "เพิ่มลงในตะกร้าสินค้า",
+      "wishlist_add": "เพิ่มในรายการโปรด",
+      "wishlist_remove": "นำออกจากรายการโปรด",
       "description": "คำอธิบาย",
       "on_sale": "ลดราคา",
       "quantity": {

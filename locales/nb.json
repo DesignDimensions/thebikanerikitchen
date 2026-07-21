@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Legg i handlekurv",
+      "wishlist_add": "Legg til i ønskeliste",
+      "wishlist_remove": "Fjern fra ønskeliste",
       "description": "Beskrivelse",
       "on_sale": "Salg",
       "quantity": {

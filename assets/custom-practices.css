@@ -81,8 +81,8 @@
   }
 
   .custom-practices-body p {
-    font-size: 20px;
-    line-height: 28px;
+    font-size: 17px;
+    line-height: 25px;
   }
 
   .custom-practices-image {
@@ -115,11 +115,6 @@
 
   .custom-practices-body {
     margin-bottom: 40px;
-  }
-
-  .custom-practices-body p {
-    font-size: 17px;
-    line-height: 25px;
   }
 
   .custom-practices-image {

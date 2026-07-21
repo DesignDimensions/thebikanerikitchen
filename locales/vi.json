@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Thêm vào giỏ hàng",
+      "wishlist_add": "Thêm vào danh sách yêu thích",
+      "wishlist_remove": "Xóa khỏi danh sách yêu thích",
       "description": "Mô tả",
       "on_sale": "Giảm giá",
       "product_variants": "Mẫu mã sản phẩm",

@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Aan winkelwagen toevoegen",
+      "wishlist_add": "Toevoegen aan verlanglijst",
+      "wishlist_remove": "Verwijderen van verlanglijst",
       "description": "Beschrijving",
       "on_sale": "Aanbieding",
       "quantity": {

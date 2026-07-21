@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "カートに追加する",
+      "wishlist_add": "ウィッシュリストに追加",
+      "wishlist_remove": "ウィッシュリストから削除",
       "description": "商品説明",
       "on_sale": "セール",
       "product_variants": "商品バリエーション",

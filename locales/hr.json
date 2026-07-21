@@ -108,6 +108,8 @@
   "products": {
     "product": {
       "add_to_cart": "Dodaj u košaricu",
+      "wishlist_add": "Dodaj na listu želja",
+      "wishlist_remove": "Ukloni s liste želja",
       "description": "Opis",
       "on_sale": "Rasprodaja",
       "product_variants": "Varijante proizvoda",

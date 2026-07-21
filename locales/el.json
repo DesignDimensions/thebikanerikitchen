@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Προσθήκη στο καλάθι",
+      "wishlist_add": "Προσθήκη στη λίστα επιθυμιών",
+      "wishlist_remove": "Αφαίρεση από τη λίστα επιθυμιών",
       "description": "Περιγραφή",
       "on_sale": "Έκπτωση",
       "product_variants": "Παραλλαγές προϊόντος",

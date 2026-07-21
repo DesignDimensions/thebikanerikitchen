@@ -108,6 +108,8 @@
   "products": {
     "product": {
       "add_to_cart": "Agregar al carrito",
+      "wishlist_add": "Añadir a la lista de deseos",
+      "wishlist_remove": "Quitar de la lista de deseos",
       "description": "Descripción",
       "on_sale": "Oferta",
       "quantity": {

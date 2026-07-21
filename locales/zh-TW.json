@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "加入購物車",
+      "wishlist_add": "加入願望清單",
+      "wishlist_remove": "從願望清單移除",
       "description": "說明",
       "on_sale": "特價",
       "product_variants": "產品子類",

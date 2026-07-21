@@ -109,6 +109,8 @@
   "products": {
     "product": {
       "add_to_cart": "Įdėti į krepšelį",
+      "wishlist_add": "Pridėti į norų sąrašą",
+      "wishlist_remove": "Pašalinti iš norų sąrašo",
       "description": "Aprašymas",
       "on_sale": "Išpardavimas",
       "product_variants": "Gaminio variantai",

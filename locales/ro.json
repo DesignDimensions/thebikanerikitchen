@@ -108,6 +108,8 @@
   "products": {
     "product": {
       "add_to_cart": "Adăugați în coș",
+      "wishlist_add": "Adaugă la lista de dorințe",
+      "wishlist_remove": "Elimină din lista de dorințe",
       "description": "Descriere",
       "on_sale": "Vânzare",
       "product_variants": "Variante de produse",

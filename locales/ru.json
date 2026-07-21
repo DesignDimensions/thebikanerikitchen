@@ -109,6 +109,8 @@
   "products": {
     "product": {
       "add_to_cart": "Добавить в корзину",
+      "wishlist_add": "Добавить в избранное",
+      "wishlist_remove": "Удалить из избранного",
       "description": "Описание",
       "on_sale": "Распродажа",
       "share": "Поделиться этим продуктом",

@@ -109,6 +109,8 @@
   "products": {
     "product": {
       "add_to_cart": "Dodaj v košarico",
+      "wishlist_add": "Dodaj na seznam želja",
+      "wishlist_remove": "Odstrani s seznama želja",
       "description": "Opis",
       "on_sale": "Znižanje",
       "product_variants": "Različice izdelka",

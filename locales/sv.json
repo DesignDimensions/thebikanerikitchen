@@ -107,6 +107,8 @@
   "products": {
     "product": {
       "add_to_cart": "Lägg i varukorgen",
+      "wishlist_add": "Lägg till i önskelistan",
+      "wishlist_remove": "Ta bort från önskelistan",
       "description": "Beskrivning",
       "on_sale": "Rea",
       "quantity": {

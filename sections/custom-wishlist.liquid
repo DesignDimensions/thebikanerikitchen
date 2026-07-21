@@ -1,0 +1,129 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'template-collection.css' | asset_url | stylesheet_tag }}
+{% comment %} Loaded after component-card.css so its rules always win on equal specificity {% endcomment %}
+{{ 'card-product-shop.css' | asset_url | stylesheet_tag }}
+{{ 'custom-wishlist.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'card-product-shop.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
+{% comment %} card-product-shop's add-to-cart form always needs <product-form> {% endcomment %}
+<script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
+
+<div class="wishlist-page page-width">
+  {%- if section.settings.heading != blank -%}
+    <h1 class="wishlist-page__heading section-heading">{{ section.settings.heading | escape }}</h1>
+  {%- endif -%}
+
+  {%- if customer -%}
+    {%- assign wishlist_products = customer.metafields.custom.wishlist.value -%}
+    {%- if wishlist_products != blank and wishlist_products.size > 0 -%}
+      <ul class="grid product-grid grid--2-col-tablet-down grid--4-col-desktop" data-wishlist-page>
+        {%- for product in wishlist_products -%}
+          <li class="grid__item">
+            {% render 'card-product-shop', card_product: product, lazy_load: forloop.index > 2, section_id: section.id %}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- else -%}
+      <div class="wishlist-page__empty">
+        {%- if section.settings.empty_heading != blank -%}
+          <h2 class="wishlist-page__empty-heading">{{ section.settings.empty_heading | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.empty_body != blank -%}
+          <p class="wishlist-page__empty-body">{{ section.settings.empty_body | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.empty_button_label != blank -%}
+          <a href="{{ routes.all_products_collection_url }}" class="button wishlist-page__empty-button">
+            {{ section.settings.empty_button_label | escape }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  {%- else -%}
+    <div class="wishlist-page__empty">
+      {%- if section.settings.login_heading != blank -%}
+        <h2 class="wishlist-page__empty-heading">{{ section.settings.login_heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.login_body != blank -%}
+        <p class="wishlist-page__empty-body">{{ section.settings.login_body | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.login_button_label != blank -%}
+        <a href="{{ routes.account_login_url }}" class="button wishlist-page__empty-button">
+          {{ section.settings.login_button_label | escape }}
+        </a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Wishlist Page",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "My Wishlist"
+    },
+    {
+      "type": "header",
+      "content": "Empty state"
+    },
+    {
+      "type": "text",
+      "id": "empty_heading",
+      "label": "Heading",
+      "default": "Your wishlist is empty"
+    },
+    {
+      "type": "text",
+      "id": "empty_body",
+      "label": "Text",
+      "default": "Save products you love by tapping the heart icon on any product."
+    },
+    {
+      "type": "text",
+      "id": "empty_button_label",
+      "label": "Button label",
+      "default": "Continue Shopping"
+    },
+    {
+      "type": "header",
+      "content": "Logged out state"
+    },
+    {
+      "type": "text",
+      "id": "login_heading",
+      "label": "Heading",
+      "default": "Log in to view your wishlist"
+    },
+    {
+      "type": "text",
+      "id": "login_body",
+      "label": "Text",
+      "default": "Sign in to see the products you've saved."
+    },
+    {
+      "type": "text",
+      "id": "login_button_label",
+      "label": "Button label",
+      "default": "Log In"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Wishlist Page"
+    }
+  ]
+}
+{% endschema %}

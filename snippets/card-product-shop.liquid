@@ -46,14 +46,26 @@
       <span class="shop-card__badge">Bestseller</span>
     {%- endif -%}
 
-    <button type="button" class="shop-card__wishlist" aria-label="Add to wishlist">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Vector_1.svg?v=1784360472"
-        alt=""
-        width="22"
-        height="21"
-        loading="lazy"
-      >
+    {%- liquid
+      assign is_wishlisted = false
+      if customer and customer.metafields.custom.wishlist.value contains card_product
+        assign is_wishlisted = true
+      endif
+
+      assign is_logged_in = false
+      if customer
+        assign is_logged_in = true
+      endif
+    -%}
+    <button
+      type="button"
+      class="shop-card__wishlist{% if is_wishlisted %} is-wishlisted{% endif %}"
+      aria-label="{% if is_wishlisted %}{{ 'products.product.wishlist_remove' | t }}{% else %}{{ 'products.product.wishlist_add' | t }}{% endif %}"
+      aria-pressed="{{ is_wishlisted }}"
+      data-product-id="{{ card_product.id }}"
+      data-logged-in="{{ is_logged_in }}"
+    >
+      {{ 'icon-heart.svg' | inline_asset_content }}
     </button>
 
     <div class="shop-card__footer">
