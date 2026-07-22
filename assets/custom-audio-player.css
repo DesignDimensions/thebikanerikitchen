@@ -127,6 +127,25 @@
     will-change: transform;
 }
 
+/* Same masked-rise convention as .ha-mask/.ha-unit in site-animations.js
+   (see custom-story-text-heading): the mask clips while the text travels
+   up into place. custom-audio-player.js runs its own small rise on this
+   pair whenever the label swaps between "Play audio"/"Pause audio",
+   rather than the site-wide script's one-time scroll reveal, since this
+   text changes repeatedly in response to playback state instead of once
+   on scroll-enter. */
+.custom-audio-player-cursor-tag-text-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.custom-audio-player-cursor-tag-text {
+    display: inline-block;
+    vertical-align: top;
+    will-change: transform;
+}
+
 @media (hover: none),
 (pointer: coarse) {
     .custom-audio-player-cursor-tag {
@@ -607,12 +626,7 @@
 
     .custom-audio-player_puppet_bottom-image {
         bottom: -94px;
-        width: 71%;
-    }
-
-    .custom-audio-player-overlay .page-width {
-        top: 13%;
-        width: 68%;
+        width: 50%;
     }
 
     .custom-audio-player-language-button {
@@ -622,13 +636,49 @@
     .custom-audio-player-language-pill {
         width: calc(50% - 14px);
     }
+
+    /* Below this width the transcript can run long enough to overflow a
+       fixed-aspect hero, so the section switches from "image dictates
+       height, content clips to fit" to "content dictates height, image
+       covers whatever that ends up being" — the reverse of the desktop
+       relationship. The image becomes the absolute layer and the overlay
+       (and its card) become normal-flow content instead. */
+    .custom-audio-player-hero {
+        aspect-ratio: unset;
+        height: auto;
+    }
+
+    .custom-audio-player_mobile-image {
+        position: absolute;
+        inset: 0;
+        object-fit: cover;
+    }
+
+    .custom-audio-player-overlay {
+        padding: 85px 65px 155px;
+        position: relative;
+        inset: auto;
+    }
+
+    .custom-audio-player-overlay .page-width {
+        position: static;
+        top: auto;
+        left: auto;
+        width: 100%;
+        transform: none;
+    }
+}
+
+@media(max-width: 500px) {
+    .custom-audio-player_puppet_bottom-image {
+        width: 71%;
+    }
 }
 
 @media(max-width: 400px) {
-    .custom-audio-player-overlay .page-width {
-        top: 10%;
-        width: 75%;
-    }
+    /* .custom-audio-player-overlay .page-width is position:static from
+       700px down (content-driven height), so the top/width offsets that
+       used to apply here don't mean anything at this width anymore. */
 
     .custom-audio-player_puppet_right-image {
         right: -3%;

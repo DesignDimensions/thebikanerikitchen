@@ -143,13 +143,36 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     };
 
+    // Same masked-rise motion as the site's heading signature (see
+    // .ha-mask/.ha-unit in site-animations.js, e.g. custom-story-text-heading)
+    // — the mask clips while the label rises up into place. Run on demand
+    // for a repeated text swap instead of that script's one-time scroll
+    // reveal, since this label changes with playback state, not once on
+    // scroll-enter: the outgoing label rises up and out, then the incoming
+    // one rises up from below, in the same continuous upward direction.
+    const updateCursorTagLabel = (text) => {
+      if (!cursorTagText || cursorTagText.textContent === text) return;
+      if (!fx) {
+        cursorTagText.textContent = text;
+        return;
+      }
+      gsap
+        .timeline()
+        .to(cursorTagText, { yPercent: -120, duration: 0.3, ease: 'power3.in' })
+        .call(() => {
+          cursorTagText.textContent = text;
+        })
+        .set(cursorTagText, { yPercent: 120 })
+        .to(cursorTagText, { yPercent: 0, duration: 0.5, ease: 'power4.out' });
+    };
+
     const setPlayState = (isPlaying) => {
       const wasPlaying = playButton.classList.contains('is-playing');
       playButton.classList.toggle('is-playing', isPlaying);
       playButton.setAttribute('aria-label', isPlaying ? 'Pause' : 'Play');
       playButton.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
       playButton.dataset.playing = isPlaying ? 'true' : 'false';
-      if (cursorTagText) cursorTagText.textContent = isPlaying ? 'Pause audio' : 'Play audio';
+      updateCursorTagLabel(isPlaying ? 'Pause audio' : 'Play audio');
 
       if (wasPlaying === isPlaying) return;
       if (isPlaying) startProgressTicker();

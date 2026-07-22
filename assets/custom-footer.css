@@ -177,7 +177,7 @@
 
   .custom-footer__lists {
     flex-direction: column;
-    gap: 2rem;
+    gap: .9rem;
   }
 
   .custom-footer__social.list-social {
