@@ -6,87 +6,111 @@
   data-section-id="{{ section.id }}"
   data-default-language="{{ section.settings.default_language }}"
 >
-  <img
-    src="{{ section.settings.banner_image | image_url }}"
-    alt="{{ section.settings.banner_image.alt | escape }}"
-    class="custom-audio-player_desktop-image"
-  >
-  <img
-    src="{{ section.settings.mobile_banner_image | image_url  }}"
-    alt="{{ section.settings.mobile_banner_image.alt | escape }}"
-    class="custom-audio-player_mobile-image"
-  >
-  <img
-    src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_1321316321_c2fbc869-cc6a-476d-98fd-1e0f0c642c07.png?v=1784198182"
-    class="custom-audio-player_puppet_right-image"
-  >
-  <img
-    src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_1321316323_ae40aac4-e5d7-423c-9cb7-f9068c3605a3.png?v=1784198183"
-    class="custom-audio-player_puppet_left-image"
-  >
-  <div class="custom-audio-player-overlay">
-    <div class="custom-audio-player-card">
-      <h1 class="section-heading custom-audio-player-heading">{{ section.settings.heading }}</h1>
-      <div class="custom-audio-player-controls">
-        <button type="button" class="custom-audio-player-playpause" aria-pressed="false" aria-label="Play">
-          <span class="custom-audio-player-icon custom-audio-player-icon-play" aria-hidden="true">
-            <svg viewBox="0 0 16 16" fill="currentColor">
-              <path d="M3.62 3.7c0-.8.87-1.3 1.56-.9l7.2 4.3a1.03 1.03 0 0 1 0 1.8l-7.2 4.3c-.69.4-1.56-.1-1.56-.9v-8.6z"/>
-            </svg>
-          </span>
-          <span class="custom-audio-player-icon custom-audio-player-icon-pause" aria-hidden="true">
-            <svg viewBox="0 0 16 16" fill="currentColor">
-              <rect x="3" y="2.5" width="3.2" height="11" rx="1"/><rect x="9.8" y="2.5" width="3.2" height="11" rx="1"/>
-            </svg>
-          </span>
-        </button>
-        <div class="custom-audio-player-progress-bar">
-          <div class="custom-audio-player-progress-fill">.</div>
-        </div>
-        <div class="custom-audio-player-current-time">0:00</div>
-      </div>
+  <div class="custom-audio-player-hero">
+    <img
+      src="{{ section.settings.banner_image | image_url }}"
+      alt="{{ section.settings.banner_image.alt | escape }}"
+      class="custom-audio-player_desktop-image"
+    >
+    <img
+      src="{{ section.settings.mobile_banner_image | image_url  }}"
+      alt="{{ section.settings.mobile_banner_image.alt | escape }}"
+      class="custom-audio-player_mobile-image"
+    >
+    <div class="page-width custom-audio-player-hero-inner">
+      <img
+        src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_1321316321_c2fbc869-cc6a-476d-98fd-1e0f0c642c07.png?v=1784198182"
+        class="custom-audio-player_puppet_right-image"
+      >
+      <img
+        src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_1321316323_ae40aac4-e5d7-423c-9cb7-f9068c3605a3.png?v=1784198183"
+        class="custom-audio-player_puppet_left-image"
+      >
+      <img
+        src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Group_1321316342.png?v=1784713400"
+        class="custom-audio-player_puppet_bottom-image"
+      >
 
-      {%- if section.blocks.size > 0 -%}
-        <div class="custom-audio-player-subtitles">
-          <div class="custom-audio-player-subtitles-track">
-            {%- for block in section.blocks -%}
-              {%- liquid
-                assign time_parts = block.settings.start_time | split: ':'
-                assign start_seconds = 0
-                if time_parts.size == 2
-                  assign start_seconds = time_parts[0] | times: 60 | plus: time_parts[1]
-                elsif time_parts.size == 1
-                  assign start_seconds = time_parts[0] | plus: 0
-                endif
-              -%}
-              <div
-                class="custom-audio-player-subtitle-line"
-                data-start="{{ start_seconds }}"
-                {{ block.shopify_attributes }}
-              >
-                {%- if block.settings.hindi != blank -%}
-                  <p class="custom-audio-player-subtitle-text custom-audio-player-subtitle-hi">
-                    {{ block.settings.hindi }}
-                  </p>
-                {%- endif -%}
-                {%- if block.settings.english != blank -%}
-                  <p class="custom-audio-player-subtitle-text custom-audio-player-subtitle-en">
-                    {{ block.settings.english }}
-                  </p>
-                {%- endif -%}
-              </div>
-            {%- endfor -%}
+      <div class="custom-audio-player-cursor-tag" aria-hidden="true">
+        <span class="custom-audio-player-cursor-tag-flip">
+          <span class="custom-audio-player-cursor-tag-text">Play audio</span>
+        </span>
+      </div>
+    </div>
+
+    <div class="custom-audio-player-overlay">
+      <div class="page-width">
+        <div class="custom-audio-player-card">
+          <h1 class="section-heading custom-audio-player-heading">{{ section.settings.heading }}</h1>
+
+          {%- if section.blocks.size > 0 -%}
+            <div class="custom-audio-player-transcript" data-language="{{ section.settings.default_language }}">
+              <p class="custom-audio-player-transcript-text custom-audio-player-transcript-hi" lang="hi">
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.hindi != blank -%}
+                    <span class="custom-audio-player-transcript-line" {{ block.shopify_attributes }}>
+                      {{- block.settings.hindi -}}
+                    </span>
+                    {{- ' ' }}
+                  {%- endif -%}
+                {%- endfor -%}
+              </p>
+              <p class="custom-audio-player-transcript-text custom-audio-player-transcript-en" lang="en">
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.english != blank -%}
+                    <span class="custom-audio-player-transcript-line" {{ block.shopify_attributes }}>
+                      {{- block.settings.english -}}
+                    </span>
+                    {{- ' ' }}
+                  {%- endif -%}
+                {%- endfor -%}
+              </p>
+            </div>
+          {%- endif -%}
+
+          <div class="custom-audio-player-language-switcher">
+            <span class="custom-audio-player-language-pill" aria-hidden="true"></span>
+            <button type="button" class="custom-audio-player-language-button" data-language="hi">हिन्दी</button>
+            <button type="button" class="custom-audio-player-language-button" data-language="en">ENGLISH</button>
           </div>
+          <audio
+            class="custom-audio-player-audio"
+            preload="metadata"
+            data-src-hi="{{ section.settings.audio_url | default: section.settings.audio_url_english }}"
+            data-src-en="{{ section.settings.audio_url_english | default: section.settings.audio_url }}"
+          ></audio>
         </div>
-      {%- endif -%}
-
-      <div class="custom-audio-player-language-switcher">
-        <span class="custom-audio-player-language-pill" aria-hidden="true"></span>
-        <button type="button" class="custom-audio-player-language-button" data-language="hi">हिन्दी</button>
-        <button type="button" class="custom-audio-player-language-button" data-language="en">ENGLISH</button>
       </div>
+    </div>
+  </div>
 
-      <audio class="custom-audio-player-audio" preload="metadata" src="{{ section.settings.audio_url }}"></audio>
+  <div class="custom-audio-player-controls">
+    <div class="page-width custom-audio-player-controls-inner">
+      <button type="button" class="custom-audio-player-playpause" aria-pressed="false" aria-label="Play">
+        <span class="custom-audio-player-icon custom-audio-player-icon-play" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <path d="M3.62 3.7c0-.8.87-1.3 1.56-.9l7.2 4.3a1.03 1.03 0 0 1 0 1.8l-7.2 4.3c-.69.4-1.56-.1-1.56-.9v-8.6z"/>
+          </svg>
+        </span>
+        <span class="custom-audio-player-icon custom-audio-player-icon-pause" aria-hidden="true">
+          <svg viewBox="0 0 16 16" fill="currentColor">
+            <rect x="3" y="2.5" width="3.2" height="11" rx="1"/><rect x="9.8" y="2.5" width="3.2" height="11" rx="1"/>
+          </svg>
+        </span>
+      </button>
+
+      <div
+        class="custom-audio-player-progress-bar"
+        role="slider"
+        tabindex="0"
+        aria-label="Seek audio"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+      >
+        <div class="custom-audio-player-progress-fill"></div>
+        <div class="custom-audio-player-progress-handle"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -106,7 +130,7 @@
       "label": "Mobile BG Image"
     },
     {
-      "type": "text",
+      "type": "textarea",
       "id": "heading",
       "label": "Heading",
       "default": "Aao Sune Kahani Bikaneri Bhujia Ki"
@@ -114,13 +138,19 @@
     {
       "type": "url",
       "id": "audio_url",
-      "label": "Audio URL",
-      "info": "Paste the direct URL to an audio file."
+      "label": "Hindi Audio URL",
+      "info": "Paste the direct URL to an audio file. Used for English too if no English audio URL is set below."
+    },
+    {
+      "type": "url",
+      "id": "audio_url_english",
+      "label": "English Audio URL",
+      "info": "Optional. Falls back to the Hindi audio URL above if left blank."
     },
     {
       "type": "select",
       "id": "default_language",
-      "label": "Default Subtitle Language",
+      "label": "Default Language",
       "options": [
         {
           "value": "hi",
@@ -137,15 +167,8 @@
   "blocks": [
     {
       "type": "subtitle_line",
-      "name": "Subtitle line",
+      "name": "Transcript line",
       "settings": [
-        {
-          "type": "text",
-          "id": "start_time",
-          "label": "Start time",
-          "info": "Format m:ss — the point in the track where this line should highlight, e.g. 0:05.",
-          "default": "0:00"
-        },
         {
           "type": "textarea",
           "id": "hindi",
@@ -164,16 +187,10 @@
       "name": "Custom Audio Player",
       "blocks": [
         {
-          "type": "subtitle_line",
-          "settings": {
-            "start_time": "0:00"
-          }
+          "type": "subtitle_line"
         },
         {
-          "type": "subtitle_line",
-          "settings": {
-            "start_time": "0:05"
-          }
+          "type": "subtitle_line"
         }
       ]
     }

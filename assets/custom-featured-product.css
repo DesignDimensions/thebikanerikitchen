@@ -6,6 +6,7 @@
     width: 100%;
     /* aspect-ratio: 1440/780; */
     height: 100vh;
+    max-height: 1000px;
 }
 
 .bg-image--mobile {
@@ -57,7 +58,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    height: 85vh !important;
+    height: 85% !important;
     transform: translate(-50%, -50%);
     width: 100%;
 }
@@ -216,6 +217,7 @@
         display: block;
         height: auto;
         min-height: 0;
+        max-height: unset;
     }
 
     .bg-image--desktop {
@@ -295,6 +297,7 @@
         right: 0;
         top: 50%;
         transform: translateY(-50%);
+        min-height: 70%;
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(1) {

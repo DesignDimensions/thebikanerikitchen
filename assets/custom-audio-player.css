@@ -1,12 +1,32 @@
 .custom-audio-player-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Everything that used to size/clip against the container now does it
+   here instead, so .custom-audio-player-controls can sit below as a
+   normal-height full-width bar rather than fighting the hero for space
+   inside one aspect-ratio box. */
+.custom-audio-player-hero {
     position: relative;
     width: 100%;
-    /* aspect-ratio: 1440/1024; */
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    aspect-ratio: 1440 / 740;
+    height: auto;
+    max-height: 1000px;
     overflow: hidden;
+}
+
+/* Scoped to this one instance on purpose — NOT a change to the shared
+   .page-width utility. This is what makes the puppets' left/right %
+   below resolve against the centered content column's width instead of
+   the full-bleed hero, while height:100% keeps their pixel top/bottom
+   offsets anchored the same as when they sized against .hero directly.
+   .custom-audio-player-overlay stays a sibling of this, not a child, so
+   its full-bleed gradient wash still sizes against .hero, unaffected. */
+.custom-audio-player-hero-inner {
+    position: relative;
+    height: 100%;
 }
 
 .custom-audio-player_desktop-image {
@@ -17,6 +37,7 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    object-position: center 84%;
 }
 
 .custom-audio-player_mobile-image {
@@ -34,27 +55,120 @@
     align-items: center;
     padding: 24px;
     background: linear-gradient(180deg, rgba(20, 8, 6, 0.1) 0%, rgba(20, 8, 6, 0.4) 100%);
+    cursor: pointer;
+}
+
+.custom-audio-player-overlay .page-width {
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .custom-audio-player-card {
     width: 100%;
-    max-width: 42%;
+    max-width: 100%;
     text-align: center;
     color: #FFFDEE;
 }
 
 .custom-audio-player-heading {
-    max-width: 80%;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Cursor tag: a small pill that follows to the right of the pointer
+   anywhere over this section (outside the controls that have their own
+   precise affordance) and toggles playback on click. The real cursor
+   stays visible — this rides alongside it, not in place of it. JS only
+   ever adds .has-cursor-tag when GSAP is present, motion is allowed and
+   the pointer is a fine/hover one, so the section is never left without
+   a visible way to control playback.
+   Split into two elements on purpose: this outer one only ever gets
+   translated (x/y/xPercent/yPercent in custom-audio-player.js) to follow
+   the cursor — it never rotates. Combining percentage-based translation
+   with 3D rotation on the SAME element was producing a sheared
+   parallelogram instead of a clean flip, so the rotation lives on
+   .custom-audio-player-cursor-tag-flip below instead, which only ever
+   rotates and never moves. */
+.custom-audio-player-cursor-tag {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    display: none;
+    pointer-events: none;
+    will-change: transform;
+}
+
+.custom-audio-player-container.has-cursor-tag .custom-audio-player-cursor-tag {
+    display: flex;
+}
+
+/* backface-visibility guards the 3D open/close flip (custom-audio-player.js
+   tweens rotationX on this element) so an elastic overshoot past 90deg
+   never flashes the mirrored backside of the text mid-animation. */
+.custom-audio-player-cursor-tag-flip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px;
+    background: #570f13;
+    color: #FFFDEE;
+    font-family: 'Proxima Nova A', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+@media (hover: none),
+(pointer: coarse) {
+    .custom-audio-player-cursor-tag {
+        display: none !important;
+    }
+}
+
+.custom-audio-player-transcript {
+    position: relative;
+    max-width: 640px;
+    margin: 0 auto 28px;
+}
+
+.custom-audio-player-transcript-text {
+    display: none;
+    margin: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    font-weight: 300;
+    color: #181818;
+    text-align: center;
+}
+
+.custom-audio-player-transcript[data-language="hi"] .custom-audio-player-transcript-hi,
+.custom-audio-player-transcript[data-language="en"] .custom-audio-player-transcript-en {
+    display: block;
 }
 
 .custom-audio-player-controls {
+    width: 100%;
+    background-color: #570f13;
+}
+
+/* .page-width gives this the site's standard max-width/side-margins;
+   this class only adds the row layout on top of it. */
+.custom-audio-player-controls-inner {
     display: flex;
     align-items: center;
-    gap: 14px;
-    background-color: #ffffff30;
-    margin: 0 auto 20px;
-    border-radius: 500px;
-    padding: 8px;
+    gap: 18px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .custom-audio-player-playpause {
@@ -62,19 +176,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    border: none;
-    background: #181818;
+    border: 1.5px solid #FFFDEE;
+    background: transparent;
     color: #FFFDEE;
     cursor: pointer;
-    transition: background 0.25s ease;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
     transform-origin: center;
 }
 
-.custom-audio-player-playpause:hover {
-    background: #000;
+.custom-audio-player-playpause:hover,
+.custom-audio-player-playpause.is-playing {
+    background: #FFFDEE;
+    border-color: #FFFDEE;
+    color: #570f13;
 }
 
 .custom-audio-player-playpause:active {
@@ -110,17 +227,47 @@
 }
 
 .custom-audio-player-progress-bar {
+    position: relative;
     flex: 1;
-    height: 3px;
+    min-width: 0;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    touch-action: none;
+}
+
+.custom-audio-player-progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transform: translateY(-50%);
     border-radius: 2px;
-    background: rgba(255, 253, 238, 0.3);
-    overflow: hidden;
+    background: rgba(255, 253, 238, 0.26)
+}
+
+.custom-audio-player-progress-bar:focus-visible {
+    outline: none;
+}
+
+.custom-audio-player-progress-bar:focus-visible::before {
+    background: rgba(24, 24, 24, 0.32);
 }
 
 .custom-audio-player-progress-fill {
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 4px;
     width: 0%;
-    background: #181818;
+    transform: translateY(-50%);
+    border-radius: 2px;
+    background: #fff;
+    display: flex !important;
+
     /* No CSS transition here on purpose — JS drives this every animation
        frame (see custom-audio-player.js), which is already continuous.
        Layering a transition on top of per-frame updates would make each
@@ -128,12 +275,26 @@
        of smooth. */
 }
 
-.custom-audio-player-current-time {
-    flex-shrink: 0;
-    min-width: 34px;
-    font-family: 'Helvetica Neue', sans-serif;
-    font-size: 12px;
-    color: rgba(255, 253, 238, 0.85);
+.custom-audio-player-progress-handle {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    transform: translate(-50%, -50%) scale(0.9);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    display: flex !important;
+}
+
+.custom-audio-player-progress-bar:hover .custom-audio-player-progress-handle,
+.custom-audio-player-progress-bar:focus-visible .custom-audio-player-progress-handle,
+.custom-audio-player-progress-bar.is-scrubbing .custom-audio-player-progress-handle {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.4);
+    display: flex !important;
 }
 
 .custom-audio-player-language-switcher {
@@ -180,46 +341,6 @@
     transform: scale(0.96);
 }
 
-.custom-audio-player-subtitles {
-    position: relative;
-    height: 104px;
-    overflow: hidden;
-    margin-bottom: 20px;
-    text-align: left;
-    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 78%, transparent 100%);
-    mask-image: linear-gradient(180deg, transparent 0, #000 22%, #000 78%, transparent 100%);
-}
-
-.custom-audio-player-subtitles-track {
-    /* GSAP drives transform (see custom-audio-player.js); no CSS transition
-       here so its own easing isn't fighting a second one. */
-    will-change: transform;
-}
-
-.custom-audio-player-subtitle-line {
-    padding: 3px 0;
-    opacity: 0.42;
-}
-
-.custom-audio-player-subtitle-line.active {
-    opacity: 1;
-}
-
-.custom-audio-player-subtitle-text {
-    margin: 0;
-    font-family: 'Helvetica Neue', sans-serif;
-    font-size: 15px;
-    line-height: 1.3;
-    color: #181818;
-    font-weight: 300;
-    text-align: center;
-    transition: font-weight 0.3s ease;
-}
-
-.custom-audio-player-subtitle-line.active .custom-audio-player-subtitle-text {
-    font-weight: 500;
-}
-
 .custom-audio-player-audio {
     display: none;
 }
@@ -227,7 +348,7 @@
 .custom-audio-player_puppet_right-image {
     position: absolute;
     top: -50px;
-    right: 12%;
+    right: 3%;
     width: 19rem;
     animation: puppet-bob-right 6s ease-in-out infinite;
     will-change: transform;
@@ -236,11 +357,19 @@
 .custom-audio-player_puppet_left-image {
     position: absolute;
     top: -340px;
-    left: 12%;
+    left: 3%;
     width: 19rem;
     animation: puppet-bob-left 8s ease-in-out infinite;
     animation-delay: -1.1s;
     will-change: transform;
+}
+
+.custom-audio-player_puppet_bottom-image {
+    position: absolute;
+    bottom: -160px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
 }
 
 /* Two different periods/offsets so the puppets drift in and out of
@@ -277,9 +406,86 @@
     }
 }
 
-@media(max-width: 749px) {
-    .custom-audio-player-container {
-        height: unset;
+@media(max-width:2400px) {
+    .custom-audio-player_puppet_bottom-image {
+        bottom: -132px;
+        width: 30%;
+    }
+}
+
+@media(max-width:2200px) {
+    .custom-audio-player_puppet_bottom-image {
+        bottom: -98px;
+        width: 23%;
+    }
+
+    .custom-audio-player_puppet_left-image {
+        top: -370px;
+        left: 9%;
+        width: 16rem;
+    }
+
+    .custom-audio-player_puppet_right-image {
+        top: -80px;
+        right: 9%;
+        width: 16rem;
+    }
+
+    .custom-audio-player-hero {
+        aspect-ratio: 1440 / 600;
+    }
+}
+
+@media(max-width:1500px) {
+    .custom-audio-player_puppet_right-image {
+        top: -70px;
+        right: 4%;
+        width: 13rem;
+    }
+
+    .custom-audio-player_puppet_left-image {
+        top: -240px;
+        left: 4%;
+        width: 13rem;
+    }
+
+    .custom-audio-player-overlay .page-width {
+        top: 20%;
+        width: 70%;
+    }
+
+    .custom-audio-player-hero {
+        aspect-ratio: 1440 / 780;
+    }
+
+    .custom-audio-player_puppet_bottom-image {
+        bottom: -127px;
+        width: 29%;
+    }
+}
+
+@media(max-width:1200px) {
+    .custom-audio-player_puppet_bottom-image {
+        bottom: -101px;
+        width: 31%;
+    }
+
+    .custom-audio-player-hero {
+        aspect-ratio: 1440 / 950;
+    }
+}
+
+@media(max-width: 980px) {
+    .custom-audio-player-hero-inner {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        left: 0;
+    }
+
+    .custom-audio-player-hero {
+        aspect-ratio: 201 / 314;
+        max-height: unset;
     }
 
     .section-template--21320554414274__custom_featured_collection_TzThmV-padding {
@@ -287,9 +493,10 @@
     }
 
     .custom-audio-player_puppet_right-image {
-        right: -7%;
+        right: -2%;
         animation: puppet-bob-right 10s ease-in-out infinite;
-        width: 9rem;
+        width: 12rem;
+        top: -60px;
     }
 
     @keyframes puppet-bob-right {
@@ -317,8 +524,8 @@
     }
 
     .custom-audio-player_puppet_left-image {
-        left: -8%;
-        width: 9rem;
+        left: -2%;
+        width: 12rem;
     }
 
     .custom-audio-player_desktop-image {
@@ -348,14 +555,25 @@
         margin: 0 0 20px 4px;
     }
 
-    .custom-audio-player-controls {
-        gap: 10px;
-        margin-bottom: 16px;
+    .custom-audio-player-transcript {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .custom-audio-player-transcript-text {
+        font-size: 14px;
+        text-align: left;
+    }
+
+    .custom-audio-player-controls-inner {
+        gap: 12px;
+        padding-top: 14px;
+        padding-bottom: 14px;
     }
 
     .custom-audio-player-playpause {
-        width: 32px;
-        height: 32px;
+        width: 36px;
+        height: 36px;
     }
 
     .custom-audio-player-icon {
@@ -373,12 +591,53 @@
         letter-spacing: 2.5px;
         width: 100px;
     }
+}
 
-    .custom-audio-player-subtitles {
-        height: 84px;
+@media(max-width: 700px) {
+    .custom-audio-player_puppet_right-image {
+        right: -4%;
+        width: 9rem;
+        top: -50px;
     }
 
-    .custom-audio-player-subtitle-text {
-        font-size: 13px;
+    .custom-audio-player_puppet_left-image {
+        left: -5%;
+        width: 9rem;
+    }
+
+    .custom-audio-player_puppet_bottom-image {
+        bottom: -94px;
+        width: 71%;
+    }
+
+    .custom-audio-player-overlay .page-width {
+        top: 13%;
+        width: 68%;
+    }
+
+    .custom-audio-player-language-button {
+        width: 50% !important;
+    }
+
+    .custom-audio-player-language-pill {
+        width: calc(50% - 14px);
+    }
+}
+
+@media(max-width: 400px) {
+    .custom-audio-player-overlay .page-width {
+        top: 10%;
+        width: 75%;
+    }
+
+    .custom-audio-player_puppet_right-image {
+        right: -3%;
+        width: 6rem;
+        top: -49px;
+    }
+
+    .custom-audio-player_puppet_left-image {
+        left: -3%;
+        width: 6rem;
     }
 }

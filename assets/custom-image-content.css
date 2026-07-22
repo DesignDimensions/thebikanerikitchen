@@ -5,6 +5,7 @@
     aspect-ratio: 1440 / 640;
     width: 100%;
     height: auto;
+    max-height: 1000px;
     position: relative;
     background-size: cover !important;
     background-position: center !important;

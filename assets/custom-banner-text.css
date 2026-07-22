@@ -5,6 +5,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 1440/467;
+    max-height: 1000px;
 }
 
 .custom-banner-text_desktop-image {
