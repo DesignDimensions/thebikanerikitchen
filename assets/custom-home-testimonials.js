@@ -89,7 +89,47 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDragging = false;
     let dragStartScrollLeft = 0;
 
+    // iOS Safari fires `scroll` events sparsely/inconsistently during a
+    // native scrollBy/scrollTo(behavior:'smooth') animation, so guessing
+    // "animation done" from a settle timer (below) fires while WebKit's own
+    // smooth-scroll is still mid-flight — it and correctBounds/snap then
+    // fight over scrollLeft, seen as a jump/stutter on iOS only. Driving the
+    // animation ourselves via rAF makes "done" exact instead of guessed.
+    let scrollAnimationFrame = null;
+    const stopScrollAnimation = () => {
+      if (scrollAnimationFrame) cancelAnimationFrame(scrollAnimationFrame);
+      scrollAnimationFrame = null;
+    };
+    const easeInOutQuad = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
+    const SCROLL_DURATION = 500;
+    const animateScrollTo = (target, { duration = SCROLL_DURATION, onComplete } = {}) => {
+      stopScrollAnimation();
+      if (reduceMotion || duration <= 0) {
+        viewport.scrollLeft = target;
+        if (onComplete) onComplete();
+        return;
+      }
+      const start = viewport.scrollLeft;
+      const distance = target - start;
+      const startTime = performance.now();
+      const tick = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        viewport.scrollLeft = start + distance * easeInOutQuad(progress);
+        if (progress < 1) {
+          scrollAnimationFrame = requestAnimationFrame(tick);
+        } else {
+          scrollAnimationFrame = null;
+          if (onComplete) onComplete();
+        }
+      };
+      scrollAnimationFrame = requestAnimationFrame(tick);
+    };
+
     const correctBounds = () => {
+      // Cancel first: a resize or drag can interrupt mid-animation, and a
+      // stale rAF loop would otherwise keep overwriting scrollLeft next
+      // frame with a target computed against pre-correction coordinates.
+      stopScrollAnimation();
       if (viewport.scrollLeft >= setWidth * (COPIES - 2)) {
         viewport.scrollLeft -= setWidth;
         if (isDragging) dragStartScrollLeft -= setWidth;
@@ -100,10 +140,10 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const stepForward = () => {
-      viewport.scrollBy({ left: cardStep, behavior: reduceMotion ? 'auto' : 'smooth' });
+      animateScrollTo(viewport.scrollLeft + cardStep, { onComplete: correctBounds });
     };
     const stepBackward = () => {
-      viewport.scrollBy({ left: -cardStep, behavior: reduceMotion ? 'auto' : 'smooth' });
+      animateScrollTo(viewport.scrollLeft - cardStep, { onComplete: correctBounds });
     };
 
     // Free-form dragging/touch/wheel scrolling can come to rest mid-card;
@@ -112,15 +152,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // no race between a native snap correction and this smooth animation.
     const snapToNearestCard = (instant = false) => {
       const nearestIndex = Math.round(viewport.scrollLeft / cardStep);
-      viewport.scrollTo({ left: nearestIndex * cardStep, behavior: instant || reduceMotion ? 'auto' : 'smooth' });
+      animateScrollTo(nearestIndex * cardStep, { duration: instant ? 0 : SCROLL_DURATION });
     };
 
-    // Correct once scrolling has settled, so a native smooth-scroll or
-    // touch-momentum animation never gets cut short mid-flight.
+    // Correct once scrolling has settled, so a native touch-momentum
+    // animation never gets cut short mid-flight. Skipped while our own rAF
+    // animation is running — that path already knows exactly when it ends
+    // (see animateScrollTo's onComplete) and doesn't need a guess.
     let settleTimer = null;
     viewport.addEventListener('scroll', () => {
       clearTimeout(settleTimer);
       settleTimer = setTimeout(() => {
+        if (scrollAnimationFrame) return;
         correctBounds();
         if (!isDragging) snapToNearestCard();
       }, 120);
@@ -141,6 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let resumeTimer = null;
     const pauseAutoplay = () => {
       stopAutoplay();
+      stopScrollAnimation();
       if (resumeTimer) clearTimeout(resumeTimer);
     };
     const scheduleResume = (delay = 2000) => {
