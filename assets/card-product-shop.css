@@ -43,7 +43,7 @@
   background-color: #E5D0A5;
   color: #570F13;
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.5px;
   text-transform: uppercase;
@@ -98,9 +98,11 @@
   0% {
     transform: scale(1);
   }
+
   40% {
     transform: scale(1.22);
   }
+
   100% {
     transform: scale(1);
   }
@@ -132,7 +134,7 @@
   color: #FFFDEE;
   font-family: 'Piazzolla';
   text-decoration: none;
-  font-size: 23px;
+  font-size: 22px;
   letter-spacing: 1px;
 }
 
@@ -222,7 +224,7 @@
   background: none;
   color: #FFFDEE;
   font-family: 'Helvetica Neue', sans-serif;
-  font-size: 17px;
+  font-size: 20px;
   letter-spacing: 1px;
   text-align: center;
   cursor: pointer;
@@ -275,7 +277,7 @@
   }
 
   .shop-card__size-select {
-    font-size: 19px;
+    font-size: 20px;
   }
 
   .shop-card__meta {
@@ -283,7 +285,7 @@
   }
 
   .shop-card__add {
-    font-size: 19px;
+    font-size: 20px;
   }
 
   .shop-card__price {

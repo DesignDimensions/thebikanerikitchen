@@ -48,7 +48,7 @@
 .custom-home-testimonials-arrow-container {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
   flex-shrink: 0;
   margin-left: auto;
 }
@@ -82,11 +82,11 @@
 }
 
 .custom-home-testimonials-caption {
-  margin: 0 0 10px;
+  margin: 0 0 6px;
   font-family: 'Proxima Nova A', sans-serif;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 500;
-  letter-spacing: 5px;
+  letter-spacing: 3px;
   text-transform: uppercase;
   color: #181810;
 }
@@ -97,13 +97,7 @@
 
 @media screen and (min-width: 750px) {
   .custom-home-testimonials-heading {
-    font-size: 42px;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .custom-home-testimonials-heading {
-    font-size: 54px;
+    font-size: 50px;
   }
 }
 
@@ -238,7 +232,7 @@
 .custom-home-testimonials-quote p {
   margin: 0;
   font-family: 'Baskerville', serif;
-  font-size: 26px;
+  font-size: 24px;
   line-height: 1.5;
   color: #2b1810;
   display: -webkit-box;
@@ -259,7 +253,7 @@
 .custom-home-testimonials-person {
   position: relative;
   margin-top: auto;
-  padding-top: 100px;
+  padding-top: 60px;
 }
 
 .custom-home-testimonials-avatar {
@@ -280,7 +274,7 @@
 .custom-home-testimonials-name {
   margin: 0;
   font-family: 'Piazzolla', serif;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 400;
   line-height: 1;
   color: #1a0f07;
@@ -351,7 +345,7 @@
   }
 
   .custom-home-testimonials-caption {
-    font-size: 11px;
+    font-size: 14px;
     margin-bottom: 5px !important;
   }
 }

@@ -82,7 +82,7 @@
 .custom-featured-product-left-inner_upper p:nth-child(1) {
     font-family: "Proxima Nova A", serif;
     color: #181818;
-    font-size: 13px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 14px;
     letter-spacing: 5px;
@@ -94,7 +94,7 @@
 .custom-featured-product-left-inner_upper p:nth-child(2) {
     font-family: "Baskervville", serif;
     color: #181818;
-    font-size: 39px;
+    font-size: 40px;
     font-weight: 500;
     line-height: 34px;
     letter-spacing: 3px;
@@ -113,9 +113,9 @@
 .custom-featured-product-left .custom-featured-product-left-description p {
     font-family: 'Helvetica Neue';
     color: #181818;
-    font-size: 13.5px;
+    font-size: 20px;
     font-weight: 300;
-    line-height: 23px;
+    line-height: 26px;
     letter-spacing: 1.5px;
     text-align: left;
     margin-top: 17px;
@@ -164,12 +164,12 @@
 .custom-featured-product-right p {
     color: #FFFDEE;
     font-family: "Piazzolla", serif;
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 100;
     line-height: 19px;
     letter-spacing: 1px;
     text-align: right;
-    margin: -8px 0 0 0;
+    margin: -10px 0 0 0;
     text-wrap: nowrap;
     padding-left: 15px;
 }
@@ -292,7 +292,7 @@
         height: auto;
         padding: 28px 24px 32px;
         box-sizing: border-box;
-        width: 90%;
+        width: calc(100% - 1.5rem);
         position: absolute;
         right: 0;
         top: 50%;
@@ -301,7 +301,7 @@
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(1) {
-        font-size: 11px;
+        font-size: 14px;
         letter-spacing: 3px;
         margin-bottom: 14px;
     }
@@ -315,9 +315,9 @@
     .custom-featured-product-left-description p {
         gap: 16px;
         margin-top: 14px;
-        font-size: 13px !important;
+        font-size: 16px !important;
         font-weight: 300 !important;
-        line-height: 16px !important;
+        line-height: 22px !important;
     }
 
     .custom-featured-product-left .custom-featured-product-left-description p {
@@ -330,12 +330,12 @@
     }
 
     .custom-featured-product-left-inner_lower p {
-        font-size: 17px;
+        font-size: 16px;
         margin-bottom: 20px;
     }
 
     .custom-featured-product-left-inner_lower button {
-        font-size: 19px;
+        font-size: 20px;
     }
 
     .custom-featured-product-left-cta_container img {
@@ -353,7 +353,7 @@
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(2) {
-        font-size: 24px;
+        font-size: 30px;
         line-height: 27px;
     }
 }

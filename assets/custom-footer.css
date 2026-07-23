@@ -96,7 +96,7 @@
 .custom-footer__link {
   color: var(--custom-footer-accent);
   text-decoration: none;
-  font-size: 21px;
+  font-size: 20px;
   line-height: 1.4;
   transition: opacity 0.2s ease;
   font-family: 'Proxima Nova A';
@@ -159,7 +159,7 @@
 /* Copyright */
 .custom-footer__copyright {
   margin: 0;
-  font-size: 1.3rem;
+  font-size: 14px;
   color: #FF6344;
   font-family: 'Proxima Nova A';
   font-weight: 100;

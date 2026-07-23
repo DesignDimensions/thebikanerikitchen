@@ -163,7 +163,7 @@
     display: none;
     margin: 0;
     font-family: 'Helvetica Neue', sans-serif;
-    font-size: 17px;
+    font-size: 20px;
     line-height: 1.6;
     font-weight: 300;
     color: #181818;
@@ -347,7 +347,7 @@
     padding: 10px 10px;
     width: 140px;
     font-family: 'Proxima Nova A', sans-serif;
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -432,6 +432,8 @@
     }
 }
 
+
+
 @media(max-width:2200px) {
     .custom-audio-player_puppet_bottom-image {
         bottom: -98px;
@@ -455,6 +457,12 @@
     }
 }
 
+@media (max-width: 1800px) {
+    .custom-audio-player-hero {
+        aspect-ratio: 1440 / 730;
+    }
+}
+
 @media(max-width:1500px) {
     .custom-audio-player_puppet_right-image {
         top: -70px;
@@ -474,7 +482,7 @@
     }
 
     .custom-audio-player-hero {
-        aspect-ratio: 1440 / 780;
+        aspect-ratio: 1440 / 900;
     }
 
     .custom-audio-player_puppet_bottom-image {
@@ -490,7 +498,7 @@
     }
 
     .custom-audio-player-hero {
-        aspect-ratio: 1440 / 950;
+        aspect-ratio: 1440 / 1200;
     }
 }
 
@@ -606,7 +614,7 @@
     }
 
     .custom-audio-player-language-button {
-        font-size: 11px;
+        font-size: 12px;
         letter-spacing: 2.5px;
         width: 100px;
     }

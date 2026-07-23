@@ -32,7 +32,7 @@
         "featured-product-left-bg": "shopify://shop_images/Frame_1321319393_3.jpg",
         "top_left_caption": "Our First",
         "heading": "Bikaneri Bhujia",
-        "description": "<p>Prepared with deliberate restraint, the method remains untouched by time. Pressed by hand and lowered into measured heat, it is watched, not timed, and lifted at the exact moment of completion.</p><p>What emerges is continuity, fine, even strands with a composed crispness and a taste that concludes cleanly.</p><p>Preserved in this manner, the recipe is not interpreted, but honoured as it has always been.</p>",
+        "description": "<p>Prepared with deliberate restraint, the method remains untouched by time. Pressed by hand and lowered into measured heat, it is watched, not timed, and lifted at the exact moment of completion.</p>",
         "size": "150gm | 350 gm",
         "icon": "shopify://shop_images/Vector_1.png",
         "cta": "BUY NOW",
@@ -74,8 +74,8 @@
         "subtitle_line_hUrimG": {
           "type": "subtitle_line",
           "settings": {
-            "hindi": "बीकानेर की रेत में, जहाँ बहुत कम उगता था और कुछ भी व्यर्थ नहीं जाने दिया जाता था, वहीं रसोइयों ने धैर्य और प्रकृति की भाषा को समझना सीखा। हमने देखा कि साधारण से मठ (मोठ) को सावधानी से पीसा गया, उसे आकार दिया गया, कुशल हाथों से दबाकर धीरे-धीरे धैर्यपूर्वक गर्म तेल में उतारा गया।\n\nबीकानेर की रेत में, जहाँ बहुत कम उगता था और कुछ भी व्यर्थ नहीं जाने दिया जाता था, वहीं रसोइयों ने धैर्य और प्रकृति की भाषा को समझना सीखा। हमने देखा कि साधारण से मठ (मोठ) को सावधानी से पीसा गया, उसे आकार दिया गया, कुशल हाथों से दबाकर धीरे-धीरे धैर्यपूर्वक गर्म तेल में उतारा गया।\n\nबीकानेर की रेत में, जहाँ बहुत कम उगता था और कुछ भी व्यर्थ नहीं जाने दिया जाता था, वहीं रसोइयों ने धैर्य और प्रकृति की भाषा को समझना सीखा। हमने देखा कि साधारण से मठ (मोठ) को सावधानी से पीसा गया, उसे आकार दिया गया, कुशल हाथों से दबाकर धीरे-धीरे धैर्यपूर्वक गर्म तेल में उतारा गया।",
-            "english": "In the sands of Bikaner, where little grew and nothing was wasted, the kitchens learned to listen. We watched as humble moth beans were ground and shaped, pressed through careful hands and lowered into patient heat.\n\nIn the sands of Bikaner, where little grew and nothing was wasted, the kitchens learned to listen. We watched as humble moth beans were ground and shaped, pressed through careful hands and lowered into patient heat.\n\nIn the sands of Bikaner, where little grew and nothing was wasted, the kitchens learned to listen. We watched as humble moth beans were ground and shaped, pressed through careful hands and lowered into patient heat."
+            "hindi": "बीकानेर की रेत में, जहाँ बहुत कम उगता था और कुछ भी व्यर्थ नहीं जाने दिया जाता था, वहीं रसोइयों ने धैर्य और प्रकृति की भाषा को समझना सीखा। हमने देखा कि साधारण से मठ (मोठ) को सावधानी से पीसा गया, उसे आकार दिया गया, कुशल हाथों से दबाकर धीरे-धीरे धैर्यपूर्वक गर्म तेल में उतारा गया।\n\nबीकानेर की रेत में, जहाँ बहुत कम उगता था और कुछ भी व्यर्थ नहीं जाने दिया जाता था, वहीं रसोइयों ने धैर्य और प्रकृति की भाषा को समझना सीखा। हमने देखा कि साधारण से मठ (मोठ) को सावधानी से पीसा गया, उसे आकार दिया गया, कुशल हाथों से दबाकर धीरे-धीरे धैर्यपूर्वक गर्म तेल में उतारा गया।",
+            "english": "In the sands of Bikaner, where little grew and nothing was wasted, the kitchens learned to listen. We watched as humble moth beans were ground and shaped, pressed through careful hands and lowered into patient heat.\n\nIn the sands of Bikaner, where little grew and nothing was wasted, the kitchens learned to listen. We watched as humble moth beans were ground and shaped, pressed through careful hands and lowered into patient heat."
           }
         }
       },
@@ -370,7 +370,7 @@
         "portrait": "shopify://shop_images/Frame_1321317929_1.jpg",
         "header": "BEHIND THE CRAFT",
         "title": "The Karigars",
-        "content": "<p>For <strong>Dhiman Singhji</strong>, the work has never been about making more, but making it right. Years of practice have shaped a way of working where the hand leads, and the eye decides when a batch is ready. There is a quiet satisfaction in knowing that the method remains unchanged. In a time where most things are made by machines, he believes there are still a few who understand the value of craft done by hand. To him, it is not just preparation, but a responsibility to keep the original form of these recipes intact.</p>"
+        "content": "<p>For <strong>Dhiman Singhji, </strong>the work has never been about making more, but making it right. Years of practice have shaped a way of working where the hand leads, and the eye decides when a batch is ready. There is a quiet satisfaction in knowing that the method remains unchanged. In a time where most things are made by machines, he believes there are still a few who understand the value of craft done by hand. To him, it is not just preparation, but a responsibility to keep the original form of these recipes intact.<br/><br/></p>"
       }
     },
     "custom_bg_heading_ykifF8": {

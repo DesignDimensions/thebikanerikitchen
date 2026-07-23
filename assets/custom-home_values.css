@@ -29,7 +29,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: start;
-    width: 77%;
 }
 
 .custom-home_values-icon {
@@ -42,11 +41,11 @@
     color: #181818;
     text-align: center;
     margin: 15px 0 0;
-    font-size: 16px;
+    font-size: 20px;
     font-family: 'Helvetica Neue';
     width: 100%;
     line-height: 20px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 @media screen and (min-width: 990px) and (hover: hover) and (pointer: fine) {
