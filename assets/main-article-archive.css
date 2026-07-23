@@ -125,6 +125,13 @@
   width: 50%;
 }
 
+/* When only a heading or only a body copy is present, let it take the full
+   row instead of sitting in a 50%-wide column with an empty gap beside it. */
+.archive-article__intro--single .archive-article__intro-col,
+.archive-article__intro--single .archive-article__intro-col--heading {
+  width: 100%;
+}
+
 .archive-article__intro-heading {
   margin: 0;
   font-family: var(--font-family-display);
@@ -147,6 +154,14 @@
   border: 0;
 }
 
+/* Share: its own full-width row (left-aligned) rather than living inside the
+   intro heading column, so it no longer throws that column's height off. */
+.archive-article__share {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: -45px;
+}
+
 .archive-article__intro-body p {
   margin: 0;
   font-family: var(--font-family-body);
@@ -162,7 +177,6 @@
 
 @media screen and (max-width: 749px) {
   .archive-article__intro {
-    grid-template-columns: 1fr;
     gap: 24px;
   }
 
@@ -179,12 +193,27 @@
   height: auto;
 }
 
-/* Split richtext divided by a vertical rule */
+/* Stacked richtext blocks. Each block is only rendered in markup when its own
+   metafield has content, and stacking (instead of a side-by-side grid) means
+   a short block never leaves a blank column beside a taller one. */
 .archive-article__split {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 48px;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+@media screen and (min-width: 750px) {
+
+  /* Compound selector (rather than relying on cascade order against the
+     .page-width class also on this element) so this max-width reliably wins,
+     and it's sized off --page-width itself (the reading column) rather than
+     the full-bleed .archive-article__content sheet it sits inside. */
+  .archive-article__split.page-width {
+    margin: 0 auto;
+    align-items: end;
+    justify-content: end;
+    width: 100%;
+  }
 }
 
 .under_reflection_copy p {
@@ -212,13 +241,8 @@
   color: #181818;
 }
 
-.archive-article__split-divider {
-  width: 1px;
-  height: 100%;
-  min-height: 120px;
-  margin: 0;
-  border: none;
-  background-color: rgba(24, 24, 24, 0.15);
+.archive-article__split-col {
+  width: calc(50% - 12px);
 }
 
 .archive-article__split-col p {
@@ -260,18 +284,25 @@
 
 @media screen and (max-width: 749px) {
   .archive-article__split {
-    grid-template-columns: 1fr;
     gap: 24px;
   }
 
-  .under_reflection_copy strong {
-    line-height: 45px;
+  .archive-article__share {
+    margin-bottom: 0;
   }
 
-  .archive-article__split-divider {
+  .archive-article__split-col {
     width: 100%;
-    height: 1px;
-    min-height: 0;
+  }
+
+  .archive-article__duo {
+    margin-bottom: 0 !important;
+  }
+.continue-exploring{
+  padding-top: 36px !important;
+}
+  .under_reflection_copy strong {
+    line-height: 45px;
   }
 }
 
@@ -280,6 +311,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
+  margin-bottom: 64px;
 }
 
 .archive-article__duo-media {

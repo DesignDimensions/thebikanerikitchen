@@ -9,6 +9,7 @@
 .custom-footer__icon {
   display: block;
   line-height: 0;
+  will-change: transform;
 }
 
 .custom-footer__icon svg,

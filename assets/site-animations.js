@@ -895,12 +895,10 @@
       prep(ctx.duoItems, { autoAlpha: 0, y: 44 });
       prep([ctx.under], { autoAlpha: 0, y: 24 });
       prep([ctx.noteLabel, ctx.noteBody], { autoAlpha: 0, y: 20 });
-      ctx.splitParts = ctx.splits.map((split_) => {
-        const cols = prep($$('.archive-article__split-col', split_), { autoAlpha: 0, y: 26 });
-        const divider = $('.archive-article__split-divider', split_);
-        prep([divider], { scaleY: 0, scaleX: 0, transformOrigin: 'left top' });
-        return { root: split_, cols, divider };
-      });
+      ctx.splitParts = ctx.splits.map((split_) => ({
+        root: split_,
+        blocks: prep($$('.archive-article__split-col', split_), { autoAlpha: 0, y: 26 }),
+      }));
     },
     build(ctx) {
       if (ctx.introHeading || ctx.introBody.length) {
@@ -909,8 +907,16 @@
           const tl = gsap.timeline();
           maskRise(tl, ctx.introHeading, 0);
           fadeRise(tl, ctx.introBody, 0.3, { stagger: 0.1 });
-          fadeRise(tl, ctx.share, 0.5, { duration: 0.8 });
         });
+      }
+      if (ctx.share) {
+        onEnter(
+          ctx.share,
+          () => {
+            gsap.to(ctx.share, { autoAlpha: 1, y: 0, duration: 0.8, ease: EASE_OUT });
+          },
+          'top 90%'
+        );
       }
       ctx.images.forEach((img) => {
         onEnter(
@@ -923,9 +929,7 @@
       });
       ctx.splitParts.forEach((partSet) => {
         onEnter(partSet.root, () => {
-          const tl = gsap.timeline();
-          drawLine(tl, partSet.divider, 0, { duration: 1.2 });
-          fadeRise(tl, partSet.cols, 0.2, { stagger: 0.15 });
+          fadeRise(gsap.timeline(), partSet.blocks, 0, { stagger: 0.15 });
         });
       });
       if (ctx.duoItems.length) {

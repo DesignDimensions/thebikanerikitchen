@@ -67,23 +67,20 @@
   {%- endif -%}
 
   <div class="archive-article__content">
-    {%- if intro_heading != blank or intro_text.value != blank or section.settings.show_share_button -%}
-      <div class="archive-article__intro page-width">
-        <div class="archive-article__intro-col archive-article__intro-col--heading">
-          {%- if intro_heading != blank -%}
+    {%- if intro_heading != blank or intro_text.value != blank -%}
+      <div
+        class="archive-article__intro page-width{% if intro_heading == blank or intro_text.value == blank %} archive-article__intro--single{% endif %}"
+      >
+        {%- if intro_heading != blank -%}
+          <div class="archive-article__intro-col archive-article__intro-col--heading">
             <h1 class="archive-article__intro-heading">{{ intro_heading | newline_to_br }}</h1>
-          {%- endif -%}
-          {%- if section.settings.show_share_button -%}
-            <div class="archive-article__share">
-              {% render 'share-button', share_link: share_url, share_label: section.settings.share_label, id: 'main' %}
-            </div>
-          {%- endif -%}
-        </div>
-        <div class="archive-article__intro-col archive-article__intro-col--body">
-          {%- if intro_text.value != blank -%}
+          </div>
+        {%- endif -%}
+        {%- if intro_text.value != blank -%}
+          <div class="archive-article__intro-col archive-article__intro-col--body">
             <div class="archive-article__intro-body rte">{{ intro_text | metafield_tag }}</div>
-          {%- endif -%}
-        </div>
+          </div>
+        {%- endif -%}
       </div>
     {%- endif -%}
 
@@ -102,13 +99,22 @@
       </div>
     {%- endif -%}
 
+    {%- if section.settings.show_share_button -%}
+      <div class="archive-article__share page-width">
+        {% render 'share-button', share_link: share_url, share_label: section.settings.share_label, id: 'main' %}
+      </div>
+    {%- endif -%}
+
     {%- if quote_intro.value != blank or quote_text.value != blank -%}
       <div class="archive-article__split page-width">
-        <div class="archive-article__split-col rte">{{ quote_intro | metafield_tag }}</div>
-        <hr class="archive-article__split-divider">
-        <div class="archive-article__split-col archive-article__split-col--quote rte">
-          {{- quote_text | metafield_tag -}}
-        </div>
+        {%- if quote_intro.value != blank -%}
+          <div class="archive-article__split-col rte">{{ quote_intro | metafield_tag }}</div>
+        {%- endif -%}
+        {%- if quote_text.value != blank -%}
+          <div class="archive-article__split-col archive-article__split-col--quote rte">
+            {{- quote_text | metafield_tag -}}
+          </div>
+        {%- endif -%}
       </div>
     {%- endif -%}
 
@@ -153,14 +159,12 @@
 
     {%- if reflection_left.value != blank or reflection_right.value != blank -%}
       <div class="archive-article__split archive-article__split--body page-width">
-        <div class="archive-article__split-col rte">{{ reflection_left | metafield_tag }}</div>
-        <hr class="archive-article__split-divider">
-        <div class="archive-article__split-col rte">{{ reflection_right | metafield_tag }}</div>
-      </div>
-    {%- endif -%}
-    {%- if under_reflection.value != blank -%}
-      <div class="page-width under_reflection_copy">
-        {{ under_reflection | metafield_tag }}
+        {%- if reflection_left.value != blank -%}
+          <div class="archive-article__split-col rte">{{ reflection_left | metafield_tag }}</div>
+        {%- endif -%}
+        {%- if reflection_right.value != blank -%}
+          <div class="archive-article__split-col rte">{{ reflection_right | metafield_tag }}</div>
+        {%- endif -%}
       </div>
     {%- endif -%}
 
