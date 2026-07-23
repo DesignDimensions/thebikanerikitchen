@@ -28,8 +28,8 @@
 }
 
 product-info .price-item--regular {
-  font-family: 'Piazzolla';
-  font-size: 32px;
+  font-family: var(--font-family-accent);
+  font-size: var(--font-pdp-price-size);
   line-height: 28px;
 }
 

@@ -28,13 +28,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
-    font-size: 50px;
+    font-size: var(--font-banner-text-heading-size);
     text-align: center;
     margin: 0;
-    font-family: 'Baskerville', serif;
+    font-family: var(--font-family-display);
     width: 510px;
-    line-height: 71px;
-    font-weight: 100;
+    line-height: var(--font-banner-text-heading-line-height);
+    font-weight: var(--font-banner-text-heading-weight);
 }
 
 .custom-banner-text-container p em {
@@ -56,15 +56,15 @@
 
     .custom-banner-text-container p {
         width: 85%;
-        font-size: 30px;
-        line-height: 38px;
+        font-size: var(--font-banner-text-heading-size-mobile);
+        line-height: var(--font-banner-text-heading-line-height-mobile);
     }
 }
 
 @media screen and (min-width: 750px) and (max-width: 989px) {
     .custom-banner-text-container p {
         width: 80%;
-        font-size: 42px;
-        line-height: 52px;
+        font-size: var(--font-banner-text-heading-size-tablet);
+        line-height: var(--font-banner-text-heading-line-height-tablet);
     }
 }

@@ -44,8 +44,8 @@
 
     .page-top-banner-container-inner p:first-of-type,
     .page-top-banner-container-inner p:last-of-type {
-        letter-spacing: 2px;
-        font-size: 12px;
+        letter-spacing: var(--font-label-letter-spacing-mobile);
+        font-size: var(--font-label-size-mobile);
     }
 
     .page-top-banner-container-inner hr {
@@ -73,22 +73,22 @@
     color: #FFFDEE;
     text-wrap: nowrap;
     margin: 0;
-    font-family: 'Proxima Nova A';
-    font-weight: 400;
+    font-family: var(--font-family-label);
+    font-weight: var(--font-label-weight);
     text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 15px;
+    letter-spacing: var(--font-label-letter-spacing);
+    font-size: var(--font-label-size);
 }
 
 .page-top-banner-container-inner p:last-of-type {
     color: #FFFDEE;
     text-wrap: nowrap;
     margin: 0;
-    font-family: 'Piazzolla';
-    font-weight: 400;
+    font-family: var(--font-family-accent);
+    font-weight: var(--font-label-weight);
     text-transform: uppercase;
-    letter-spacing: 4px;
-    font-size: 15px;
+    letter-spacing: var(--font-label-letter-spacing);
+    font-size: var(--font-label-size);
 }
 
 .page-top-banner-container-inner hr {

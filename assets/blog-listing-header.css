@@ -51,7 +51,7 @@
   }
 
   .blog-listing-header-heading {
-    font-size: 34px !important;
+    font-size: var(--font-blog-header-heading-size-mobile) !important;
     line-height: 1.15 !important;
   }
 
@@ -66,32 +66,32 @@
 
 @media screen and (max-width: 400px) {
   .blog-listing-header-heading {
-    font-size: 26px;
+    font-size: var(--font-blog-header-heading-size-xs);
   }
 
   .blog-listing-header-description {
-    font-size: 15px;
+    font-size: var(--font-blog-header-description-size-xs);
   }
 
   .blog-listing-header-toggle {
-    font-size: 16px;
+    font-size: var(--font-blog-header-toggle-size-xs);
   }
 }
 
 .blog-listing-header-heading {
   margin: 0;
-  font-family: 'Baskervville';
-  font-weight: 400;
-  font-size: 50px;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-blog-header-heading-size);
   line-height: 1;
   color: #FFFDEE;
 }
 
 .blog-listing-header-title {
   margin: 0;
-  font-family: 'Helvetica Neue';
-  font-size: 14px;
-  font-weight: 300;
+  font-family: var(--font-family-body);
+  font-size: var(--font-blog-header-title-size);
+  font-weight: var(--font-copy-weight);
   text-decoration: underline;
   color: #FFFDEE;
   line-height: 20px;
@@ -99,23 +99,6 @@
 
 .blog-listing-header-description-wrap {
   position: relative;
-}
-
-.blog-listing-header-description-wrap .blog-listing-header-description {
-  position: relative;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: var(--truncate-lines, 3);
-}
-
-.blog-listing-header-description-word {
-  display: inline-block;
-}
-
-.blog-listing-header-description-word.is-hidden-word {
-  user-select: none;
-  -webkit-user-select: none;
 }
 
 .blog-listing-header-description {
@@ -130,30 +113,32 @@
 
 .blog-listing-header-description p:last-child {
   margin: 0;
-  font-family: 'Helvetica Neue';
-  font-size: 14px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-blog-header-description-size);
   line-height: 20px;
-  font-weight: 300;
+  font-weight: var(--font-copy-weight);
   color: #FFFDEE;
 }
 
 .blog-listing-header-toggle {
+  display: inline-block;
   padding: 0;
   cursor: pointer;
   margin: 0;
-  font-family: 'Baskervville';
-  font-weight: 400;
-  font-size: 18px;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-blog-header-toggle-size);
   line-height: 1;
   color: #FFFDEE;
   border: none;
   background-color: transparent;
+  text-decoration: none;
 }
 
 .blog-listing-header-toggle:hover {
   opacity: 0.75;
 }
 
-.blog-listing-header-toggle-label[hidden] {
+.blog-listing-header-toggle[hidden] {
   display: none;
 }

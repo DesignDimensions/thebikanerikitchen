@@ -61,23 +61,23 @@
 
 .custom-image-content-inner-container p:first-child {
     margin: 0;
-    font-family: 'Proxima Nova A';
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 3px;
+    font-family: var(--font-family-label);
+    font-size: var(--font-label-size);
+    font-weight: var(--font-label-weight);
+    letter-spacing: var(--font-label-letter-spacing);
 }
 
 .custom-image-content-inner-container h3 {
     margin: 5px 0 15px;
-    font-family: 'Baskervville';
-    font-size: 50px;
+    font-family: var(--font-family-display);
+    font-size: var(--font-image-content-heading-size);
 }
 
 .custom-image-content-inner-container .custom-image-content-description p {
-    font-family: 'Helvetica Neue';
-    letter-spacing: 1px;
-    font-weight: 300;
-    font-size: 20px;
+    font-family: var(--font-family-body);
+    letter-spacing: var(--font-body-letter-spacing);
+    font-weight: var(--font-copy-weight);
+    font-size: var(--font-body-size);
     line-height: 28px;
 }
 
@@ -92,19 +92,19 @@
     }
 
     .custom-image-content-inner-container p:first-child {
-        font-size: 14px;
-        letter-spacing: 3px;
+        font-size: var(--font-label-size-mobile);
+        letter-spacing: var(--font-label-letter-spacing-mobile);
     }
 
     .custom-image-content-inner-container h3 {
         margin: 5px 0 10px;
-        font-size: 30px;
+        font-size: var(--font-image-content-heading-size-mobile);
     }
 
     .custom-image-content-inner-container .custom-image-content-description p {
-        font-size: 14px;
+        font-size: var(--font-body-size-mobile);
         line-height: 24px;
-        letter-spacing: 1px;
+        letter-spacing: var(--font-body-letter-spacing-mobile);
     }
 
     .custom-image-content-inner-container {

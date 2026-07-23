@@ -105,35 +105,40 @@
           "type": "bullet",
           "settings": {
             "bullet_icon": "shopify://shop_images/Vector_11.png",
-            "bullet_text": "Made in high Oleic sunflower oil"
+            "bullet_text": "Made in high Oleic sunflower oil",
+            "bullet_content": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
           }
         },
         "bullet_pA86gH": {
           "type": "bullet",
           "settings": {
             "bullet_icon": "shopify://shop_images/Vector_11.png",
-            "bullet_text": "No re-use of oil, ensuring purity of taste"
+            "bullet_text": "No re-use of oil, ensuring purity of taste",
+            "bullet_content": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
           }
         },
         "bullet_WXYB7z": {
           "type": "bullet",
           "settings": {
             "bullet_icon": "shopify://shop_images/Vector_11.png",
-            "bullet_text": "Slow-cooked using Bhatti."
+            "bullet_text": "Slow-cooked using Bhatti.",
+            "bullet_content": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
           }
         },
         "bullet_Pch9ha": {
           "type": "bullet",
           "settings": {
             "bullet_icon": "shopify://shop_images/Vector_11.png",
-            "bullet_text": "Made with low sodium salt"
+            "bullet_text": "Made with low sodium salt",
+            "bullet_content": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
           }
         },
         "bullet_TwH9Cf": {
           "type": "bullet",
           "settings": {
             "bullet_icon": "shopify://shop_images/Vector_11.png",
-            "bullet_text": "Prepared by skilled hands in small batches"
+            "bullet_text": "Prepared by skilled hands in small batches",
+            "bullet_content": "<p>This preparation follows a method that has remained unchanged over time. Each batch is pressed by hand, cooked in measured heat, and finished at the exact moment it is ready. The result is a finer texture, balanced flavour, and a clean finish</p>"
           }
         }
       },
@@ -150,54 +155,27 @@
         "pdp_fold_2_right_image": "shopify://shop_images/285bceeea26480ed0b49aec08387c6ade0defff5.jpg"
       }
     },
-    "custom_audio_player_TKQxJw": {
+    "custom_audio_player_9bp7pg": {
       "type": "custom-audio-player",
       "blocks": {
-        "subtitle_line_GhiDAA": {
+        "subtitle_line_CckRNW": {
           "type": "subtitle_line",
           "settings": {
-            "start_time": "0:00",
-            "hindi": "",
-            "english": "In the sands of Bikaner, where little grew and nothing was wasted, the"
-          }
-        },
-        "subtitle_line_qYwneA": {
-          "type": "subtitle_line",
-          "settings": {
-            "start_time": "0:04",
-            "hindi": "",
-            "english": "kitchens learned to listen. We watched as humble moth beans were"
-          }
-        },
-        "subtitle_line_UaN7pK": {
-          "type": "subtitle_line",
-          "settings": {
-            "start_time": "0:8",
-            "hindi": "",
-            "english": "ground and shaped, pressed through careful hands and lowered into"
-          }
-        },
-        "subtitle_line_aTQRMG": {
-          "type": "subtitle_line",
-          "settings": {
-            "start_time": "0:11",
-            "hindi": "",
-            "english": "patient heat."
+            "hindi": "बीकानेर की रेत में, जहाँ बहुत कम उगता था और कुछ भी व्यर्थ नहीं जाने दिया जाता था, वहीं रसोइयों ने धैर्य और प्रकृति की भाषा को समझना सीखा। हमने देखा कि साधारण से मठ (मोठ) को सावधानी से पीसा गया, उसे आकार दिया गया, कुशल हाथों से दबाकर धीरे-धीरे धैर्यपूर्वक गर्म तेल में उतारा गया।\n\nबीकानेर की रेत में, जहाँ बहुत कम उगता था और कुछ भी व्यर्थ नहीं जाने दिया जाता था, वहीं रसोइयों ने धैर्य और प्रकृति की भाषा को समझना सीखा। हमने देखा कि साधारण से मठ (मोठ) को सावधानी से पीसा गया, उसे आकार दिया गया, कुशल हाथों से दबाकर धीरे-धीरे धैर्यपूर्वक गर्म तेल में उतारा गया।",
+            "english": "In the sands of Bikaner, where little grew and nothing was wasted, the kitchens learned to listen. We watched as humble moth beans were ground and shaped, pressed through careful hands and lowered into patient heat.\n\nIn the sands of Bikaner, where little grew and nothing was wasted, the kitchens learned to listen. We watched as humble moth beans were ground and shaped, pressed through careful hands and lowered into patient heat."
           }
         }
       },
       "block_order": [
-        "subtitle_line_GhiDAA",
-        "subtitle_line_qYwneA",
-        "subtitle_line_UaN7pK",
-        "subtitle_line_aTQRMG"
+        "subtitle_line_CckRNW"
       ],
       "name": "Custom Audio Player",
       "settings": {
-        "banner_image": "shopify://shop_images/Wireframe_-_6_1.png",
-        "mobile_banner_image": "shopify://shop_images/Frame_1321317972.png",
-        "heading": "Aao Sune Kahani Bikaneri Bhujia Ki",
+        "banner_image": "shopify://shop_images/Wireframe_-_10.jpg",
+        "mobile_banner_image": "shopify://shop_images/Frame_1321317972_45afb4e3-0468-4667-91f9-4f7cf4cb61cd.jpg",
+        "heading": "Aao Sune Kahani\nBikaneri Bhujia Ki",
         "audio_url": "https://cdn.shopify.com/s/files/1/0764/0953/6706/files/freesound-community-002145-a-conversation-with-a-neighbor-53032_3pVsHulM.mp3?v=1783592407",
+        "audio_url_english": "",
         "default_language": "en"
       }
     },
@@ -243,7 +221,6 @@
         "show_secondary_image": false,
         "show_vendor": false,
         "show_rating": false,
-        "quick_add": "standard",
         "columns_mobile": "1",
         "swipe_on_mobile": true,
         "padding_top": 36,
@@ -351,7 +328,7 @@
     "bullets_scroller_qaQmhr",
     "main",
     "pdp_fold_2_NqQJ3V",
-    "custom_audio_player_TKQxJw",
+    "custom_audio_player_9bp7pg",
     "related-products",
     "custom_featured_collection_4hUABe",
     "custom_pdp_faqs_Rmdrqr",

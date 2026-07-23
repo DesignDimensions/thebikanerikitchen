@@ -1,6 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
   const players = document.querySelectorAll('.custom-audio-player-container[data-section-id]');
 
+  // Shared live mouse position -- used only to POSITION the tag (and to
+  // compute the drag tilt). Whether the pointer currently counts as
+  // "hovering" the player (or one of its excluded controls) is decided
+  // separately, via the browser's own :hover state (see tick() below), not
+  // from these coordinates.
+  let mouseX = -Infinity;
+  let mouseY = -Infinity;
+  let hasMouse = false;
+  document.addEventListener('pointermove', (event) => {
+    if (event.pointerType !== 'mouse') return;
+    mouseX = event.clientX;
+    mouseY = event.clientY;
+    hasMouse = true;
+  });
+
   players.forEach((container) => {
     const audio = container.querySelector('.custom-audio-player-audio');
     const playButton = container.querySelector('.custom-audio-player-playpause');
@@ -310,18 +325,27 @@ document.addEventListener('DOMContentLoaded', () => {
       // 0 through the whole flip and only resumes reacting to movement
       // once the tag is fully open and at rest.
       let isFlipping = false;
-      let rawX = 0;
-      let rawY = 0;
+      let isOverContainer = false;
       let prevRawX = 0;
       let prevRawY = 0;
 
       // Backwards 3D flip open/close instead of a plain fade — hinges on
       // rotationX so it tilts back away from the viewer when hidden and
       // flips forward to face them when shown.
+      //
+      // killTweensOf before each open/close is load-bearing: GSAP 3 does
+      // NOT auto-kill conflicting tweens. Without it, exiting within the
+      // open tween's 0.6s window (routine during a fast scroll-through)
+      // leaves BOTH tweens running -- the 0.4s close finishes at opacity
+      // 0, then the still-alive open tween keeps ticking and drags
+      // opacity right back to 1 with every flag already saying "closed",
+      // so nothing ever closes it again. That was the "tag stays stuck
+      // until re-hovered" bug.
       const openTag = () => {
         if (isOpen) return;
         isOpen = true;
         isFlipping = true;
+        gsap.killTweensOf(cursorTagFlip, 'rotationX,opacity');
         gsap.set(cursorTagFlip, { rotation: 0 });
         gsap.to(cursorTagFlip, {
           rotationX: 0,
@@ -338,6 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isOpen) return;
         isOpen = false;
         isFlipping = true;
+        gsap.killTweensOf(cursorTagFlip, 'rotationX,opacity');
         gsap.set(cursorTagFlip, { rotation: 0 });
         gsap.to(cursorTagFlip, {
           rotationX: -100,
@@ -350,67 +375,58 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       };
 
-      // Sampled every animation frame (not just on pointermove) so the
-      // tilt is driven by actual frame-to-frame velocity and naturally
-      // eases back to upright once the pointer stops moving.
-      const tickTilt = () => {
-        const deltaX = rawX - prevRawX;
-        const deltaY = rawY - prevRawY;
-        prevRawX = rawX;
-        prevRawY = rawY;
-        if (isFlipping) return;
-        const raw = -deltaX + deltaY * CURSOR_TILT_VERTICAL_BOOST;
-        setTilt(gsap.utils.clamp(-CURSOR_TILT_MAX, CURSOR_TILT_MAX, raw * CURSOR_TILT_FACTOR));
-      };
+      // Polled every animation frame, checked against the browser's own
+      // native :hover state -- NOT against pointerenter/pointermove/
+      // pointerleave events, and NOT against our own elementFromPoint
+      // coordinate math either. Both of those were tried and both could
+      // still get out of sync with fast scrolling. :hover is different:
+      // the browser is required to keep it correct even when content
+      // moves under a stationary cursor (that's why native CSS hover
+      // effects, e.g. nav dropdowns, never get stuck open on scroll) -- it
+      // has no dependency on any event actually firing, so there's
+      // nothing left for scrolling to race against.
+      const tick = () => {
+        if (!hasMouse) return;
 
-      let isTracking = false;
+        const nowOver = container.matches(':hover');
 
-      // 'pointerenter' only fires on an actual outside-to-inside transition —
-      // if the page loads (or a section re-renders in the editor) with the
-      // pointer already resting over this section, it never fires at all,
-      // and the tag would silently stay at its initial opacity:0 forever no
-      // matter how much the pointer moves. Bootstrapping from the first
-      // 'pointermove' too, guarded by isTracking, covers that case as well.
-      const beginTracking = (event) => {
-        isTracking = true;
-        rawX = event.clientX;
-        rawY = event.clientY;
-        prevRawX = event.clientX;
-        prevRawY = event.clientY;
-        gsap.set(cursorTag, { x: event.clientX + CURSOR_TAG_OFFSET_X, y: event.clientY });
-        suppressed = !!event.target.closest(CURSOR_EXCLUDED_SELECTOR);
-        if (!suppressed) openTag();
-        gsap.ticker.add(tickTilt);
-      };
+        if (nowOver && !isOverContainer) {
+          isOverContainer = true;
+          prevRawX = mouseX;
+          prevRawY = mouseY;
+          gsap.set(cursorTag, { x: mouseX + CURSOR_TAG_OFFSET_X, y: mouseY });
+        } else if (!nowOver && isOverContainer) {
+          isOverContainer = false;
+        }
 
-      container.addEventListener('pointerenter', beginTracking);
-
-      container.addEventListener('pointermove', (event) => {
-        if (!isTracking) {
-          beginTracking(event);
+        if (!isOverContainer) {
+          if (isOpen) closeTag();
           return;
         }
 
-        rawX = event.clientX;
-        rawY = event.clientY;
-        moveX(event.clientX + CURSOR_TAG_OFFSET_X);
-        moveY(event.clientY);
+        moveX(mouseX + CURSOR_TAG_OFFSET_X);
+        moveY(mouseY);
 
-        const overExcluded = !!event.target.closest(CURSOR_EXCLUDED_SELECTOR);
+        const overExcluded = !!container.querySelector(`${CURSOR_EXCLUDED_SELECTOR}:hover`);
         if (overExcluded !== suppressed) {
           suppressed = overExcluded;
           if (suppressed) closeTag();
           else openTag();
+        } else if (!suppressed && !isOpen) {
+          openTag();
         }
-      });
 
-      container.addEventListener('pointerleave', () => {
-        isTracking = false;
-        suppressed = false;
-        closeTag();
-        gsap.ticker.remove(tickTilt);
-        setTilt(0);
-      });
+        if (!isFlipping) {
+          const deltaX = mouseX - prevRawX;
+          const deltaY = mouseY - prevRawY;
+          const raw = -deltaX + deltaY * CURSOR_TILT_VERTICAL_BOOST;
+          setTilt(gsap.utils.clamp(-CURSOR_TILT_MAX, CURSOR_TILT_MAX, raw * CURSOR_TILT_FACTOR));
+        }
+        prevRawX = mouseX;
+        prevRawY = mouseY;
+      };
+
+      gsap.ticker.add(tick);
 
       container.addEventListener('click', (event) => {
         if (event.target.closest(CURSOR_EXCLUDED_SELECTOR)) return;

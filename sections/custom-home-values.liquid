@@ -25,6 +25,15 @@
               class="custom-home_values-icon"
             >
             <p class="custom-home_values-title">{{ block.settings.title }}</p>
+            {%- if block.settings.floater != blank -%}
+              <div class="custom-home_values-cursor-tag" aria-hidden="true">
+                <span class="custom-home_values-cursor-tag-flip">
+                  <span class="custom-home_values-cursor-tag-text-mask">
+                    <span class="custom-home_values-cursor-tag-text">{{ block.settings.floater }}</span>
+                  </span>
+                </span>
+              </div>
+            {%- endif -%}
           </div>
         {% endif %}
       {% endfor %}
@@ -56,6 +65,11 @@
           "type": "text",
           "id": "title",
           "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "floater",
+          "label": "Floater"
         }
       ]
     }

@@ -40,7 +40,7 @@
 .custom-footer__brand {
   margin: 0 0 clamp(2.6rem, 6vw, 4.6rem);
   text-align: center;
-  font-family: 'Aurum';
+  font-family: var(--font-family-wordmark);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
   color: rgb(var(--color-foreground));
@@ -96,11 +96,11 @@
 .custom-footer__link {
   color: var(--custom-footer-accent);
   text-decoration: none;
-  font-size: 20px;
+  font-size: var(--font-footer-link-size);
   line-height: 1.4;
   transition: opacity 0.2s ease;
-  font-family: 'Proxima Nova A';
-  font-weight: 200;
+  font-family: var(--font-family-label);
+  font-weight: var(--font-footer-link-weight);
 }
 
 .custom-footer__link:hover {
@@ -159,10 +159,10 @@
 /* Copyright */
 .custom-footer__copyright {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--font-footer-copyright-size);
   color: #FF6344;
-  font-family: 'Proxima Nova A';
-  font-weight: 100;
+  font-family: var(--font-family-label);
+  font-weight: var(--font-footer-copyright-weight);
 }
 
 @media screen and (max-width: 749px) {

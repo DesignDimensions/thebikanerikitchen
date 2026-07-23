@@ -101,9 +101,9 @@ details[open].menu-opening > .menu-drawer__submenu {
 .menu-drawer__menu-item {
   padding: 1.1rem 3rem;
   text-decoration: none;
-  font-size: 21px;
-  font-family: 'Proxima Nova A';
-  font-weight: 200;
+  font-size: var(--font-menu-drawer-item-size);
+  font-family: var(--font-family-label);
+  font-weight: var(--font-menu-drawer-item-weight);
   color: #FF6344;
 }
 

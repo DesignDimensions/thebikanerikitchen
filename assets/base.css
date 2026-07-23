@@ -460,7 +460,7 @@ table:not([class]) th {
   }
 
   .collection__subtitle {
-    font-size: 14px !important;
+    font-size: var(--font-label-size-mobile) !important;
     margin-bottom: 5px !important;
   }
 }
@@ -1970,24 +1970,24 @@ input[type='checkbox'] {
 }
 
 .collection__subtitle {
-  font-family: "Proxima Nova A", serif;
+  font-family: var(--font-family-label);
   color: #181818;
-  font-size: 16px;
+  font-size: var(--font-label-size);
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  font-weight: 500;
+  letter-spacing: var(--font-label-letter-spacing);
+  font-weight: var(--font-label-weight);
   margin-bottom: 10px;
 }
 
 .clp-collection__subtitle {
-  font-family: "Proxima Nova A", serif;
+  font-family: var(--font-family-label);
   color: #181818;
-  font-size: 15px;
+  font-size: var(--font-label-size);
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  font-weight: 500;
+  letter-spacing: var(--font-label-letter-spacing);
+  font-weight: var(--font-label-weight);
   margin-top: 60px !important;
   margin-bottom: 12px !important;
 }
@@ -2561,40 +2561,40 @@ input[type='checkbox'] {
 
 .section-heading {
   text-align: center;
-  font-family: "Baskervville", serif;
+  font-family: var(--font-family-display);
   color: #181818;
-  font-size: 50px;
-  font-weight: 500;
-  line-height: 52px;
-  letter-spacing: 3px;
+  font-size: var(--font-section-heading-size);
+  font-weight: var(--font-section-heading-weight);
+  line-height: var(--font-section-heading-line-height);
+  letter-spacing: var(--font-section-heading-letter-spacing);
   max-width: 77%;
   margin: 0 auto 35px;
 }
 
 .clp-section-heading {
   text-align: center;
-  font-family: "Baskervville", serif;
+  font-family: var(--font-family-display);
   color: #181818;
-  font-size: 50px !important;
-  font-weight: 500;
-  line-height: 52px !important;
-  letter-spacing: 3px;
+  font-size: var(--font-section-heading-size) !important;
+  font-weight: var(--font-section-heading-weight);
+  line-height: var(--font-section-heading-line-height) !important;
+  letter-spacing: var(--font-section-heading-letter-spacing);
   max-width: 77% !important;
   margin: 0 auto 35px !important;
 }
 
 @media screen and (max-width: 749px) {
   .section-heading {
-    font-size: 30px;
-    line-height: 30px;
-    letter-spacing: 1.5px;
+    font-size: var(--font-section-heading-size-mobile);
+    line-height: var(--font-section-heading-line-height-mobile);
+    letter-spacing: var(--font-section-heading-letter-spacing-mobile);
     max-width: 80%;
     margin: 0 auto 20px;
   }
 
   .clp-section-heading {
     font-size: 35px !important;
-    line-height: 30px !important;
+    line-height: var(--font-section-heading-line-height-mobile) !important;
   }
 }
 
@@ -2897,15 +2897,15 @@ details[open]>.header__submenu {
 }
 
 .header__menu-item {
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: var(--font-family-body);
   padding: 0.85rem 0.4rem;
   text-decoration: none;
   color: rgba(var(--color-foreground), 0.75);
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   font-style: normal;
-  font-size: 12px;
-  letter-spacing: 2px;
+  font-size: var(--font-header-menu-item-size);
+  letter-spacing: var(--font-header-menu-item-letter-spacing);
 }
 
 .header__menu-item:hover {

@@ -83,10 +83,10 @@
 
 .custom-home-testimonials-caption {
   margin: 0 0 6px;
-  font-family: 'Proxima Nova A', sans-serif;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 3px;
+  font-family: var(--font-family-label);
+  font-size: var(--font-label-size);
+  font-weight: var(--font-label-weight);
+  letter-spacing: var(--font-label-letter-spacing);
   text-transform: uppercase;
   color: #181810;
 }
@@ -97,7 +97,7 @@
 
 @media screen and (min-width: 750px) {
   .custom-home-testimonials-heading {
-    font-size: 50px;
+    font-size: var(--font-section-heading-size);
   }
 }
 
@@ -231,9 +231,9 @@
 
 .custom-home-testimonials-quote p {
   margin: 0;
-  font-family: 'Baskerville', serif;
-  font-size: 24px;
-  line-height: 1.5;
+  font-family: var(--font-family-display);
+  font-size: var(--font-testimonial-quote-size);
+  line-height: var(--font-testimonial-quote-line-height);
   color: #2b1810;
   display: -webkit-box;
   -webkit-line-clamp: 6;
@@ -273,25 +273,25 @@
 
 .custom-home-testimonials-name {
   margin: 0;
-  font-family: 'Piazzolla', serif;
-  font-size: 20px;
-  font-weight: 400;
+  font-family: var(--font-family-accent);
+  font-size: var(--font-testimonial-name-size);
+  font-weight: var(--font-testimonial-name-weight);
   line-height: 1;
   color: #1a0f07;
 }
 
 .custom-home-testimonials-location {
   margin: 3px 0 0;
-  font-family: 'Piazzolla', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
+  font-family: var(--font-family-accent);
+  font-size: var(--font-testimonial-location-size);
+  font-weight: var(--font-testimonial-location-weight);
   color: #181818;
 }
 
 .custom-home-testimonials-dot {
   display: block;
   color: #8a7561;
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1;
 }
 
@@ -326,7 +326,7 @@
 @media screen and (max-width: 749px) {
   .custom-home-testimonials-quote p {
     margin: 0 0 50px !important;
-    font-size: 20px;
+    font-size: var(--font-testimonial-quote-size-mobile);
   }
 
   .custom-home-testimonials-person {
@@ -345,7 +345,7 @@
   }
 
   .custom-home-testimonials-caption {
-    font-size: 14px;
+    font-size: var(--font-label-size-mobile);
     margin-bottom: 5px !important;
   }
 }

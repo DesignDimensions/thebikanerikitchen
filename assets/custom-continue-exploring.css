@@ -71,10 +71,10 @@
   top: 16px;
   left: 16px;
   margin: 0;
-  font-family: 'Proxima Nova A', sans-serif;
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 2px;
+  font-family: var(--font-family-label);
+  font-size: var(--font-continue-exploring-number-size);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--font-continue-exploring-number-letter-spacing);
   color: #fffdee;
   text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
@@ -92,9 +92,9 @@
 }
 
 .continue-exploring__title {
-  font-family: 'Baskervville', serif;
-  font-size: 16px;
-  font-weight: 400;
+  font-family: var(--font-family-display);
+  font-size: var(--font-continue-exploring-title-size);
+  font-weight: var(--font-weight-regular);
   line-height: 1.3;
   color: #fffdee;
 }
@@ -186,6 +186,6 @@
   }
 
   .continue-exploring__title {
-    font-size: 22px;
+    font-size: var(--font-continue-exploring-title-size-mobile);
   }
 }

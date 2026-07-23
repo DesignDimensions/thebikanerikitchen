@@ -7,9 +7,9 @@
 .policy-page__title {
   margin: 0;
   text-align: left;
-  font-family: 'Baskervville';
-  font-weight: 500;
-  letter-spacing: 1px;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-policy-title-letter-spacing);
   margin-top: 50px;
   margin-bottom: 20px;
   grid-column: 1;
@@ -26,9 +26,9 @@
 .policy-page__content p,
 .policy-page__content span {
   margin: 0 0 40px 0;
-  font-family: 'Helvetica Neue';
-  font-weight: 300;
-  font-size: 18px;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-copy-weight);
+  font-size: var(--font-policy-body-size);
   line-height: 27px;
   letter-spacing: .5px;
 }
@@ -101,9 +101,9 @@
   gap: 12px;
   text-decoration: none;
   color: #181818;
-  font-family: 'Helvetica Neue';
-  font-weight: 400;
-  font-size: 16px;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-policy-nav-link-size);
   line-height: 27px;
   letter-spacing: .5px;
 }
@@ -149,9 +149,9 @@
   padding: 18px 24px;
   list-style: none;
   cursor: pointer;
-  font-family: 'Helvetica Neue';
-  font-weight: 500;
-  font-size: 15px;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-policy-nav-mobile-summary-size);
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -200,9 +200,9 @@
   padding: 16px 24px;
   text-decoration: none;
   color: #181818;
-  font-family: 'Helvetica Neue';
-  font-weight: 400;
-  font-size: 15px;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-policy-nav-mobile-link-size);
   letter-spacing: .5px;
 }
 
@@ -216,10 +216,10 @@
 }
 
 .policy-page__content h3 span {
-  font-size: 23px;
+  font-size: var(--font-policy-subheading-size);
   margin: 0 0 20px;
-  font-family: 'Helvetica Neue';
-  font-weight: 500;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-medium);
   letter-spacing: 1px;
   line-height: 1;
 }
@@ -243,7 +243,7 @@
   }
 
   .policy-page__content h3 span {
-    font-size: 18px !important;
+    font-size: var(--font-policy-subheading-size-mobile) !important;
   }
 
   .policy-page__content p,

@@ -80,24 +80,24 @@
 }
 
 .custom-featured-product-left-inner_upper p:nth-child(1) {
-    font-family: "Proxima Nova A", serif;
+    font-family: var(--font-family-label);
     color: #181818;
-    font-size: 16px;
-    font-weight: 500;
-    line-height: 14px;
-    letter-spacing: 5px;
+    font-size: var(--font-label-size);
+    font-weight: var(--font-label-weight);
+    line-height: var(--font-label-line-height);
+    letter-spacing: var(--font-label-letter-spacing);
     text-align: left;
     text-transform: uppercase;
     margin-bottom: 20px;
 }
 
 .custom-featured-product-left-inner_upper p:nth-child(2) {
-    font-family: "Baskervville", serif;
+    font-family: var(--font-family-display);
     color: #181818;
-    font-size: 40px;
-    font-weight: 500;
-    line-height: 34px;
-    letter-spacing: 3px;
+    font-size: var(--font-featured-product-heading-size);
+    font-weight: var(--font-featured-product-heading-weight);
+    line-height: var(--font-featured-product-heading-line-height);
+    letter-spacing: var(--font-featured-product-heading-letter-spacing);
     text-align: left;
 }
 
@@ -111,12 +111,12 @@
 }
 
 .custom-featured-product-left .custom-featured-product-left-description p {
-    font-family: 'Helvetica Neue';
+    font-family: var(--font-family-body);
     color: #181818;
-    font-size: 20px;
-    font-weight: 300;
-    line-height: 26px;
-    letter-spacing: 1.5px;
+    font-size: var(--font-body-size);
+    font-weight: var(--font-copy-weight);
+    line-height: var(--font-body-line-height);
+    letter-spacing: var(--font-body-letter-spacing);
     text-align: left;
     margin-top: 17px;
     text-transform: none;
@@ -125,18 +125,18 @@
 }
 
 .custom-featured-product-left-inner_lower p {
-    font-family: "Piazzolla", serif;
-    font-size: 20px;
+    font-family: var(--font-family-accent);
+    font-size: var(--font-featured-product-price-size);
     color: #181818;
-    font-weight: 500;
+    font-weight: var(--font-featured-product-price-weight);
     margin-bottom: 40px;
 }
 
 .custom-featured-product-left-inner_lower button {
-    font-family: "Piazzolla", serif;
-    font-size: 24px;
+    font-family: var(--font-family-accent);
+    font-size: var(--font-featured-product-cta-size);
     color: #181818;
-    font-weight: 600;
+    font-weight: var(--font-featured-product-cta-weight);
     text-decoration: underline;
     border: none;
     background: none;
@@ -163,11 +163,11 @@
 
 .custom-featured-product-right p {
     color: #FFFDEE;
-    font-family: "Piazzolla", serif;
-    font-size: 20px;
-    font-weight: 100;
-    line-height: 19px;
-    letter-spacing: 1px;
+    font-family: var(--font-family-accent);
+    font-size: var(--font-featured-product-caption-size);
+    font-weight: var(--font-featured-product-caption-weight);
+    line-height: var(--font-featured-product-caption-line-height);
+    letter-spacing: var(--font-featured-product-caption-letter-spacing);
     text-align: right;
     margin: -10px 0 0 0;
     text-wrap: nowrap;
@@ -284,8 +284,8 @@
     }
 
     .custom-featured-product-right p {
-        font-size: 13px;
-        letter-spacing: 2px;
+        font-size: var(--font-featured-product-caption-size-mobile);
+        letter-spacing: var(--font-featured-product-caption-letter-spacing-mobile);
     }
 
     .custom-featured-product-left {
@@ -301,27 +301,27 @@
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(1) {
-        font-size: 14px;
-        letter-spacing: 3px;
+        font-size: var(--font-label-size-mobile);
+        letter-spacing: var(--font-label-letter-spacing-mobile);
         margin-bottom: 14px;
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(2) {
-        font-size: 24px;
-        line-height: 27px;
-        font-weight: 600;
+        font-size: var(--font-featured-product-heading-size-mobile);
+        line-height: var(--font-featured-product-heading-line-height-mobile);
+        font-weight: var(--font-featured-product-heading-weight-mobile);
     }
 
     .custom-featured-product-left-description p {
         gap: 16px;
         margin-top: 14px;
         font-size: 16px !important;
-        font-weight: 300 !important;
+        font-weight: var(--font-copy-weight) !important;
         line-height: 22px !important;
     }
 
     .custom-featured-product-left .custom-featured-product-left-description p {
-        font-size: 14px;
+        font-size: var(--font-body-size-mobile);
         line-height: 22px;
     }
 
@@ -335,7 +335,7 @@
     }
 
     .custom-featured-product-left-inner_lower button {
-        font-size: 20px;
+        font-size: var(--font-featured-product-cta-size-mobile);
     }
 
     .custom-featured-product-left-cta_container img {
@@ -353,7 +353,7 @@
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(2) {
-        font-size: 30px;
-        line-height: 27px;
+        font-size: var(--font-featured-product-heading-size-xs);
+        line-height: var(--font-featured-product-heading-line-height-xs);
     }
 }

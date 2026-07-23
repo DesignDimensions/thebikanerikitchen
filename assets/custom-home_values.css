@@ -41,39 +41,72 @@
     color: #181818;
     text-align: center;
     margin: 15px 0 0;
-    font-size: 20px;
-    font-family: 'Helvetica Neue';
+    font-size: var(--font-value-title-size);
+    font-family: var(--font-family-body);
     width: 100%;
-    line-height: 20px;
-    font-weight: 500;
+    line-height: var(--font-value-title-line-height);
+    font-weight: var(--font-value-title-weight);
 }
 
 @media screen and (min-width: 990px) and (hover: hover) and (pointer: fine) {
     .custom-home_values-item {
         cursor: pointer;
     }
-
-    .custom-home_values-title {
-        transition: opacity 0.3s ease;
-    }
 }
 
-/* Cloned by custom-home-values.js and appended to <body> on hover; the
-   original title is left completely untouched (same width/wrap as always). */
-.custom-home_values-title-floater {
+/* Cursor-following floater, styled and animated identically to
+   .custom-audio-player-cursor-tag (see custom-home-values.js) — the item's
+   own title is never touched; this shows block.settings.floater instead. */
+.custom-home_values-cursor-tag {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 200;
-    margin: 0;
+    z-index: 2;
+    display: none;
     pointer-events: none;
-    border-radius: 0;
-    padding: 6px 14px;
-    background-color: #FFFDEE;
-    box-shadow:
-        0 14px 26px -14px rgba(24, 24, 24, 0.24),
-        0 3px 8px rgba(24, 24, 24, 0.07);
-    will-change: transform, opacity;
+    will-change: transform;
+}
+
+.custom-home_values-cursor-tag.is-active {
+    display: flex;
+}
+
+.custom-home_values-cursor-tag-flip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 250px;
+    padding: 8px 15px;
+    background: #570f13;
+    color: #FFFDEE;
+    font-family: var(--font-family-label);
+    font-size: var(--font-audio-tag-size);
+    font-weight: var(--font-audio-tag-weight);
+    letter-spacing: var(--font-audio-tag-letter-spacing);
+    text-transform: uppercase;
+    text-wrap: wrap;
+    text-align: center;
+    opacity: 0;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.custom-home_values-cursor-tag-text-mask {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+.custom-home_values-cursor-tag-text {
+    display: inline-block;
+    vertical-align: top;
+    will-change: transform;
+}
+
+@media (hover: none), (pointer: coarse) {
+    .custom-home_values-cursor-tag {
+        display: none !important;
+    }
 }
 
 .custom-home_values-item--extra {
@@ -108,7 +141,7 @@
 
     .custom-home_values-title {
         margin-top: 14px;
-        font-size: 14px;
-        line-height: 17px;
+        font-size: var(--font-value-title-size-mobile);
+        line-height: var(--font-value-title-line-height-mobile);
     }
 }

@@ -2,19 +2,19 @@
   .custom-bg-heading {
     padding-top: 50px;
     padding-bottom: 50px;
-    font-size: 50px;
-    font-family: 'Baskervville';
+    font-size: var(--font-bg-heading-size);
+    font-family: var(--font-family-display);
     text-align: left;
     width: 100%;
-    line-height: 50px;
+    line-height: var(--font-bg-heading-line-height);
   }
 
   @media screen and (max-width: 768px) {
     .custom-bg-heading {
       padding-top: 32px;
       padding-bottom: 28px;
-      font-size: 30px;
-      line-height: 34px;
+      font-size: var(--font-bg-heading-size-mobile);
+      line-height: var(--font-bg-heading-line-height-mobile);
     }
   }
 
@@ -22,8 +22,8 @@
     .custom-bg-heading {
       padding-top: 40px;
       padding-bottom: 40px;
-      font-size: 38px;
-      line-height: 40px;
+      font-size: var(--font-bg-heading-size-tablet);
+      line-height: var(--font-bg-heading-line-height-tablet);
     }
   }
 
@@ -31,8 +31,8 @@
     .custom-bg-heading {
       padding-top: 24px;
       padding-bottom: 20px;
-      font-size: 24px;
-      line-height: 28px;
+      font-size: var(--font-bg-heading-size-xs);
+      line-height: var(--font-bg-heading-line-height-xs);
     }
   }
 </style>

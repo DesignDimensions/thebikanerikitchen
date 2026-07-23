@@ -13,10 +13,10 @@
 
 .story-tags-strip__label {
   margin: 0;
-  font-family: 'Proxima Nova A', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  letter-spacing: 6px;
+  font-family: var(--font-family-label);
+  font-size: var(--font-story-tags-label-size);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: var(--font-story-tags-label-letter-spacing);
   text-transform: uppercase;
   color: #fffdee;
 }
@@ -79,9 +79,9 @@
 .story-tags-strip__tag-text,
 .story-tags-strip__tag-text p {
   margin: 0;
-  font-family: 'Helvetica Neue';
-  font-size: 15px;
-  font-weight: 300;
+  font-family: var(--font-family-body);
+  font-size: var(--font-story-tags-tag-size);
+  font-weight: var(--font-copy-weight);
   letter-spacing: 1px;
 }
 

@@ -35,12 +35,12 @@
 
 .press-banner__eyebrow {
   margin: 0 0 20px;
-  font-size: 1.3rem;
-  font-weight: 500;
-  letter-spacing: 0.25em;
+  font-size: var(--font-press-eyebrow-size);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-press-eyebrow-letter-spacing);
   text-transform: uppercase;
   text-align: left;
-  font-family: 'Proxima Nova A';
+  font-family: var(--font-family-label);
 }
 
 .press-banner__heading {
@@ -51,10 +51,10 @@
 .press-banner__body {
   text-align: left;
   margin: 0;
-  font-size: 19px;
+  font-size: var(--font-press-body-size);
   line-height: 1.5;
-  font-family: 'Helvetica Neue';
-  font-weight: 300;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-copy-weight);
   width: 80%;
 }
 
@@ -64,6 +64,6 @@
   }
 
   .press-banner__body {
-    font-size: 16px;
+    font-size: var(--font-press-body-size-mobile);
   }
 }

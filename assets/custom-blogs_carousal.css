@@ -75,10 +75,10 @@
     position: absolute;
     z-index: 2;
     margin: 0;
-    font-family: 'Proxima Nova A', sans-serif;
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 3px;
+    font-family: var(--font-family-label);
+    font-size: var(--font-blogs-tag-size);
+    font-weight: var(--font-blogs-tag-weight);
+    letter-spacing: var(--font-blogs-tag-letter-spacing);
     text-transform: uppercase;
     color: #fffdee;
     text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
@@ -144,10 +144,10 @@
 
 .custom-blogs-carousel-caption {
     margin: 0;
-    font-family: 'Proxima Nova A', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 3px;
+    font-family: var(--font-family-label);
+    font-size: var(--font-blogs-caption-size);
+    font-weight: var(--font-blogs-caption-weight);
+    letter-spacing: var(--font-blogs-caption-letter-spacing);
     text-transform: uppercase;
     color: #fffdee;
 }
@@ -156,10 +156,10 @@
     display: flex;
     align-items: center;
     margin: 0;
-    font-family: 'Proxima Nova A', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    letter-spacing: 3px;
+    font-family: var(--font-family-label);
+    font-size: var(--font-blogs-caption-size);
+    font-weight: var(--font-blogs-caption-weight);
+    letter-spacing: var(--font-blogs-caption-letter-spacing);
     text-transform: uppercase;
     color: #fffdee;
     gap: 4px;
@@ -168,10 +168,10 @@
 .custom-blogs-carousel-heading {
     margin: 0 0 20px;
     max-width: 92%;
-    font-family: 'Baskervville', serif;
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 1.15;
+    font-family: var(--font-family-display);
+    font-size: var(--font-blogs-heading-size);
+    font-weight: var(--font-blogs-heading-weight);
+    line-height: var(--font-blogs-heading-line-height);
     color: #fffdee;
     will-change: transform, opacity;
 }
@@ -179,7 +179,7 @@
 @media screen and (min-width: 750px) {
     .custom-blogs-carousel-heading {
         max-width: 85%;
-        font-size: 50px;
+        font-size: var(--font-blogs-heading-size-tablet);
         margin-bottom: 28px;
     }
 }
@@ -198,11 +198,11 @@
 
 .custom-blogs-carousel-description p {
     margin: 0;
-    font-family: 'Helvetica Neue', sans-serif;
-    font-weight: 300;
-    font-size: 14px;
+    font-family: var(--font-family-body);
+    font-weight: var(--font-copy-weight);
+    font-size: var(--font-body-size-mobile);
     line-height: 1.65;
-    letter-spacing: 1;
+    letter-spacing: 1px;
     color: rgba(255, 253, 238, 0.85);
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -213,7 +213,7 @@
 
 @media screen and (min-width: 750px) {
     .custom-blogs-carousel-description p {
-        font-size: 20px;
+        font-size: var(--font-body-size);
         line-height: 1.7;
         line-clamp: 6;
     }
@@ -236,9 +236,9 @@
 }
 
 .custom-blogs-carousel-cta-text {
-    font-family: 'Baskervville', serif;
-    font-size: 24px;
-    letter-spacing: 1;
+    font-family: var(--font-family-display);
+    font-size: var(--font-blogs-cta-size);
+    letter-spacing: var(--font-blogs-cta-letter-spacing);
     color: #fffdee;
 }
 
@@ -358,7 +358,7 @@
 
     .custom-blogs-carousel-caption,
     .custom-blogs-carousel-counter {
-        font-size: 14px;
+        font-size: var(--font-blogs-caption-size-mobile);
     }
 
     .custom-blogs-carousel-description p {
@@ -366,7 +366,7 @@
     }
 
     .custom-blogs-carousel-cta-text {
-        font-size: 16px;
+        font-size: var(--font-blogs-cta-size-mobile);
         text-decoration: underline 1px;
         text-underline-offset: 4px;
     }

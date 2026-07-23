@@ -101,12 +101,12 @@ details[open]>.search-modal.search-modal--fullscreen {
   border-radius: 0;
   color: #FFFDEE;
   text-align: center;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 17px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-search-input-size);
   letter-spacing: 0.5px;
   box-shadow: none;
   caret-color: #FFFDEE;
-  font-weight: 300;
+  font-weight: var(--font-copy-weight);
 }
 
 .search-modal--fullscreen .field__input::placeholder {
@@ -138,9 +138,9 @@ details[open]>.search-modal.search-modal--fullscreen {
 .search-modal__popular-label {
   margin: 0 0 18px;
   color: #FFFDEE;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
+  font-family: var(--font-family-body);
+  font-size: var(--font-search-popular-label-size);
+  font-weight: var(--font-weight-regular);
   letter-spacing: 1.5px;
   text-transform: uppercase;
 }
@@ -157,10 +157,10 @@ details[open]>.search-modal.search-modal--fullscreen {
 .search-modal__popular-link {
   display: inline-block;
   color: rgba(255, 253, 238, 0.75);
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 16px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-search-popular-link-size);
   letter-spacing: 1px;
-  font-weight: 300;
+  font-weight: var(--font-copy-weight);
   text-decoration: none;
   transition: color 0.2s ease, transform 0.2s ease;
 }
@@ -202,7 +202,7 @@ details[open]>.search-modal.search-modal--fullscreen {
   }
 
   .search-modal--fullscreen .field__input {
-    font-size: 16px;
+    font-size: var(--font-search-input-size);
   }
 
   .search-modal__popular-label {
@@ -218,7 +218,7 @@ details[open]>.search-modal.search-modal--fullscreen {
   }
 
   .search-modal__popular-link {
-    font-size: 16px;
+    font-size: var(--font-search-popular-link-size);
   }
 
   .search-modal--fullscreen .search-modal__close-button {

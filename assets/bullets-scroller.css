@@ -73,8 +73,8 @@
   align-items: center;
   gap: 40px;
   white-space: nowrap;
-  font-family: 'Baskervville', serif;
-  font-size: 16px;
+  font-family: var(--font-family-display);
+  font-size: var(--font-bullets-scroller-size);
   letter-spacing: 0.02em;
   color: var(--bullets-scroller-color, #181818);
   padding: 0 40px 0 0;
@@ -107,7 +107,7 @@
   }
 
   .bullets-scroller-item {
-    font-size: 15px;
+    font-size: var(--font-bullets-scroller-size-mobile);
     gap: 16px;
     padding: 0 16px;
   }

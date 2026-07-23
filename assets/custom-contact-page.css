@@ -39,10 +39,10 @@
 }
 
 .contact-page__rich-text {
-  font-family: 'Helvetica Neue';
-  font-size: 17px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-contact-body-size);
   line-height: 23px;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
   max-width: 600px;
 }
 

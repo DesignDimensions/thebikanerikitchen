@@ -37,11 +37,11 @@
 
 .error-404__eyebrow {
   margin: 0 0 15px;
-  font-size: 1.3rem;
-  font-weight: 500;
-  letter-spacing: 0.3em;
+  font-size: var(--font-404-eyebrow-size);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--font-404-eyebrow-letter-spacing);
   text-transform: uppercase;
-  font-family: 'Proxima Nova A';
+  font-family: var(--font-family-label);
 }
 
 .error-404__heading {
@@ -51,9 +51,9 @@
 
 .error-404__subtext {
   margin: 0 0 24px;
-  font-size: 20px;
-  font-family: 'Helvetica Neue';
-  font-weight: 300;
+  font-size: var(--font-404-subtext-size);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-copy-weight);
 }
 
 .error-404__button {
@@ -63,10 +63,10 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 2px;
-  font-size: 1.4rem;
+  font-size: var(--font-404-button-size);
   text-align: center;
-  font-family: 'Helvetica Neue';
-  font-weight: 200;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-extralight);
   line-height: 12px;
 }
 

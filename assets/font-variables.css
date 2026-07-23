@@ -1,0 +1,386 @@
+/*
+ * Font variables — single source of truth for all custom (non-Dawn) typography.
+ * Extracted from the home page sections, which were tuned first. Every custom
+ * section's font-family/size/weight/line-height/letter-spacing should reference
+ * these tokens instead of hardcoding values, so a change here propagates to
+ * every page. Breakpoints match Dawn's own convention: 989px and 749px.
+ *
+ * Layout: 1) families  2) weights  3) shared roles (reused across sections/pages)
+ * 4) section-specific roles (unique to one home section, tokenized for
+ * consistency/future reuse but not merged into a shared role).
+ */
+
+:root {
+   /* 1. Families */
+   --font-family-display: 'Baskervville', serif;
+   --font-family-accent: 'Piazzolla', serif;
+   --font-family-label: 'Proxima Nova A', sans-serif;
+   --font-family-body: 'Helvetica Neue', sans-serif;
+
+   /* 2. Weights */
+   --font-weight-thin: 100;
+   --font-weight-extralight: 200;
+   --font-weight-light: 300;
+   --font-weight-regular: 400;
+   --font-weight-medium: 500;
+   --font-weight-semibold: 600;
+   --font-weight-extrabold: 800;
+
+   /* 1b. Extra families used by a single component each */
+   --font-family-wordmark: 'Aurum';
+   --font-family-devanagari: 'Ouma Devanagari', serif;
+
+   /* 3a. Shared — Section heading (.section-heading / .clp-section-heading,
+     custom-bg-heading; big Baskervville display heading reused sitewide) */
+   --font-section-heading-size: 50px;
+   --font-section-heading-line-height: 52px;
+   --font-section-heading-letter-spacing: 3px;
+   --font-section-heading-weight: var(--font-weight-medium);
+   --font-section-heading-size-mobile: 30px;
+   --font-section-heading-line-height-mobile: 30px;
+   --font-section-heading-letter-spacing-mobile: 1.5px;
+
+   /* 3b. Shared — Body copy (long-form paragraph text: descriptions,
+     transcripts, story/practices copy). Helvetica Neue, light. */
+   --font-body-size: 20px;
+   --font-body-line-height: 1.4;
+   --font-body-letter-spacing: 1px;
+   --font-copy-weight: var(--font-weight-light);
+   --font-body-size-mobile: 14px;
+   --font-body-line-height-mobile: 1.6;
+   --font-body-letter-spacing-mobile: 1px;
+
+   /* 3c. Shared — Eyebrow / label (small uppercase caption, wide tracking).
+     Proxima Nova A. */
+   --font-label-size: 16px;
+   --font-label-line-height: 1.2;
+   --font-label-letter-spacing: 3px;
+   --font-label-weight: var(--font-weight-medium);
+   --font-label-size-mobile: 14px;
+   --font-label-line-height-mobile: 1.2;
+   --font-label-letter-spacing-mobile: 3px;
+
+   /* 4. Section-specific — kept distinct because their weight/line-height
+     make them a deliberately different style, not incidental drift. */
+
+   /* custom-banner-text: full-bleed hero quote over an image */
+   --font-banner-text-heading-size: 50px;
+   --font-banner-text-heading-line-height: 71px;
+   --font-banner-text-heading-weight: var(--font-weight-thin);
+   --font-banner-text-heading-size-tablet: 42px;
+   --font-banner-text-heading-line-height-tablet: 52px;
+   --font-banner-text-heading-size-mobile: 30px;
+   --font-banner-text-heading-line-height-mobile: 38px;
+
+   /* custom-bg-heading: full-width statement heading between sections */
+   --font-bg-heading-size: 50px;
+   --font-bg-heading-line-height: 50px;
+   --font-bg-heading-size-tablet: 38px;
+   --font-bg-heading-line-height-tablet: 40px;
+   --font-bg-heading-size-mobile: 30px;
+   --font-bg-heading-line-height-mobile: 34px;
+   --font-bg-heading-size-xs: 24px;
+   --font-bg-heading-line-height-xs: 28px;
+
+   /* custom-featured-product: left panel heading (line 2 of the intro) */
+   --font-featured-product-heading-size: 40px;
+   --font-featured-product-heading-line-height: 34px;
+   --font-featured-product-heading-letter-spacing: 3px;
+   --font-featured-product-heading-weight: var(--font-weight-medium);
+   --font-featured-product-heading-size-mobile: 24px;
+   --font-featured-product-heading-line-height-mobile: 27px;
+   --font-featured-product-heading-weight-mobile: var(--font-weight-semibold);
+   --font-featured-product-heading-size-xs: 30px;
+   --font-featured-product-heading-line-height-xs: 27px;
+
+   /* custom-featured-product: price/lower line + CTA button (Piazzolla) */
+   --font-featured-product-price-size: 20px;
+   --font-featured-product-price-weight: var(--font-weight-medium);
+   --font-featured-product-cta-size: 24px;
+   --font-featured-product-cta-weight: var(--font-weight-semibold);
+   --font-featured-product-cta-size-mobile: 20px;
+
+   /* custom-featured-product: right panel vertical caption (Piazzolla) */
+   --font-featured-product-caption-size: 20px;
+   --font-featured-product-caption-line-height: 19px;
+   --font-featured-product-caption-letter-spacing: 1px;
+   --font-featured-product-caption-weight: var(--font-weight-thin);
+   --font-featured-product-caption-size-mobile: 14px;
+   --font-featured-product-caption-letter-spacing-mobile: 2px;
+
+   /* custom-featured-collection: product card title + price (Piazzolla) */
+   --font-card-title-size: 18px;
+   --font-card-title-line-height: 16px;
+   --font-card-title-weight: var(--font-weight-regular);
+   --font-card-title-size-mobile: 20px;
+   --font-card-price-size: 16px;
+   --font-card-price-line-height: 16px;
+   --font-card-price-weight: var(--font-weight-regular);
+   --font-card-price-size-mobile: 16px;
+
+   /* custom-featured-collection: card "Add to cart" quick-add button */
+   --font-card-quick-add-size: 18px;
+   --font-card-quick-add-weight: var(--font-weight-medium);
+
+   /* custom-home-values: item title under each icon (Helvetica Neue) */
+   --font-value-title-size: 20px;
+   --font-value-title-line-height: 20px;
+   --font-value-title-weight: var(--font-weight-medium);
+   --font-value-title-size-mobile: 14px;
+   --font-value-title-line-height-mobile: 17px;
+
+   /* custom-blogs-carousel: caption/counter row (Proxima Nova A) */
+   --font-blogs-caption-size: 20px;
+   --font-blogs-caption-weight: var(--font-weight-medium);
+   --font-blogs-caption-letter-spacing: 3px;
+   --font-blogs-caption-size-mobile: 14px;
+
+   /* custom-blogs-carousel: photo overlay tag (Proxima Nova A, no resize) */
+   --font-blogs-tag-size: 12px;
+   --font-blogs-tag-weight: var(--font-weight-regular);
+   --font-blogs-tag-letter-spacing: 3px;
+
+   /* custom-blogs-carousel: slide heading (Baskervville) */
+   --font-blogs-heading-size: 24px;
+   --font-blogs-heading-line-height: 1.15;
+   --font-blogs-heading-weight: var(--font-weight-regular);
+   --font-blogs-heading-size-tablet: 50px;
+
+   /* custom-blogs-carousel: "Read more" CTA (Baskervville) */
+   --font-blogs-cta-size: 24px;
+   --font-blogs-cta-letter-spacing: 1px;
+   --font-blogs-cta-size-mobile: 16px;
+
+   /* custom-home-testimonials: eyebrow reuses shared label tokens exactly */
+   /* custom-home-testimonials: quote (display serif) */
+   --font-testimonial-quote-size: 24px;
+   --font-testimonial-quote-line-height: 1.5;
+   --font-testimonial-quote-size-mobile: 20px;
+
+   /* custom-home-testimonials: person name + location (Piazzolla) */
+   --font-testimonial-name-size: 20px;
+   --font-testimonial-name-weight: var(--font-weight-regular);
+   --font-testimonial-location-size: 14px;
+   --font-testimonial-location-weight: var(--font-weight-medium);
+
+   /* custom-audio-player: cursor-follow tag pill (Proxima Nova A) */
+   --font-audio-tag-size: 12px;
+   --font-audio-tag-weight: var(--font-weight-medium);
+   --font-audio-tag-letter-spacing: 1.5px;
+
+   /* custom-audio-player: EN/HI language switch buttons (Proxima Nova A) */
+   --font-audio-language-size: 20px;
+   --font-audio-language-weight: var(--font-weight-semibold);
+   --font-audio-language-letter-spacing: 2px;
+   --font-audio-language-size-mobile: 12px;
+   --font-audio-language-letter-spacing-mobile: 2.5px;
+
+   /* custom-audio-player: heading line-height override on top of the
+     shared section-heading size */
+   --font-audio-heading-line-height-mobile: 37px;
+
+   /* custom-practices: definition-list row (label + description share one
+     size scale; only weight/alignment differ) — no home-page equivalent,
+     so this keeps its own scale rather than being forced onto another role */
+   --font-practices-row-size: 20px;
+   --font-practices-row-label-weight: var(--font-weight-semibold);
+   --font-practices-row-description-weight: var(--font-weight-light);
+   --font-practices-row-size-mobile: 16px;
+   --font-practices-row-line-height-mobile: 24px;
+   --font-practices-row-size-xs: 15px;
+   --font-practices-row-line-height-xs: 22px;
+
+   /* custom-image-content: heading (Baskervville); shares the section-heading
+     size scale exactly, kept as its own token since weight/line-height are
+     intentionally left at browser defaults here (thinner, tighter than
+     .section-heading) */
+   --font-image-content-heading-size: var(--font-section-heading-size);
+   --font-image-content-heading-size-mobile: var(--font-section-heading-size-mobile);
+
+   /* ---- Product page ---- */
+
+   /* section-main-product: price note under the price */
+   --font-pdp-price-note-size: 16px;
+
+   /* section-main-product: product title (h1) */
+   --font-product-title-size: 50px;
+   --font-product-title-size-mobile: 36px;
+   --font-product-title-weight-mobile: var(--font-weight-medium);
+
+   /* section-main-product: description + its "show more" toggle */
+   --font-product-description-size: 16px;
+
+   /* section-main-product: quantity stepper */
+   --font-quantity-label-size: 14px;
+   --font-quantity-label-weight: var(--font-weight-extralight);
+   --font-quantity-value-size: 25px;
+   --font-quantity-value-weight: var(--font-weight-regular);
+   --font-quantity-button-size: 26px;
+
+   /* section-main-product: "Add to cart" submit button */
+   --font-add-to-cart-size: 16px;
+
+   /* section-main-product: discount code callout */
+   --font-discount-callout-size: 16px;
+
+   /* section-main-product: reviews block */
+   --font-reviews-meta-size: 12px;
+   --font-reviews-meta-weight: var(--font-weight-medium);
+   --font-reviews-meta-size-mobile: 16px;
+   --font-reviews-quote-size: 16px;
+   --font-reviews-quote-weight: var(--font-weight-regular);
+   --font-reviews-quote-size-mobile: 15px;
+   --font-reviews-quote-weight-mobile: var(--font-weight-light);
+   --font-reviews-author-size: 16px;
+   --font-reviews-author-weight: var(--font-weight-medium);
+   --font-reviews-trust-size: 12px;
+   --font-reviews-trust-weight: var(--font-weight-regular);
+   --font-reviews-trust-size-mobile: 10.5px;
+   --font-reviews-trust-weight-mobile: var(--font-weight-extralight);
+
+   /* pdp_fold_2: second-fold heading + bullet list */
+   --font-pdp-fold2-heading-size: 50px;
+   --font-pdp-fold2-heading-size-mobile: 29px;
+   --font-pdp-fold2-heading-weight-mobile: var(--font-weight-medium);
+   --font-pdp-fold2-bullet-size: 20px;
+   --font-pdp-fold2-bullet-size-mobile: 15.5px;
+   --font-pdp-fold2-answer-size: 20px;
+   --font-pdp-fold2-answer-size-mobile: 14px;
+
+   /* custom_pdp_faqs: FAQ accordion */
+   --font-pdp-faqs-heading-size: 50px;
+   --font-pdp-faqs-heading-size-mobile: 3rem;
+   --font-pdp-faqs-summary-size: 24px;
+   --font-pdp-faqs-summary-size-mobile: 14px;
+   --font-pdp-faqs-summary-weight-mobile: var(--font-weight-light);
+   --font-pdp-faqs-answer-size: 20px;
+   --font-pdp-faqs-answer-size-mobile: 14px;
+   --font-pdp-faqs-answer-weight-mobile: var(--font-weight-thin);
+
+   /* bullets-scroller: PDP marquee strip */
+   --font-bullets-scroller-size: 16px;
+   --font-bullets-scroller-size-mobile: 15px;
+
+   /* ---- Product + collection cards (shop-card, shared component) ---- */
+   --font-shop-card-badge-size: 14px;
+   --font-shop-card-title-size: 18px;
+   --font-shop-card-title-link-size: 22px;
+   --font-shop-card-title-size-mobile: 15px;
+   --font-shop-card-price-size: 20px;
+   --font-shop-card-size-size: 20px;
+   --font-shop-card-add-size: 20px;
+
+   /* component-price: PDP large price */
+   --font-pdp-price-size: 32px;
+
+   /* component-product-variant-picker: pill swatches */
+   --font-variant-pill-size: 16px;
+
+   /* ---- Collection page (facets-minimal) ---- */
+   --font-facets-trigger-size: 20px;
+   --font-facets-trigger-size-mobile: 14px;
+   --font-facets-panel-title-size: 14px;
+   --font-facets-group-label-size: 12px;
+   --font-facets-radio-size: 14px;
+   --font-facets-clear-size: 14px;
+
+   /* ---- Archive page (main-article-archive) ---- */
+   --font-archive-hero-caption-size: 11px;
+   --font-archive-hero-caption-letter-spacing: 3px;
+   --font-archive-hero-caption-size-tablet: 12px;
+   --font-archive-hero-caption-letter-spacing-tablet: 3.5px;
+   --font-archive-intro-heading-size: 42px;
+   --font-archive-intro-heading-size-mobile: 28px;
+   --font-archive-body-size: 16px;
+   --font-archive-quote-mark-size: 35px;
+   --font-archive-quote-em-size: 18px;
+   --font-archive-split-body-size: 15px;
+   --font-archive-quote-body-size: 15px;
+   --font-archive-duo-caption-size: 14px;
+   --font-archive-note-label-size: 15px;
+   --font-archive-note-label-letter-spacing: 7px;
+   --font-archive-note-body-size: 15px;
+
+   /* ---- Blog listing (archive/rituals) header + grid ---- */
+   --font-blog-header-heading-size: 50px;
+   --font-blog-header-heading-size-mobile: 34px;
+   --font-blog-header-heading-size-xs: 26px;
+   --font-blog-header-title-size: 14px;
+   --font-blog-header-description-size: 14px;
+   --font-blog-header-description-size-xs: 15px;
+   --font-blog-header-toggle-size: 18px;
+   --font-blog-header-toggle-size-xs: 16px;
+
+   --font-blog-grid-subtitle-size: 15px;
+   --font-blog-grid-subtitle-size-mobile: 11px;
+   --font-blog-grid-title-size: 40px;
+   --font-blog-grid-title-line-height: 50px;
+   --font-blog-grid-title-letter-spacing: 1px;
+   --font-blog-grid-title-size-mobile: 30px;
+   --font-blog-grid-title-line-height-mobile: 35px;
+   --font-blog-grid-description-size: 14px;
+   --font-blog-grid-description-size-mobile: 14px;
+   --font-blog-grid-filter-size: 14px;
+   --font-blog-grid-filter-size-mobile: 14px;
+
+   /* ---- Contact page ---- */
+   --font-contact-body-size: 16px;
+
+   /* ---- Policy pages (custom-policy-page, shared by all 3) ---- */
+   --font-policy-title-letter-spacing: 1px;
+   --font-policy-body-size: 18px;
+   --font-policy-nav-link-size: 16px;
+   --font-policy-nav-mobile-summary-size: 15px;
+   --font-policy-nav-mobile-link-size: 15px;
+   --font-policy-subheading-size: 23px;
+   --font-policy-subheading-size-mobile: 18px;
+
+   /* ---- Press page ---- */
+   --font-press-eyebrow-size: 1.3rem;
+   --font-press-eyebrow-letter-spacing: 0.25em;
+   --font-press-body-size: 20px;
+   --font-press-body-size-mobile: 16px;
+   --font-press-date-size: 1.2rem;
+   --font-press-publication-size: 22px;
+   --font-press-excerpt-size: 16px;
+   --font-press-read-size: 20px;
+
+   /* ---- Burger menu (menu-drawer) + desktop header nav ---- */
+   --font-menu-drawer-item-size: 21px;
+   --font-menu-drawer-item-weight: var(--font-weight-extralight);
+   --font-header-menu-item-size: 12px;
+   --font-header-menu-item-letter-spacing: 2px;
+
+   /* ---- Footer ---- */
+   --font-footer-link-size: 20px;
+   --font-footer-link-weight: var(--font-weight-extralight);
+   --font-footer-copyright-size: 14px;
+   --font-footer-copyright-weight: var(--font-weight-thin);
+
+   /* ---- 404 page ---- */
+   --font-404-eyebrow-size: 1.3rem;
+   --font-404-eyebrow-letter-spacing: 0.3em;
+   --font-404-subtext-size: 20px;
+   --font-404-button-size: 1.4rem;
+
+   /* ---- Wishlist page ---- */
+   --font-wishlist-link-size: 16px;
+   --font-wishlist-empty-heading-size: 22px;
+   --font-wishlist-empty-body-size: 16px;
+
+   /* ---- Fullscreen search modal ---- */
+   --font-search-input-size: 16px;
+   --font-search-popular-label-size: 15px;
+   --font-search-popular-link-size: 16px;
+
+   /* ---- Story tags strip (article footer) ---- */
+   --font-story-tags-label-size: 15px;
+   --font-story-tags-label-letter-spacing: 6px;
+   --font-story-tags-tag-size: 15px;
+
+   /* ---- Continue exploring (related articles/products grid) ---- */
+   --font-continue-exploring-number-size: 11px;
+   --font-continue-exploring-number-letter-spacing: 2px;
+   --font-continue-exploring-title-size: 16px;
+   --font-continue-exploring-title-size-mobile: 22px;
+}

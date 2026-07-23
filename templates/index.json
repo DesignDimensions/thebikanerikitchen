@@ -151,35 +151,40 @@
           "type": "value",
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_27_59_PM_1.png",
-            "title": "Made in high Oleic sunflower oil"
+            "title": "Made in high Oleic sunflower oil",
+            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           }
         },
         "value_iXAcUw": {
           "type": "value",
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_29_49_PM_1.png",
-            "title": "No re-use of oil, for purity of taste"
+            "title": "No re-use of oil, for purity of taste",
+            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           }
         },
         "value_8pQkUR": {
           "type": "value",
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_31_29_PM_1.png",
-            "title": "Slow-cooked in traditional Bhatti"
+            "title": "Slow-cooked in traditional Bhatti",
+            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           }
         },
         "value_W467ek": {
           "type": "value",
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_33_11_PM_1.png",
-            "title": "Made with low sodium salt"
+            "title": "Made with low sodium salt",
+            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           }
         },
         "value_8mgV7n": {
           "type": "value",
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_35_34_PM_1.png",
-            "title": "Prepared by skilled hands in batches"
+            "title": "Prepared by skilled hands in batches",
+            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
           }
         }
       },

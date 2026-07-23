@@ -71,9 +71,9 @@ variant-selects {
   transition: border var(--duration-short) ease;
   cursor: pointer;
   position: relative;
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 16px;
-  font-weight: 300;
+  font-family: var(--font-family-body);
+  font-size: var(--font-variant-pill-size);
+  font-weight: var(--font-copy-weight);
 }
 
 .product-form__input--pill input[type='radio']+label:before {

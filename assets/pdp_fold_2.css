@@ -1,8 +1,9 @@
 .pdp-fold-2-container {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   background-color: #FFFDEE;
   color: #181818;
+  position: relative;
 }
 
 .pdp-fold-2-left {
@@ -17,41 +18,114 @@
 .pdp-fold-2-heading {
   margin: 0 0 25px 0;
   padding-bottom: 20px;
-  border-bottom: 1px solid #181818;
-  font-family: 'Baskervville';
-  font-size: 50px;
+  font-family: var(--font-family-display);
+  font-size: var(--font-pdp-fold2-heading-size);
+  color: #181818;
   line-height: 65px;
 }
 
-.pdp-fold-2-left-bullets-container {
+.pdp-fold-2-list {
   display: flex;
   flex-direction: column;
-  gap: 30px;
 }
 
-.pdp-fold-2-bullet {
+.pdp-fold-2-item {
+  border-bottom: 1px solid rgba(24, 24, 24, 0.3);
+  padding: 1.8rem 0;
+}
+
+.pdp-fold-2-item:first-child {
+  padding-top: 0;
+}
+
+.pdp-fold-2-item-summary {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  justify-content: space-between;
+  gap: 1.5rem;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-family-body);
+  font-size: var(--font-pdp-fold2-bullet-size);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.3;
+  color: #181818;
 }
 
-.pdp-fold-2-bullet-icon {
+.pdp-fold-2-item-summary::-webkit-details-marker {
+  display: none;
+}
+
+.pdp-fold-2-item-summary::marker {
+  content: '';
+}
+
+.pdp-fold-2-item-bullet-icon {
+  flex-shrink: 0;
   width: 30px;
   height: auto;
+  margin-right: 10px;
 }
 
-.pdp-fold-2-bullet-text {
-  font-family: 'Helvetica Neue', sans-serif;
-  font-size: 19px;
-  font-weight: 400;
-  line-height: 19px;
+.pdp-fold-2-item-question {
+  flex-grow: 1;
+}
+
+.pdp-fold-2-item-icon {
+  position: relative;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+}
+
+.pdp-fold-2-item-icon-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: #181818;
+  transform: translate(-50%, -50%);
+}
+
+.pdp-fold-2-item-icon-bar--h {
+  width: 100%;
+  height: 2px;
+}
+
+.pdp-fold-2-item-icon-bar--v {
+  width: 2px;
+  height: 100%;
+}
+
+.pdp-fold-2-item[open] .pdp-fold-2-item-icon-bar--v {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.pdp-fold-2-item-content {
+  height: auto;
+  overflow: hidden;
+}
+
+.pdp-fold-2-item-answer {
+  margin-top: 1.4rem;
+  margin-left: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--font-pdp-fold2-answer-size);
+  line-height: 1.5;
   color: #181818;
-  padding-left: 11px;
+  opacity: .9;
+  font-weight: var(--font-copy-weight);
+}
+
+.pdp-fold-2-item-answer p {
+  margin: 0;
 }
 
 .pdp-fold-2-right {
   width: 50%;
-  aspect-ratio: 1 / 1;
+  position: relative;
+  aspect-ratio: 1/1;
+  overflow: hidden;
 }
 
 .pdp-fold-2-right-image {
@@ -62,40 +136,60 @@
 }
 
 @media screen and (max-width: 749px) {
+  .pdp-fold-2-item-summary {
+    font-size: var(--font-pdp-fold2-bullet-size-mobile);
+    transform: translate(0) !important;
+    letter-spacing: 1px;
+  }
+
+  .pdp-fold-2-item-summary .pdp-fold-2-item-question {
+    transform: translate(0) !important;
+  }
+
+  .pdp-fold-2-item-answer {
+    margin-left: 0;
+  }
+
+  .pdp-fold-2-item-answer p {
+    font-size: var(--font-pdp-fold2-answer-size-mobile);
+    letter-spacing: 1px;
+  }
+
   .pdp-fold-2-container {
     flex-direction: column-reverse;
   }
 
-  .pdp-fold-2-left {
-    width: 100%;
-    padding: 3rem 15px;
+  .pdp-fold-2-item-icon {
+    width: 10px;
+    height: 10px;
   }
 
-  .pdp-fold-2-heading {
-    font-size: 29px;
-    line-height: 38px;
-    font-weight: 500;
+  .pdp-fold-2-item-icon-bar--h {
+    height: 1px;
   }
 
-  .pdp-fold-2-bullet-text {
-    font-size: 15.5px;
+  .pdp-fold-2-item-icon-bar--v {
+    width: 1px;
   }
 
-  .pdp-fold-2-bullet-icon {
+  .pdp-fold-2-item-bullet-icon {
     width: 25px;
   }
 
-  .pdp-fold-2-left-bullets-container {
-    gap: 25px;
+  .pdp-fold-2-left {
+    width: 100%;
+    padding: 4rem 2rem;
+  }
+
+  .pdp-fold-2-heading {
+    font-size: var(--font-pdp-fold2-heading-size-mobile);
+    font-weight: var(--font-pdp-fold2-heading-weight-mobile);
+    line-height: 1.2;
+    margin-bottom: 2rem;
   }
 
   .pdp-fold-2-right {
     width: 100%;
-    height: auto;
-    aspect-ratio: unset;
-  }
-
-  .pdp-fold-2-right-image {
-    max-height: 400px;
+    aspect-ratio: 1 / 1;
   }
 }
