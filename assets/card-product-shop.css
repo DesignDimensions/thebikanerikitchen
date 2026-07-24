@@ -184,9 +184,11 @@
   opacity: 0.85;
 }
 
-.shop-card__size-select:focus-visible {
-  outline: 1px solid #FFFDEE;
-  outline-offset: 2px;
+.shop-card__size-select:focus,
+.shop-card__size-select:focus-visible,
+.shop-card__size-select:active {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .shop-card__size-select option {
