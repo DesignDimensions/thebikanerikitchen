@@ -236,7 +236,7 @@
    --font-reviews-trust-size: 12px;
    --font-reviews-trust-weight: var(--font-weight-regular);
    --font-reviews-trust-size-mobile: 10.5px;
-   --font-reviews-trust-weight-mobile: var(--font-weight-light);
+   --font-reviews-trust-weight-mobile: var(--font-weight-medium);
 
    /* pdp_fold_2: second-fold heading + bullet list */
    --font-pdp-fold2-heading-size: 50px;
