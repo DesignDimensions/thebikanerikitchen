@@ -249,15 +249,18 @@
        can fill exactly that box), keeping .custom-featured-product-right
        positioned against the container/photo instead. */
     .custom-featured-product-left-wrap {
-        display: block;
+        display: grid;
         position: relative;
     }
 
     /* Patterned image sizes itself to the wrapper, which is itself
-       sized to fit the card's content — no viewport units. */
+       sized to fit the card's content — no viewport units. Sharing a
+       grid cell with .custom-featured-product-left lets the card be
+       centered with align-self instead of transform, since GSAP owns
+       transform on that element for the intro animation. */
     .bg-image--left.bg-image--mobile {
         display: block;
-        inset: 0;
+        grid-area: 1 / 1;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -289,14 +292,13 @@
     }
 
     .custom-featured-product-left {
+        grid-area: 1 / 1;
+        align-self: center;
+        justify-self: end;
         height: auto;
         padding: 28px 24px 32px;
         box-sizing: border-box;
         width: calc(100% - 1.5rem);
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
         min-height: 70%;
     }
 
