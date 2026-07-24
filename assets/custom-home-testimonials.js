@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const START_COPY = 2;
 
     function initReveal() {
-      gsap.set(originalCards, { opacity: 0, y: 60, scale: 0.94 });
+      gsap.set(originalCards, { opacity: 0, y: -60, scale: 0.94 });
       const observer = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
@@ -53,7 +53,9 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.disconnect();
           });
         },
-        { threshold: 0.25 }
+        // rootMargin fires this a bit before viewport actually enters the
+        // screen, giving cards a head start over the blank-space flash.
+        { threshold: 0.25, rootMargin: '0px 0px 200px 0px' }
       );
       observer.observe(viewport);
     }

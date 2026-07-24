@@ -9,7 +9,7 @@ window.initScrollReveal = function initScrollReveal(root, elements, options = {}
   const designMode = window.Shopify && window.Shopify.designMode;
   if (!hasGsap || reduceMotion || designMode) return;
 
-  const { from = { opacity: 0, y: 40 }, to = {}, stagger = 0, threshold = 0.2 } = options;
+  const { from = { opacity: 0, y: -40 }, to = {}, stagger = 0, threshold = 0.2 } = options;
 
   gsap.set(elements, from);
 
@@ -28,7 +28,10 @@ window.initScrollReveal = function initScrollReveal(root, elements, options = {}
         obs.disconnect();
       });
     },
-    { threshold }
+    // rootMargin fires the reveal a bit before root actually enters the
+    // viewport, so the observer isn't the last thing standing between a
+    // lazy-loaded image and a blank flash while the user is still scrolling.
+    { threshold, rootMargin: '0px 0px 200px 0px' }
   );
   observer.observe(root);
 };

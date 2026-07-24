@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!images.length || !window.initScrollReveal) return;
 
     window.initScrollReveal(container, images, {
-      from: { opacity: 0, y: 32 },
+      from: { opacity: 0, y: -32 },
       stagger: 0.1,
       threshold: 0.15,
     });

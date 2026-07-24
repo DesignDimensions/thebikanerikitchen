@@ -107,6 +107,7 @@
   "products": {
     "product": {
       "add_to_cart": "Add to cart",
+      "buy_now": "Buy now",
       "wishlist_add": "Add to wishlist",
       "wishlist_remove": "Remove from wishlist",
       "choose_options": "Choose options",

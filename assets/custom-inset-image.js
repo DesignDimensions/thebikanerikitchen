@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!image || !window.initScrollReveal) return;
 
     window.initScrollReveal(image, [image], {
-      from: { opacity: 0, y: 56, scale: 1.04 },
+      from: { opacity: 0, y: -56, scale: 1.04 },
       to: { scale: 1, duration: 1.1 },
       threshold: 0.2,
     });

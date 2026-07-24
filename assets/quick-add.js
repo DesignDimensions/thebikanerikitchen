@@ -60,10 +60,23 @@ if (!customElements.get('quick-add-modal')) {
         this.removeGalleryListSemantic(productElement);
         this.updateImageSizes(productElement);
         this.preventVariantURLSwitching(productElement);
+        this.resetBuyNowButton(productElement);
       }
 
       preventVariantURLSwitching(productElement) {
         productElement.setAttribute('data-update-url', 'false');
+      }
+
+      // The cloned markup below is the PDP's own <product-info>, whose submit
+      // button is wired as "Buy Now" (add + redirect straight to checkout —
+      // see product-form.js). Quick-add exists for "add without leaving the
+      // page", so the modal's copy needs to fall back to plain add-to-cart.
+      resetBuyNowButton(productElement) {
+        const buyNowButton = productElement.querySelector('[data-buy-now="true"]');
+        if (!buyNowButton) return;
+        buyNowButton.removeAttribute('data-buy-now');
+        const label = buyNowButton.querySelector('span');
+        if (label && window.variantStrings) label.textContent = window.variantStrings.addToCart;
       }
 
       removeDOMElements(productElement) {

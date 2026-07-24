@@ -108,14 +108,16 @@ document.addEventListener('DOMContentLoaded', () => {
             observer.disconnect();
           });
         },
-        { threshold: 0.2 }
+        // rootMargin fires this a bit before root actually enters the
+        // screen, giving it a head start over the blank-space flash.
+        { threshold: 0.2, rootMargin: '0px 0px 200px 0px' }
       );
       observer.observe(root);
     }
 
     if (revealEnabled) {
-      if (heading) gsap.set(heading, { opacity: 0, y: 40 });
-      gsap.set(items, { opacity: 0, y: 30 });
+      if (heading) gsap.set(heading, { opacity: 0, y: -40 });
+      gsap.set(items, { opacity: 0, y: -30 });
       if (imageWrap) gsap.set(imageWrap, { clipPath: 'inset(0 0 0 100%)' });
       if (image) gsap.set(image, { scale: 1.25 });
       initReveal();

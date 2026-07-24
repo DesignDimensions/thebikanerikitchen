@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!elements.length || !window.initScrollReveal) return;
 
     window.initScrollReveal(elements[0], elements, {
-      from: { opacity: 0, y: 44 },
+      from: { opacity: 0, y: -44 },
       stagger: 0.15,
       threshold: 0.3,
     });

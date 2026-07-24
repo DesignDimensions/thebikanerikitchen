@@ -44,6 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // never also fires the section-wide toggle underneath them.
     const CURSOR_EXCLUDED_SELECTOR =
       '.custom-audio-player-playpause, .custom-audio-player-progress-bar, .custom-audio-player-language-switcher';
+    // ":hover" appended to the joined string would only bind to the LAST
+    // comma-separated part — the first two selectors would then match
+    // unconditionally (they're always in the DOM) and permanently suppress
+    // the cursor tag. Each part needs its own ":hover".
+    const CURSOR_EXCLUDED_HOVER_SELECTOR = CURSOR_EXCLUDED_SELECTOR.split(',')
+      .map((selector) => `${selector.trim()}:hover`)
+      .join(', ');
 
     let activeLanguage = container.dataset.defaultLanguage || 'hi';
     let currentAudioSrc = null;
@@ -407,7 +414,7 @@ document.addEventListener('DOMContentLoaded', () => {
         moveX(mouseX + CURSOR_TAG_OFFSET_X);
         moveY(mouseY);
 
-        const overExcluded = !!container.querySelector(`${CURSOR_EXCLUDED_SELECTOR}:hover`);
+        const overExcluded = !!container.querySelector(CURSOR_EXCLUDED_HOVER_SELECTOR);
         if (overExcluded !== suppressed) {
           suppressed = overExcluded;
           if (suppressed) closeTag();

@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (image) {
       window.initScrollReveal(image, [image], {
-        from: { opacity: 0, y: 56, scale: 1.04 },
+        from: { opacity: 0, y: -56, scale: 1.04 },
         to: { scale: 1, duration: 1.1 },
         threshold: 0.2,
       });
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     rows.forEach((row) => {
       window.initScrollReveal(row, [row], {
-        from: { opacity: 0, y: 24 },
+        from: { opacity: 0, y: -24 },
         to: { duration: 0.7 },
         threshold: 0.4,
       });

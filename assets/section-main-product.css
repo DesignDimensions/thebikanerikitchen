@@ -626,16 +626,9 @@ a.product__text {
   }
 
   .product-reviews__trust-row {
-    text-wrap: nowrap;
-    overflow: hidden;
-  }
-
-  .product-reviews__trust-row {
-    gap: 0 !important;
     font-size: var(--font-reviews-trust-size-mobile) !important;
     font-weight: var(--font-reviews-trust-weight-mobile) !important;
     letter-spacing: 0.5px !important;
-    flex-wrap: wrap;
   }
 
   .product-form__quantity-cart-row .product-form__quantity {
@@ -2079,11 +2072,14 @@ a.product__text {
   font-family: var(--font-family-body);
 }
 
+/* .product-reviews__trust-row is the fixed-width viewport; the actual flex
+   row lives on .product-reviews__trust-track so JS (product-reviews.js) can
+   switch the track into a cloned, auto-scrolling marquee when the trust
+   text doesn't fit in one line, instead of wrapping it onto a second line. */
 .product-reviews__trust-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
   padding: 10px 0 0;
   border-top: 1px solid #181818;
   font-size: var(--font-reviews-trust-size);
@@ -2091,9 +2087,57 @@ a.product__text {
   letter-spacing: .5px;
   text-transform: uppercase;
   font-family: var(--font-family-body);
+  text-wrap: nowrap;
+}
+
+.product-reviews__trust-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* display:contents while un-cloned so .trust-set's spans lay out directly
+   as the track's flex items, identical to the row's old flat markup. Once
+   JS clones extra copies to fill the loop width (.is-marquee), each set
+   needs to become a real, non-shrinking flex box of its own instead —
+   see the .is-marquee override below. */
+.product-reviews__trust-set {
+  display: contents;
+}
+
+.product-reviews__trust-row.is-marquee {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+}
+
+.product-reviews__trust-row.is-marquee .product-reviews__trust-track {
+  justify-content: flex-start;
+  width: max-content;
+  gap: 1rem;
+  will-change: transform;
+}
+
+.product-reviews__trust-row.is-marquee .product-reviews__trust-set {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
 }
 
 .product-reviews__trust-divider {
   color: #181818;
   opacity: 0.4;
+}
+
+/* Bare in the static single-row layout (no repeat follows it, so it would
+   just dangle) — only shown once .is-marquee clones the set into a loop,
+   where it fills the seam between one repeat and the next. */
+.product-reviews__trust-divider--loop {
+  display: none;
+}
+
+.product-reviews__trust-row.is-marquee .product-reviews__trust-divider--loop {
+  display: inline;
 }

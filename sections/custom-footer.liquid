@@ -1,5 +1,4 @@
 {{ 'custom-footer.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'custom-footer-icons.js' | asset_url }}" defer="defer"></script>
 
 {%- style -%}
@@ -16,13 +15,6 @@
     }
   }
 {%- endstyle -%}
-
-{%- liquid
-  assign has_social = false
-  if settings.social_facebook_link != blank or settings.social_instagram_link != blank or settings.social_youtube_link != blank or settings.social_tiktok_link != blank or settings.social_twitter_link != blank or settings.social_pinterest_link != blank or settings.social_snapchat_link != blank or settings.social_tumblr_link != blank or settings.social_vimeo_link != blank
-    assign has_social = true
-  endif
--%}
 
 <footer class="custom-footer color-{{ section.settings.color_scheme }} gradient custom-footer-{{ section.id }}">
   <div class="custom-footer__inner page-width">
@@ -110,37 +102,31 @@
       <h2 class="custom-footer__brand">{{ section.settings.heading }}</h2>
     {%- endif -%}
 
-    {%- if section.blocks.size > 0 or section.settings.show_social and has_social -%}
+    {%- if section.blocks.size > 0 -%}
       <div class="custom-footer__nav">
-        {%- if section.blocks.size > 0 -%}
-          <div class="custom-footer__lists">
-            {%- for block in section.blocks -%}
-              <div class="custom-footer__list-col" {{ block.shopify_attributes }}>
-                {%- if block.settings.heading != blank -%}
-                  <p class="custom-footer__list-heading">{{ block.settings.heading | escape }}</p>
-                {%- endif -%}
-                {%- if block.settings.menu != blank -%}
-                  <ul class="custom-footer__list" role="list">
-                    {%- for link in block.settings.menu.links -%}
-                      <li>
-                        <a
-                          href="{{ link.url }}"
-                          class="custom-footer__link{% if link.active %} custom-footer__link--active{% endif %}"
-                        >
-                          {{ link.title | escape }}
-                        </a>
-                      </li>
-                    {%- endfor -%}
-                  </ul>
-                {%- endif -%}
-              </div>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
-
-        {%- if section.settings.show_social and has_social -%}
-          {%- render 'social-icons', class: 'custom-footer__social' -%}
-        {%- endif -%}
+        <div class="custom-footer__lists">
+          {%- for block in section.blocks -%}
+            <div class="custom-footer__list-col" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <p class="custom-footer__list-heading">{{ block.settings.heading | escape }}</p>
+              {%- endif -%}
+              {%- if block.settings.menu != blank -%}
+                <ul class="custom-footer__list" role="list">
+                  {%- for link in block.settings.menu.links -%}
+                    <li>
+                      <a
+                        href="{{ link.url }}"
+                        class="custom-footer__link{% if link.active %} custom-footer__link--active{% endif %}"
+                      >
+                        {{ link.title | escape }}
+                      </a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
       </div>
     {%- endif -%}
 
@@ -201,17 +187,6 @@
       "label": "Heading",
       "default": "The Bikaneri Kitchen",
       "info": "Shown as text when no heading image is set above. Also used as the image's alt text."
-    },
-    {
-      "type": "header",
-      "content": "Social media"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_social",
-      "label": "Show social media icons",
-      "default": true,
-      "info": "Add your links in Theme settings > Social media."
     },
     {
       "type": "header",

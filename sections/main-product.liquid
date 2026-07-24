@@ -782,6 +782,65 @@
   </product-component>
 </product-info>
 
+{%- comment -%}
+  Mobile sticky Buy Now bar — deliberately a SIBLING of <product-info>, not a
+  descendant, so Dawn's variant-change AJAX (product-info.js, scoped to
+  querySelector/getElementById calls inside <product-info>) can never
+  silently rewrite or wipe it. It's a thin mirror, not a second form: see
+  assets/pdp-sticky-bar.js for the sync/proxy logic that keeps it and the
+  real .product-form__quantity-cart-row above acting as one control.
+{%- endcomment -%}
+{%- if product.selected_or_first_available_variant -%}
+  {{ 'pdp-sticky-bar.css' | asset_url | stylesheet_tag }}
+  <pdp-sticky-bar class="pdp-sticky-bar" id="PdpStickyBar-{{ section.id }}" data-section-id="{{ section.id }}">
+    <div class="page-width pdp-sticky-bar__inner">
+      <quantity-input class="quantity pdp-sticky-bar__quantity" data-section="Sticky-{{ section.id }}">
+        <button class="quantity__button" name="minus" type="button">
+          <span class="visually-hidden">
+            {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+          </span>
+          <span class="quantity__button-text" aria-hidden="true">&minus;</span>
+        </button>
+        <input
+          class="quantity__input"
+          type="number"
+          id="Quantity-Sticky-{{ section.id }}"
+          aria-label="{{ 'products.product.quantity.label' | t }}"
+          data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+          min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+          {% if product.selected_or_first_available_variant.quantity_rule.max != null %}
+            data-max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+            max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+          {% endif %}
+          step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
+          value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+        >
+        <button class="quantity__button" name="plus" type="button">
+          <span class="visually-hidden">
+            {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+          </span>
+          <span class="quantity__button-text" aria-hidden="true">+</span>
+        </button>
+      </quantity-input>
+
+      <div class="product-form__buttons pdp-sticky-bar__buttons">
+        <button
+          id="PdpStickyBuyNow-{{ section.id }}"
+          type="button"
+          class="product-form__submit button button--full-width button--primary"
+          {% if product.selected_or_first_available_variant.available == false %}
+            disabled
+          {% endif %}
+        >
+          <span>{{ 'products.product.buy_now' | t }}</span>
+          {%- render 'loading-spinner' -%}
+        </button>
+      </div>
+    </div>
+  </pdp-sticky-bar>
+  <script src="{{ 'pdp-sticky-bar.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
+
 {% schema %}
 {
   "name": "t:sections.main-product.name",
@@ -956,13 +1015,6 @@
       "name": "t:sections.main-product.blocks.buy_buttons.name",
       "limit": 1,
       "settings": [
-        {
-          "type": "checkbox",
-          "id": "show_dynamic_checkout",
-          "default": true,
-          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
-          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
-        },
         {
           "type": "checkbox",
           "id": "show_gift_card_recipient",

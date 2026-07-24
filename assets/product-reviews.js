@@ -23,11 +23,11 @@ if (!customElements.get('product-reviews-carousel')) {
         this.items[this.index].classList.add('is-active');
 
         this.prevButton.addEventListener('click', () => {
-          this.show(this.index - 1, 'prev');
+          this.show(this.index - 1);
           this.restartAutoplay();
         });
         this.nextButton.addEventListener('click', () => {
-          this.show(this.index + 1, 'next');
+          this.show(this.index + 1);
           this.restartAutoplay();
         });
 
@@ -73,7 +73,7 @@ if (!customElements.get('product-reviews-carousel')) {
         if (this.autoplayId) this.startAutoplay();
       }
 
-      show(index, direction) {
+      show(index) {
         const total = this.items.length;
         const nextIndex = ((index % total) + total) % total;
 
@@ -81,7 +81,6 @@ if (!customElements.get('product-reviews-carousel')) {
 
         const outgoing = this.parts(this.items[this.index]);
         const incoming = this.parts(this.items[nextIndex]);
-        direction = direction || (nextIndex > this.index ? 'next' : 'prev');
 
         this.isAnimating = true;
         this.index = nextIndex;
@@ -89,7 +88,7 @@ if (!customElements.get('product-reviews-carousel')) {
         if (this.currentEl) this.currentEl.textContent = this.index + 1;
 
         if (this.hasGsap && !this.reduceMotion) {
-          this.animateWithGsap(outgoing, incoming, direction);
+          this.animateWithGsap(outgoing, incoming);
         } else {
           outgoing.el.classList.remove('is-active');
           incoming.el.classList.add('is-active');
@@ -97,41 +96,155 @@ if (!customElements.get('product-reviews-carousel')) {
         }
       }
 
-      animateWithGsap(outgoing, incoming, direction) {
-        const xShift = direction === 'next' ? 36 : -36;
-
+      // Opacity-only crossfade — no translate or scale, per feedback that
+      // the previous motion (position slide + scale pop) read as too loud.
+      animateWithGsap(outgoing, incoming) {
         incoming.el.classList.add('is-active');
         incoming.el.style.zIndex = 2;
         outgoing.el.style.zIndex = 1;
 
         gsap.set(incoming.el, { opacity: 0 });
-        gsap.set(incoming.quote, { opacity: 0, x: xShift, y: 12 });
-        gsap.set(incoming.stars, { opacity: 0, scale: 0.4, transformOrigin: '50% 50%' });
-        gsap.set(incoming.author, { opacity: 0, y: 10 });
+        gsap.set(incoming.quote, { opacity: 0 });
+        gsap.set(incoming.stars, { opacity: 0 });
+        gsap.set(incoming.author, { opacity: 0 });
 
         gsap
           .timeline({
-            defaults: { ease: 'power3.out' },
+            defaults: { ease: 'power2.out' },
             onComplete: () => {
               outgoing.el.classList.remove('is-active');
               outgoing.el.style.zIndex = '';
               incoming.el.style.zIndex = '';
-              gsap.set(outgoing.el, { clearProps: 'opacity,transform' });
+              gsap.set(outgoing.el, { clearProps: 'opacity' });
               gsap.set([incoming.el, incoming.quote, incoming.stars, incoming.author], {
-                clearProps: 'opacity,transform',
+                clearProps: 'opacity',
               });
               this.isAnimating = false;
             },
           })
-          .to(outgoing.quote, { opacity: 0, x: -xShift, y: -8, duration: 0.4, ease: 'power2.in' }, 0)
-          .to(outgoing.stars, { opacity: 0, scale: 0.5, duration: 0.3, stagger: 0.02, ease: 'power2.in' }, 0)
-          .to(outgoing.author, { opacity: 0, y: -8, duration: 0.3, ease: 'power2.in' }, 0.02)
-          .to(outgoing.el, { opacity: 0, duration: 0.45 }, 0)
-          .to(incoming.el, { opacity: 1, duration: 0.1 }, 0.3)
-          .to(incoming.stars, { opacity: 1, scale: 1, duration: 0.5, stagger: 0.06, ease: 'back.out(2.2)' }, 0.36)
-          .to(incoming.quote, { opacity: 1, x: 0, y: 0, duration: 0.55 }, 0.4)
-          .to(incoming.author, { opacity: 1, y: 0, duration: 0.45 }, 0.58);
+          .to(outgoing.el, { opacity: 0, duration: 0.35 }, 0)
+          .to(incoming.el, { opacity: 1, duration: 0.1 }, 0.2)
+          .to(incoming.quote, { opacity: 1, duration: 0.45 }, 0.2)
+          .to(incoming.stars, { opacity: 1, duration: 0.4, stagger: 0.04 }, 0.25)
+          .to(incoming.author, { opacity: 1, duration: 0.4 }, 0.3);
       }
     }
   );
 }
+
+// Trust-badge row: stays a single static line whenever the text fits: only
+// switches into a cloned, auto-scrolling marquee once it doesn't, instead of
+// ever wrapping onto a second line. Re-evaluated on resize in both
+// directions, so a shrink can turn it on and a subsequent widen turns it
+// back off.
+document.addEventListener('DOMContentLoaded', () => {
+  const rows = document.querySelectorAll('[data-product-reviews-trust-marquee]');
+  if (!rows.length) return;
+
+  rows.forEach((viewport) => {
+    const track = viewport.querySelector('[data-product-reviews-trust-track]');
+    const originalSet = track && track.querySelector('.product-reviews__trust-set');
+    if (!track || !originalSet) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasGsap = typeof window.gsap !== 'undefined';
+    const speed = 30; // px per second
+
+    let repeatWidth = 0;
+    let x = 0;
+    let autoplay = true;
+    let active = false;
+    let tickerFn = null;
+
+    const clearClones = () => {
+      track.querySelectorAll('.product-reviews__trust-set:not(:first-child)').forEach((el) => el.remove());
+    };
+
+    const cloneSet = () => {
+      const clone = originalSet.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    };
+
+    const setX = (value) => {
+      if (repeatWidth <= 0) return;
+      let wrapped = value % repeatWidth;
+      if (wrapped > 0) wrapped -= repeatWidth;
+      x = wrapped;
+      track.style.transform = `translate3d(${x}px, 0, 0)`;
+    };
+
+    const stop = () => {
+      if (!active) return;
+      active = false;
+      if (hasGsap && tickerFn) gsap.ticker.remove(tickerFn);
+      tickerFn = null;
+      viewport.classList.remove('is-marquee');
+      track.style.transform = '';
+      clearClones();
+    };
+
+    const start = () => {
+      if (active) return;
+      active = true;
+      viewport.classList.add('is-marquee');
+
+      // .is-marquee turns each .trust-set into a real (non-shrinking) flex
+      // box instead of display:contents — clone enough copies to cover at
+      // least two full viewport-widths so the modulo wrap in setX() never
+      // runs out of track before looping back.
+      const viewportWidth = viewport.getBoundingClientRect().width || 1;
+      let guard = 0;
+      while (track.scrollWidth < viewportWidth * 2 + 200 && guard < 20) {
+        cloneSet();
+        guard += 1;
+      }
+
+      const secondSet = track.children[1];
+      repeatWidth = secondSet ? secondSet.offsetLeft - track.children[0].offsetLeft : track.scrollWidth;
+      x = 0;
+      track.style.transform = 'translate3d(0, 0, 0)';
+
+      // Reduced motion: stay on the cloned/masked layout (so it doesn't
+      // wrap) but skip the actual scroll animation.
+      if (reduceMotion) return;
+
+      if (hasGsap) {
+        tickerFn = (time, deltaMs) => {
+          if (!autoplay) return;
+          setX(x - (speed * deltaMs) / 1000);
+        };
+        gsap.ticker.add(tickerFn);
+      } else {
+        let last = performance.now();
+        const raf = (now) => {
+          if (!active) return;
+          const dt = (now - last) / 1000;
+          last = now;
+          if (autoplay) setX(x - speed * dt);
+          requestAnimationFrame(raf);
+        };
+        requestAnimationFrame(raf);
+      }
+    };
+
+    // Un-cloned, un-clipped natural width of the content vs. the viewport —
+    // measured with the marquee torn down so a prior clone pass can't
+    // throw off the comparison.
+    const evaluate = () => {
+      stop();
+      const fits = track.scrollWidth <= viewport.getBoundingClientRect().width;
+      if (!fits) start();
+    };
+
+    evaluate();
+    window.addEventListener('resize', evaluate);
+
+    viewport.addEventListener('mouseenter', () => {
+      autoplay = false;
+    });
+    viewport.addEventListener('mouseleave', () => {
+      autoplay = true;
+    });
+  });
+});

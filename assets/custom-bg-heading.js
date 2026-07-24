@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!heading || !window.initScrollReveal) return;
 
     window.initScrollReveal(heading, [heading], {
-      from: { opacity: 0, y: 28 },
+      from: { opacity: 0, y: -28 },
       to: { duration: 0.85 },
       threshold: 0.4,
     });

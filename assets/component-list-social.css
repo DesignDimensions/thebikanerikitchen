@@ -8,11 +8,25 @@
   .list-social {
     justify-content: center;
   }
+
+  .custom-bg-heading-inner .list-social__item .svg-wrapper {
+    width: 25px !important;
+    height: 25px !important;
+  }
+
+  .custom-bg-heading__social.list-social {
+    gap: .7rem !important;
+  }
 }
 
 .list-social__item .icon {
   height: 2.2rem;
   width: 2.2rem;
+}
+
+.custom-bg-heading-inner .list-social__item .svg-wrapper {
+  width: 30px;
+  height: 30px;
 }
 
 .list-social__link {

@@ -31,7 +31,7 @@
 
   const EASE_OUT = 'power4.out';
   const EASE_MASK = 'power3.inOut';
-  const CLIP_UP = 'inset(100% 0% 0% 0%)';
+  const CLIP_DOWN = 'inset(0% 0% 100% 0%)';
   const CLIP_LEFT = 'inset(0% 100% 0% 0%)';
   const CLIP_NONE = 'inset(0% 0% 0% 0%)';
 
@@ -117,7 +117,7 @@
     );
   };
 
-  const onEnter = (trigger, buildFn, start = 'top 80%') => {
+  const onEnter = (trigger, buildFn, start = 'top 90%') => {
     ScrollTrigger.create({ trigger, start, once: true, onEnter: buildFn });
   };
 
@@ -236,12 +236,12 @@
       ctx.rule = $('.custom-featured-product-right hr', s);
       ctx.rail = $('.custom-featured-product-right p', s);
 
-      prep([ctx.card], { autoAlpha: 0, y: 64, scale: 0.985 });
-      prep([ctx.caption], { autoAlpha: 0, y: 22 });
-      prep(ctx.description, { autoAlpha: 0, y: 26 });
-      prep(ctx.lower, { autoAlpha: 0, y: 22 });
+      prep([ctx.card], { autoAlpha: 0, y: -64, scale: 0.985 });
+      prep([ctx.caption], { autoAlpha: 0, y: -22 });
+      prep(ctx.description, { autoAlpha: 0, y: -26 });
+      prep(ctx.lower, { autoAlpha: 0, y: -22 });
       prep([ctx.rule], { scaleX: 0, transformOrigin: 'left center' });
-      prep([ctx.rail], { autoAlpha: 0, y: 14 });
+      prep([ctx.rail], { autoAlpha: 0, y: -14 });
     },
     build(ctx) {
       if (!ctx.card) return;
@@ -257,7 +257,7 @@
           fadeRise(tl, ctx.description, 0.65, { stagger: 0.12 });
           fadeRise(tl, ctx.lower, 0.95, { duration: 0.85, stagger: 0.1 });
         },
-        'top 72%'
+        'top 82%'
       );
     },
   });
@@ -268,7 +268,7 @@
     prep(ctx) {
       ctx.subtitle = $('.collection__subtitle', ctx.root);
       ctx.heading = prepHeading($('.collection__title .title', ctx.root));
-      prep([ctx.subtitle], { autoAlpha: 0, y: 18 });
+      prep([ctx.subtitle], { autoAlpha: 0, y: -18 });
     },
     build(ctx) {
       if (!ctx.subtitle && !ctx.heading) return;
@@ -288,7 +288,7 @@
       ctx.nav = ctx.root.closest('slider-component, .collection')
         ? $('.slider-buttons', ctx.root.closest('slider-component, .collection'))
         : null;
-      prep(ctx.cards, { autoAlpha: 0, y: 54, scale: 0.97 });
+      prep(ctx.cards, { autoAlpha: 0, y: -54, scale: 0.97 });
       prep([ctx.nav], { autoAlpha: 0 });
     },
     build(ctx) {
@@ -309,7 +309,7 @@
           });
           if (ctx.nav) gsap.to(ctx.nav, { autoAlpha: 1, duration: 0.8, delay: 0.6, ease: 'power2.out' });
         },
-        'top 82%'
+        'top 92%'
       );
     },
   });
@@ -373,7 +373,7 @@
           () => {
             maskRise(gsap.timeline(), ctx.heading, 0, 0.07);
           },
-          'top 66%'
+          'top 76%'
         );
       }
     },
@@ -383,7 +383,7 @@
   register('.custom-images-grid_carousal-container', {
     claim: true,
     prep(ctx) {
-      ctx.imgs = prep($$('img', ctx.root), { clipPath: CLIP_UP });
+      ctx.imgs = prep($$('img', ctx.root), { clipPath: CLIP_DOWN });
     },
     build(ctx) {
       if (!ctx.imgs.length) return;
@@ -392,7 +392,7 @@
         () => {
           clipReveal(gsap.timeline(), ctx.imgs, 0, { stagger: 0.14 });
         },
-        'top 78%'
+        'top 88%'
       );
     },
   });
@@ -401,7 +401,7 @@
   register('.custom-home_values-container', {
     prep(ctx) {
       ctx.heading = prepHeading($('.custom-home_values-heading', ctx.root));
-      ctx.items = prep($$('.custom-home_values-item', ctx.root), { autoAlpha: 0, y: 34, scale: 0.95 });
+      ctx.items = prep($$('.custom-home_values-item', ctx.root), { autoAlpha: 0, y: -34, scale: 0.95 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -416,7 +416,7 @@
   register('.custom-blogs-carousel-container', {
     prep(ctx) {
       ctx.media = prep($$('.custom-blogs-carousel-media', ctx.root), { clipPath: CLIP_LEFT });
-      ctx.content = prep($$('.custom-blogs-carousel-content', ctx.root), { autoAlpha: 0, y: 38 });
+      ctx.content = prep($$('.custom-blogs-carousel-content', ctx.root), { autoAlpha: 0, y: -38 });
       ctx.nav = prep($$('.custom-blogs-carousel-nav', ctx.root), { autoAlpha: 0 });
     },
     build(ctx) {
@@ -428,7 +428,7 @@
           fadeRise(tl, ctx.content, 0.45, { duration: 1.1 });
           if (ctx.nav.length) tl.to(ctx.nav, { autoAlpha: 1, duration: 0.8, ease: 'power2.out' }, 1.0);
         },
-        'top 70%'
+        'top 80%'
       );
     },
   });
@@ -440,8 +440,8 @@
       ctx.caption = $('.custom-home-testimonials-caption', ctx.root);
       ctx.heading = prepHeading($('.custom-home-testimonials-heading', ctx.root));
       ctx.footer = $('.custom-home-testimonials-footer', ctx.root);
-      prep([ctx.caption], { autoAlpha: 0, y: 16 });
-      prep([ctx.footer], { autoAlpha: 0, y: 20 });
+      prep([ctx.caption], { autoAlpha: 0, y: -16 });
+      prep([ctx.footer], { autoAlpha: 0, y: -20 });
     },
     build(ctx) {
       kenBurns(ctx.root, ctx.bg, 1.1);
@@ -463,10 +463,10 @@
       ctx.header = $('.custom-image-content-inner-container > p', s);
       ctx.heading = prepHeading($('.custom-image-content-inner-container h3', s));
       ctx.body = $$('.custom-image-content-description p', s);
-      prep([ctx.portrait], { clipPath: CLIP_UP });
+      prep([ctx.portrait], { clipPath: CLIP_DOWN });
       prep([ctx.portraitImg], { scale: 1.16 });
-      prep([ctx.header], { autoAlpha: 0, y: 16 });
-      prep(ctx.body, { autoAlpha: 0, y: 24 });
+      prep([ctx.header], { autoAlpha: 0, y: -16 });
+      prep(ctx.body, { autoAlpha: 0, y: -24 });
     },
     build(ctx) {
       onEnter(
@@ -481,7 +481,7 @@
           maskRise(tl, ctx.heading, 0.45);
           fadeRise(tl, ctx.body, 0.6, { stagger: 0.1 });
         },
-        'top 74%'
+        'top 84%'
       );
     },
   });
@@ -499,7 +499,7 @@
         () => {
           maskRise(gsap.timeline(), ctx.heading, 0, 0.045);
         },
-        'top 82%'
+        'top 92%'
       );
     },
   });
@@ -515,7 +515,7 @@
       ctx.rule = $('hr', inner);
       ctx.shopName = texts[1];
       prep([ctx.rule], { scaleX: 0, transformOrigin: 'left center' });
-      prep([ctx.shopName], { autoAlpha: 0, y: 14 });
+      prep([ctx.shopName], { autoAlpha: 0, y: -14 });
     },
     build(ctx) {
       // Top-of-page banner: play on load rather than on scroll.
@@ -531,7 +531,7 @@
     claim: true,
     prep(ctx) {
       ctx.heading = prepHeading($('.custom-story-text-heading', ctx.root));
-      ctx.body = prep($$('.custom-story-text-body p', ctx.root), { autoAlpha: 0, y: 26 });
+      ctx.body = prep($$('.custom-story-text-body p', ctx.root), { autoAlpha: 0, y: -26 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -548,7 +548,7 @@
     prep(ctx) {
       ctx.wrap = $('.custom-inset-image-wrap', ctx.root);
       ctx.img = $('.custom-inset-image-img', ctx.root);
-      prep([ctx.wrap], { clipPath: CLIP_UP });
+      prep([ctx.wrap], { clipPath: CLIP_DOWN });
       prep([ctx.img], { scale: 1.14 });
     },
     build(ctx) {
@@ -560,7 +560,7 @@
           clipReveal(tl, ctx.wrap, 0, { duration: 1.4 });
           if (ctx.img) tl.to(ctx.img, { scale: 1, duration: 1.9, ease: 'expo.out' }, 0.1);
         },
-        'top 76%'
+        'top 86%'
       );
     },
   });
@@ -571,11 +571,11 @@
     prep(ctx) {
       const s = ctx.root;
       ctx.heading = prepHeading($('.custom-practices-heading', s));
-      ctx.body = prep($$('.custom-practices-body p', s), { autoAlpha: 0, y: 24 });
+      ctx.body = prep($$('.custom-practices-body p', s), { autoAlpha: 0, y: -24 });
       ctx.imageWrap = $('.custom-practices-image', s);
       ctx.image = $('.custom-practices-image .custom-inset-image-img', s);
-      ctx.rows = prep($$('.custom-practices-row', s), { autoAlpha: 0, y: 26 });
-      prep([ctx.imageWrap], { clipPath: CLIP_UP });
+      ctx.rows = prep($$('.custom-practices-row', s), { autoAlpha: 0, y: -26 });
+      prep([ctx.imageWrap], { clipPath: CLIP_DOWN });
       prep([ctx.image], { scale: 1.14 });
     },
     build(ctx) {
@@ -592,7 +592,7 @@
             clipReveal(tl, ctx.imageWrap, 0, { duration: 1.4 });
             if (ctx.image) tl.to(ctx.image, { scale: 1, duration: 1.9, ease: 'expo.out' }, 0.1);
           },
-          'top 78%'
+          'top 88%'
         );
       }
       if (ctx.rows.length) {
@@ -601,7 +601,7 @@
           () => {
             gsap.to(ctx.rows, { autoAlpha: 1, y: 0, duration: 0.95, ease: EASE_OUT, stagger: 0.1 });
           },
-          'top 84%'
+          'top 94%'
         );
       }
     },
@@ -613,8 +613,8 @@
     prep(ctx) {
       ctx.eyebrow = $('.custom-highlight-banner-eyebrow', ctx.root);
       ctx.heading = prepHeading($('.custom-highlight-banner-heading', ctx.root));
-      ctx.body = prep($$('.custom-highlight-banner-body p', ctx.root), { autoAlpha: 0, y: 24 });
-      prep([ctx.eyebrow], { autoAlpha: 0, y: 16 });
+      ctx.body = prep($$('.custom-highlight-banner-body p', ctx.root), { autoAlpha: 0, y: -24 });
+      prep([ctx.eyebrow], { autoAlpha: 0, y: -16 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -633,10 +633,10 @@
       ctx.title = $('.blog-listing-header-title', ctx.root);
       ctx.descWrap = $('.blog-listing-header-description-wrap', ctx.root);
       ctx.toggle = $('.blog-listing-header-toggle', ctx.root);
-      prep([ctx.title], { autoAlpha: 0, y: 20 });
+      prep([ctx.title], { autoAlpha: 0, y: -20 });
       // The expandable description's words belong to blog-listing-header.js —
       // animate only its outer wrap.
-      prep([ctx.descWrap, ctx.toggle], { autoAlpha: 0, y: 18 });
+      prep([ctx.descWrap, ctx.toggle], { autoAlpha: 0, y: -18 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -662,10 +662,10 @@
       ctx.heading = prepHeading($('.blog-listing-grid-title', s));
       ctx.description = $('.blog-listing-grid-description', s);
       ctx.filters = $$('.blog-listing-grid-filter', s);
-      ctx.media = prep($$('.blog-listing-grid-item-media', s), { clipPath: CLIP_UP });
-      prep([ctx.subtitle], { autoAlpha: 0, y: 16 });
-      prep([ctx.description], { autoAlpha: 0, y: 18 });
-      prep(ctx.filters, { autoAlpha: 0, y: 14 });
+      ctx.media = prep($$('.blog-listing-grid-item-media', s), { clipPath: CLIP_DOWN });
+      prep([ctx.subtitle], { autoAlpha: 0, y: -16 });
+      prep([ctx.description], { autoAlpha: 0, y: -18 });
+      prep(ctx.filters, { autoAlpha: 0, y: -14 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -681,7 +681,7 @@
           () => {
             clipReveal(gsap.timeline(), ctx.media, 0, { duration: 1.4, stagger: 0.16 });
           },
-          'top 84%'
+          'top 94%'
         );
       }
     },
@@ -694,8 +694,8 @@
       ctx.eyebrow = $('.press-banner__eyebrow', ctx.root);
       ctx.heading = prepHeading($('.press-banner__heading', ctx.root));
       ctx.body = $('.press-banner__body', ctx.root);
-      prep([ctx.eyebrow], { autoAlpha: 0, y: 16 });
-      prep([ctx.body], { autoAlpha: 0, y: 20 });
+      prep([ctx.eyebrow], { autoAlpha: 0, y: -16 });
+      prep([ctx.body], { autoAlpha: 0, y: -20 });
     },
     build(ctx) {
       kenBurns(ctx.root, ctx.bg, 1.12);
@@ -712,7 +712,7 @@
   register('.press-articles', {
     prep(ctx) {
       ctx.heading = prepHeading($('.press-articles__heading', ctx.root));
-      ctx.cards = prep($$('.press-articles__card', ctx.root), { autoAlpha: 0, y: 48 });
+      ctx.cards = prep($$('.press-articles__card', ctx.root), { autoAlpha: 0, y: -48 });
       ctx.dividers = prep($$('.press-articles__divider', ctx.root), { scaleX: 0, transformOrigin: 'left center' });
     },
     build(ctx) {
@@ -727,7 +727,7 @@
             fadeRise(tl, ctx.cards, 0, { duration: 1.1, stagger: 0.09 });
             drawLine(tl, ctx.dividers, 0.5, { duration: 1.0, stagger: 0.09 });
           },
-          'top 84%'
+          'top 94%'
         );
       }
     },
@@ -744,11 +744,11 @@
       ctx.map = $('.contact-page__map', s);
       ctx.formHeading = prepHeading($('.contact-page__form-heading', s));
       ctx.fields = $$('.contact-page__field, .contact-page__form-el button, .contact-page__form-el [type="submit"]', s);
-      prep([ctx.intro], { autoAlpha: 0, y: 22 });
+      prep([ctx.intro], { autoAlpha: 0, y: -22 });
       prep([ctx.imageWrap], { clipPath: CLIP_LEFT });
       prep([ctx.image], { scale: 1.12 });
       prep([ctx.map], { autoAlpha: 0 });
-      prep(ctx.fields, { autoAlpha: 0, y: 20 });
+      prep(ctx.fields, { autoAlpha: 0, y: -20 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -767,7 +767,7 @@
           fadeRise(tl, ctx.fields, 0.25, { duration: 0.85, stagger: 0.08 });
           if (ctx.map) tl.to(ctx.map, { autoAlpha: 1, duration: 1.4, ease: 'power2.inOut' }, 0.2);
         },
-        'top 78%'
+        'top 88%'
       );
     },
   });
@@ -779,8 +779,8 @@
       ctx.navItems = prep($$('.policy-page__nav-item', ctx.root), { autoAlpha: 0, x: -18 });
       ctx.navMobile = $('.policy-page__nav-mobile', ctx.root);
       ctx.content = $('.policy-page__content', ctx.root);
-      prep([ctx.navMobile], { autoAlpha: 0, y: 14 });
-      prep([ctx.content], { autoAlpha: 0, y: 30 });
+      prep([ctx.navMobile], { autoAlpha: 0, y: -14 });
+      prep([ctx.content], { autoAlpha: 0, y: -30 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -802,7 +802,7 @@
       ctx.content = ctx.root.nextElementSibling && ctx.root.nextElementSibling.classList.contains('rte')
         ? ctx.root.nextElementSibling
         : null;
-      prep([ctx.content], { autoAlpha: 0, y: 26 });
+      prep([ctx.content], { autoAlpha: 0, y: -26 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -817,7 +817,7 @@
   register('.main-blog', {
     prep(ctx) {
       ctx.title = prepHeading($('.title--primary', ctx.root));
-      ctx.cards = prep($$('.blog-articles__article', ctx.root), { autoAlpha: 0, y: 48 });
+      ctx.cards = prep($$('.blog-articles__article', ctx.root), { autoAlpha: 0, y: -48 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -829,7 +829,7 @@
           () => {
             gsap.to(ctx.cards, { autoAlpha: 1, y: 0, duration: 1.1, ease: EASE_OUT, stagger: 0.1 });
           },
-          'top 84%'
+          'top 94%'
         );
       }
     },
@@ -845,10 +845,10 @@
       ctx.content = $('.article-template__content', s);
       ctx.share = $('.article-template__social-sharing', s);
       ctx.back = $('.article-template__back', s);
-      prep([ctx.hero], { clipPath: CLIP_UP });
-      prep(ctx.meta, { autoAlpha: 0, y: 12 });
-      prep([ctx.content], { autoAlpha: 0, y: 30 });
-      prep([ctx.share, ctx.back], { autoAlpha: 0, y: 18 });
+      prep([ctx.hero], { clipPath: CLIP_DOWN });
+      prep(ctx.meta, { autoAlpha: 0, y: -12 });
+      prep([ctx.content], { autoAlpha: 0, y: -30 });
+      prep([ctx.share, ctx.back], { autoAlpha: 0, y: -18 });
     },
     build(ctx) {
       const tl = gsap.timeline({ delay: 0.1 });
@@ -861,7 +861,7 @@
           () => {
             gsap.to(ctx.content, { autoAlpha: 1, y: 0, duration: 1.05, ease: EASE_OUT });
           },
-          'top 88%'
+          'top 98%'
         );
       }
       [ctx.share, ctx.back].filter(Boolean).forEach((el) => {
@@ -870,7 +870,7 @@
           () => {
             gsap.to(el, { autoAlpha: 1, y: 0, duration: 0.9, ease: EASE_OUT });
           },
-          'top 92%'
+          'top 102%'
         );
       });
     },
@@ -889,15 +889,15 @@
       ctx.under = $('.under_reflection_copy', s);
       ctx.noteLabel = $('.archive-article__note-label', s);
       ctx.noteBody = $('.archive-article__note-body', s);
-      prep(ctx.introBody, { autoAlpha: 0, y: 24 });
-      prep([ctx.share], { autoAlpha: 0, y: 14 });
-      prep(ctx.images, { clipPath: CLIP_UP });
-      prep(ctx.duoItems, { autoAlpha: 0, y: 44 });
-      prep([ctx.under], { autoAlpha: 0, y: 24 });
-      prep([ctx.noteLabel, ctx.noteBody], { autoAlpha: 0, y: 20 });
+      prep(ctx.introBody, { autoAlpha: 0, y: -24 });
+      prep([ctx.share], { autoAlpha: 0, y: -14 });
+      prep(ctx.images, { clipPath: CLIP_DOWN });
+      prep(ctx.duoItems, { autoAlpha: 0, y: -44 });
+      prep([ctx.under], { autoAlpha: 0, y: -24 });
+      prep([ctx.noteLabel, ctx.noteBody], { autoAlpha: 0, y: -20 });
       ctx.splitParts = ctx.splits.map((split_) => ({
         root: split_,
-        blocks: prep($$('.archive-article__split-col', split_), { autoAlpha: 0, y: 26 }),
+        blocks: prep($$('.archive-article__split-col', split_), { autoAlpha: 0, y: -26 }),
       }));
     },
     build(ctx) {
@@ -915,7 +915,7 @@
           () => {
             gsap.to(ctx.share, { autoAlpha: 1, y: 0, duration: 0.8, ease: EASE_OUT });
           },
-          'top 90%'
+          'top 100%'
         );
       }
       ctx.images.forEach((img) => {
@@ -924,7 +924,7 @@
           () => {
             clipReveal(gsap.timeline(), img, 0, { duration: 1.5 });
           },
-          'top 82%'
+          'top 92%'
         );
       });
       ctx.splitParts.forEach((partSet) => {
@@ -938,7 +938,7 @@
           () => {
             gsap.to(ctx.duoItems, { autoAlpha: 1, y: 0, duration: 1.15, ease: EASE_OUT, stagger: 0.14 });
           },
-          'top 82%'
+          'top 92%'
         );
       }
       [ctx.under, ctx.noteLabel && ctx.noteLabel.parentElement].filter(Boolean).forEach((el) => {
@@ -960,8 +960,8 @@
     prep(ctx) {
       ctx.subtitle = $('.collection__subtitle', ctx.root);
       ctx.heading = prepHeading($('.continue-exploring__header .section-heading', ctx.root));
-      ctx.items = prep($$('.continue-exploring__item', ctx.root), { autoAlpha: 0, y: 44 });
-      prep([ctx.subtitle], { autoAlpha: 0, y: 16 });
+      ctx.items = prep($$('.continue-exploring__item', ctx.root), { autoAlpha: 0, y: -44 });
+      prep([ctx.subtitle], { autoAlpha: 0, y: -16 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -978,7 +978,7 @@
     prep(ctx) {
       ctx.label = $('.story-tags-strip__label', ctx.root);
       ctx.marquee = $('.story-tags-strip__marquee', ctx.root);
-      prep([ctx.label], { autoAlpha: 0, y: 14 });
+      prep([ctx.label], { autoAlpha: 0, y: -14 });
       prep([ctx.marquee], { autoAlpha: 0 });
     },
     build(ctx) {
@@ -1000,8 +1000,8 @@
       ctx.heading = prepHeading($('.error-404__heading', s));
       ctx.subtext = $('.error-404__subtext', s);
       ctx.button = $('.error-404__button', s);
-      prep([ctx.card], { autoAlpha: 0, y: 44 });
-      prep([ctx.eyebrow, ctx.subtext, ctx.button], { autoAlpha: 0, y: 16 });
+      prep([ctx.card], { autoAlpha: 0, y: -44 });
+      prep([ctx.eyebrow, ctx.subtext, ctx.button], { autoAlpha: 0, y: -16 });
     },
     build(ctx) {
       const tl = gsap.timeline({ delay: 0.1 });
@@ -1018,7 +1018,7 @@
     prep(ctx) {
       ctx.title = prepHeading($('.collection-hero__title', ctx.root));
       ctx.description = $('.collection-hero__description', ctx.root);
-      prep([ctx.description], { autoAlpha: 0, y: 20 });
+      prep([ctx.description], { autoAlpha: 0, y: -20 });
     },
     build(ctx) {
       const tl = gsap.timeline({ delay: 0.1 });
@@ -1030,7 +1030,7 @@
   /* ---- Facets / sorting bar (collection + search) ---- */
   register('.facets-wrapper, facet-filters-form', {
     prep(ctx) {
-      prep([ctx.root], { autoAlpha: 0, y: 16 });
+      prep([ctx.root], { autoAlpha: 0, y: -16 });
     },
     build(ctx) {
       onEnter(
@@ -1046,7 +1046,7 @@
             onComplete: () => gsap.set(ctx.root, { clearProps: 'transform' }),
           });
         },
-        'top 92%'
+        'top 102%'
       );
     },
   });
@@ -1064,14 +1064,14 @@
         () => {
           gsap.to(ctx.rows, { autoAlpha: 1, duration: 0.9, ease: 'power2.out', stagger: 0.08 });
         },
-        'top 88%'
+        'top 98%'
       );
     },
   });
 
   register('.cart__footer', {
     prep(ctx) {
-      ctx.blocks = prep($$(':scope > *', ctx.root), { autoAlpha: 0, y: 24 });
+      ctx.blocks = prep($$(':scope > *', ctx.root), { autoAlpha: 0, y: -24 });
     },
     build(ctx) {
       onEnter(
@@ -1079,7 +1079,7 @@
         () => {
           gsap.to(ctx.blocks, { autoAlpha: 1, y: 0, duration: 0.95, ease: EASE_OUT, stagger: 0.1 });
         },
-        'top 88%'
+        'top 98%'
       );
     },
   });
@@ -1088,7 +1088,7 @@
    *      inside these wrappers, never the wrappers themselves) ---- */
   register('.product__media-list .product__media-item', {
     prep(ctx) {
-      prep([ctx.root], { autoAlpha: 0, y: 30 });
+      prep([ctx.root], { autoAlpha: 0, y: -30 });
     },
     build(ctx) {
       onEnter(
@@ -1096,7 +1096,7 @@
         () => {
           gsap.to(ctx.root, { autoAlpha: 1, y: 0, duration: 1.1, ease: EASE_OUT });
         },
-        'top 86%'
+        'top 96%'
       );
     },
   });
@@ -1106,7 +1106,7 @@
       ctx.title = prepHeading($('.product__title h1', ctx.root));
       ctx.blocks = prep(
         $$(':scope > *:not(script):not(style)', ctx.root).filter((el) => !el.querySelector('.product__title h1')),
-        { autoAlpha: 0, y: 22 }
+        { autoAlpha: 0, y: -22 }
       );
     },
     build(ctx) {
@@ -1117,7 +1117,7 @@
           maskRise(tl, ctx.title, 0);
           fadeRise(tl, ctx.blocks, 0.2, { duration: 0.9, stagger: 0.07 });
         },
-        'top 82%'
+        'top 92%'
       );
     },
   });
@@ -1126,9 +1126,9 @@
   register('.pdp-fold-2-container', {
     prep(ctx) {
       ctx.heading = prepHeading($('.pdp-fold-2-heading', ctx.root));
-      ctx.bullets = prep($$('.pdp-fold-2-bullet', ctx.root), { autoAlpha: 0, y: 24 });
+      ctx.bullets = prep($$('.pdp-fold-2-bullet', ctx.root), { autoAlpha: 0, y: -24 });
       ctx.right = $('.pdp-fold-2-right', ctx.root);
-      prep([ctx.right], { autoAlpha: 0, y: 36 });
+      prep([ctx.right], { autoAlpha: 0, y: -36 });
     },
     build(ctx) {
       onEnter(ctx.root, () => {
@@ -1159,7 +1159,7 @@
   if (footerRoot) {
     footerParts.cols = prep(
       Array.from(footerRoot.querySelectorAll('.custom-footer__list-col, .custom-footer__brand, .custom-footer__icons')),
-      { autoAlpha: 0, y: 26 }
+      { autoAlpha: 0, y: -26 }
     );
     footerParts.divider = prep(Array.from(footerRoot.querySelectorAll('.custom-footer__divider')), {
       scaleX: 0,
@@ -1234,7 +1234,17 @@
     ScrollTrigger.config({ ignoreMobileResize: true });
 
     animators.forEach(({ def, ctx }) => {
-      if (def.build) def.build(ctx);
+      if (!def.build) return;
+      try {
+        def.build(ctx);
+      } catch (error) {
+        // One broken animator must never blank out every section
+        // registered after it — each build() used to run in a single
+        // unguarded forEach, so a throw here silently left every later
+        // section's elements stuck at the autoAlpha:0 that prep() had
+        // already applied on load, with nothing in the console to say why.
+        console.error('[site-animations] build failed for', ctx.root, error);
+      }
     });
 
     if (footerRoot && footerParts.cols && footerParts.cols.length) {
@@ -1250,7 +1260,7 @@
             tl.to(footerParts.bottom, { autoAlpha: 1, duration: 0.9, ease: 'power2.out' }, 0.55);
           }
         },
-        'top 88%'
+        'top 98%'
       );
     }
 

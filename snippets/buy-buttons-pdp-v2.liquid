@@ -18,11 +18,6 @@
         assign gift_card_recipient_feature_active = true
       endif
 
-      assign show_dynamic_checkout = false
-      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
-        assign show_dynamic_checkout = true
-      endif
-
       assign cart_qty = cart | item_count_for_variant: product.selected_or_first_available_variant.id
     -%}
 
@@ -158,7 +153,8 @@
               id="ProductSubmitButton-{{ section_id }}"
               type="submit"
               name="add"
-              class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
+              data-buy-now="true"
+              class="product-form__submit button button--full-width button--primary"
               {% if product.selected_or_first_available_variant.available == false
                 or quantity_rule_soldout
                 or product.selected_or_first_available_variant == null
@@ -172,14 +168,11 @@
                 {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
                   {{ 'products.product.sold_out' | t }}
                 {%- else -%}
-                  {{ 'products.product.add_to_cart' | t }}
+                  {{ 'products.product.buy_now' | t }}
                 {%- endif -%}
               </span>
               {%- render 'loading-spinner' -%}
             </button>
-            {%- if show_dynamic_checkout -%}
-              {{ form | payment_button }}
-            {%- endif -%}
           </div>
         </div>
       {%- endform -%}

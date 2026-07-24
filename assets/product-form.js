@@ -12,7 +12,11 @@ if (!customElements.get('product-form')) {
         this.submitButton = this.querySelector('[type="submit"]');
         this.submitButtonText = this.submitButton.querySelector('span');
 
-        if (document.querySelector('cart-drawer')) this.submitButton.setAttribute('aria-haspopup', 'dialog');
+        // A buy-now button navigates straight to checkout instead of opening
+        // the drawer, so announcing it as a dialog opener would be wrong.
+        if (document.querySelector('cart-drawer') && this.submitButton.dataset.buyNow !== 'true') {
+          this.submitButton.setAttribute('aria-haspopup', 'dialog');
+        }
 
         this.hideErrors = this.dataset.hideErrors === 'true';
       }
@@ -66,6 +70,13 @@ if (!customElements.get('product-form')) {
               this.submitButtonText.classList.add('hidden');
               soldOutMessage.classList.remove('hidden');
               this.error = true;
+              return;
+            } else if (this.submitButton.dataset.buyNow === 'true') {
+              // Added to the real cart above like any other add-to-cart —
+              // "Buy Now" just skips the drawer and goes straight to
+              // checkout with whatever's currently in the cart.
+              this.resolveCartLinesUpdate(linesUpdateDeferred);
+              window.location.href = '/checkout';
               return;
             } else if (!this.cart) {
               this.resolveCartLinesUpdate(linesUpdateDeferred);
@@ -141,7 +152,8 @@ if (!customElements.get('product-form')) {
           if (text) this.submitButtonText.textContent = text;
         } else {
           this.submitButton.removeAttribute('disabled');
-          this.submitButtonText.textContent = window.variantStrings.addToCart;
+          this.submitButtonText.textContent =
+            this.submitButton.dataset.buyNow === 'true' ? window.variantStrings.buyNow : window.variantStrings.addToCart;
         }
       }
 

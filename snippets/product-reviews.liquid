@@ -88,18 +88,31 @@
     </product-reviews-carousel>
   {%- endif -%}
 
-  <div class="product-reviews__trust-row">
-    {%- if block.settings.trust_text_1 != blank -%}
-      <span>{{ block.settings.trust_text_1 }}</span>
-    {%- endif -%}
-    {%- if block.settings.trust_text_2 != blank -%}
-      <span aria-hidden="true" class="product-reviews__trust-divider">|</span>
-      <span>{{ block.settings.trust_text_2 }}</span>
-    {%- endif -%}
-    {%- if block.settings.trust_text_3 != blank -%}
-      <span aria-hidden="true" class="product-reviews__trust-divider">|</span>
-      <span>{{ block.settings.trust_text_3 }}</span>
-    {%- endif -%}
+  <div class="product-reviews__trust-row" data-product-reviews-trust-marquee>
+    <div class="product-reviews__trust-track" data-product-reviews-trust-track>
+      <div class="product-reviews__trust-set">
+        {%- if block.settings.trust_text_1 != blank -%}
+          <span>{{ block.settings.trust_text_1 }}</span>
+        {%- endif -%}
+        {%- if block.settings.trust_text_2 != blank -%}
+          <span aria-hidden="true" class="product-reviews__trust-divider">|</span>
+          <span>{{ block.settings.trust_text_2 }}</span>
+        {%- endif -%}
+        {%- if block.settings.trust_text_3 != blank -%}
+          <span aria-hidden="true" class="product-reviews__trust-divider">|</span>
+          <span>{{ block.settings.trust_text_3 }}</span>
+        {%- endif -%}
+        {%- comment -%}
+          Only shown once the row switches into the looping marquee (see
+          .is-marquee in section-main-product.css) — clones with the rest of
+          this set so the loop seam between one repeat and the next reads
+          the same as every other divider instead of a bare gap. Left out of
+          the static single-row layout on purpose: with no repeat after it,
+          a trailing pipe there would just dangle.
+        {%- endcomment -%}
+        <span aria-hidden="true" class="product-reviews__trust-divider product-reviews__trust-divider--loop">|</span>
+      </div>
+    </div>
   </div>
 
 </div>
