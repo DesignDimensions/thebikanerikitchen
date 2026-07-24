@@ -35,7 +35,6 @@
 .pdp-sticky-bar__inner {
   display: flex;
   align-items: flex-end;
-  gap: 12px;
 }
 
 .pdp-sticky-bar__quantity.quantity {
