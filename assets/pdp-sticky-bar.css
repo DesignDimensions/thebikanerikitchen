@@ -26,7 +26,6 @@
   opacity: 0;
   visibility: hidden;
 }
-
 .pdp-sticky-bar.is-visible {
   opacity: 1;
   visibility: visible;
