@@ -64,6 +64,12 @@ slider-component product-component .price__container {
     display: none;
 }
 
+@media screen and (min-width: 769px) {
+    .custom-featured-collection__grid--center {
+        justify-content: center;
+    }
+}
+
 @media screen and (max-width: 768px) {
     slider-component product-component .price__container {
         font-size: var(--font-card-price-size-mobile);
