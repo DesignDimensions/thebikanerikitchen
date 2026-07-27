@@ -70,6 +70,10 @@
    setup, so visibility is toggled via .is-enabled on itself rather than a
    .has-cursor-tag ancestor class (there's no longer a fixed ancestor to hang
    that off of by design -- see the comment in the JS for why). */
+.custom-banner-container video {
+    cursor: pointer;
+}
+
 .custom-banner-cursor-tag {
     position: fixed;
     top: 0;
