@@ -155,24 +155,150 @@
 
 .custom-audio-player-transcript {
     position: relative;
-    max-width: 640px;
+    display: flex;
+    align-items: stretch;
+    gap: 14px;
+    max-width: 680px;
     margin: 0 auto 28px;
+}
+
+/* The scrollable "notebook window", split into two layers:
+   .custom-audio-player-transcript-scroll is a static, non-scrolling frame
+   at a fixed height showing the full paper-cut PNG uncropped. Nested inside
+   it, .custom-audio-player-transcript-scroll-inner is inset 15px from its
+   top and bottom and is the element that actually scrolls -- since the
+   inset is on the OUTER frame rather than expressed as padding on the
+   scrolled content, it holds at every scroll position (text can never
+   scroll up under it to touch the top/bottom edge), not just before the
+   first line and after the last. */
+.custom-audio-player-transcript-scroll {
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    height: 320px;
+    overflow: hidden;
+    background-image: url('https://cdn.shopify.com/s/files/1/0764/0953/6706/files/image.png?v=1785138075');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    cursor: grab;
+}
+
+/* data-lenis-prevent (see the liquid template) keeps the site's Lenis
+   smooth scroll from swallowing wheel/touch input meant for this inner
+   scroller. Native scrollbar hidden since the up/down arrows in
+   .custom-audio-player-transcript-nav are the intended affordance. */
+.custom-audio-player-transcript-scroll-inner {
+    position: absolute;
+    top: 35px;
+    bottom: 35px;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.custom-audio-player-transcript-scroll-inner::-webkit-scrollbar {
+    display: none;
+}
+
+/* .is-dragging is toggled by the pointerdown/up handlers in
+   custom-audio-player.js for grab-to-scroll -- user-select:none stops the
+   drag from also starting a text selection underneath it. */
+.custom-audio-player-transcript-scroll-inner.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.custom-audio-player-transcript-content {
+    position: relative;
+    padding: 0 42px;
 }
 
 .custom-audio-player-transcript-text {
     display: none;
-    margin: 0;
     font-family: var(--font-family-body);
     font-size: var(--font-body-size);
-    line-height: 1.6;
+    line-height: 1.7;
     font-weight: var(--font-copy-weight);
     color: #181818;
-    text-align: center;
+    text-align: left;
+}
+
+.custom-audio-player-transcript-text .custom-audio-player-transcript-line p {
+    margin: 0 0 1em;
+}
+
+.custom-audio-player-transcript-text .custom-audio-player-transcript-line p:last-child {
+    margin-bottom: 0;
 }
 
 .custom-audio-player-transcript[data-language="hi"] .custom-audio-player-transcript-hi,
 .custom-audio-player-transcript[data-language="en"] .custom-audio-player-transcript-en {
     display: block;
+}
+
+/* Word wrapper stays a normal inline-block so line-wrapping only ever
+   happens at the literal space text nodes custom-audio-player.js leaves
+   between words -- never mid-word. Each character inside is its own
+   inline-block so GSAP can tween opacity+y per letter as the notebook
+   scrolls (see the reveal timeline in custom-audio-player.js). */
+.custom-audio-player-transcript-word {
+    display: inline-block;
+}
+
+.custom-audio-player-transcript-char {
+    display: inline-block;
+}
+
+.custom-audio-player-transcript-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    flex-shrink: 0;
+    position: absolute;
+    top: 50%;
+    right: -50px;
+    transform: translateY(-50%);
+}
+
+.custom-audio-player-transcript-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1.5px solid #570f13;
+    background: transparent;
+    color: #570f13;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, opacity 0.2s ease, transform 0.15s ease;
+}
+
+.custom-audio-player-transcript-arrow svg {
+    width: 14px;
+    height: 14px;
+}
+
+.custom-audio-player-transcript-arrow:hover {
+    background: #570f13;
+    color: #FFFDEE;
+}
+
+.custom-audio-player-transcript-arrow:active {
+    transform: scale(0.92);
+}
+
+.custom-audio-player-transcript-arrow.is-disabled {
+    opacity: 0.35;
+    pointer-events: none;
 }
 
 .custom-audio-player-controls {
@@ -585,11 +711,30 @@
     .custom-audio-player-transcript {
         max-width: 100%;
         margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    .custom-audio-player-transcript-scroll {
+        height: 220px;
+    }
+
+    .custom-audio-player-transcript-content {
+        padding: 0 26px;
     }
 
     .custom-audio-player-transcript-text {
         font-size: var(--font-body-size-mobile);
         text-align: left;
+    }
+
+    .custom-audio-player-transcript-arrow {
+        width: 28px;
+        height: 28px;
+    }
+
+    .custom-audio-player-transcript-arrow svg {
+        width: 12px;
+        height: 12px;
     }
 
     .custom-audio-player-controls-inner {
@@ -625,6 +770,10 @@
         right: -4%;
         width: 9rem;
         top: -50px;
+    }
+
+    .custom-audio-player-transcript-nav {
+        right: -40px !important;
     }
 
     .custom-audio-player_puppet_left-image {

@@ -47,26 +47,50 @@
 
           {%- if section.blocks.size > 0 -%}
             <div class="custom-audio-player-transcript" data-language="{{ section.settings.default_language }}">
-              <p class="custom-audio-player-transcript-text custom-audio-player-transcript-hi" lang="hi">
-                {%- for block in section.blocks -%}
-                  {%- if block.settings.hindi != blank -%}
-                    <span class="custom-audio-player-transcript-line" {{ block.shopify_attributes }}>
-                      {{- block.settings.hindi -}}
-                    </span>
-                    {{- ' ' }}
-                  {%- endif -%}
-                {%- endfor -%}
-              </p>
-              <p class="custom-audio-player-transcript-text custom-audio-player-transcript-en" lang="en">
-                {%- for block in section.blocks -%}
-                  {%- if block.settings.english != blank -%}
-                    <span class="custom-audio-player-transcript-line" {{ block.shopify_attributes }}>
-                      {{- block.settings.english -}}
-                    </span>
-                    {{- ' ' }}
-                  {%- endif -%}
-                {%- endfor -%}
-              </p>
+              <div class="custom-audio-player-transcript-scroll">
+                <div class="custom-audio-player-transcript-scroll-inner" data-lenis-prevent>
+                  <div class="custom-audio-player-transcript-content">
+                    <div class="custom-audio-player-transcript-text custom-audio-player-transcript-hi" lang="hi">
+                      {%- for block in section.blocks -%}
+                        {%- if block.settings.hindi != blank -%}
+                          <div class="custom-audio-player-transcript-line" {{ block.shopify_attributes }}>
+                            {{- block.settings.hindi -}}
+                          </div>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                    <div class="custom-audio-player-transcript-text custom-audio-player-transcript-en" lang="en">
+                      {%- for block in section.blocks -%}
+                        {%- if block.settings.english != blank -%}
+                          <div class="custom-audio-player-transcript-line" {{ block.shopify_attributes }}>
+                            {{- block.settings.english -}}
+                          </div>
+                        {%- endif -%}
+                      {%- endfor -%}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="custom-audio-player-transcript-nav">
+                <button
+                  type="button"
+                  class="custom-audio-player-transcript-arrow custom-audio-player-transcript-arrow-up"
+                  aria-label="Scroll transcript up"
+                >
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 10L8 5.5L12.5 10" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  class="custom-audio-player-transcript-arrow custom-audio-player-transcript-arrow-down"
+                  aria-label="Scroll transcript down"
+                >
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3.5 6L8 10.5L12.5 6" />
+                  </svg>
+                </button>
+              </div>
             </div>
           {%- endif -%}
 
@@ -172,12 +196,12 @@
       "name": "Transcript line",
       "settings": [
         {
-          "type": "textarea",
+          "type": "richtext",
           "id": "hindi",
           "label": "Hindi text"
         },
         {
-          "type": "textarea",
+          "type": "richtext",
           "id": "english",
           "label": "English text"
         }
