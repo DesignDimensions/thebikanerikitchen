@@ -18,12 +18,6 @@
           {{ block.shopify_attributes }}
         >
           <summary class="pdp-fold-2-item-summary">
-            <img
-              class="pdp-fold-2-item-bullet-icon"
-              src="{{ block.settings.bullet_icon | image_url }}"
-              alt=""
-              loading="lazy"
-            >
             <span class="pdp-fold-2-item-question">{{ block.settings.bullet_text }}</span>
             <span class="pdp-fold-2-item-icon" aria-hidden="true">
               <span class="pdp-fold-2-item-icon-bar pdp-fold-2-item-icon-bar--h"></span>
@@ -68,11 +62,6 @@
       "type": "bullet",
       "name": "Bullet",
       "settings": [
-        {
-          "type": "image_picker",
-          "id": "bullet_icon",
-          "label": "Icon"
-        },
         {
           "type": "text",
           "id": "bullet_text",

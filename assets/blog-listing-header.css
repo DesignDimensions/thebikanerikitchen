@@ -34,10 +34,11 @@
 }
 
 @media screen and (max-width: 768px) {
-  .blog-listing-header-toggle{
+  .blog-listing-header-toggle {
     text-decoration: underline 1px;
     text-underline-offset: 3px;
   }
+
   .blog-listing-header-inner {
     flex-direction: column;
     gap: 16px;
@@ -51,7 +52,7 @@
   }
 
   .blog-listing-header-heading {
-    font-size: var(--font-blog-header-heading-size-mobile) !important;
+    font-size: var(--font-blog-header-heading-size-mobile);
     line-height: 1.15 !important;
   }
 
@@ -66,15 +67,15 @@
 
 @media screen and (max-width: 400px) {
   .blog-listing-header-heading {
-    font-size: var(--font-blog-header-heading-size-xs);
+    font-size: var(--font-blog-header-heading-size-xs) !important;
   }
 
   .blog-listing-header-description {
-    font-size: var(--font-blog-header-description-size-xs);
+    font-size: var(--font-blog-header-description-size-xs) !important;
   }
 
   .blog-listing-header-toggle {
-    font-size: var(--font-blog-header-toggle-size-xs);
+    font-size: var(--font-blog-header-toggle-size-xs) !important;
   }
 }
 
@@ -90,11 +91,11 @@
 .blog-listing-header-title {
   margin: 0;
   font-family: var(--font-family-body);
-  font-size: var(--font-blog-header-title-size);
-  font-weight: var(--font-copy-weight);
+  font-size: 20px;
+  font-weight: 400;
   text-decoration: underline;
   color: #FFFDEE;
-  line-height: 20px;
+  line-height: 36px;
 }
 
 .blog-listing-header-description-wrap {
@@ -102,7 +103,7 @@
 }
 
 .blog-listing-header-description {
-  font-size: 1rem;
+  font-size: 1.2rem;
   line-height: 1.6em;
   color: currentColor;
 }
@@ -115,7 +116,7 @@
   margin: 0;
   font-family: var(--font-family-body);
   font-size: var(--font-blog-header-description-size);
-  line-height: 20px;
+  line-height: 26px;
   font-weight: var(--font-copy-weight);
   color: #FFFDEE;
 }

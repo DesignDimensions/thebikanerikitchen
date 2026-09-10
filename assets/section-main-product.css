@@ -62,7 +62,7 @@ product-info variant-selects {
   }
 
   .product__info-wrapper {
-    padding: 7rem;
+    padding: 7rem 7rem 0 7rem;
   }
 
   .product__info-wrapper--extra-padding {
@@ -147,7 +147,7 @@ product-info variant-selects {
 .shopify-payment-button__button--unbranded {
   background-color: rgba(var(--color-button), var(--alpha-button-background));
   color: rgb(var(--color-button-text));
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
   letter-spacing: 0.07rem;
 }
@@ -183,7 +183,7 @@ product-info variant-selects {
 .product-form__error-message-wrapper:not([hidden]) {
   display: flex;
   align-items: flex-start;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.4;
   letter-spacing: 0.04rem;
   margin-bottom: 1.5rem;
@@ -239,7 +239,7 @@ product-info variant-selects {
 }
 
 .shopify-payment-button__button {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   letter-spacing: 0.1rem;
 }
 

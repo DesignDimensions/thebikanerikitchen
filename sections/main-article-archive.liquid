@@ -4,6 +4,9 @@
 {%- liquid
   assign hero_video = article.metafields.custom.hero_video.value
   assign hero_video_source = hero_video.sources | sort: 'width' | last
+  # Still image hero, for stories with no hero video (the Rituals layout). Kept
+  # separate from article.image so the hero and the listing-card cover can differ.
+  assign hero_image = article.metafields.custom.hero_image.value
   assign hero_caption = article.metafields.custom.hero_caption.value
   assign hero_alt = hero_caption | default: article.title | escape
 
@@ -34,12 +37,24 @@
 -%}
 
 <article class="archive-article">
-  {%- if hero_video_source or article.image or request.design_mode -%}
+  {%- if hero_video_source or hero_image or article.image or request.design_mode -%}
     <div class="archive-article__hero">
       {%- if hero_video_source -%}
         <video class="archive-article__hero-media" autoplay muted loop playsinline preload="auto">
           <source src="{{ hero_video_source.url }}" type="{{ hero_video_source.mime_type }}">
         </video>
+      {%- elsif hero_image -%}
+        {{
+          hero_image
+          | image_url: width: 2600
+          | image_tag:
+            class: 'archive-article__hero-media',
+            alt: hero_alt,
+            loading: 'eager',
+            fetchpriority: 'high',
+            sizes: '100vw',
+            widths: '750, 1100, 1500, 2000, 2600'
+        }}
       {%- elsif article.image -%}
         {{
           article.image

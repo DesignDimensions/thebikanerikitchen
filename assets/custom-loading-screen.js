@@ -25,6 +25,11 @@
  * Once the page has actually finished loading (plus a brief minimum so a
  * fast/cached load doesn't just flash the loader for a frame), both loops
  * are killed and the red layer + icons fade out together.
+ *
+ * It plays once per browsing session. The skip decision itself is made by a
+ * small inline script in the <head> so repeat loads never flash the red
+ * cover during the frames it takes this deferred script to run; the check
+ * here is the same test, for the case where that class is already set.
  */
 (() => {
   const bg = document.getElementById('custom-loading-screen-bg');
@@ -48,6 +53,22 @@
     return;
   }
 
+  // Already played this session (the <head> script hid the cover before
+  // paint), so there is nothing to animate — just drop the markup.
+  if (document.documentElement.classList.contains('custom-loading-screen-skip')) {
+    bg.remove();
+    iconsLayer.remove();
+    return;
+  }
+
+  // Claim the session slot up front rather than on reveal: someone who
+  // navigates away mid-animation has still seen it once.
+  try {
+    sessionStorage.setItem('tbk-loading-screen-shown', '1');
+  } catch (e) {
+    // Private mode or blocked storage — the loader just plays every load.
+  }
+
   let finished = false;
   const finish = () => {
     if (finished) return;
@@ -63,7 +84,7 @@
 
   // Last-resort insurance: whatever else goes wrong, the site must never
   // stay covered forever.
-  setTimeout(finish, 12000);
+  setTimeout(finish, 5000);
 
   let pageLoaded = document.readyState === 'complete';
   const onLoaded = (cb) => {
@@ -80,9 +101,11 @@
       cb();
     };
     window.addEventListener('load', settle, { once: true });
-    // A stalled request shouldn't hold the reveal hostage — fall through to
-    // it anyway so the choreography still plays out.
-    const safety = setTimeout(settle, 8000);
+    // `load` waits on every image on the page, including ones far below the
+    // fold, which on image-heavy templates was the bulk of the wait. Cap it:
+    // the DOM and stylesheets are already there by the time this runs, so
+    // falling through early costs nothing visible.
+    const safety = setTimeout(settle, 1600);
   };
 
   const hasGsap = typeof window.gsap !== 'undefined';
@@ -90,8 +113,8 @@
 
   if (!hasGsap || reduceMotion) {
     onLoaded(() => {
-      bg.style.transition = 'opacity 0.5s ease';
-      iconsLayer.style.transition = 'opacity 0.5s ease';
+      bg.style.transition = 'opacity 0.35s ease';
+      iconsLayer.style.transition = 'opacity 0.35s ease';
       bg.style.opacity = '0';
       iconsLayer.style.opacity = '0';
       bg.addEventListener('transitionend', finish, { once: true });
@@ -140,7 +163,7 @@
   setTimeout(() => {
     minTimeElapsed = true;
     tryReveal();
-  }, 900);
+  }, 450);
 
   onLoaded(() => {
     loadConfirmed = true;
@@ -155,6 +178,6 @@
     bg.style.pointerEvents = 'none';
 
     // No mask, no scale — the red layer and the icons just fade out together.
-    gsap.to([bg, ...icons], { autoAlpha: 0, duration: 0.6, ease: 'power2.in', onComplete: finish });
+    gsap.to([bg, ...icons], { autoAlpha: 0, duration: 0.4, ease: 'power2.in', onComplete: finish });
   }
 })();

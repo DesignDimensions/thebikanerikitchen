@@ -3,20 +3,47 @@
     justify-content: start;
     align-items: start;
     width: 100%;
-    max-height: 1000px;
-    height: 80vh;
 }
 
-.custom-images-grid_carousal-desktop-image {
+.custom-images-grid_carousal-item {
     display: block;
+    flex: 0 0 auto;
     width: calc(100% / var(--images-per-view, 4));
+}
+
+.custom-images-grid_carousal-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Video items take their height from the row (i.e. from the images) instead of
+   from the video: the video is taken out of flow so it adds no height of its
+   own, then the item stretches to the row and the video is cropped to fill it. */
+.custom-images-grid_carousal-item--video {
+    position: relative;
+    align-self: stretch;
+    overflow: hidden;
+}
+
+.custom-images-grid_carousal-video {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
-.custom-images-grid_carousal-mobile-image {
-    display: none;
-    width: 90%;
+/* Nothing to match when the section has no image, so videos keep their own
+   aspect ratio. */
+.custom-images-grid_carousal-container--no-image .custom-images-grid_carousal-item--video {
+    align-self: start;
+}
+
+.custom-images-grid_carousal-container--no-image .custom-images-grid_carousal-video {
+    position: static;
     height: auto;
 }
 
@@ -24,21 +51,16 @@
     .custom-images-grid_carousal-container {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
-        height: fit-content;
     }
 
-    .custom-images-grid_carousal-desktop-image {
-        display: none;
-    }
-
-    .custom-images-grid_carousal-mobile-image {
-        display: block;
+    .custom-images-grid_carousal-item {
+        width: 90%;
         scroll-snap-align: start;
     }
 }
 
 @media(max-width: 400px) {
-    .custom-images-grid_carousal-mobile-image {
+    .custom-images-grid_carousal-item {
         width: 85%;
     }
 }

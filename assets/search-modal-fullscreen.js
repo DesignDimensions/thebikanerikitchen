@@ -147,6 +147,73 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     }
 
+    // ---- Results panel height ------------------------------------------------
+    // PredictiveSearch replaces the panel's innerHTML on every keystroke, so
+    // its height jumps between renders (3 suggestions -> 1 -> 5). The panel is
+    // in the flow now, so those jumps shove the "Search for ..." row and the
+    // popular list around. Tween between the old and new heights instead, and
+    // fade the fresh markup in over the top of it.
+    const predictiveSearch = modal.querySelector('predictive-search');
+    const resultsPanel = modal.querySelector('[data-predictive-search]');
+
+    if (predictiveSearch && resultsPanel) {
+      let heightTween = null;
+
+      const clearHeight = () => {
+        if (typeof window.gsap === 'undefined') return;
+        heightTween?.kill();
+        heightTween = null;
+        gsap.set(resultsPanel, { clearProps: 'height,overflow' });
+      };
+
+      const morphHeight = () => {
+        if (!canAnimate()) return;
+
+        // Nothing to measure against while the panel is display:none.
+        if (!predictiveSearch.hasAttribute('open') && !predictiveSearch.hasAttribute('loading')) {
+          clearHeight();
+          return;
+        }
+
+        const from = resultsPanel.offsetHeight;
+        heightTween?.kill();
+        gsap.set(resultsPanel, { height: 'auto' });
+        const to = resultsPanel.offsetHeight;
+
+        const fresh = resultsPanel.firstElementChild;
+        if (fresh) {
+          gsap.fromTo(fresh, { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.3, ease: 'power2.out' });
+        }
+
+        // First paint of the panel: the CSS keyframe already handles the
+        // entrance, so don't tween a height on top of it.
+        if (from === 0 || Math.abs(to - from) < 2) {
+          gsap.set(resultsPanel, { clearProps: 'height,overflow' });
+          return;
+        }
+
+        heightTween = gsap.fromTo(
+          resultsPanel,
+          { height: from, overflow: 'hidden' },
+          {
+            height: to,
+            duration: 0.4,
+            ease: 'power3.out',
+            onComplete: () => gsap.set(resultsPanel, { clearProps: 'height,overflow' }),
+          }
+        );
+      };
+
+      new MutationObserver(morphHeight).observe(resultsPanel, { childList: true });
+
+      // closeResults() does resultsPanel.removeAttribute('style'), which would
+      // wipe an in-flight tween's inline height out from under it and leave the
+      // tween writing to a hidden element. Drop it as soon as the panel closes.
+      new MutationObserver(() => {
+        if (!predictiveSearch.hasAttribute('open') && !predictiveSearch.hasAttribute('loading')) clearHeight();
+      }).observe(predictiveSearch, { attributes: true, attributeFilter: ['open', 'loading'] });
+    }
+
     // Not using the native "toggle" event for detecting opens: per spec it
     // fires via a queued task, not synchronously with the open attribute
     // changing, which leaves a real gap for the browser to paint one frame of

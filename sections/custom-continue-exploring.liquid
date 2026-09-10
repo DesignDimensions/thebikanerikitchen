@@ -45,10 +45,7 @@
 
           {%- liquid
             assign display_count = display_count | plus: 1
-            assign index_padded = display_count
-            if display_count < 10
-              assign index_padded = '0' | append: display_count
-            endif
+            assign index_padded = '00' | append: display_count | slice: -3, 3
             assign tile_alt = blog_article.title | strip_html | default: shop.name | escape
           -%}
 
@@ -68,12 +65,35 @@
               {%- else -%}
                 {{ 'lifestyle-1' | placeholder_svg_tag: 'continue-exploring__image placeholder-svg' }}
               {%- endif -%}
-              <span class="continue-exploring__number">{{ index_padded }}</span>
-            </span>
-            <span class="continue-exploring__content">
-              <span class="continue-exploring__title rte">{{ blog_article.title }}</span>
-              <span class="continue-exploring__arrow">
-                <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+
+              <span class="continue-exploring__scrim"></span>
+
+              <span class="continue-exploring__text">
+                <span class="continue-exploring__number">{{ index_padded }}</span>
+                <span class="continue-exploring__title">{{ blog_article.title }}</span>
+              </span>
+
+              <span class="continue-exploring__icons">
+                {%- if section.settings.star_icon -%}
+                  <img
+                    src="{{ section.settings.star_icon | image_url: width: 80 }}"
+                    alt=""
+                    class="continue-exploring__icon continue-exploring__icon--star"
+                    loading="lazy"
+                    width="28"
+                    height="28"
+                  >
+                {%- endif -%}
+                {%- if section.settings.arrow_icon -%}
+                  <img
+                    src="{{ section.settings.arrow_icon | image_url: width: 240 }}"
+                    alt=""
+                    class="continue-exploring__icon continue-exploring__icon--arrow"
+                    loading="lazy"
+                    width="120"
+                    height="24"
+                  >
+                {%- endif -%}
               </span>
             </span>
           </a>
@@ -130,6 +150,20 @@
       "id": "grayscale_images",
       "label": "Grayscale images",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Icons"
+    },
+    {
+      "type": "image_picker",
+      "id": "star_icon",
+      "label": "Star icon"
+    },
+    {
+      "type": "image_picker",
+      "id": "arrow_icon",
+      "label": "Arrow icon"
     },
     {
       "type": "header",

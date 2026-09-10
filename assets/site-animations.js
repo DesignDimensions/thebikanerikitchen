@@ -383,7 +383,7 @@
   register('.custom-images-grid_carousal-container', {
     claim: true,
     prep(ctx) {
-      ctx.imgs = prep($$('img', ctx.root), { clipPath: CLIP_DOWN });
+      ctx.imgs = prep($$('img, video', ctx.root), { clipPath: CLIP_DOWN });
     },
     build(ctx) {
       if (!ctx.imgs.length) return;

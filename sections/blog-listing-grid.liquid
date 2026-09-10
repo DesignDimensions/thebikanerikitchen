@@ -18,6 +18,7 @@
 <div
   class="blog-listing-grid blog-listing-grid-{{ section.id }}-padding"
   data-section-id="{{ section.id }}"
+  data-grid-layout="{{ section.settings.grid_layout }}"
   style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }}; --blog-listing-grid-bg: {{ section.settings.background_color }};"
 >
   <div class="page-width blog-listing-grid-inner">
@@ -35,28 +36,10 @@
       </div>
     {%- endif -%}
 
-    {%- assign pill_blocks = section.blocks | where: 'type', 'pill' -%}
-    {%- if pill_blocks.size > 0 -%}
-      <div class="blog-listing-grid-filters" data-filters>
-        {%- for block in pill_blocks -%}
-          {%- if block.settings.title != blank -%}
-            <button
-              type="button"
-              class="blog-listing-grid-filter"
-              data-filter-tag="{{ block.settings.tag | escape }}"
-              {{ block.shopify_attributes }}
-            >
-              {{ block.settings.title }}
-            </button>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
-
     {%- if section.settings.blog != blank -%}
       {%- assign blog = section.settings.blog -%}
       {%- paginate blog.articles by section.settings.posts_to_show -%}
-        <div class="blog-listing-grid-list">
+        <div class="blog-listing-grid-list{% if section.settings.grid_layout == 'alternating' %} blog-listing-grid-list--alternating{% endif %}">
           {%- for article in blog.articles -%}
             {%- liquid
               assign global_index = paginate.current_offset | plus: forloop.index
@@ -64,7 +47,6 @@
             -%}
             <div
               class="blog-listing-grid-item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              data-tags="{{ article.tags | join: ',' | escape }}"
               {% if settings.animations_reveal_on_scroll %}
                 data-cascade
                 style="--animation-order: {{ forloop.index }};"
@@ -190,10 +172,26 @@
       "type": "range",
       "id": "posts_to_show",
       "label": "Posts per page",
-      "min": 3,
+      "min": 2,
       "max": 24,
-      "step": 3,
+      "step": 1,
       "default": 6
+    },
+    {
+      "type": "select",
+      "id": "grid_layout",
+      "label": "Grid layout",
+      "options": [
+        {
+          "value": "three_up",
+          "label": "Three-up rhythm (tall, wide, full-bleed)"
+        },
+        {
+          "value": "alternating",
+          "label": "Two-column alternating (narrow/wide, wide/narrow)"
+        }
+      ],
+      "default": "three_up"
     },
     {
       "type": "header",
@@ -248,25 +246,6 @@
       "unit": "px",
       "label": "t:sections.all.padding.padding_bottom",
       "default": 48
-    }
-  ],
-  "blocks": [
-    {
-      "type": "pill",
-      "name": "Filter Pill",
-      "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Pill label"
-        },
-        {
-          "type": "text",
-          "id": "tag",
-          "label": "Filter tag",
-          "info": "Must match a tag on your blog posts exactly."
-        }
-      ]
     }
   ],
   "presets": [

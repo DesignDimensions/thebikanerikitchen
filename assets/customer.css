@@ -42,7 +42,7 @@
 }
 
 .customer h2.form__message {
-  font-size: calc(var(--font-heading-scale) * 1.8rem);
+  font-size: calc(var(--font-heading-scale) * 1.6rem);
 }
 
 @media only screen and (min-width: 750px) {
@@ -530,7 +530,7 @@
 
 .order > div:nth-of-type(2) > div:first-of-type h2 ~ p {
   margin-bottom: 0;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
 }
 
 .order > div:nth-of-type(2) > div:first-of-type h2 ~ p:last-of-type {
@@ -538,7 +538,7 @@
 }
 
 .order .item-props {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin-top: 0.05px;
   display: flex;
   flex-direction: column;
@@ -554,7 +554,7 @@
   border: 0.01rem solid rgba(var(--color-foreground), 0.2);
   padding: 1rem;
   margin-top: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   text-align: left;
 }
 
@@ -611,7 +611,7 @@
 }
 
 .order .properties {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin-top: 1rem;
 }
 
@@ -640,7 +640,7 @@
 }
 
 .order .unit-price {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   letter-spacing: 0.07rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
   margin-top: 0.2rem;
@@ -648,7 +648,7 @@
 }
 
 .order .regular-price {
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 /* Addresses */
@@ -675,7 +675,7 @@
 label[for='AddressCountryNew'],
 label[for='AddressProvinceNew'] {
   display: block;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   margin-bottom: 0.6rem;
 }
 
@@ -713,7 +713,7 @@ li[data-address] {
 
 li[data-address] > h2 {
   text-align: center;
-  font-size: calc(var(--font-heading-scale) * 1.8rem);
+  font-size: calc(var(--font-heading-scale) * 1.6rem);
   margin-bottom: 0;
 }
 

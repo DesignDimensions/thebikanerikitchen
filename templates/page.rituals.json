@@ -21,6 +21,7 @@
       "type": "custom-banner",
       "name": "Custom Banner",
       "settings": {
+        "media_type": "image",
         "banner_image": "shopify://shop_images/Wireframe_-_4_2.jpg",
         "mobile_banner_image": "shopify://shop_images/Frame_5_1.jpg"
       }
@@ -30,11 +31,9 @@
       "name": "Blog Listing Header",
       "settings": {
         "heading": "The Rituals",
-        "title": "The Desert Never Wasted Anything",
-        "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-        "truncate_lines": 3.5,
+        "title": "The Extra Plate",
+        "description": "<p>No One Asked Who Was Coming<br/>Across many Indian homes, one extra plate was never an accident. It was a quiet habit, passed from one generation to the next. Long before guests announced their arrival, the kitchen had already prepared a place for them.</p>",
         "read_more_label": "Read More",
-        "read_less_label": "Read Less",
         "background_color": "#c0a959",
         "text_color": "#fffdee",
         "padding_top": 48,
@@ -45,11 +44,12 @@
       "type": "blog-listing-grid",
       "name": "Blog Listing Grid",
       "settings": {
-        "subtitle": "",
-        "title": "",
+        "subtitle": "THE RITUALS",
+        "title": "Continue Exploring",
         "description": "",
         "blog": "rituals",
-        "posts_to_show": 6,
+        "posts_to_show": 4,
+        "grid_layout": "alternating",
         "star_icon": "shopify://shop_images/Vector_12.png",
         "arrow_icon": "shopify://shop_images/Vector_22_3.png",
         "background_color": "#fffdee",
@@ -74,28 +74,32 @@
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_11_1.jpg",
-            "mobile_image": "shopify://shop_images/Frame_8_1.jpg"
+            "link": "",
+            "open_in_new_tab": false
           }
         },
         "image_hFYm9e": {
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_9.jpg",
-            "mobile_image": "shopify://shop_images/Frame_9_1.jpg"
+            "link": "",
+            "open_in_new_tab": false
           }
         },
         "image_aRDBP9": {
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_10.jpg",
-            "mobile_image": "shopify://shop_images/Frame_11_2.jpg"
+            "link": "",
+            "open_in_new_tab": false
           }
         },
         "image_Cc664F": {
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_8.jpg",
-            "mobile_image": "shopify://shop_images/Frame_10_1.jpg"
+            "link": "",
+            "open_in_new_tab": false
           }
         }
       },
@@ -118,41 +122,6 @@
         "heading_color": "#ff6344",
         "background_color": "#570f13"
       }
-    },
-    "custom_images_grid_carousal_RR4hat": {
-      "type": "custom-images-grid_carousal",
-      "blocks": {
-        "image_WpYFVe": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
-          }
-        },
-        "image_f3xmQT": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
-          }
-        },
-        "image_xT6Mxh": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317934_1.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_WpYFVe",
-        "image_f3xmQT",
-        "image_xT6Mxh"
-      ],
-      "name": "Custom Image Carousel",
-      "settings": {
-        "images_per_view": 3
-      }
     }
   },
   "order": [
@@ -162,7 +131,6 @@
     "blog_listing_grid",
     "custom_banner_text_JgCy7f",
     "custom_images_grid_carousal_TcYrrr",
-    "custom_bg_heading_xfjNxk",
-    "custom_images_grid_carousal_RR4hat"
+    "custom_bg_heading_xfjNxk"
   ]
 }

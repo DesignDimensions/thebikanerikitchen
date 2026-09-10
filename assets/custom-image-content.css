@@ -12,17 +12,140 @@
     background-repeat: no-repeat !important;
 }
 
-.custom-image-content-inner {
+/* The slide is what gets centred in the container now (it is the layer the
+   carousel stacks and crossfades), so the inner row is a plain in-flow flex
+   row inside it. */
+.custom-image-content-viewport {
+    position: relative;
+    width: 100%;
+}
+
+.custom-image-content-slide {
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.custom-image-content-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.custom-image-content-inner {
     display: flex;
     justify-content: center;
     /* stretch (not center) so the image and text card share the same
        cross-axis size: height when row, width when column below. */
     align-items: stretch;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 100%;
+}
+
+/* Same control as .custom-blogs-carousel-nav. The arrow's footprint lives in
+   these three variables and nothing else measures it independently: the side
+   gutter the slide has to leave is derived from them, so the card can never
+   end up underneath a control. */
+.custom-image-content-container {
+    --nav-size: 40px;
+    --nav-edge: 16px;
+    --nav-gap: 16px;
+    --nav-gutter: calc(var(--nav-edge) + var(--nav-size) + var(--nav-gap));
+}
+
+.custom-image-content-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--nav-size);
+    height: var(--nav-size);
+    padding: 0;
+    border: 1px solid rgba(255, 253, 238, 0.55);
+    border-radius: 50%;
+    background: rgba(255, 253, 238, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: #fffdee;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.custom-image-content-nav:hover {
+    background: rgba(255, 253, 238, 0.24);
+    border-color: #fffdee;
+}
+
+.custom-image-content-nav:active {
+    transform: translateY(-50%) scale(0.92);
+}
+
+.custom-image-content-nav-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.custom-image-content-nav-prev {
+    left: var(--nav-edge);
+}
+
+.custom-image-content-nav-next {
+    right: var(--nav-edge);
+}
+
+.custom-image-content-nav-next .custom-image-content-nav-icon {
+    transform: rotate(180deg);
+}
+
+@media screen and (min-width: 750px) {
+    .custom-image-content-container {
+        --nav-size: 52px;
+        --nav-edge: 28px;
+    }
+
+    .custom-image-content-nav-icon {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .custom-image-content-container {
+        --nav-edge: 40px;
+    }
+}
+
+/* Two classes, so this wins over .page-width's own single-class padding and
+   replaces it (rather than adding to it) with a gutter wide enough to clear
+   the arrows. Only where the arrows sit beside the card -- see the stacked
+   layout below, where they move over the portrait instead. */
+@media screen and (min-width: 990px) {
+    .custom-image-content-slide .custom-image-content-inner {
+        padding-left: var(--nav-gutter);
+        padding-right: var(--nav-gutter);
+    }
+}
+
+/* Stacked layout: a gutter this wide either side would leave the card too
+   narrow to read on a phone, so the arrows sit over the portrait at the top
+   of the column instead -- the same placement the blogs carousel uses. */
+@media screen and (max-width: 989px) {
+    .custom-image-content-nav {
+        top: 170px;
+        transform: none;
+    }
+
+    .custom-image-content-nav:active {
+        transform: scale(0.92);
+    }
 }
 
 /* A wrapper carries the flex sizing/stretch and the <img> just fills it via
@@ -124,12 +247,15 @@
     }
 
     .custom-image-content-inner {
-        position: static;
-        transform: none;
-        top: auto;
-        left: auto;
         flex-direction: column;
         width: 100%;
+    }
+
+    /* Slides are absolute, so the viewport has no height of its own here --
+       custom-image-content.js measures the active slide and sets it (the
+       desktop box gets its height from the container's aspect-ratio). */
+    .custom-image-content-viewport {
+        transition: height 0.35s ease;
     }
 
     .custom-image-content-container {
@@ -142,3 +268,8 @@
 }
 
 @media(max-width:768px) {}
+@media screen and (max-width: 989px) and (prefers-reduced-motion: reduce) {
+    .custom-image-content-viewport {
+        transition: none;
+    }
+}

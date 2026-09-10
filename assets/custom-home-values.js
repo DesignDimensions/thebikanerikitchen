@@ -24,6 +24,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const CURSOR_TILT_MAX = 28;
   const CURSOR_TILT_FACTOR = 0.85;
   const CURSOR_TILT_VERTICAL_BOOST = 1.6;
+  // Eased rather than the raw per-frame delta: a short, slow movement's real
+  // signal is only a pixel or two, so on its own it is mostly the noise of
+  // pointer coalescing landing unevenly across frames -- some frames get no
+  // delta and the next one gets it all. Chasing that raw value tilts in
+  // jerks; easing it lets a real stop decay out instead of snapping flat.
+  const CURSOR_TILT_SMOOTHING = 0.35;
+  // The pointer clips outside `:hover` for a frame or two on nearly every
+  // pass -- crossing a gap, or content shifting under a stationary cursor.
+  // Closing on the spot reads as the tag breaking; holding it open for a
+  // beat and only closing if the pointer really has left lets it keep
+  // gliding with the cursor through that instead.
+  const CURSOR_CLOSE_DELAY = 180;
 
   // Shared live mouse position -- used only to POSITION the tag (and to
   // compute the drag tilt). Whether an item currently counts as "hovered"
@@ -78,6 +90,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let isOverItem = false;
     let prevRawX = 0;
     let prevRawY = 0;
+    // Smoothed pointer delta the tilt actually reads from.
+    let tiltDeltaX = 0;
+    let tiltDeltaY = 0;
+    let closeTimer = null;
 
     // Backwards 3D flip open/close instead of a plain fade -- hinges on
     // rotationX so it tilts back away from the viewer when hidden and flips
@@ -140,20 +156,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const nowOver = item.matches(':hover');
 
-      if (nowOver && !isOverItem) {
-        isOverItem = true;
-        prevRawX = mouseX;
-        prevRawY = mouseY;
-        gsap.set(cursorTag, { x: mouseX + CURSOR_TAG_OFFSET_X, y: mouseY });
-        openTag();
-      } else if (!nowOver && isOverItem) {
-        isOverItem = false;
+      if (nowOver) {
+        // Back over the item before the grace period ran out: the tag was
+        // never really left, so there is nothing to cancel back out of.
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
+        }
+
+        if (!isOverItem) {
+          isOverItem = true;
+          prevRawX = mouseX;
+          prevRawY = mouseY;
+          tiltDeltaX = 0;
+          tiltDeltaY = 0;
+          gsap.set(cursorTag, { x: mouseX + CURSOR_TAG_OFFSET_X, y: mouseY });
+          openTag();
+        }
+      } else if (isOverItem && !closeTimer) {
+        closeTimer = setTimeout(() => {
+          closeTimer = null;
+          isOverItem = false;
+          closeTag();
+        }, CURSOR_CLOSE_DELAY);
       }
 
-      if (!isOverItem) {
-        if (isOpen) closeTag();
-        return;
-      }
+      // Still true through the grace window, so the tag keeps gliding with
+      // the pointer instead of freezing where :hover happened to drop.
+      if (!isOverItem) return;
 
       moveX(mouseX + CURSOR_TAG_OFFSET_X);
       moveY(mouseY);
@@ -161,7 +191,9 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!isFlipping) {
         const deltaX = mouseX - prevRawX;
         const deltaY = mouseY - prevRawY;
-        const raw = -deltaX + deltaY * CURSOR_TILT_VERTICAL_BOOST;
+        tiltDeltaX += (deltaX - tiltDeltaX) * CURSOR_TILT_SMOOTHING;
+        tiltDeltaY += (deltaY - tiltDeltaY) * CURSOR_TILT_SMOOTHING;
+        const raw = -tiltDeltaX + tiltDeltaY * CURSOR_TILT_VERTICAL_BOOST;
         setTilt(gsap.utils.clamp(-CURSOR_TILT_MAX, CURSOR_TILT_MAX, raw * CURSOR_TILT_FACTOR));
       }
       prevRawX = mouseX;

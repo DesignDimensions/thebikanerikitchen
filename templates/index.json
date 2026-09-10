@@ -25,18 +25,18 @@
       "name": "Custom Featured Product",
       "settings": {
         "featured_product": "parat-bhujia",
-        "bg_left_image": "shopify://shop_images/Frame_3_2.jpg",
-        "bg_left_image_mobile": "shopify://shop_images/Frame_1321317943.png",
-        "bg_right_image": "shopify://shop_images/Frame_4_8bf8a3c7-d0cb-42d7-a9a6-76675819f353.jpg",
-        "bg_right_image_mobile": "shopify://shop_images/Frame_1321317942.jpg",
+        "bg_left_image": "shopify://shop_images/Frame_3.png",
+        "bg_left_image_mobile": "shopify://shop_images/Frame_4.png",
+        "bg_right_image": "shopify://shop_images/Frame_4.png",
+        "bg_right_image_mobile": "shopify://shop_images/Frame_4.png",
         "featured-product-left-bg": "shopify://shop_images/Frame_1321319393_3.jpg",
         "top_left_caption": "Handmade",
-        "heading": "Paraat Bhujia",
-        "description": "<p>Prepared with deliberate restraint, the method remains untouched by time. Pressed by hand and lowered into measured heat, it is watched, not timed, and lifted at the exact moment of completion.</p>",
+        "heading": "Parat Bhujia",
+        "description": "<p>Paraat Bhujia traces its story to the royal kitchens of Maharaja Dungar Singh Ji, where moth, gram flour and spices came together in a recipe remembered for its lightness of bite and savoury depth. The paraat, the bhatti and the careful judgement of the hand each held their place in its making.</p><p>Our Paraat Bhujia stays close to that inheritance. Made with 45% moth flour, a considered blend of spices, high oleic sunflower oil and low-sodium salt, it carries forward a taste shaped by the land of Bikaner and the generations of hands that made it their own.</p>",
         "size": "150gm | 350 gm",
         "icon": "shopify://shop_images/Vector_1.png",
         "cta": "BUY NOW",
-        "top_right_caption": "PARAT BHUJIA"
+        "top_right_caption": "BIKANERI BHUJIA"
       }
     },
     "custom_featured_collection_TzThmV": {
@@ -74,8 +74,8 @@
         "subtitle_line_hUrimG": {
           "type": "subtitle_line",
           "settings": {
-            "hindi": "<p>आओ, आओ, आओ! आज मैं तुम्हें एक ऐसी कहानी सुनाऊँगा जो तुम्हारी दादी-नानी ने भी नहीं सुनी होगी। यह कहानी है नमक की, मिर्च की, और एक महाराजा के मनवार की। यह कहानी है - भुजिया की!</p><p>बहुत साल पहले - करीब डेढ़ सौ साल पहले - एक शहर था। बीकानेर (और आज भी है)। रेत के समंदर के बीच - एक हीरा। लाल पत्थरों की दीवारें, आसमान छूते ऊँचे महल, और हवा में हमेशा एक खास मसालेदार खुशबू।</p><p>उस वक्त, बीकानेर के तख्त पर बैठते थे महाराजा श्री डूंगर सिंह जी। बड़े दिल वाले, बड़े नाम वाले। 1877 का साल था, और उनके महल में एक बड़ी महफ़िल होने वाली थी। मेहमान दूर-दूर से आ रहे थे।</p><p>महाराजा ने अपने सबसे काबिल रसोइदारों को बुलाया, और फरमाया -</p><p>“कुछ ऐसा बनाओ जो पहले कभी बना नहीं। कुछ ऐसा जो इस रेत से जन्म ले। कुछ ऐसा जिसमें बीकानेर की रूह बसी हो। समझे?”</p><p>अब रसोइदार हैरान! क्या बनाएँ? इतना बड़ा सवाल। लेकिन उन सब में - एक डोकरी रसोइदारनी। बालों में सफेदी, हाथों में मेहनत की लकीरें। वह चुप रही। मुस्कुराई। और भंडार-घर में गई।</p><p>वहाँ थी मोठ की दाल - जो सिर्फ राजस्थान की तपती मिट्टी में पैदा होती है। साथ में डाला बेसन। और फिर काली मिर्च, लाल मिर्च, इलायची, और लौंग।</p><p>“बस इतना ही चाहिए,”</p><p>और काम शुरू हो गया।</p><p>फिर उसने वह आटा एक छलनी - से दबाकर कड़ाही के खौलते तेल में डाला। निकल पड़ी पतली-पतली, सुनहरी लच्छियाँ!!</p><p>फ्र्र्र! और वह खुशबू - अरे बाबा! दरवाज़े के पीछे खड़े सिपाही भी नाक सिकोड़ते हुए अंदर आने लगे।</p><p>जब वह थाली महाराजा के सामने रखी गई - सब चुप हो गए।</p><p><strong>कर्र्रंच!</strong> (आवाज़)<br/>आँखें बड़ी हो गईं। एक हाथ और गया। फिर दूसरा। फिर तीसरा। मेहमान भी रुक नहीं पाए।<br/>“यह क्या है?”<br/>महाराजा ने पूछा, आँखों में खुशी चमकती हुई।<br/>“अभी तक इसका कोई नाम नहीं, हुज़ूर,”<br/>बुढ़िया ने सिर झुकाकर कहा।<br/>महाराजा ने एक गहरी साँस भरी और मुस्कुराए - और बोले -<br/>“तो अब से इसका नाम होगा - भुजिया। क्योंकि यह भुनी गई है, यह जादू है, और यह हमारी<br/>है।”</p><p>जाने से पहले एक आखिरी बात:<br/>अब भुजिया तो और भी जगह बनाई जाती है। मगर बीकानेर की भुजिया? वह अलग ही चीज़ है। क्यों? साल गुज़रे। भुजिया बनाने की विधि एक हाथ से दूसरे हाथ पहुँची। राजमहल की रसोई से गलियों में, गलियों से घर-घर।</p><p>तो याद रखना यह कहानी बीकानेरी भुजिया की -<br/>एक महाराजा की सोच से जन्मी।<br/>एक बुढ़िया के हाथों ने बनाई।<br/>थार की रेत से फली।</p>",
-            "english": "<p>Aao, aao, aao! Aaj main tumhe ek aisi kahaani sunaunga jo tumhare daadi-naani ne bhi nahi suni hogi. Yeh kahaani hai namak ki, mirch ki, aur ek maharaja ke manvaar ki. Yeh kahaani hai - Bhujia ki!<br/><br/>Bahut saal pehle - kareeban dedh sau saal pehle - ek shahar tha. Bikaner (or aaj bhi hai). Ret ke samundar ke beech - ek heera. Laal pattharon ki deewarein, aasman chhute unche mahal, aur hawa mein hamesha ek khaas masaledaar khushboo<br/><br/>Us waqt, Bikaner ke takht par baithte the Maharaja Shri Dungar Singhji. Bade dil wale, bade naamwale. 1877 ka saal tha, aur unke mahal mein ek badi mehfil honi waali thi. Mehmaan door door se aa rahe the.<br/><br/>Maharaja ne apne sabse kabil rasoidaaron ko bulaya , Aur farmaaya -<br/><br/>“Kuch aisa banaao jo pehle kabhi bana nahi. Kuch aisa jo is rеt se janam le. Kuch aisa jisme Bikaner ki rooh basi ho. Samjhe?”<br/><br/>Ab rasoidaar hairan! Kya banaayein? Itna bada sawaal. Lekin un sab mein - ek dokri rasoidaarni. Baalon mein safedi, haathon mein mehnat ki lakeerein. Woh chup rahi. Muskurayi. Aur bhandaar-ghar mein gayi.<br/><br/>Wahaan thi moth ki daal - jo sirf Rajasthan ki tapt mitti mein paida hoti hai. Saath mein dala besan. Aur phir kaali mirch, laal mirch, ilaayachi, aur laung.<br/><br/>“Bus itna hi chahiye,”<br/><br/>Aur kaam shuru ho gaya.<br/><br/>Phir usne woh atta ek chhalni - se daba ke karhahi ke khaulte tel mein daala. Nikal padi patli-patli, sunehri lacchein!!<br/><br/>Phrrr! Aur woh khushboo - ai baba! Darwaazе ke peeche khade sipahi bhi naak seenk ke andar aane lage.<br/><br/>Jab woh thaali Maharaja ke saamne rakhi gayi - sab chup ho gaye.<br/><br/>Crrrunch(sound)<br/>Aankhe badi ho gayi. Ek haath aur gaya. Phir doosra. Phir teesra. Mehmaan bhi ruk nahi paye.<br/>“Yeh kya hai?”<br/>Maharaja ne poochha, aankhon mein khushi chamakti hui.<br/>“Abhi tak iska koi naam nahi, Huzoor,”<br/>budhiya ne sir jhukaa ke kaha.<br/>Maharaja ne ek gehri saans bhari or muskuraye - Aur Bole -<br/>“Toh ab se iska naam hoga - Bhujia. Kyunki yeh bhunji gayi hai, yeh jaadu hai, aur yeh hamari<br/>hai.”<br/><br/>Jaane se pehle ek aakhiri baat:<br/>Ab Bhujia toh aur bhi jagah banayi jaati hai. Magar Bikaner ki Bhujia? Woh alag hi cheez hai. Kyun? Saal guzare. Bhujia banane ki vidhi ek haath se doosre haath pahunchi . Raajmahal ki rasoi se galiyón mein, galiyon se ghar-ghar.<br/><br/>Toh yaad rakhna ye kahani Bikaneri bhujia ki -<br/>Ek maharaja ki soch se janami.<br/>Ek budhiya ke haathon ne bani.<br/>Thar ki Rеt se falli.</p>"
+            "hindi": "<p>आओ, आओ, आओ! आज मैं तुम्हें एक ऐसी कहानी सुनाऊँगा, जो शायद तुम्हारे दादा-दादी ने भी न सुनी हो। ये कहानी है नमक की, मच की, और एक महाराजा के मनवार की। ये कहानी है भुिजया की!<br/><br/>बात है करीब डेढ़ सौ साल पहले की। रेत के समंदर के बीच बसा बीकानेर। लाल पत्थरों की दीवारें, आसमान छूते महल, और चारों ओर फैला थार। उस वक़्त बीकानेर के तख़्त पर थे महाराजा श्री डू ंगर संहजी। साल था 1877।<br/><br/>महल में एक बड़ी दावत की तैयारी थी। दूर-दूर से मेहमान आने वाले थे। महाराजा ने अपने सबसे काबल रसोइयों को बुलाया और फरमाया, “कुछ ऐसा बनाओ जो पहले कभी न बना हो। कुछ ऐसा जो इसी धरती से जन्म ले। कुछ ऐसा िजसमें बीकानेर की रूह बसी हो।”<br/><br/>अब रसोइये सोच में पड़ गए। क्या बनाया जाए?<br/><br/>लेकन उन्हीं के बीच एक बुज़ुग रसोइदारनी चुपचाप खड़ी थी। बालों में सफेदी। और हाथों में बरसों का हुनर। वह कुछ नहीं बोली। बस मुस्कु राई और भंडार की ओर चल पड़ी।<br/><br/>वहाँ रखा था मोठ, थार की तपती धरती में पनपने वाला छोटा-सा दाना। उसने साथ लया बेसन। फर काली मच, लाल मच, इलायची और लौंग। सबको एक नज़र देखा और बोली, “बस, इतना ही चाहए।”<br/><br/>फर क्या था! आटा गू ँधा गया। उसे बारीक छलनी से दबाकर सीधे खौलते तेल में उतारा गया। और नकले पतले-पतले, सुनहरे लच्छे।<br/><br/>खुशबू ऐसी क रसोई के बाहर खड़े सपाही भी सोचने लगे, “आख़र अंदर बन क्या रहा है?”<br/><br/>थाल महाराजा के सामने पहु ँचा। सबकी नज़रें वहीं टक गईं। महाराजा ने एक लच्छा उठाया। फर दूसरा। फर एक मुट्ठी और। देखते-देखते मेहमानों के हाथ भी थाल तक पहु ँच गए।<br/><br/>महाराजा ने पूछा, “ये क्या है?”<br/><br/>रसोइदारनी ने सर झुकाकर कहा, “अभी तक इसका कोई नाम नहीं, हुज़ूर।”<br/><br/>महाराजा मुस्कु राए। और कहते हैं, उस दन उस नए स्वाद को एक नाम मला, भुिजया।<br/><br/>लेकन ठहरो, कहानी अभी बाकी है।<br/><br/>साल बीतते गए। भुिजया बनाने का हुनर एक हाथ से दूसरे हाथ तक पहु ँचता गया। राजमहल की रसोई से बीकानेर की गलयों में। गलयों से दुकानों तक। और दुकानों से घर-घर।<br/><br/>पीढ़याँ बदलती रहीं। बनाने वाले हाथ बदलते रहे। लेकन मोठ, मसाले, भट्टी और हाथ का वह पुराना हुनर आगे बढ़ता रहा।<br/><br/>और धीरे-धीरे भुिजया सफ़ बीकानेर में बनने वाला स्वाद नहीं रही। भुिजया में ही बीकानेर बस गया।<br/><br/>तो अगली बार जब बीकानेरी भुिजया की एक मुट्ठी उठाओ, याद रखना। एक महाराजा की सोच से जन्मी। एक रसोइदारनी के हाथों से बनी। और थार की मट्टी में पली।<br/><br/>ये है कहानी हमारी बीकानेरी भुिजया की।</p>",
+            "english": "<p>Come, come, come! Today, I am going to tell you a story that perhaps even your grandparents have never heard. It is a story of salt and spice, and of a Maharaja’s grand feast. This is the story of Bhujia!<br/><br/>Our story begins nearly a century and a half ago. In the middle of a sea of sand stood Bikaner. Walls of red sandstone, palaces reaching towards the sky, and the vast Thar stretching in every direction. At the time, the throne of Bikaner was held by Maharaja Shri Dungar Singhji. The year was 1877.<br/><br/>A grand feast was being prepared at the palace. Guests were expected from far and wide. The Maharaja summoned the finest cooks of his royal kitchen and commanded, “Make something that has never been made before. Something born of this very land. Something that carries the spirit of Bikaner within it.”<br/><br/>The cooks were left wondering. What could they possibly make?<br/><br/>Among them stood an elderly cook, quietly observing. Silver in her hair. Years of skill written into her hands. She said nothing. She simply smiled and walked towards the pantry.<br/><br/>There she found moth beans, small desert beans that flourished in the scorching soil of the Thar. She took some gram flour. Then black pepper, red chilli, cardamom and clove. She looked<br/>at everything before her and said, “This is all I need.”<br/><br/>And then, the kitchen came alive. The dough was kneaded. It was pressed through a fine sieve straight into bubbling hot oil. Out came fine, golden strands.<br/><br/>The aroma was such that even the guards outside the kitchen began to wonder, “What in the world are they making in there?”<br/><br/>A platter was carried before the Maharaja. Every eye turned towards it. The Maharaja picked up a strand. Then another. Then another handful. Before long, even the guests were reaching for more.<br/><br/>The Maharaja asked, “What is this?”<br/><br/>The elderly cook bowed her head and replied, “It does not have a name yet, Your Highness.”<br/><br/>The Maharaja smiled. And, as the story goes, that day this new taste found its name, Bhujia.<br/><br/>But wait, the story is not over yet.<br/><br/>Years passed. The art of making Bhujia travelled from one pair of hands to another. From the royal kitchens into the lanes of Bikaner. From the lanes to its shops. And from the shops into homes.<br/><br/>Generations changed. The hands that made it changed. But the moth beans, the spices, the fire, and the age-old skill of making it continued to be passed on.<br/><br/>And slowly, Bhujia was no longer simply a taste made in Bikaner. Bikaner itself came to live within Bhujia.<br/><br/>So the next time you pick up a handful of Bikaneri Bhujia, remember. Born from a Maharaja’s idea. Brought to life by an elderly cook’s hands. And nurtured by the soil of the Thar. This is the story of our Bikaneri Bhujia.</p>"
           }
         }
       },
@@ -89,7 +89,7 @@
         "heading": "Aao Sune Kahani\nBikaneri Bhujia Ki",
         "audio_url": "https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Story_1.mp3?v=1785132523",
         "audio_url_english": "https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Story_1.mp3?v=1785132523",
-        "default_language": "en"
+        "default_language": "hi"
       }
     },
     "custom_banner_text_jUVQVz": {
@@ -107,29 +107,33 @@
         "image_hUxcYN": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_11_1.jpg",
-            "mobile_image": "shopify://shop_images/Frame_8_1.jpg"
+            "desktop_image": "shopify://shop_images/Frame_9.png",
+            "link": "",
+            "open_in_new_tab": false
           }
         },
         "image_RNaA8A": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_9.jpg",
-            "mobile_image": "shopify://shop_images/Frame_9_1.jpg"
+            "desktop_image": "shopify://shop_images/Frame_10.png",
+            "link": "",
+            "open_in_new_tab": false
           }
         },
         "image_fnmVPi": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_10.jpg",
-            "mobile_image": "shopify://shop_images/Frame_11_2.jpg"
+            "desktop_image": "shopify://shop_images/Frame_11.png",
+            "link": "",
+            "open_in_new_tab": false
           }
         },
         "image_Q8mn7i": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_8.jpg",
-            "mobile_image": "shopify://shop_images/Frame_10_1.jpg"
+            "desktop_image": "shopify://shop_images/Frame_8.png",
+            "link": "",
+            "open_in_new_tab": false
           }
         }
       },
@@ -152,7 +156,7 @@
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_27_59_PM_1.png",
             "title": "Made in high Oleic sunflower oil",
-            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "floater": "High oleic sunflower oil is used for its clean flavour and stability, helping retain the distinct taste of bhujia."
           }
         },
         "value_iXAcUw": {
@@ -160,7 +164,7 @@
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_29_49_PM_1.png",
             "title": "No re-use of oil, for purity of taste",
-            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "floater": "Fresh oil is used for every batch, keeping the flavour clean and balanced."
           }
         },
         "value_8pQkUR": {
@@ -168,7 +172,7 @@
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_31_29_PM_1.png",
             "title": "Slow-cooked in traditional Bhatti",
-            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "floater": "Each batch is slow-cooked in a traditional bhatti, allowing the heat to be carefully controlled throughout."
           }
         },
         "value_W467ek": {
@@ -176,7 +180,7 @@
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_33_11_PM_1.png",
             "title": "Made with low sodium salt",
-            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "floater": "Low sodium salt keeps the seasoning measured, allowing the flavour of the ingredients to remain clear."
           }
         },
         "value_8mgV7n": {
@@ -184,7 +188,7 @@
           "settings": {
             "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_35_34_PM_1.png",
             "title": "Prepared by skilled hands in batches",
-            "floater": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+            "floater": "Each batch is prepared by experienced hands, carrying forward a craft passed down through generations."
           }
         }
       },
@@ -369,13 +373,43 @@
     },
     "custom_image_content_cDqBtQ": {
       "type": "custom-image-content",
+      "blocks": {
+        "slide_karigars_1": {
+          "type": "slide",
+          "settings": {
+            "portrait": "shopify://shop_images/Frame_1321317929_1.jpg",
+            "header": "BEHIND THE CRAFT",
+            "title": "The Karigars",
+            "content": "<p>For <strong>Dhiman Singhji, </strong>the work has never been about making more, but making it right. Years of practice have shaped a way of working where the hand leads, and the eye decides when a batch is ready. There is a quiet satisfaction in knowing that the method remains unchanged. In a time where most things are made by machines, he believes there are still a few who understand the value of craft done by hand. To him, it is not just preparation, but a responsibility to keep the original form of these recipes intact.<br/><br/></p>"
+          }
+        },
+        "slide_karigars_2": {
+          "type": "slide",
+          "settings": {
+            "portrait": "shopify://shop_images/Frame_1321317929_1.jpg",
+            "header": "BEHIND THE CRAFT",
+            "title": "The Karigars",
+            "content": "<p>For <strong>Dhiman Singhji, </strong>the work has never been about making more, but making it right. Years of practice have shaped a way of working where the hand leads, and the eye decides when a batch is ready. There is a quiet satisfaction in knowing that the method remains unchanged. In a time where most things are made by machines, he believes there are still a few who understand the value of craft done by hand. To him, it is not just preparation, but a responsibility to keep the original form of these recipes intact.<br/><br/></p>"
+          }
+        },
+        "slide_karigars_3": {
+          "type": "slide",
+          "settings": {
+            "portrait": "shopify://shop_images/Frame_1321317929_1.jpg",
+            "header": "BEHIND THE CRAFT",
+            "title": "The Karigars",
+            "content": "<p>For <strong>Dhiman Singhji, </strong>the work has never been about making more, but making it right. Years of practice have shaped a way of working where the hand leads, and the eye decides when a batch is ready. There is a quiet satisfaction in knowing that the method remains unchanged. In a time where most things are made by machines, he believes there are still a few who understand the value of craft done by hand. To him, it is not just preparation, but a responsibility to keep the original form of these recipes intact.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "slide_karigars_1",
+        "slide_karigars_2",
+        "slide_karigars_3"
+      ],
       "name": "Custom Image Content",
       "settings": {
-        "bg_image": "shopify://shop_images/Frame_1321317927.jpg",
-        "portrait": "shopify://shop_images/Frame_1321317929_1.jpg",
-        "header": "BEHIND THE CRAFT",
-        "title": "The Karigars",
-        "content": "<p>For <strong>Dhiman Singhji, </strong>the work has never been about making more, but making it right. Years of practice have shaped a way of working where the hand leads, and the eye decides when a batch is ready. There is a quiet satisfaction in knowing that the method remains unchanged. In a time where most things are made by machines, he believes there are still a few who understand the value of craft done by hand. To him, it is not just preparation, but a responsibility to keep the original form of these recipes intact.<br/><br/></p>"
+        "bg_image": "shopify://shop_images/Frame_1321317927.jpg"
       }
     },
     "custom_bg_heading_ykifF8": {
@@ -385,41 +419,6 @@
         "heading": "Follow Us",
         "heading_color": "#ff6344",
         "background_color": "#570f13"
-      }
-    },
-    "custom_images_grid_carousal_apkUXw": {
-      "type": "custom-images-grid_carousal",
-      "blocks": {
-        "image_c99Ppc": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
-          }
-        },
-        "image_qdG9Ee": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
-          }
-        },
-        "image_bqrefi": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317934_1.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_c99Ppc",
-        "image_qdG9Ee",
-        "image_bqrefi"
-      ],
-      "name": "Custom Image Carousel",
-      "settings": {
-        "images_per_view": 3
       }
     }
   },
@@ -434,7 +433,6 @@
     "custom_blogs_carousel_LcgrGA",
     "custom_home_testimonials_hpAUPY",
     "custom_image_content_cDqBtQ",
-    "custom_bg_heading_ykifF8",
-    "custom_images_grid_carousal_apkUXw"
+    "custom_bg_heading_ykifF8"
   ]
 }

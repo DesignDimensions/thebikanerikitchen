@@ -11,6 +11,43 @@
   "name": "t:sections.footer.name",
   "type": "footer",
   "sections": {
+    "custom_images_grid_carousal_social": {
+      "type": "custom-images-grid_carousal",
+      "blocks": {
+        "video_UAzAJn": {
+          "type": "video",
+          "settings": {
+            "desktop_video": "shopify://files/videos/Video-96625.mp4",
+            "link": "https://www.instagram.com/p/DcdNfI4z4Ju/",
+            "open_in_new_tab": true
+          }
+        },
+        "video_46y797": {
+          "type": "video",
+          "settings": {
+            "desktop_video": "shopify://files/videos/Video-61169.mp4",
+            "link": "https://www.instagram.com/p/Db9854CpLDx/",
+            "open_in_new_tab": true
+          }
+        },
+        "image_c99Ppc": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/1_2.png",
+            "link": "https://www.instagram.com/p/DbqR0BEEx4A/?img_index=1",
+            "open_in_new_tab": true
+          }
+        }
+      },
+      "block_order": [
+        "video_UAzAJn",
+        "video_46y797",
+        "image_c99Ppc"
+      ],
+      "settings": {
+        "images_per_view": 3
+      }
+    },
     "custom_footer_FmDXpQ": {
       "type": "custom-footer",
       "blocks": {
@@ -48,12 +85,12 @@
         "icon_three": "shopify://shop_images/Vector_9.png",
         "heading_image": "shopify://shop_images/The_BIKANERI_KITCHEN_1.png",
         "heading": "The Bikaneri Kitchen",
-        "show_social": true,
+        "note": "<p>We have carried the taste of Bikaner with us all our lives. In our homes, our memories and around our tables. The Bikaneri Kitchen is our way of sharing what has always been ours with you.<\/p>",
         "copyright_text": "All Rights Reserved",
         "color_scheme": "",
         "accent_color": "#ff6344",
-        "padding_top": 56,
-        "padding_bottom": 40
+        "padding_top": 80,
+        "padding_bottom": 80
       }
     },
     "footer": {
@@ -76,6 +113,7 @@
     }
   },
   "order": [
+    "custom_images_grid_carousal_social",
     "custom_footer_FmDXpQ",
     "footer"
   ]

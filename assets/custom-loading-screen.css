@@ -48,6 +48,14 @@
   width: clamp(2.2rem, 4vw, 3.4rem);
 }
 
+/* Set by the <head> script when the preloader has already played this
+   session. Hiding via a class on <html> means the cover never paints, rather
+   than painting and being torn down once the deferred script runs. */
+html.custom-loading-screen-skip .custom-loading-screen__bg,
+html.custom-loading-screen-skip .custom-loading-screen__icons {
+  display: none !important;
+}
+
 html.custom-loading-screen-lock,
 html.custom-loading-screen-lock body {
   overflow: hidden;

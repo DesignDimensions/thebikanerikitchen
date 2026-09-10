@@ -45,47 +45,11 @@
         "heading_color": "#ff6344",
         "background_color": "#570f13"
       }
-    },
-    "custom_images_grid_carousal_XnGVmr": {
-      "type": "custom-images-grid_carousal",
-      "blocks": {
-        "image_gg4LKq": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
-          }
-        },
-        "image_JwCMM9": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
-          }
-        },
-        "image_GhinYG": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317934_1.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_gg4LKq",
-        "image_JwCMM9",
-        "image_GhinYG"
-      ],
-      "name": "Custom Image Carousel",
-      "settings": {
-        "images_per_view": 3
-      }
     }
   },
   "order": [
     "banner",
     "product-grid",
-    "custom_bg_heading_QnqFGw",
-    "custom_images_grid_carousal_XnGVmr"
+    "custom_bg_heading_QnqFGw"
   ]
 }

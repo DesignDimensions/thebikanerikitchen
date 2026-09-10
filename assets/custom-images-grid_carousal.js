@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // home-animations.js claims this section on the index page and runs a
     // richer ScrollTrigger reveal instead.
     if (container.dataset.haClaimed) return;
-    const images = container.querySelectorAll('img');
+    const images = container.querySelectorAll('img, video');
     if (!images.length || !window.initScrollReveal) return;
 
     window.initScrollReveal(container, images, {

@@ -29,6 +29,7 @@
    /* 1b. Extra families used by a single component each */
    --font-family-wordmark: 'Aurum';
    --font-family-devanagari: 'Ouma Devanagari', serif;
+   --font-family-script: 'Beaurencourt FY', cursive;
 
    /* 3a. Shared — Section heading (.section-heading / .clp-section-heading,
      custom-bg-heading; big Baskervville display heading reused sitewide) */
@@ -67,7 +68,7 @@
    --font-banner-text-heading-size: 50px;
    --font-banner-text-heading-line-height: 71px;
    --font-banner-text-heading-weight: var(--font-weight-thin);
-   --font-banner-text-heading-size-tablet: 42px;
+   --font-banner-text-heading-size-tablet: 40px;
    --font-banner-text-heading-line-height-tablet: 52px;
    --font-banner-text-heading-size-mobile: 30px;
    --font-banner-text-heading-line-height-mobile: 38px;
@@ -75,7 +76,7 @@
    /* custom-bg-heading: full-width statement heading between sections */
    --font-bg-heading-size: 50px;
    --font-bg-heading-line-height: 50px;
-   --font-bg-heading-size-tablet: 38px;
+   --font-bg-heading-size-tablet: 40px;
    --font-bg-heading-line-height-tablet: 40px;
    --font-bg-heading-size-mobile: 30px;
    --font-bg-heading-line-height-mobile: 34px;
@@ -90,7 +91,7 @@
    --font-featured-product-heading-size-mobile: 24px;
    --font-featured-product-heading-line-height-mobile: 27px;
    --font-featured-product-heading-weight-mobile: var(--font-weight-semibold);
-   --font-featured-product-heading-size-xs: 30px;
+   --font-featured-product-heading-size-xs: 24px;
    --font-featured-product-heading-line-height-xs: 27px;
 
    /* custom-featured-product: price/lower line + CTA button (Piazzolla) */
@@ -109,7 +110,7 @@
    --font-featured-product-caption-letter-spacing-mobile: 2px;
 
    /* custom-featured-collection: product card title + price (Piazzolla) */
-   --font-card-title-size: 18px;
+   --font-card-title-size: 16px;
    --font-card-title-line-height: 16px;
    --font-card-title-weight: var(--font-weight-regular);
    --font-card-title-size-mobile: 20px;
@@ -119,7 +120,7 @@
    --font-card-price-size-mobile: 16px;
 
    /* custom-featured-collection: card "Add to cart" quick-add button */
-   --font-card-quick-add-size: 18px;
+   --font-card-quick-add-size: 16px;
    --font-card-quick-add-weight: var(--font-weight-medium);
 
    /* custom-home-values: item title under each icon (Helvetica Neue) */
@@ -160,7 +161,7 @@
    /* custom-home-testimonials: person name + location (Piazzolla) */
    --font-testimonial-name-size: 20px;
    --font-testimonial-name-weight: var(--font-weight-regular);
-   --font-testimonial-location-size: 14px;
+   --font-testimonial-location-size: 16px;
    --font-testimonial-location-weight: var(--font-weight-medium);
 
    /* custom-audio-player: cursor-follow tag pill (Proxima Nova A) */
@@ -187,7 +188,7 @@
    --font-practices-row-description-weight: var(--font-weight-light);
    --font-practices-row-size-mobile: 16px;
    --font-practices-row-line-height-mobile: 24px;
-   --font-practices-row-size-xs: 15px;
+   --font-practices-row-size-xs: 16px;
    --font-practices-row-line-height-xs: 22px;
 
    /* custom-image-content: heading (Baskervville); shares the section-heading
@@ -204,18 +205,18 @@
 
    /* section-main-product: product title (h1) */
    --font-product-title-size: 50px;
-   --font-product-title-size-mobile: 36px;
+   --font-product-title-size-mobile: 35px;
    --font-product-title-weight-mobile: var(--font-weight-medium);
 
    /* section-main-product: description + its "show more" toggle */
    --font-product-description-size: 16px;
 
    /* section-main-product: quantity stepper */
-   --font-quantity-label-size: 14px;
+   --font-quantity-label-size: 16px;
    --font-quantity-label-weight: var(--font-weight-extralight);
-   --font-quantity-value-size: 25px;
+   --font-quantity-value-size: 24px;
    --font-quantity-value-weight: var(--font-weight-regular);
-   --font-quantity-button-size: 26px;
+   --font-quantity-button-size: 24px;
 
    /* section-main-product: "Add to cart" submit button */
    --font-add-to-cart-size: 16px;
@@ -229,27 +230,27 @@
    --font-reviews-meta-size-mobile: 16px;
    --font-reviews-quote-size: 16px;
    --font-reviews-quote-weight: var(--font-weight-regular);
-   --font-reviews-quote-size-mobile: 15px;
+   --font-reviews-quote-size-mobile: 16px;
    --font-reviews-quote-weight-mobile: var(--font-weight-light);
    --font-reviews-author-size: 16px;
    --font-reviews-author-weight: var(--font-weight-medium);
    --font-reviews-trust-size: 12px;
    --font-reviews-trust-weight: var(--font-weight-regular);
-   --font-reviews-trust-size-mobile: 10.5px;
+   --font-reviews-trust-size-mobile: 12px;
    --font-reviews-trust-weight-mobile: var(--font-weight-medium);
 
    /* pdp_fold_2: second-fold heading + bullet list */
    --font-pdp-fold2-heading-size: 50px;
-   --font-pdp-fold2-heading-size-mobile: 29px;
+   --font-pdp-fold2-heading-size-mobile: 30px;
    --font-pdp-fold2-heading-weight-mobile: var(--font-weight-medium);
    --font-pdp-fold2-bullet-size: 20px;
-   --font-pdp-fold2-bullet-size-mobile: 15.5px;
+   --font-pdp-fold2-bullet-size-mobile: 16px;
    --font-pdp-fold2-answer-size: 20px;
    --font-pdp-fold2-answer-size-mobile: 14px;
 
    /* custom_pdp_faqs: FAQ accordion */
    --font-pdp-faqs-heading-size: 50px;
-   --font-pdp-faqs-heading-size-mobile: 3rem;
+   --font-pdp-faqs-heading-size-mobile: 30px;
    --font-pdp-faqs-summary-size: 24px;
    --font-pdp-faqs-summary-size-mobile: 14px;
    --font-pdp-faqs-summary-weight-mobile: var(--font-weight-light);
@@ -259,19 +260,19 @@
 
    /* bullets-scroller: PDP marquee strip */
    --font-bullets-scroller-size: 16px;
-   --font-bullets-scroller-size-mobile: 15px;
+   --font-bullets-scroller-size-mobile: 16px;
 
    /* ---- Product + collection cards (shop-card, shared component) ---- */
-   --font-shop-card-badge-size: 14px;
-   --font-shop-card-title-size: 18px;
+   --font-shop-card-badge-size: 16px;
+   --font-shop-card-title-size: 16px;
    --font-shop-card-title-link-size: 22px;
-   --font-shop-card-title-size-mobile: 15px;
+   --font-shop-card-title-size-mobile: 16px;
    --font-shop-card-price-size: 20px;
    --font-shop-card-size-size: 20px;
    --font-shop-card-add-size: 20px;
 
    /* component-price: PDP large price */
-   --font-pdp-price-size: 32px;
+   --font-pdp-price-size: 35px;
 
    /* component-product-variant-picker: pill swatches */
    --font-variant-pill-size: 16px;
@@ -279,74 +280,72 @@
    /* ---- Collection page (facets-minimal) ---- */
    --font-facets-trigger-size: 20px;
    --font-facets-trigger-size-mobile: 14px;
-   --font-facets-panel-title-size: 14px;
+   --font-facets-panel-title-size: 16px;
    --font-facets-group-label-size: 12px;
-   --font-facets-radio-size: 14px;
-   --font-facets-clear-size: 14px;
+   --font-facets-radio-size: 16px;
+   --font-facets-clear-size: 16px;
 
    /* ---- Archive page (main-article-archive) ---- */
-   --font-archive-hero-caption-size: 11px;
+   --font-archive-hero-caption-size: 12px;
    --font-archive-hero-caption-letter-spacing: 3px;
    --font-archive-hero-caption-size-tablet: 12px;
    --font-archive-hero-caption-letter-spacing-tablet: 3.5px;
-   --font-archive-intro-heading-size: 42px;
-   --font-archive-intro-heading-size-mobile: 28px;
+   --font-archive-intro-heading-size: 40px;
+   --font-archive-intro-heading-size-mobile: 30px;
    --font-archive-body-size: 16px;
    --font-archive-quote-mark-size: 35px;
-   --font-archive-quote-em-size: 18px;
-   --font-archive-split-body-size: 15px;
-   --font-archive-quote-body-size: 15px;
-   --font-archive-duo-caption-size: 14px;
-   --font-archive-note-label-size: 15px;
+   --font-archive-quote-em-size: 16px;
+   --font-archive-split-body-size: 16px;
+   --font-archive-quote-body-size: 16px;
+   --font-archive-duo-caption-size: 16px;
+   --font-archive-note-label-size: 16px;
    --font-archive-note-label-letter-spacing: 7px;
-   --font-archive-note-body-size: 15px;
+   --font-archive-note-body-size: 16px;
 
    /* ---- Blog listing (archive/rituals) header + grid ---- */
    --font-blog-header-heading-size: 50px;
-   --font-blog-header-heading-size-mobile: 34px;
-   --font-blog-header-heading-size-xs: 26px;
-   --font-blog-header-title-size: 14px;
-   --font-blog-header-description-size: 14px;
-   --font-blog-header-description-size-xs: 15px;
-   --font-blog-header-toggle-size: 18px;
+   --font-blog-header-heading-size-mobile: 35px;
+   --font-blog-header-heading-size-xs: 30px;
+   --font-blog-header-title-size: 16px;
+   --font-blog-header-description-size: 20px;
+   --font-blog-header-description-size-xs: 16px;
+   --font-blog-header-toggle-size: 20px;
    --font-blog-header-toggle-size-xs: 16px;
 
-   --font-blog-grid-subtitle-size: 15px;
-   --font-blog-grid-subtitle-size-mobile: 11px;
+   --font-blog-grid-subtitle-size: 16px;
+   --font-blog-grid-subtitle-size-mobile: 12px;
    --font-blog-grid-title-size: 40px;
    --font-blog-grid-title-line-height: 50px;
    --font-blog-grid-title-letter-spacing: 1px;
    --font-blog-grid-title-size-mobile: 30px;
    --font-blog-grid-title-line-height-mobile: 35px;
-   --font-blog-grid-description-size: 14px;
+   --font-blog-grid-description-size: 20px;
    --font-blog-grid-description-size-mobile: 14px;
-   --font-blog-grid-filter-size: 14px;
-   --font-blog-grid-filter-size-mobile: 14px;
 
    /* ---- Contact page ---- */
    --font-contact-body-size: 16px;
 
    /* ---- Policy pages (custom-policy-page, shared by all 3) ---- */
    --font-policy-title-letter-spacing: 1px;
-   --font-policy-body-size: 18px;
+   --font-policy-body-size: 16px;
    --font-policy-nav-link-size: 16px;
-   --font-policy-nav-mobile-summary-size: 15px;
-   --font-policy-nav-mobile-link-size: 15px;
-   --font-policy-subheading-size: 23px;
-   --font-policy-subheading-size-mobile: 18px;
+   --font-policy-nav-mobile-summary-size: 16px;
+   --font-policy-nav-mobile-link-size: 16px;
+   --font-policy-subheading-size: 24px;
+   --font-policy-subheading-size-mobile: 20px;
 
    /* ---- Press page ---- */
-   --font-press-eyebrow-size: 1.3rem;
+   --font-press-eyebrow-size: 12px;
    --font-press-eyebrow-letter-spacing: 0.25em;
    --font-press-body-size: 20px;
    --font-press-body-size-mobile: 16px;
-   --font-press-date-size: 1.2rem;
+   --font-press-date-size: 12px;
    --font-press-publication-size: 22px;
    --font-press-excerpt-size: 16px;
    --font-press-read-size: 20px;
 
    /* ---- Burger menu (menu-drawer) + desktop header nav ---- */
-   --font-menu-drawer-item-size: 21px;
+   --font-menu-drawer-item-size: 22px;
    --font-menu-drawer-item-weight: var(--font-weight-extralight);
    --font-header-menu-item-size: 12px;
    --font-header-menu-item-letter-spacing: 2px;
@@ -354,14 +353,23 @@
    /* ---- Footer ---- */
    --font-footer-link-size: 20px;
    --font-footer-link-weight: var(--font-weight-extralight);
-   --font-footer-copyright-size: 14px;
+   --font-footer-link-line-height: 32px;
+   --font-footer-link-letter-spacing: 0.96px;
+   --font-footer-copyright-size: 16px;
    --font-footer-copyright-weight: var(--font-weight-thin);
+   --font-footer-copyright-line-height: 20px;
+   --font-footer-copyright-letter-spacing: 0.48px;
+   --font-footer-note-size: 20px;
+   --font-footer-note-line-height: 32px;
+   --font-footer-note-letter-spacing: 0.4px;
+   --font-footer-note-size-mobile: 18px;
+   --font-footer-note-line-height-mobile: 28px;
 
    /* ---- 404 page ---- */
-   --font-404-eyebrow-size: 1.3rem;
+   --font-404-eyebrow-size: 12px;
    --font-404-eyebrow-letter-spacing: 0.3em;
    --font-404-subtext-size: 20px;
-   --font-404-button-size: 1.4rem;
+   --font-404-button-size: 16px;
 
    /* ---- Wishlist page ---- */
    --font-wishlist-link-size: 16px;
@@ -370,17 +378,20 @@
 
    /* ---- Fullscreen search modal ---- */
    --font-search-input-size: 16px;
-   --font-search-popular-label-size: 15px;
+   --font-search-popular-label-size: 16px;
    --font-search-popular-link-size: 16px;
+   --font-search-result-heading-size: 11px;
+   --font-search-result-item-size: 15px;
+   --font-search-result-term-size: 15px;
 
    /* ---- Story tags strip (article footer) ---- */
-   --font-story-tags-label-size: 15px;
+   --font-story-tags-label-size: 16px;
    --font-story-tags-label-letter-spacing: 6px;
-   --font-story-tags-tag-size: 15px;
+   --font-story-tags-tag-size: 16px;
 
    /* ---- Continue exploring (related articles/products grid) ---- */
-   --font-continue-exploring-number-size: 11px;
-   --font-continue-exploring-number-letter-spacing: 2px;
-   --font-continue-exploring-title-size: 16px;
-   --font-continue-exploring-title-size-mobile: 22px;
+   --font-continue-exploring-number-size: 16px;
+   --font-continue-exploring-number-letter-spacing: 4px;
+   --font-continue-exploring-title-size: 20px;
+   --font-continue-exploring-title-size-mobile: 20px;
 }

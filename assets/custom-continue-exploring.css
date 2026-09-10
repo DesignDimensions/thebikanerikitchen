@@ -30,19 +30,19 @@
   width: 100%;
   overflow: hidden;
   background-color: #2b1810;
+  /* Same proportions as the first card of the blog-listing grid
+     (.blog-listing-grid-item:nth-child(4n + 1), 382 x 654 in the design). */
+  aspect-ratio: 382 / 654;
 }
 
-.continue-exploring__media::before {
-  content: '';
-  display: block;
-  padding-bottom: 130%;
-}
-
-.continue-exploring__media::after {
-  content: '';
+.continue-exploring__scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 45%);
+  background: linear-gradient(180deg,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0) 28%,
+      rgba(0, 0, 0, 0) 62%,
+      rgba(0, 0, 0, 0.5) 100%);
   pointer-events: none;
 }
 
@@ -65,71 +65,92 @@
   transform: scale(1.03);
 }
 
-.continue-exploring__number {
+/* Index + heading pinned to the top, matching .blog-listing-grid-item-text. */
+.continue-exploring__text {
   position: absolute;
   z-index: 1;
-  top: 16px;
-  left: 16px;
-  margin: 0;
-  font-family: var(--font-family-label);
-  font-size: var(--font-continue-exploring-number-size);
-  font-weight: var(--font-weight-regular);
-  letter-spacing: var(--font-continue-exploring-number-letter-spacing);
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1.6rem 1.8rem;
   color: #fffdee;
-  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
-.continue-exploring__content {
-  position: absolute;
-  z-index: 1;
-  left: 16px;
-  right: 16px;
-  bottom: 14px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 12px;
+.continue-exploring__number {
+  display: block;
+  margin: 0 0 0.4em;
+  font-family: var(--font-body-family);
+  font-size: var(--font-continue-exploring-number-size);
+  font-weight: 600;
+  letter-spacing: var(--font-continue-exploring-number-letter-spacing);
+  text-transform: uppercase;
+  color: currentColor;
 }
 
 .continue-exploring__title {
-  font-family: var(--font-family-display);
-  font-size: var(--font-continue-exploring-title-size);
-  font-weight: var(--font-weight-regular);
-  line-height: 1.3;
-  color: #fffdee;
-}
-
-.continue-exploring__title p {
+  display: block;
   margin: 0;
+  max-width: 32rem;
+  font-family: var(--font-heading-family);
+  font-style: var(--font-heading-style);
+  font-weight: var(--font-heading-weight);
+  font-size: var(--font-continue-exploring-title-size);
+  line-height: 1.25;
+  color: currentColor;
 }
 
-.continue-exploring__arrow {
-  flex-shrink: 0;
+/* Star + arrow pinned to the bottom, matching .blog-listing-grid-item-icons. */
+.continue-exploring__icons {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  border: 1px solid rgba(255, 253, 238, 0.6);
-  border-radius: 50%;
-  color: #fffdee;
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.6rem 1.8rem;
 }
 
-.continue-exploring__arrow .icon {
-  width: 11px;
-  height: 11px;
+.continue-exploring__icon {
+  display: block;
+  height: auto;
 }
 
-.continue-exploring__item:hover .continue-exploring__arrow {
-  background-color: rgba(255, 253, 238, 0.16);
-  transform: translateX(3px);
+.continue-exploring__icon--star {
+  width: 25px;
+  flex-shrink: 0;
+}
+
+.continue-exploring__icon--arrow {
+  width: 100%;
+  max-width: 13rem;
+  flex-shrink: 1;
+}
+
+/* The cards hold a fixed 382:654 now, so a narrower row can't be absorbed by
+   flattening them. Drop a column instead and show one card fewer, keeping the
+   row a single line of correctly-proportioned cards. Thresholds keep a card at
+   roughly 280px or wider: .page-width gives C = min(1400, viewport) - 100. */
+@media screen and (max-width: 1279px) {
+  .continue-exploring__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .continue-exploring__item:nth-child(n + 4) {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 989px) {
   .continue-exploring__grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
+  }
+
+  .continue-exploring__item:nth-child(n + 3) {
+    display: none;
   }
 }
 
@@ -159,30 +180,23 @@
     display: none;
   }
 
+  /* 82% leaves the next card peeking on a phone, but on a wider scroller that
+     same 82% at 382:654 would make a card taller than the viewport, so the
+     width is capped. Phones stay on the 82% figure. */
   .continue-exploring__item {
-    flex: 0 0 82%;
+    flex: 0 0 min(82%, 32rem);
     scroll-snap-align: start;
   }
 
-  .continue-exploring__media::before {
-    padding-bottom: 150%;
+  /* Horizontal scrolling removes the width pressure, so the cards hidden at the
+     grid breakpoints above are shown again. */
+  .continue-exploring__item:nth-child(n + 3) {
+    display: block;
   }
 
-  .continue-exploring__number {
-    top: 14px;
-    left: 14px;
-    font-size: 12px;
-  }
-
-  .continue-exploring__content {
-    left: 14px;
-    right: 14px;
-    top: 40px;
-    bottom: auto;
-  }
-
-  .continue-exploring__arrow {
-    display: none;
+  .continue-exploring__text,
+  .continue-exploring__icons {
+    padding: 1.4rem 1.4rem;
   }
 
   .continue-exploring__title {

@@ -102,7 +102,7 @@
       <h2 class="custom-footer__brand">{{ section.settings.heading }}</h2>
     {%- endif -%}
 
-    {%- if section.blocks.size > 0 -%}
+    {%- if section.blocks.size > 0 or section.settings.note != blank -%}
       <div class="custom-footer__nav">
         <div class="custom-footer__lists">
           {%- for block in section.blocks -%}
@@ -127,6 +127,10 @@
             </div>
           {%- endfor -%}
         </div>
+
+        {%- if section.settings.note != blank -%}
+          <div class="custom-footer__note rte">{{ section.settings.note }}</div>
+        {%- endif -%}
       </div>
     {%- endif -%}
 
@@ -187,6 +191,17 @@
       "label": "Heading",
       "default": "The Bikaneri Kitchen",
       "info": "Shown as text when no heading image is set above. Also used as the image's alt text."
+    },
+    {
+      "type": "header",
+      "content": "Note"
+    },
+    {
+      "type": "richtext",
+      "id": "note",
+      "label": "Note",
+      "info": "Script paragraph shown to the right of the menu columns.",
+      "default": "<p>We have carried the taste of Bikaner with us all our lives. In our homes, our memories and around our tables. The Bikaneri Kitchen is our way of sharing what has always been ours with you.</p>"
     },
     {
       "type": "header",

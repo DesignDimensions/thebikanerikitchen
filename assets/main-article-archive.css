@@ -175,6 +175,24 @@
   margin-top: 1em;
 }
 
+/* Several archive stories open with a Marwari/Sanskrit saying in the intro
+   column: strong carries the Devanagari line, em its English gloss. Same
+   treatment as the quote column below so a saying reads identically wherever
+   the story places it. */
+.archive-article__intro-body p strong {
+  font-family: var(--font-family-devanagari);
+  font-size: var(--font-archive-quote-mark-size);
+  font-weight: var(--font-weight-medium);
+}
+
+.archive-article__intro-body em,
+.archive-article__intro-body i {
+  display: block;
+  font-family: var(--font-family-display);
+  font-size: var(--font-archive-quote-em-size);
+  font-style: italic;
+}
+
 @media screen and (max-width: 749px) {
   .archive-article__intro {
     gap: 24px;
@@ -266,14 +284,17 @@
   color: #181818;
 }
 
-.archive-article__split-col--quote p strong {
+/* Not scoped to --quote: stories such as Aangan, Taap and Kathputli place their
+   saying in a reflection block after the duo images rather than in the quote
+   column, and it has to read the same in both positions. */
+.archive-article__split-col p strong {
   font-size: var(--font-archive-quote-mark-size);
   font-family: var(--font-family-devanagari);
   font-weight: var(--font-weight-medium);
 }
 
-.archive-article__split-col--quote em,
-.archive-article__split-col--quote i {
+.archive-article__split-col em,
+.archive-article__split-col i {
   display: block;
   font-family: var(--font-family-display);
   font-size: var(--font-archive-quote-em-size);

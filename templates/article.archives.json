@@ -16,11 +16,13 @@
       "type": "custom-continue-exploring",
       "name": "Continue Exploring",
       "settings": {
-        "eyebrow": "The Rituals",
+        "eyebrow": "The Archives",
         "heading": "Continue Exploring",
-        "blog": "rituals",
+        "blog": "archive",
         "article_limit": 4,
-        "grayscale_images": true
+        "grayscale_images": true,
+        "star_icon": "shopify://shop_images/Vector_12.png",
+        "arrow_icon": "shopify://shop_images/Vector_22_3.png"
       }
     },
     "story_tags_strip": {
@@ -42,48 +44,12 @@
         "heading_color": "#ff6344",
         "background_color": "#570f13"
       }
-    },
-    "custom_images_grid_carousal_bCUHbV": {
-      "type": "custom-images-grid_carousal",
-      "blocks": {
-        "image_dLaHiB": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
-          }
-        },
-        "image_cjkdqr": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
-          }
-        },
-        "image_UteLeR": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317934_1.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_dLaHiB",
-        "image_cjkdqr",
-        "image_UteLeR"
-      ],
-      "name": "Custom Image Carousel",
-      "settings": {
-        "images_per_view": 3
-      }
     }
   },
   "order": [
     "main",
     "continue_exploring",
     "story_tags_strip",
-    "custom_bg_heading_iraT6Q",
-    "custom_images_grid_carousal_bCUHbV"
+    "custom_bg_heading_iraT6Q"
   ]
 }

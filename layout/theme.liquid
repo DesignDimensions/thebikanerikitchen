@@ -437,6 +437,15 @@
         font-display: swap;
       }
 
+      /* Beaurencourt FY -- script accent, footer note */
+      @font-face {
+        font-family: 'Beaurencourt FY';
+        src: url('{{ "BeaurencourtFY-Regular.otf" | asset_url }}') format('opentype');
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+      }
+
       /* Ouma Devanagari Font Family */
       @font-face {
         font-family: 'Ouma Devanagari';
@@ -504,6 +513,18 @@
     {{ 'font-variables.css' | asset_url | stylesheet_tag }}
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'custom-loading-screen.css' | asset_url | stylesheet_tag }}
+    <script>
+      // The preloader plays once per browsing session. This runs before the
+      // body is parsed so a repeat load never shows the red cover at all —
+      // deciding it in the deferred script would flash it for a few frames.
+      try {
+        if (sessionStorage.getItem('tbk-loading-screen-shown') === '1') {
+          document.documentElement.classList.add('custom-loading-screen-skip');
+        }
+      } catch (e) {
+        // Private mode or blocked storage — fall through and play it.
+      }
+    </script>
     <link rel="stylesheet" href="{{ 'component-cart-items.css' | asset_url }}" media="print" onload="this.media='all'">
 
     {%- if settings.cart_type == 'drawer' -%}

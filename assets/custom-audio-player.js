@@ -248,6 +248,59 @@ document.addEventListener('DOMContentLoaded', () => {
       if (transcriptArrowUp) transcriptArrowUp.addEventListener('click', () => scrollTranscriptByRows(-1));
       if (transcriptArrowDown) transcriptArrowDown.addEventListener('click', () => scrollTranscriptByRows(1));
 
+      // data-lenis-prevent (see the liquid) hands wheel input over the
+      // notebook to native scrolling, and overscroll-behavior: contain stops
+      // that native scroll from chaining back out -- together they dead-end
+      // the gesture the moment the transcript reaches its top or bottom edge.
+      // So once it's at an edge, forward the leftover delta on to the page
+      // and scrolling simply carries on past the notebook, the way it would
+      // anywhere else on the site. No preventDefault (hence passive): the
+      // browser is already refusing to chain, so nothing gets scrolled twice.
+      const WHEEL_LINE_HEIGHT = 100 / 6; // the normalisation Lenis itself uses
+      const wheelDeltaPixels = (event) => {
+        if (event.deltaMode === 1) return event.deltaY * WHEEL_LINE_HEIGHT;
+        if (event.deltaMode === 2) return event.deltaY * window.innerHeight;
+        return event.deltaY;
+      };
+
+      transcriptScroll.addEventListener(
+        'wheel',
+        (event) => {
+          const delta = wheelDeltaPixels(event);
+          if (!delta) return;
+          const max = Math.max(0, transcriptScroll.scrollHeight - transcriptScroll.clientHeight);
+          // <= 0 / >= max - 1 instead of exact bounds: sub-pixel layout means
+          // scrollTop rarely lands precisely on either end. A transcript
+          // shorter than its window (max === 0) counts as both edges at once,
+          // so it never traps the wheel either.
+          const atEdge = delta < 0 ? transcriptScroll.scrollTop <= 0 : transcriptScroll.scrollTop >= max - 1;
+          if (!atEdge) return;
+
+          const lenis = window.lenis;
+          if (lenis && typeof lenis.scrollTo === 'function' && !lenis.isStopped) {
+            // The same call Lenis makes for its own wheel input, so taking
+            // over mid-gesture keeps the site's smoothing rather than
+            // snapping the page along natively. lerp/duration/easing have to
+            // be passed explicitly: with programmatic: false Lenis defaults
+            // all three to undefined instead of falling back to the instance
+            // options, and an animation with none of them set jumps straight
+            // to the target -- which reads as an instant, jerky hop.
+            lenis.scrollTo(lenis.targetScroll + delta, {
+              programmatic: false,
+              lerp: lenis.options.lerp,
+              duration: lenis.options.duration,
+              easing: lenis.options.easing,
+            });
+          } else {
+            // No Lenis means smooth-scroll.js bailed on prefers-reduced-motion
+            // (or failed to load), so hand over instantly here too rather than
+            // animating past a preference that asked for no animation.
+            window.scrollBy(0, delta);
+          }
+        },
+        { passive: true }
+      );
+
       // Grab-to-scroll: a mouse drag pans the notebook instead of starting a
       // text selection underneath it. Same pointer-capture shape as the
       // progress bar's scrubbing above. Touch is left alone -- native touch
@@ -473,6 +526,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const CURSOR_TILT_MAX = 28;
     const CURSOR_TILT_FACTOR = 0.85;
     const CURSOR_TILT_VERTICAL_BOOST = 1.6;
+    // Eased rather than the raw per-frame delta: a short, slow movement's real
+    // signal is only a pixel or two, so on its own it is mostly the noise of
+    // pointer coalescing landing unevenly across frames -- some frames get no
+    // delta and the next one gets it all. Chasing that raw value tilts in
+    // jerks; easing it lets a real stop decay out instead of snapping flat.
+    const CURSOR_TILT_SMOOTHING = 0.35;
+    // The pointer clips outside `:hover` for a frame or two on nearly every
+    // pass -- crossing a gap, or content shifting under a stationary cursor.
+    // Closing on the spot reads as the tag breaking; holding it open for a
+    // beat and only closing if the pointer really has left lets it keep
+    // gliding with the cursor through that instead.
+    const CURSOR_CLOSE_DELAY = 180;
 
     if (cursorTag && cursorTagFlip && fx && supportsFinePointer) {
       container.classList.add('has-cursor-tag');
@@ -517,6 +582,10 @@ document.addEventListener('DOMContentLoaded', () => {
       let isOverContainer = false;
       let prevRawX = 0;
       let prevRawY = 0;
+      // Smoothed pointer delta the tilt actually reads from.
+      let tiltDeltaX = 0;
+      let tiltDeltaY = 0;
+      let closeTimer = null;
 
       // Backwards 3D flip open/close instead of a plain fade — hinges on
       // rotationX so it tilts back away from the viewer when hidden and
@@ -579,36 +648,58 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const nowOver = container.matches(':hover');
 
-        if (nowOver && !isOverContainer) {
-          isOverContainer = true;
-          prevRawX = mouseX;
-          prevRawY = mouseY;
-          gsap.set(cursorTag, { x: mouseX + CURSOR_TAG_OFFSET_X, y: mouseY });
-        } else if (!nowOver && isOverContainer) {
-          isOverContainer = false;
+        if (nowOver) {
+          // Back over the section before the grace period ran out: the tag
+          // was never really left, so there is nothing to cancel back out of.
+          if (closeTimer) {
+            clearTimeout(closeTimer);
+            closeTimer = null;
+          }
+
+          if (!isOverContainer) {
+            isOverContainer = true;
+            prevRawX = mouseX;
+            prevRawY = mouseY;
+            tiltDeltaX = 0;
+            tiltDeltaY = 0;
+            gsap.set(cursorTag, { x: mouseX + CURSOR_TAG_OFFSET_X, y: mouseY });
+          }
+        } else if (isOverContainer && !closeTimer) {
+          closeTimer = setTimeout(() => {
+            closeTimer = null;
+            isOverContainer = false;
+            closeTag();
+          }, CURSOR_CLOSE_DELAY);
         }
 
-        if (!isOverContainer) {
-          if (isOpen) closeTag();
-          return;
-        }
+        // Still true through the grace window, so the tag keeps gliding with
+        // the pointer instead of freezing where :hover happened to drop.
+        if (!isOverContainer) return;
 
         moveX(mouseX + CURSOR_TAG_OFFSET_X);
         moveY(mouseY);
 
-        const overExcluded = !!container.querySelector(CURSOR_EXCLUDED_HOVER_SELECTOR);
-        if (overExcluded !== suppressed) {
-          suppressed = overExcluded;
-          if (suppressed) closeTag();
-          else openTag();
-        } else if (!suppressed && !isOpen) {
-          openTag();
+        // Only while the pointer is genuinely inside. Nothing is hovered
+        // during the grace window, so re-running this there would read as
+        // "just left the excluded control" and flip the tag open on the way
+        // out, a beat before the close lands.
+        if (nowOver) {
+          const overExcluded = !!container.querySelector(CURSOR_EXCLUDED_HOVER_SELECTOR);
+          if (overExcluded !== suppressed) {
+            suppressed = overExcluded;
+            if (suppressed) closeTag();
+            else openTag();
+          } else if (!suppressed && !isOpen) {
+            openTag();
+          }
         }
 
         if (!isFlipping) {
           const deltaX = mouseX - prevRawX;
           const deltaY = mouseY - prevRawY;
-          const raw = -deltaX + deltaY * CURSOR_TILT_VERTICAL_BOOST;
+          tiltDeltaX += (deltaX - tiltDeltaX) * CURSOR_TILT_SMOOTHING;
+          tiltDeltaY += (deltaY - tiltDeltaY) * CURSOR_TILT_SMOOTHING;
+          const raw = -tiltDeltaX + tiltDeltaY * CURSOR_TILT_VERTICAL_BOOST;
           setTilt(gsap.utils.clamp(-CURSOR_TILT_MAX, CURSOR_TILT_MAX, raw * CURSOR_TILT_FACTOR));
         }
         prevRawX = mouseX;

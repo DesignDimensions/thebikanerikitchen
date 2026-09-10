@@ -45,7 +45,7 @@
       "settings": {
         "layout": "stacked",
         "heading": "There was a time when recipes belonged to places.",
-        "body": "<p>Lorem ipsum dolor sit amet consectetur. Et etiam praesent lorem interdum egestas integer. Enim mi vitae mauris aliquam aliquam velit commodo leo. Placerat dictum habitasse aliquam pharetra in arcu pellentesque ultricies. Sed et odio nibh tristique sit nibh duis fusce sed. Pharetra augue velit tristique sed eleifend. Neque mi sit nibh convallis commodo dignissim ut.</p>"
+        "body": "<p>Before food became categories, it belonged to landscapes. To deserts where moth beans learned to survive impossible summers. To coastal villages where salt carried its own character. To mountain homes where smoke became an ingredient. Recipes were never invented in isolation. They were shaped by geography, climate, migration, trade, faith and memory. Every preparation carried the fingerprint of the place that created it. Today those distinctions are slowly disappearing. Not because the recipes have been forgotten. Because the reasons behind them have.</p>"
       }
     },
     "custom_inset_image_2": {
@@ -131,41 +131,6 @@
         "heading_color": "#ff6344",
         "background_color": "#570f13"
       }
-    },
-    "custom_images_grid_carousal_qy436R": {
-      "type": "custom-images-grid_carousal",
-      "blocks": {
-        "image_WwJxzD": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317932.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317932_1.jpg"
-          }
-        },
-        "image_DpgFqc": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317933.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317933_1.jpg"
-          }
-        },
-        "image_GNJ7De": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_1321317934.jpg",
-            "mobile_image": "shopify://shop_images/Frame_1321317934_1.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "image_WwJxzD",
-        "image_DpgFqc",
-        "image_GNJ7De"
-      ],
-      "name": "Custom Image Carousel",
-      "settings": {
-        "images_per_view": 3
-      }
     }
   },
   "order": [
@@ -177,7 +142,6 @@
     "custom_inset_image_2",
     "custom_practices_main",
     "custom_highlight_banner_ambition",
-    "custom_bg_heading_gwzayb",
-    "custom_images_grid_carousal_qy436R"
+    "custom_bg_heading_gwzayb"
   ]
 }

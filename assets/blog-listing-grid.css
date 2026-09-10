@@ -32,6 +32,55 @@
   text-decoration: none;
 }
 
+/*
+  Two-column alternating layout (rituals). Figma splits a 1280 container into
+  382 + 24 gap + 874, and mirrors that split on every second row, so the pairs
+  read narrow/wide then wide/narrow. Three tracks of 382/468/382 express both
+  splits at once: 468 + 24 + 382 = 874 on the right, 382 + 24 + 468 = 874 on the
+  left. fr keeps the proportions at any width, and all four cards are 654 tall
+  in the design, so the aspect ratios are keyed off that shared height.
+*/
+@media screen and (min-width: 750px) {
+  .blog-listing-grid-list--alternating {
+    grid-template-columns: 382fr 468fr 382fr;
+  }
+
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(4n + 1) {
+    grid-column: 1;
+  }
+
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(4n + 2) {
+    grid-column: 2 / span 2;
+  }
+
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(4n + 3) {
+    grid-column: 1 / span 2;
+  }
+
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(4n + 4) {
+    grid-column: 3;
+  }
+
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(4n + 1) .blog-listing-grid-item-media,
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(4n + 4) .blog-listing-grid-item-media {
+    aspect-ratio: 382 / 654;
+  }
+
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(4n + 2) .blog-listing-grid-item-media,
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(4n + 3) .blog-listing-grid-item-media {
+    aspect-ratio: 874 / 654;
+  }
+
+  /* A card that starts a row with no partner (odd last page) spans the row. */
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(2n + 1):last-child {
+    grid-column: 1 / -1;
+  }
+
+  .blog-listing-grid-list--alternating .blog-listing-grid-item:nth-child(2n + 1):last-child .blog-listing-grid-item-media {
+    aspect-ratio: 1280 / 654;
+  }
+}
+
 .blog-listing-grid-item-link {
   display: block;
   color: currentColor;
@@ -95,7 +144,7 @@
 .blog-listing-grid-item-index {
   margin: 0 0 0.4em;
   font-family: var(--font-body-family);
-  font-size: 10px;
+  font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -108,10 +157,8 @@
   font-family: var(--font-heading-family);
   font-style: var(--font-heading-style);
   font-weight: var(--font-heading-weight);
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 1.25;
-  text-decoration: underline;
-  text-underline-offset: 0.24em;
   color: currentColor;
 }
 
@@ -145,7 +192,7 @@
 
 .blog-listing-grid-heading {
   max-width: 80%;
-  margin: 0 auto 2.4rem;
+  margin: 0 auto 60px;
   text-align: center;
 }
 
@@ -173,7 +220,7 @@
 
 .blog-listing-grid-description {
   font-family: var(--font-body-family);
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   line-height: 1.6;
   color: #181818;
 }
@@ -183,42 +230,6 @@
   font-family: var(--font-family-body);
   font-size: var(--font-blog-grid-description-size);
   font-weight: var(--font-copy-weight);
-}
-
-.blog-listing-grid-filters {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  margin: 0 0 2.8rem;
-}
-
-.blog-listing-grid-filter {
-  padding: 0.5em 1.3em;
-  border: 1px solid #181818;
-  border-radius: 0;
-  background: transparent;
-  color: #181818;
-  font-family: var(--font-family-body);
-  font-size: var(--font-blog-grid-filter-size);
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  font-weight: var(--font-copy-weight);
-}
-
-.blog-listing-grid-filter:hover {
-  opacity: 0.8;
-}
-
-.blog-listing-grid-filter.is-active {
-  background-color: #181818;
-  color: #FFFDEE;
-}
-
-.blog-listing-grid-item[hidden] {
-  display: none;
 }
 
 @media(max-width:768px) {
@@ -235,9 +246,5 @@
 
   .blog-listing-grid-description p {
     font-size: var(--font-blog-grid-description-size-mobile);
-  }
-
-  .blog-listing-grid-filter {
-    font-size: var(--font-blog-grid-filter-size-mobile);
   }
 }

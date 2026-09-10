@@ -31,6 +31,8 @@ details[open]>.search-modal.search-modal--fullscreen {
   will-change: transform;
   z-index: 10000;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
 }
 
 /* .modal-overlay::after exists to dim the rest of the page below Dawn's
@@ -49,12 +51,20 @@ details[open]>.search-modal.search-modal--fullscreen {
   bottom: 0;
 }
 
+/* Top-anchored, not vertically centred: results grow downward from a search
+   field that stays exactly where it is. Centring would slide the input up the
+   screen on every keystroke as the result count changed. */
 .search-modal--fullscreen .search-modal__content {
-  padding: 8rem 2rem 4rem;
-  align-items: center;
+  padding: 18vh 2rem 6rem;
+  align-items: flex-start;
+  /* Base rule pins this to height:100%. A long result set has to be able to
+     make it taller than the viewport, or it just overflows unscrollably. */
+  height: auto;
+  min-height: 100%;
 }
 
 .search-modal__inner {
+  position: relative;
   width: 100%;
   max-width: 640px;
   margin: 0 auto;
@@ -129,10 +139,221 @@ details[open]>.search-modal.search-modal--fullscreen {
   display: none;
 }
 
+/* ---------------------------------------------------------------------------
+   Predictive results
+
+   Dawn styles .predictive-search as an absolutely-positioned dropdown hanging
+   off a compact header search bar, on a light popup background. Dropped into
+   this fullscreen takeover it floated on top of the popular-searches list
+   underneath it. Here it becomes a normal in-flow block on the maroon panel,
+   so the two blocks trade places instead of stacking.
+   --------------------------------------------------------------------------- */
+.search-modal--fullscreen .predictive-search {
+  position: static;
+  width: 100%;
+  margin-top: 26px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+  text-align: left;
+  color: #fffdee;
+  /* PredictiveSearch.open() writes an inline max-height measured from
+     .section-header's bottom edge -- meaningless once the panel is a
+     fullscreen overlay rather than a dropdown under the header. */
+  max-height: none !important;
+}
+
+.search-modal--fullscreen predictive-search[open] .predictive-search,
+.search-modal--fullscreen predictive-search[loading] .predictive-search {
+  display: block;
+  animation: search-results-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes search-results-in {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-modal--fullscreen #predictive-search-results {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+/* The result columns scroll on their own so the "Search for ..." row below
+   them stays reachable without scrolling the whole modal. */
+.search-modal--fullscreen .predictive-search__results-groups-wrapper {
+  display: flex;
+  gap: 32px;
+  max-height: min(46vh, 420px);
+  padding: 0 0 8px;
+  border-bottom: 1px solid rgba(255, 253, 238, 0.18);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 253, 238, 0.3) transparent;
+}
+
+.search-modal--fullscreen .predictive-search__results-groups-wrapper::-webkit-scrollbar {
+  width: 3px;
+}
+
+.search-modal--fullscreen .predictive-search__results-groups-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(255, 253, 238, 0.3);
+}
+
+/* Dawn pins the first column to a fixed 26.4rem, sized for the header
+   dropdown's width. Even halves read better in this 640px panel. The extra
+   class in the selector is there to outweigh Dawn's equally-specific
+   .predictive-search__result-group:first-child rule. */
+.search-modal--fullscreen .predictive-search .predictive-search__result-group {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.search-modal--fullscreen .predictive-search__heading {
+  margin: 0 14px;
+  padding: 0 0 10px;
+  border-bottom: 1px solid rgba(255, 253, 238, 0.25);
+  color: rgba(255, 253, 238, 0.6);
+  font-family: var(--font-family-body);
+  font-size: var(--font-search-result-heading-size);
+  font-weight: var(--font-weight-regular);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.search-modal--fullscreen .predictive-search__results-list {
+  margin: 6px 0 0;
+  padding: 0;
+}
+
+.search-modal--fullscreen .predictive-search__item {
+  padding: 11px 14px;
+  color: #fffdee;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Dawn's hover tint is rgba(--color-foreground, .04) -- a dark wash that is
+   invisible against the maroon panel. */
+.search-modal--fullscreen .predictive-search__list-item[aria-selected='true'] > *,
+.search-modal--fullscreen .predictive-search__list-item:hover > *,
+.search-modal--fullscreen .predictive-search__item[aria-selected='true'],
+.search-modal--fullscreen .predictive-search__item:hover {
+  color: #fffdee;
+  background-color: rgba(255, 253, 238, 0.09);
+}
+
+.search-modal--fullscreen .predictive-search__item-heading {
+  margin: 0;
+  font-family: var(--font-family-body);
+  font-size: var(--font-search-result-item-size);
+  font-weight: var(--font-copy-weight);
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  color: #fffdee;
+}
+
+.search-modal--fullscreen .predictive-search__item-query-result mark {
+  color: rgba(255, 253, 238, 0.62);
+  background-color: transparent;
+}
+
+.search-modal--fullscreen .predictive-search__item-vendor {
+  font-family: var(--font-family-body);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 253, 238, 0.55);
+}
+
+.search-modal--fullscreen .predictive-search .price {
+  color: rgba(255, 253, 238, 0.7);
+  font-family: var(--font-family-body);
+  font-size: 13px;
+}
+
+.search-modal--fullscreen .predictive-search__item--link-with-thumbnail {
+  grid-template-columns: 48px 1fr;
+  grid-column-gap: 14px;
+  align-items: center;
+}
+
+.search-modal--fullscreen .predictive-search__image {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  font-family: 'object-fit: cover';
+}
+
+/* "Search for <term>" -- a full-width footer row under the columns. */
+.search-modal--fullscreen .predictive-search__search-for-button {
+  flex-shrink: 0;
+}
+
+.search-modal--fullscreen .predictive-search__item--term {
+  padding: 16px 14px;
+  color: #fffdee;
+  font-family: var(--font-family-body);
+  font-size: var(--font-search-result-term-size);
+  font-weight: var(--font-copy-weight);
+  letter-spacing: 0.5px;
+  word-break: normal;
+}
+
+.search-modal--fullscreen .predictive-search__item--term .icon-arrow {
+  width: 16px;
+  height: 16px;
+  margin-left: 20px;
+  color: #fffdee;
+}
+
+.search-modal--fullscreen .predictive-search__loading-state {
+  padding: 24px 0;
+  color: rgba(255, 253, 238, 0.7);
+}
+
+/* ---------------------------------------------------------------------------
+   Popular searches
+
+   Shown only while the results panel is empty. Going position:absolute (with
+   no offsets, so it keeps its static position) drops it out of the flow the
+   instant results appear: it fades in place, and because it is the last child
+   of a top-anchored column, nothing above it moves.
+   --------------------------------------------------------------------------- */
 .search-modal__popular {
   width: 100%;
   margin-top: 52px;
   text-align: left;
+  transition: opacity 0.28s ease, transform 0.28s ease, height 0s, overflow 0s;
+}
+
+.search-modal--fullscreen predictive-search[open] ~ .search-modal__popular,
+.search-modal--fullscreen predictive-search[loading] ~ .search-modal__popular {
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  /* Out of the flow it no longer moves anything, but an absolutely positioned
+     box still counts toward the modal's scrollable area -- a tall hidden list
+     would leave the panel scrolling past its own content. Collapse it, but only
+     once the fade has finished: a 0s change on a 0.28s delay, so it doesn't
+     visibly snap shut mid-fade. */
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.28s ease, transform 0.28s ease, height 0s linear 0.28s, overflow 0s linear 0.28s;
 }
 
 .search-modal__popular-label {
@@ -185,16 +406,15 @@ details[open]>.search-modal.search-modal--fullscreen {
 }
 
 @media screen and (max-width: 749px) {
-  .search-modal__inner {
-    width: 80%;
-    position: absolute;
-    top: 20%;
-    left: 10%;
-    right: 10%;
+  /* Was position:absolute at top:20%, which took the panel out of the flow --
+     so a long result set ran off the bottom of the screen with nothing to
+     scroll. Padding on the (scrollable) content does the same job safely. */
+  .search-modal--fullscreen .search-modal__content {
+    padding: 16vh 1.5rem 4rem;
   }
 
-  .search-modal--fullscreen .search-modal__content {
-    padding: 6rem 2rem 3rem;
+  .search-modal__inner {
+    width: 100%;
   }
 
   .search-modal__popular-list {
@@ -224,5 +444,43 @@ details[open]>.search-modal.search-modal--fullscreen {
   .search-modal--fullscreen .search-modal__close-button {
     top: 18px;
     right: 18px;
+  }
+
+  /* One column: Dawn already stacks the groups here, but its 2rem gap plus
+     the fixed-width first column were sized for the light header dropdown. */
+  .search-modal--fullscreen .predictive-search {
+    margin-top: 20px;
+  }
+
+  .search-modal--fullscreen .predictive-search__results-groups-wrapper {
+    flex-direction: column;
+    gap: 20px;
+    max-height: min(52vh, 400px);
+  }
+
+  .search-modal--fullscreen .predictive-search__heading,
+  .search-modal--fullscreen .predictive-search__item {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .search-modal--fullscreen .predictive-search__heading {
+    margin: 0;
+  }
+
+  .search-modal--fullscreen .predictive-search__item--term {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-modal--fullscreen predictive-search[open] .predictive-search,
+  .search-modal--fullscreen predictive-search[loading] .predictive-search {
+    animation: none;
+  }
+
+  .search-modal__popular {
+    transition: none;
   }
 }
