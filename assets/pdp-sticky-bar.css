@@ -25,6 +25,26 @@
   padding: 12px 0 calc(12px + env(safe-area-inset-bottom, 0px));
   opacity: 0;
   visibility: hidden;
+  /* Set by trackVisualViewport() in pdp-sticky-bar.js: the distance between
+     the layout viewport's bottom (where bottom:0 puts us) and the visual
+     viewport's, which is where the bar actually needs to sit. */
+  transform: translateY(var(--pdp-sticky-bar-shift, 0px));
+}
+
+/* Belt and braces for the same problem: even mid-gesture, while a collapsing
+   toolbar is animating and no resize event has fired yet, this keeps the bar's
+   own background painted past its bottom edge so the page can never show
+   through as a transparent strip. Sits behind the bar's content and is
+   invisible whenever the bar is flush, which is the normal case. */
+.pdp-sticky-bar::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background-color: inherit;
+  pointer-events: none;
 }
 .pdp-sticky-bar.is-visible {
   opacity: 1;

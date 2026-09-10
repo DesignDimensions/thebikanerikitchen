@@ -256,17 +256,27 @@
   padding-top: 60px;
 }
 
+/* height: fit-content used to let each portrait keep its own aspect ratio, so
+   with ten differently-shaped source images every card's person block came out
+   a different height. Both dimensions are fixed now and object-fit: cover does
+   the cropping, which is what it was already set up for -- it just had nothing
+   to crop against. The 52x73 / 64x90 boxes keep the 84:118 portrait proportion
+   the block was designed around.
+   object-position sits high because these are head-and-shoulders portraits:
+   cropping from the centre cuts faces off. */
 .custom-home-testimonials-avatar {
   display: block;
   width: 52px;
-  height: fit-content;
+  height: 73px;
   object-fit: cover;
+  object-position: center 20%;
   margin-bottom: 12px;
 }
 
 @media screen and (min-width: 750px) {
   .custom-home-testimonials-avatar {
     width: 64px;
+    height: 90px;
     margin-bottom: 12px;
   }
 }

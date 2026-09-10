@@ -298,8 +298,10 @@
         height: auto;
         padding: 28px 24px 32px;
         box-sizing: border-box;
-        width: calc(100% - 1.5rem);
+        width: calc(100% - 2.8rem);
         min-height: 70%;
+        margin-top: 40px;
+        margin-bottom: 40px;
     }
 
     .custom-featured-product-left-inner_upper p:nth-child(1) {

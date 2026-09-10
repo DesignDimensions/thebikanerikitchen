@@ -97,6 +97,17 @@
   background: rgba(0, 0, 0, 0.08);
 }
 
+/* Single column below 750, so one ratio gives every card the same height.
+   blog-listing-grid.js writes --grid-aspect inline per item for the three-up
+   layout (3/4, 16/10, 21/9), which would otherwise leave the cards uneven
+   here; setting aspect-ratio outright supersedes it, since the inline value is
+   only a custom property and never the aspect-ratio declaration itself. */
+@media screen and (max-width: 749px) {
+  .blog-listing-grid-item-media {
+    aspect-ratio: 354 / 603;
+  }
+}
+
 .blog-listing-grid-item-image,
 .blog-listing-grid-item-media .placeholder-svg {
   position: absolute;
@@ -233,10 +244,15 @@
 }
 
 @media(max-width:768px) {
+  .blog-listing-grid-heading {
+    margin-bottom: 36px !important;
+  }
+
   .blog-listing-grid-subtitle {
     font-size: var(--font-blog-grid-subtitle-size-mobile);
     font-weight: var(--font-weight-medium);
     letter-spacing: 4px;
+    margin-bottom: 8px;
   }
 
   .blog-listing-grid-title {

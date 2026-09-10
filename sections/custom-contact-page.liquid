@@ -24,9 +24,26 @@
           {{ section.settings.heading | escape }}
         </h1>
       {%- endif -%}
-      {%- if section.settings.body != blank -%}
-        <div class="contact-page__rich-text rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-          {{ section.settings.body }}
+      {%- liquid
+        assign has_info_head = false
+        if section.settings.info_label != blank or section.settings.info_value != blank
+          assign has_info_head = true
+        endif
+      -%}
+      {%- if has_info_head or section.settings.body != blank -%}
+        <div class="contact-page__info{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          {%- if has_info_head -%}
+            <p class="contact-page__info-head">
+              <span class="contact-page__info-head-label">{{ section.settings.info_label | escape }}</span>
+              <span class="contact-page__info-head-value">{{ section.settings.info_value | escape }}</span>
+            </p>
+            <hr class="contact-page__info-divider">
+          {%- endif -%}
+          {%- if section.settings.body != blank -%}
+            <div class="contact-page__rich-text rte">
+              {{ section.settings.body }}
+            </div>
+          {%- endif -%}
         </div>
       {%- endif -%}
     </div>
@@ -162,10 +179,23 @@
       "default": "Contact Us"
     },
     {
+      "type": "text",
+      "id": "info_label",
+      "label": "Info heading (left)",
+      "default": "COMPANY INFORMATION"
+    },
+    {
+      "type": "text",
+      "id": "info_value",
+      "label": "Info heading (right)",
+      "default": "The Bikaneri Kitchen"
+    },
+    {
       "type": "richtext",
       "id": "body",
       "label": "Text",
-      "default": "<p>You can write to us at <a href=\"mailto:care@thebikanerikitchen.in\">Care@thebikanerikitchen.in</a></p>"
+      "info": "One paragraph per row. Wrap the label in bold and it sits above its value.",
+      "default": "<p><strong>LEGAL NAME</strong>Better For You Foods Private Limited</p><p><strong>ADDRESS</strong>Vishal Namkeen Bhandar, Hanuman Gali, Rani Bazar, Bikaner, Rajasthan, 334001</p><p><strong>EMAIL ID</strong>hello@thebikanerikitchen.com</p><p><strong>PHONE NUMBER</strong>+91 9521001244</p>"
     },
     {
       "type": "color",

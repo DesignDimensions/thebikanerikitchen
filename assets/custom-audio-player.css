@@ -700,12 +700,13 @@
 
     .custom-audio-player-heading {
         font-size: var(--font-section-heading-size-mobile);
-        margin-bottom: 18px;
         line-height: var(--font-audio-heading-line-height-mobile);
-        text-align: left;
+        text-align: center;
         width: 100%;
         max-width: unset;
-        margin: 0 0 20px 4px;
+        /* The 4px left indent that used to sit here pushed a 100%-wide block
+           4px past the card's right edge; it also fought the centring. */
+        margin: 0 0 20px;
     }
 
     .custom-audio-player-transcript {

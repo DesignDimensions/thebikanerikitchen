@@ -215,6 +215,7 @@
   margin: 0 0 0.6em;
 }
 
+.policy-page__content h3,
 .policy-page__content h3 span {
   font-size: var(--font-policy-subheading-size);
   margin: 0 0 20px;
@@ -222,6 +223,29 @@
   font-weight: var(--font-weight-medium);
   letter-spacing: 1px;
   line-height: 1;
+}
+
+/* Bulleted clauses are new to this content -- .rte only sets list-style and
+   padding, so the list items had no body type of their own. */
+.policy-page__content ul {
+  margin: 0 0 40px;
+  padding-left: 2.4rem;
+  list-style-position: outside;
+}
+
+.policy-page__content li {
+  margin: 0 0 8px;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-copy-weight);
+  font-size: var(--font-policy-body-size);
+  line-height: 27px;
+  letter-spacing: .5px;
+}
+
+/* A list that closes a clause sits directly above the next heading, which
+   already brings its own top margin. */
+.policy-page__content ul:last-child {
+  margin-bottom: 0;
 }
 
 @media(max-width:768px) {
@@ -249,6 +273,14 @@
   .policy-page__content p,
   .policy-page__content span {
     margin: 0 0 30px 0;
+    line-height: 25px;
+  }
+
+  .policy-page__content ul {
+    margin-bottom: 30px;
+  }
+
+  .policy-page__content li {
     line-height: 25px;
   }
 }

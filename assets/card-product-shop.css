@@ -6,9 +6,26 @@
   width: calc(50% - 20px);
 }
 
+/* Equal-height cards.
+   .grid is display:flex, so it already stretches every <li> in a row to the
+   tallest one. The chain broke one level below that: <product-component> sits
+   between the grid item and the card, and base.css gives it display:block with
+   auto height -- so .shop-card's height:100% had no definite height to resolve
+   against and fell back to its own content height. A card whose title wrapped
+   to two lines came out taller than its neighbour, and the price / pack size /
+   Add To Cart rows stopped lining up across the row.
+   Giving the wrapper height:100% reconnects it: the <li> is a stretched flex
+   item, so its height is definite and the percentage resolves. */
+.shop-card-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .shop-card {
   display: flex;
   flex-direction: column;
+  flex: 1;
   height: 100%;
   position: relative;
 }
@@ -138,6 +155,21 @@
   letter-spacing: 1px;
 }
 
+/* Pin the price / pack size / divider / Add To Cart block to the bottom of the
+   footer, so it lands in the same place on every card no matter how many lines
+   the title takes.
+   The margin-top:auto below on .shop-card__form was inert on its own: the flex
+   item of .shop-card__footer is <product-form>, not the <form> inside it, and
+   that wrapper hugs its content -- so the footer's leftover space collected
+   underneath the whole block instead of above it. The wrapper is what has to be
+   pushed down. */
+.shop-card__footer > product-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  width: 100%;
+}
+
 .shop-card__form {
   margin-top: auto;
   display: flex;
@@ -149,8 +181,13 @@
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
+  margin-top: 4px;
   margin-bottom: 14px;
   font-family: var(--font-family-body);
+  /* A native <select> (multi-variant card) and a plain <span> (single-variant
+     card) don't have the same intrinsic height, which would leave the price row
+     a couple of pixels off between cards even with the block bottom-pinned. */
+  line-height: 1.4;
 }
 
 .shop-card__price {
@@ -175,6 +212,7 @@
   font-family: var(--font-family-body);
   font-size: var(--font-shop-card-size-size);
   font-weight: var(--font-copy-weight);
+  line-height: inherit;
   cursor: pointer;
   color-scheme: dark;
 }
@@ -288,10 +326,6 @@
 
   .shop-card__add {
     font-size: var(--font-shop-card-add-size);
-  }
-
-  .shop-card__price {
-    font-weight: 500;
   }
 
   #product-grid li {

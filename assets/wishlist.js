@@ -68,7 +68,7 @@ function buildCardElement(item) {
   const li = document.createElement('li');
   li.className = 'grid__item';
   li.innerHTML = `
-    <product-component>
+    <product-component class="shop-card-wrapper">
       <div class="shop-card">
         <a class="shop-card__media" tabindex="-1" aria-hidden="true">
           <img class="shop-card__image" loading="lazy" sizes="(min-width: 750px) 40vw, 90vw">

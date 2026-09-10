@@ -53,7 +53,7 @@
 }
 {%- endcapture -%}
 
-<product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: 'collection' | escape }}">
+<product-component class="shop-card-wrapper" view-event-payload="{{ card_product | standard_event_data: 'view', context: 'collection' | escape }}">
   <div class="shop-card">
     <a href="{{ card_product.url }}" class="shop-card__media" tabindex="-1" aria-hidden="true">
       {%- if card_product.featured_media -%}

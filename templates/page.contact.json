@@ -21,7 +21,7 @@
       "type": "custom-contact-page",
       "settings": {
         "heading": "Contact Us",
-        "body": "<p><strong>You can write to us at Care@thebikanerikitchen.in</strong><br/><br/><strong>ADDRESS<br/></strong>M-283,Greater Kailash Part-2, New Delhi-110048<br/><strong>EMAIL ID<br/></strong>Care@thebikanerikitchen.co.in<br/><strong>NOTE: </strong>We work only on weekdays from Monday - Friday. Our Operational hours are 10:00 AM - 04:00 PM</p>",
+        "body": "<p><strong>LEGAL NAME</strong>Better For You Foods Private Limited</p><p><strong>ADDRESS</strong>Vishal Namkeen Bhandar, Hanuman Gali, Rani Bazar, Bikaner, Rajasthan, 334001</p><p><strong>EMAIL ID</strong>hello@thebikanerikitchen.com</p><p><strong>PHONE NUMBER</strong>+91 9521001244</p>",
         "intro_background_color": "#fffdee",
         "intro_text_color": "#121212",
         "image": "shopify://shop_images/Frame_1321317992.png",
@@ -36,10 +36,20 @@
         "submit_label": "Submit",
         "row_gap": 4
       }
+    },
+    "custom_bg_heading_M6B29k": {
+      "type": "custom-bg-heading",
+      "name": "Custom BG Heading",
+      "settings": {
+        "heading": "Follow Us",
+        "heading_color": "#ff6344",
+        "background_color": "#570f13"
+      }
     }
   },
   "order": [
     "main",
-    "contact_page"
+    "contact_page",
+    "custom_bg_heading_M6B29k"
   ]
 }

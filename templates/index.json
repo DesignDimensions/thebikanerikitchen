@@ -17,7 +17,7 @@
         "banner_image": "shopify://shop_images/Wireframe_-_4_1_b731baef-29b5-4baf-ba49-6ecb7f7b7d0a.jpg",
         "mobile_banner_image": "shopify://shop_images/Frame_5.jpg",
         "banner_video": "shopify://files/videos/TBK Brand Film (1)_8fa9514b-b42c-44a4-a720-d3f8113f499a.mp4",
-        "mobile_banner_video": "shopify://files/videos/TBK Brand Film (1)_8fa9514b-b42c-44a4-a720-d3f8113f499a.mp4"
+        "mobile_banner_video": "shopify://files/videos/Video-61169.mp4"
       }
     },
     "custom_featured_product_rwnxPP": {
@@ -26,14 +26,14 @@
       "settings": {
         "featured_product": "parat-bhujia",
         "bg_left_image": "shopify://shop_images/Frame_3.png",
-        "bg_left_image_mobile": "shopify://shop_images/Frame_4.png",
+        "bg_left_image_mobile": "shopify://shop_images/Frame_3.png",
         "bg_right_image": "shopify://shop_images/Frame_4.png",
         "bg_right_image_mobile": "shopify://shop_images/Frame_4.png",
         "featured-product-left-bg": "shopify://shop_images/Frame_1321319393_3.jpg",
-        "top_left_caption": "Handmade",
+        "top_left_caption": "our first",
         "heading": "Parat Bhujia",
         "description": "<p>Paraat Bhujia traces its story to the royal kitchens of Maharaja Dungar Singh Ji, where moth, gram flour and spices came together in a recipe remembered for its lightness of bite and savoury depth. The paraat, the bhatti and the careful judgement of the hand each held their place in its making.</p><p>Our Paraat Bhujia stays close to that inheritance. Made with 45% moth flour, a considered blend of spices, high oleic sunflower oil and low-sodium salt, it carries forward a taste shaped by the land of Bikaner and the generations of hands that made it their own.</p>",
-        "size": "150gm | 350 gm",
+        "size": "350 gm",
         "icon": "shopify://shop_images/Vector_1.png",
         "cta": "BUY NOW",
         "top_right_caption": "BIKANERI BHUJIA"
@@ -215,10 +215,10 @@
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
             "caption": "Rituals",
-            "heading": "The Discipline of Marwadi Kitchens",
-            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "heading": "The Extra Plate",
+            "description": "<p>No One Asked Who Was Coming</p><p>Across many Indian homes, one extra plate was never an accident. It was a quiet habit, passed from one generation to the next. Long before guests announced their arrival, the kitchen had already prepared a place for them.</p>",
             "cta_text": "Read More",
-            "link": "shopify://blogs/news"
+            "link": "/blogs/rituals/the-extra-plate"
           }
         },
         "slide_amw3Ht": {
@@ -229,10 +229,10 @@
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
             "caption": "Rituals",
-            "heading": "The Discipline of Marwadi Kitchens",
-            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "heading": "The Season of Wadiyan",
+            "description": "<p>In the winters of Marwar, the kitchen no longer remained downstairs. It climbed to the terrace. The bedsheets were stretched neatly across the floor, their corners held down by brass lottas so the winter breeze would not disturb them. A heavy steel paraat rested in the warmest patch of sunlight, filled with pale urad batter that had been soaking since the previous evening. Someone tested the batter with a spoon, watched it fall back into the bowl, nodded quietly, and began placing the first wadi onto the cloth.</p>",
             "cta_text": "Read More",
-            "link": "shopify://blogs/news"
+            "link": "/blogs/rituals/the-season-of-wadiyan"
           }
         },
         "slide_U3kqPV": {
@@ -243,10 +243,10 @@
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
             "caption": "Rituals",
-            "heading": "The Discipline of Marwadi Kitchens",
-            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "heading": "I Had Only Come For Tea",
+            "description": "<p>An Afternoon in a Sindhi Home</p><p>Every home has a language. Some speak through walls, others through heirlooms. A Sindhi home, I discovered, speaks through what it places in front of you before it asks anything in return.</p>",
             "cta_text": "Read More",
-            "link": "shopify://blogs/news"
+            "link": "/blogs/rituals/i-had-only-come-for-tea"
           }
         },
         "slide_4LjnHX": {
@@ -257,10 +257,10 @@
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
             "caption": "Rituals",
-            "heading": "The Discipline of Marwadi Kitchens",
-            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "heading": "The Hour Between",
+            "description": "<p>When Business Learnt to Pause</p><p>Across the business communities of western India, there is an hour that has quietly survived every generation. It is neither part of the workday nor entirely home. It begins somewhere between the closing of a ledger and the first handful of namkeen. A pause where conversations have long carried far more than business.</p>",
             "cta_text": "Read More",
-            "link": "shopify://blogs/news"
+            "link": "/blogs/rituals/the-hour-between"
           }
         },
         "slide_KtFEnP": {
@@ -271,10 +271,10 @@
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
             "caption": "Rituals",
-            "heading": "The Discipline of Marwadi Kitchens",
-            "description": "<p>There is a certain quiet order to a Marwadi kitchen. Nothing announces it. Nothing feels imposed.And yet, everything has its place. You notice it first in the way ingredients are handled. Measured, not by scale, but by habit. Stored with intention. Used with awareness. Nothing is taken out without reason, and nothing is wasted without thought. Even the simplest preparation carries a sense of proportion, as if the kitchen itself remembers what is enough.<br/><br/></p>",
+            "heading": "Baithak",
+            "description": "<p>As remembered by Jai Agarwal, Bikaner</p><p>Some inherit land. Some inherit jewellery. Some inherit a family business. In merchant homes across western India, another inheritance quietly passes from one generation to the next not through documents, but through conversations. We called it the baithak.</p>",
             "cta_text": "Read More",
-            "link": "shopify://blogs/news"
+            "link": "/blogs/rituals/baithak"
           }
         }
       },
@@ -298,6 +298,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>I bought it for the family and ended up keeping one pack at work. That is the advantage of the three-pack. The bhujia itself is beautifully crisp and surprisingly light. Excellent with afternoon tea.</p>",
+            "image": "shopify://shop_images/professional-portrait-confident-businessman-wearing-gray-suit-white-shirt-against-light-neutral-background-corporate-use_1.png",
             "name": "Dhruv Mehta",
             "location": "Surat"
           }
@@ -306,6 +307,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>In our house, something crunchy always appears when people sit down together. We opened this when friends came over and everyone had an opinion about bhujia. By the end, everyone was eating from the same tin. That probably says enough.</p>",
+            "image": "shopify://shop_images/young-indian-student_1.png",
             "name": "Ayesha Mirchandani",
             "location": "Mumbai"
           }
@@ -314,6 +316,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>We opened one pack thinking the other two would last. They didn’t. It has that wonderful combination of being fine and crisp without feeling too sharp or oily. Very easy to put on the table for everyone.</p>",
+            "image": "shopify://shop_images/cheerful-millennial-indian-guy-casual-posing-blue_1.png",
             "name": "Mihir Patel",
             "location": "Ahmedabad"
           }
@@ -322,6 +325,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>My mother tasted it first and immediately asked where it was from. That was probably my favourite reaction. There is something very old-school about the flavour, but the overall experience feels beautifully refined.</p>",
+            "image": "shopify://shop_images/professional-portrait-businesswoman_1.png",
             "name": "Rhea Advani",
             "location": "Pune"
           }
@@ -330,6 +334,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>The test for me was whether it reminded me of the bhujia we would bring back from Bikaner. It did. Not because it was excessively spicy, but because the moth and masala had that depth I associate with the real thing.</p>",
+            "image": "shopify://shop_images/mature-smart-indian-businesswoman-smiling-face-standing-blur-background-creative-colorful-office-interior-design-generative-ai-aig20_1.png",
             "name": "Nandini Rathi",
             "location": "Jodhpur"
           }
@@ -338,6 +343,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>I grew up eating bhujia in Rajasthan, so there is a certain taste you instinctively look for. This has that familiar moth flavour, but what stayed with me was how light and balanced it felt. It reminded me of home without trying too hard.</p>",
+            "image": "shopify://shop_images/portrait-peace-smile-with-woman-apartment-comfort-rest-wellness-living-room-chill-pride-happy-person-home-with-positive-attitude-relax-calm-with-confidence-india_1.png",
             "name": "Radhika Daga",
             "location": "Jaipur"
           }
@@ -346,6 +352,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>It reminded me of visiting relatives in Rajasthan and finding a tin of bhujia already waiting on the table. There is a comfort to this flavour that is difficult to describe unless you have grown up around it.</p>",
+            "image": "shopify://shop_images/close-up-portrait-young-successful-confident-strong-indian-arabian-woman-lady-female-girl-looking_1.png",
             "name": "Aakanksha Bhandari",
             "location": "Chennai"
           }
@@ -354,6 +361,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>We have eaten Bikaneri bhujia all our lives, which also makes us difficult customers. This tasted familiar, but much more considered. The spice, the fineness and especially the clean finish stood out.</p>",
+            "image": "shopify://shop_images/close-up-portrait-bearded-man-sitting-resting-comfortable-couch-modern-living-room_1.png",
             "name": "Raghav Agarwal",
             "location": "Kolkata"
           }
@@ -362,6 +370,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>What I appreciated most was the restraint. Nothing overwhelms you. You can taste the moth, the spices are beautifully measured, and it doesn’t leave that heavy feeling afterwards. It is the kind of bhujia you keep going back to.</p>",
+            "image": "shopify://shop_images/business-woman-portrait-smile-office-professional-mission-about-us-creative-worker-startup-female-person-happy-confident-with-ambition-career-opportunity-media-agency_1.png",
             "name": "Rishika Jain",
             "location": "New Delhi"
           }
@@ -370,6 +379,7 @@
           "type": "testimonial",
           "settings": {
             "content": "<p>I like snacks where the spice doesn’t overpower everything else. This is beautifully balanced and remarkably light for bhujia. You start with a small handful and somehow find yourself opening the tin again.</p>",
+            "image": "shopify://shop_images/indian-girl-innovating-digital-design-her-creations-pushing-boundaries-her-vision-shaping-aesthetics-websites-apps-digital-experiences_1.png",
             "name": "Niyati Jain",
             "location": "Ahmedabad"
           }
@@ -404,24 +414,6 @@
     "custom_image_content_cDqBtQ": {
       "type": "custom-image-content",
       "blocks": {
-        "slide_karigars_1": {
-          "type": "slide",
-          "settings": {
-            "portrait": "shopify://shop_images/Frame_1321317929_1.jpg",
-            "header": "BEHIND THE CRAFT",
-            "title": "The Karigars",
-            "content": "<p>For <strong>Dhiman Singhji, </strong>the work has never been about making more, but making it right. Years of practice have shaped a way of working where the hand leads, and the eye decides when a batch is ready. There is a quiet satisfaction in knowing that the method remains unchanged. In a time where most things are made by machines, he believes there are still a few who understand the value of craft done by hand. To him, it is not just preparation, but a responsibility to keep the original form of these recipes intact.<br/><br/></p>"
-          }
-        },
-        "slide_karigars_2": {
-          "type": "slide",
-          "settings": {
-            "portrait": "shopify://shop_images/Frame_1321317929_1.jpg",
-            "header": "BEHIND THE CRAFT",
-            "title": "The Karigars",
-            "content": "<p>For <strong>Dhiman Singhji, </strong>the work has never been about making more, but making it right. Years of practice have shaped a way of working where the hand leads, and the eye decides when a batch is ready. There is a quiet satisfaction in knowing that the method remains unchanged. In a time where most things are made by machines, he believes there are still a few who understand the value of craft done by hand. To him, it is not just preparation, but a responsibility to keep the original form of these recipes intact.<br/><br/></p>"
-          }
-        },
         "slide_karigars_3": {
           "type": "slide",
           "settings": {
@@ -433,8 +425,6 @@
         }
       },
       "block_order": [
-        "slide_karigars_1",
-        "slide_karigars_2",
         "slide_karigars_3"
       ],
       "name": "Custom Image Content",

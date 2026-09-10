@@ -263,18 +263,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return event.deltaY;
       };
 
+      // <= 0 / >= max - 1 instead of exact bounds: sub-pixel layout means
+      // scrollTop rarely lands precisely on either end. A transcript shorter
+      // than its window (max === 0) counts as both edges at once, so it never
+      // traps the gesture either. Positive delta = scrolling down.
+      const transcriptAtEdge = (delta) => {
+        const max = Math.max(0, transcriptScroll.scrollHeight - transcriptScroll.clientHeight);
+        return delta < 0 ? transcriptScroll.scrollTop <= 0 : transcriptScroll.scrollTop >= max - 1;
+      };
+
       transcriptScroll.addEventListener(
         'wheel',
         (event) => {
           const delta = wheelDeltaPixels(event);
           if (!delta) return;
-          const max = Math.max(0, transcriptScroll.scrollHeight - transcriptScroll.clientHeight);
-          // <= 0 / >= max - 1 instead of exact bounds: sub-pixel layout means
-          // scrollTop rarely lands precisely on either end. A transcript
-          // shorter than its window (max === 0) counts as both edges at once,
-          // so it never traps the wheel either.
-          const atEdge = delta < 0 ? transcriptScroll.scrollTop <= 0 : transcriptScroll.scrollTop >= max - 1;
-          if (!atEdge) return;
+          if (!transcriptAtEdge(delta)) return;
 
           const lenis = window.lenis;
           if (lenis && typeof lenis.scrollTo === 'function' && !lenis.isStopped) {
@@ -301,12 +304,58 @@ document.addEventListener('DOMContentLoaded', () => {
         { passive: true }
       );
 
+      // Touch is the same dead-end as wheel, and needs its own hand-off: the
+      // prevent() rule in smooth-scroll.js matches [data-lenis-prevent] for
+      // touch as well, and overscroll-behavior: contain stops the native
+      // scroll chaining out -- so on a phone the drag simply stopped at the
+      // notebook's edge and the page never carried on.
+      //
+      // Forwarded natively rather than through lenis.scrollTo(): Lenis is
+      // configured without syncTouch, so touch page-scrolling is native and
+      // Lenis only mirrors it. Animating here would fight the finger instead
+      // of tracking it 1:1.
+      let transcriptTouchY = null;
+
+      transcriptScroll.addEventListener(
+        'touchstart',
+        (event) => {
+          transcriptTouchY = event.touches.length === 1 ? event.touches[0].clientY : null;
+        },
+        { passive: true }
+      );
+
+      transcriptScroll.addEventListener(
+        'touchmove',
+        (event) => {
+          if (transcriptTouchY === null || event.touches.length !== 1) return;
+          const y = event.touches[0].clientY;
+          // A finger moving up pulls content upward, i.e. scrolls down --
+          // the same sign convention as wheel deltaY.
+          const delta = transcriptTouchY - y;
+          transcriptTouchY = y;
+          if (!delta || !transcriptAtEdge(delta)) return;
+          window.scrollBy(0, delta);
+        },
+        { passive: true }
+      );
+
+      ['touchend', 'touchcancel'].forEach((eventName) => {
+        transcriptScroll.addEventListener(
+          eventName,
+          () => {
+            transcriptTouchY = null;
+          },
+          { passive: true }
+        );
+      });
+
       // Grab-to-scroll: a mouse drag pans the notebook instead of starting a
       // text selection underneath it. Same pointer-capture shape as the
-      // progress bar's scrubbing above. Touch is left alone -- native touch
-      // scrolling already pans this element without selecting text, so
-      // intercepting it here would only fight the browser's own momentum
-      // scroll.
+      // progress bar's scrubbing above. Panning is left to the browser on
+      // touch -- native touch scrolling already pans this element without
+      // selecting text, so intercepting it here would only fight the
+      // browser's own momentum scroll. (The touch listeners above don't pan;
+      // they only hand the page the leftover distance at an edge.)
       let transcriptDragStartY = 0;
       let transcriptDragStartTop = 0;
 

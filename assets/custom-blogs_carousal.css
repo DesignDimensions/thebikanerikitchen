@@ -361,7 +361,7 @@
         font-size: var(--font-blogs-caption-size-mobile);
     }
 
-    .custom-blogs-carousel-description p {
+    .custom-blogs-carousel-description p:first-of-type {
         margin-top: 90px !important;
     }
 

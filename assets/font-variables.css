@@ -46,7 +46,7 @@
    --font-body-size: 20px;
    --font-body-line-height: 1.4;
    --font-body-letter-spacing: 1px;
-   --font-copy-weight: var(--font-weight-light);
+   --font-copy-weight: var(--font-weight-regular);
    --font-body-size-mobile: 14px;
    --font-body-line-height-mobile: 1.6;
    --font-body-letter-spacing-mobile: 1px;
@@ -324,6 +324,15 @@
 
    /* ---- Contact page ---- */
    --font-contact-body-size: 16px;
+   --font-contact-body-line-height: 28px;
+   --font-contact-body-letter-spacing: 0.64px;
+   --font-contact-input-size: 16px;
+   --font-contact-input-line-height: 28px;
+   --font-contact-input-letter-spacing: 0.64px;
+   --font-contact-submit-size: 16px;
+   --font-contact-submit-letter-spacing: 0.64px;
+   --font-contact-label-weight: var(--font-weight-medium);
+   --font-contact-value-letter-spacing: 0.32px;
 
    /* ---- Policy pages (custom-policy-page, shared by all 3) ---- */
    --font-policy-title-letter-spacing: 1px;

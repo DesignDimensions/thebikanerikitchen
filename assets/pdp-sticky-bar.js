@@ -6,7 +6,46 @@ if (!customElements.get('pdp-sticky-bar')) {
       // breakpoint convention (distinct from Dawn's stock 749/750px).
       static MEDIA_QUERY = '(max-width: 767px)';
 
+      // position: fixed anchors to the LAYOUT viewport. Chrome's and Safari's
+      // collapsing address bars, and the on-screen keyboard, move the VISUAL
+      // viewport independently of it -- so bottom:0 can land above the real
+      // bottom edge and leave a strip of page showing under the bar. Track the
+      // visual viewport's bottom and translate the bar onto it.
+      trackVisualViewport() {
+        const viewport = window.visualViewport;
+        if (!viewport) return;
+
+        let frame = null;
+        const apply = () => {
+          frame = null;
+          const layoutBottom = document.documentElement.clientHeight;
+          const visualBottom = viewport.offsetTop + viewport.height;
+          // Rounded, and only written when it actually changes, so the
+          // toolbar's own animation doesn't thrash style recalcs.
+          const shift = Math.round(visualBottom - layoutBottom);
+          if (shift === this._pdpStickyBarShift) return;
+          this._pdpStickyBarShift = shift;
+          this.style.setProperty('--pdp-sticky-bar-shift', `${shift}px`);
+        };
+        const queue = () => {
+          if (frame === null) frame = requestAnimationFrame(apply);
+        };
+
+        viewport.addEventListener('resize', queue);
+        viewport.addEventListener('scroll', queue);
+        window.addEventListener('orientationchange', queue);
+        apply();
+
+        return () => {
+          if (frame !== null) cancelAnimationFrame(frame);
+          viewport.removeEventListener('resize', queue);
+          viewport.removeEventListener('scroll', queue);
+          window.removeEventListener('orientationchange', queue);
+        };
+      }
+
       connectedCallback() {
+        this._pdpStickyBarViewportCleanup = this.trackVisualViewport();
         const sectionId = this.dataset.sectionId;
         const realRow = document.querySelector('.product-form__quantity-cart-row');
         const realInput = document.getElementById(`Quantity-${sectionId}`);
@@ -168,6 +207,7 @@ if (!customElements.get('pdp-sticky-bar')) {
 
       disconnectedCallback() {
         if (this._pdpStickyBarCleanup) this._pdpStickyBarCleanup();
+        if (this._pdpStickyBarViewportCleanup) this._pdpStickyBarViewportCleanup();
       }
     }
   );
