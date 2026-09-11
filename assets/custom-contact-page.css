@@ -28,12 +28,21 @@
 }
 
 /* --- Top row, per Figma 771:1330 -----------------------------------------
-   A 1440 frame split into two 720 x 647 halves. The intro half is padded 80
-   all round, which leaves a 560 content column. Inside it the design stacks
-   two groups 48 apart, with the heading sitting 16 above the first line. */
+   A 1440 frame split into two 720 x 647 halves, with a 560 content column in
+   the intro half. The design pads that half 80 all round, but its content is
+   taller than the padded box and centres out into the padding, landing ~40
+   from the top and bottom -- so 40 is the real vertical inset. With 80 here
+   the half grows to fit and the row ends up taller than the 647 design. */
 @media screen and (min-width: 750px) {
   .contact-page__intro {
-    padding: 80px;
+    padding: 40px 80px;
+  }
+
+  .contact-page__title {
+    font-size: var(--font-contact-heading-size);
+    line-height: var(--font-contact-heading-line-height);
+    letter-spacing: var(--font-contact-heading-letter-spacing);
+    font-weight: var(--font-contact-heading-weight);
   }
 }
 
@@ -50,7 +59,9 @@
 }
 
 /* Company-information block: a 560 column whose rows -- header, rule, then
-   each label/value pair -- sit 12 apart, 64 below the heading. */
+   each label/value pair -- sit 12 apart, 48 below the heading. (The design's
+   heading group carries a 16px gap, but with a single child it never
+   applies, so it is 48, not 64.) */
 .contact-page__info {
   display: flex;
   flex-direction: column;
@@ -62,7 +73,7 @@
 
 @media screen and (min-width: 750px) {
   .contact-page__info {
-    margin-top: 64px;
+    margin-top: 48px;
   }
 }
 
@@ -73,9 +84,9 @@
   gap: 16px;
   margin: 0;
   font-family: var(--font-family-body);
-  font-size: var(--font-body-size);
-  line-height: var(--font-body-line-height);
-  letter-spacing: var(--font-body-letter-spacing);
+  font-size: var(--font-contact-body-size);
+  line-height: var(--font-contact-body-line-height);
+  letter-spacing: var(--font-contact-body-letter-spacing);
   font-weight: var(--font-contact-label-weight);
   color: #202020;
 }
@@ -91,12 +102,14 @@
   border-top: 1px solid #202020;
 }
 
+/* The design's 16/28 "HB2 Web" (regular values, bold labels) rather than the
+   site's 20px body role -- this block is set per its own frame. */
 .contact-page__rich-text {
   font-family: var(--font-family-body);
-  font-size: var(--font-body-size);
-  line-height: var(--font-body-line-height);
-  font-weight: var(--font-body-copy-weight);
-  letter-spacing: var(--font-body-letter-spacing);
+  font-size: var(--font-contact-body-size);
+  line-height: var(--font-contact-body-line-height);
+  font-weight: var(--font-copy-weight);
+  letter-spacing: var(--font-contact-body-letter-spacing);
   color: #202020;
   display: flex;
   flex-direction: column;
@@ -118,6 +131,12 @@
 
 .contact-page__rich-text p strong {
   font-weight: var(--font-contact-label-weight);
+}
+
+/* Dawn's .rte::after clearfix turns into an invisible extra flex item in this
+   column, and the 12px gap before it pushed the block 12px off-centre. */
+.contact-page__rich-text::after {
+  content: none;
 }
 
 .contact-page__rich-text a {
@@ -225,8 +244,8 @@ textarea.contact-page__field-input {
     flex-direction: column-reverse;
   }
 
-  /* Body role. The info heads are labels, so they keep their medium weight;
-     form fields, the submit button and status messages keep their own. */
+  /* Body role. The info heads are labels, so they keep their bold label
+     weight; form fields, the submit button and status messages keep their own. */
   .contact-page__info-head,
   .contact-page__rich-text {
     font-size: var(--font-body-size-mobile);

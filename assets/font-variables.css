@@ -353,6 +353,12 @@
    --font-blog-grid-title-letter-spacing: 1px;
 
    /* ---- Contact page ---- */
+   /* Desktop heading, from the design's top row (Figma 771:1330): H2 Web,
+     Baskerville Regular 64/72 at 4% tracking. Phones keep the heading role. */
+   --font-contact-heading-size: 64px;
+   --font-contact-heading-line-height: 72px;
+   --font-contact-heading-letter-spacing: 2.56px;
+   --font-contact-heading-weight: var(--font-weight-regular);
    --font-contact-body-size: 16px;
    --font-contact-body-line-height: 28px;
    --font-contact-body-letter-spacing: 0.64px;
@@ -361,6 +367,9 @@
    --font-contact-input-letter-spacing: 0.64px;
    --font-contact-submit-size: 16px;
    --font-contact-submit-letter-spacing: 0.64px;
+   /* Labels for the info header and each label above its value. The design
+     calls for Bold (HB2 Web Bold), but 700 read too heavy on the page, so
+     they stay at medium. */
    --font-contact-label-weight: var(--font-weight-medium);
    --font-contact-value-letter-spacing: 0.32px;
 
