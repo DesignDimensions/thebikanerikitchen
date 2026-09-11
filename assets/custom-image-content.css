@@ -194,14 +194,19 @@
     margin: 5px 0 15px;
     font-family: var(--font-family-display);
     font-size: var(--font-image-content-heading-size);
+    color: #181818;
 }
 
+/* Type matched to .custom-featured-product-left-description p. Colour is not
+   restated -- the container already sets #181818 on its own ground, which is
+   the value that rule uses. */
 .custom-image-content-inner-container .custom-image-content-description p {
     font-family: var(--font-family-body);
     letter-spacing: var(--font-body-letter-spacing);
-    font-weight: var(--font-copy-weight);
+    font-weight: 300;
     font-size: var(--font-body-size);
-    line-height: 28px;
+    line-height: var(--font-body-line-height);
+    text-transform: none;
 }
 
 .custom-image-content-description strong {
@@ -216,17 +221,21 @@
 
     .custom-image-content-inner-container p:first-child {
         font-size: var(--font-label-size-mobile);
+        line-height: var(--font-label-line-height-mobile);
+        font-weight: var(--font-label-weight-mobile);
         letter-spacing: var(--font-label-letter-spacing-mobile);
     }
 
     .custom-image-content-inner-container h3 {
         margin: 5px 0 10px;
-        font-size: var(--font-image-content-heading-size-mobile);
+        font-size: var(--font-section-heading-size-mobile);
+        line-height: var(--font-section-heading-line-height-mobile);
     }
 
     .custom-image-content-inner-container .custom-image-content-description p {
         font-size: var(--font-body-size-mobile);
-        line-height: 24px;
+        font-weight: var(--font-body-weight-mobile);
+        line-height: var(--font-body-line-height-mobile);
         letter-spacing: var(--font-body-letter-spacing-mobile);
     }
 
@@ -268,6 +277,7 @@
 }
 
 @media(max-width:768px) {}
+
 @media screen and (max-width: 989px) and (prefers-reduced-motion: reduce) {
     .custom-image-content-viewport {
         transition: none;

@@ -42,12 +42,6 @@
         width: 92%;
     }
 
-    .page-top-banner-container-inner p:first-of-type,
-    .page-top-banner-container-inner p:last-of-type {
-        letter-spacing: var(--font-label-letter-spacing-mobile);
-        font-size: var(--font-label-size-mobile);
-    }
-
     .page-top-banner-container-inner hr {
         margin: 0 6px;
     }
@@ -74,10 +68,11 @@
     text-wrap: nowrap;
     margin: 0;
     font-family: var(--font-family-label);
-    font-weight: var(--font-label-weight);
+    font-weight: var(--font-eyebrow-weight);
     text-transform: uppercase;
     letter-spacing: var(--font-label-letter-spacing);
     font-size: var(--font-label-size);
+    line-height: var(--font-label-line-height);
 }
 
 .page-top-banner-container-inner p:last-of-type {
@@ -87,8 +82,9 @@
     font-family: var(--font-family-accent);
     font-weight: var(--font-label-weight);
     text-transform: uppercase;
-    letter-spacing: var(--font-label-letter-spacing);
-    font-size: var(--font-label-size);
+    letter-spacing: var(--font-caption-letter-spacing);
+    font-size: var(--font-caption-size);
+    line-height: var(--font-caption-line-height);
 }
 
 .page-top-banner-container-inner hr {
@@ -96,4 +92,25 @@
     width: 100%;
     display: flex !important;
     margin: 0 10px;
+}
+
+/* ---- Mobile type scale (font-variables 3c-3d) ----
+   Placed after the base rules on purpose: they sit below the media queries in
+   this file, so a mobile rule above them loses on equal specificity (the old
+   <=400px one never applied). The page title takes the eyebrow role; the
+   shop name on the far side of the rule is the same Piazzolla rail caption
+   as the featured product's photo label, so it takes the caption role. */
+@media screen and (max-width: 749px) {
+    .page-top-banner-container-inner p:first-of-type {
+        font-size: var(--font-label-size-mobile);
+        line-height: var(--font-label-line-height-mobile);
+        font-weight: var(--font-label-weight-mobile);
+        letter-spacing: var(--font-label-letter-spacing-mobile);
+    }
+
+    .page-top-banner-container-inner p:last-of-type {
+        font-size: var(--font-caption-size-mobile);
+        line-height: var(--font-caption-line-height-mobile);
+        letter-spacing: var(--font-caption-letter-spacing-mobile);
+    }
 }

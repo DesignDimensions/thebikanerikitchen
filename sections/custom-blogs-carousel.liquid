@@ -105,7 +105,7 @@
           {%- if block.settings.cta_text != blank -%}
             <a href="{{ block.settings.link }}" class="custom-blogs-carousel-cta">
               <span class="custom-blogs-carousel-cta-text">{{ block.settings.cta_text }}</span>
-              <span class="custom-blogs-carousel-cta-arrow">
+              {% comment %} <span class="custom-blogs-carousel-cta-arrow">
                 <img
                   src="https://cdn.shopify.com/s/files/1/0764/0953/6706/files/Vector_22_1.png?v=1783513087"
                   alt=""
@@ -114,7 +114,7 @@
                   height="20"
                   loading="lazy"
                 >
-              </span>
+              </span> {% endcomment %}
             </a>
           {%- endif -%}
         </div>

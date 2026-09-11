@@ -31,7 +31,8 @@
   font-family: var(--font-family-body);
   font-size: var(--font-body-size);
   line-height: var(--font-body-line-height);
-  font-weight: var(--font-copy-weight);
+  font-weight: var(--font-body-copy-weight);
+  letter-spacing: var(--font-body-letter-spacing);
   color: #181818;
 }
 
@@ -68,6 +69,8 @@
   .custom-story-text-body p {
     font-size: var(--font-body-size-mobile);
     line-height: var(--font-body-line-height-mobile);
+    font-weight: var(--font-body-weight-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
   }
 }
 
@@ -84,5 +87,7 @@
   .custom-story-text-body p {
     font-size: var(--font-body-size-mobile);
     line-height: var(--font-body-line-height-mobile);
+    font-weight: var(--font-body-weight-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
   }
 }

@@ -45,10 +45,11 @@
   left: 0;
   margin: 0;
   padding: 4px 24px;
-  font-size: var(--font-press-date-size);
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-line-height);
   font-weight: var(--font-weight-extralight);
   font-family: var(--font-family-body);
-  letter-spacing: 1px;
+  letter-spacing: var(--font-small-letter-spacing);
 }
 
 .press-articles__panel {
@@ -67,8 +68,10 @@
 
 .press-articles__excerpt {
   margin: 0 0 16px;
-  font-size: var(--font-press-excerpt-size);
-  line-height: 1.5;
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  font-weight: var(--font-body-copy-weight);
+  letter-spacing: var(--font-body-letter-spacing);
   color: #FFFDEE;
   font-family: var(--font-family-accent);
 }
@@ -85,7 +88,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: var(--font-press-read-size);
+  font-size: var(--font-cta-size);
   font-family: var(--font-family-accent);
 }
 
@@ -97,4 +100,31 @@
 .press-articles__empty {
   text-align: center;
   opacity: 0.6;
+}
+
+/* ---- Mobile type scale (font-variables 3b-3d) ----
+   Each card reads date -> publication -> excerpt -> "read": small print,
+   sub-heading, body and CTA, the same run as the featured product's card. */
+@media screen and (max-width: 749px) {
+  .press-articles__date {
+    font-size: var(--font-small-size-mobile);
+    line-height: var(--font-small-line-height-mobile);
+    letter-spacing: var(--font-small-letter-spacing-mobile);
+  }
+
+  .press-articles__publication {
+    font-size: var(--font-subheading-size-mobile);
+    line-height: var(--font-subheading-line-height-mobile);
+  }
+
+  .press-articles__excerpt {
+    font-size: var(--font-body-size-mobile);
+    line-height: var(--font-body-line-height-mobile);
+    font-weight: var(--font-body-weight-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
+  }
+
+  .press-articles__read {
+    font-size: var(--font-cta-size-mobile);
+  }
 }

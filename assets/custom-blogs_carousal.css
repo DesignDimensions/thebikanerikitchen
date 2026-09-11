@@ -169,7 +169,7 @@
     margin: 0 0 20px;
     max-width: 92%;
     font-family: var(--font-family-display);
-    font-size: var(--font-blogs-heading-size);
+    font-size: 30px;
     font-weight: var(--font-blogs-heading-weight);
     line-height: var(--font-blogs-heading-line-height);
     color: #fffdee;
@@ -196,13 +196,18 @@
     will-change: transform, opacity;
 }
 
+/* Mobile body role (see font-variables 3b), switching at the same 989px
+   breakpoint the reference section uses rather than this file's 750px one.
+   Colour is deliberately not part of the role: this copy sits on a
+   photograph and needs the light value. */
 .custom-blogs-carousel-description p {
     margin: 0;
     font-family: var(--font-family-body);
-    font-weight: var(--font-copy-weight);
+    font-weight: var(--font-body-weight-mobile);
     font-size: var(--font-body-size-mobile);
-    line-height: 1.65;
-    letter-spacing: 1px;
+    line-height: var(--font-body-line-height-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
+    text-transform: none;
     color: rgba(255, 253, 238, 0.85);
     display: -webkit-box;
     -webkit-line-clamp: 4;
@@ -213,9 +218,16 @@
 
 @media screen and (min-width: 750px) {
     .custom-blogs-carousel-description p {
-        font-size: var(--font-body-size);
-        line-height: 1.7;
         line-clamp: 6;
+    }
+}
+
+@media screen and (min-width: 990px) {
+    .custom-blogs-carousel-description p {
+        font-size: var(--font-body-size);
+        font-weight: 300;
+        line-height: var(--font-body-line-height);
+        letter-spacing: var(--font-body-letter-spacing);
     }
 }
 
@@ -223,7 +235,7 @@
     margin-top: 20px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: end;
     max-width: 85%;
     text-decoration: none;
     will-change: transform, opacity;
@@ -355,10 +367,24 @@
    active slide's natural (image + content) height and updates on
    slide change and resize. */
 @media screen and (max-width: 749px) {
+    .custom-blogs-carousel-heading {
+        font-size: var(--font-section-heading-size-mobile);
+        line-height: var(--font-section-heading-line-height-mobile);
+    }
 
     .custom-blogs-carousel-caption,
     .custom-blogs-carousel-counter {
-        font-size: var(--font-blogs-caption-size-mobile);
+        font-size: var(--font-label-size-mobile);
+        line-height: var(--font-label-line-height-mobile);
+        font-weight: var(--font-label-weight-mobile);
+        letter-spacing: var(--font-label-letter-spacing-mobile);
+    }
+
+    .custom-blogs-carousel-tag {
+        font-size: var(--font-label-size-mobile);
+        line-height: var(--font-label-line-height-mobile);
+        font-weight: var(--font-label-weight-mobile);
+        letter-spacing: var(--font-label-letter-spacing-mobile);
     }
 
     .custom-blogs-carousel-description p:first-of-type {
@@ -366,7 +392,7 @@
     }
 
     .custom-blogs-carousel-cta-text {
-        font-size: var(--font-blogs-cta-size-mobile);
+        font-size: var(--font-cta-size-mobile);
         text-decoration: underline 1px;
         text-underline-offset: 4px;
     }

@@ -49,8 +49,13 @@
               {%- continue -%}
             {%- endif -%}
             {%- assign matched_index = matched_index | plus: 1 -%}
+            {%- comment -%}
+              The first review is active from the server: the others are taken
+              out of flow, so without this the list would render at zero height
+              until product-reviews.js runs, then jump.
+            {%- endcomment -%}
             <li
-              class="product-reviews__item"
+              class="product-reviews__item{% if matched_index == 0 %} is-active{% endif %}"
               {% unless matched_index == 0 %}hidden{% endunless %}
               data-review-index="{{ matched_index }}"
             >

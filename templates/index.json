@@ -24,23 +24,101 @@
       "type": "custom-featured-product",
       "name": "Custom Featured Product",
       "settings": {
-        "featured_product": "parat-bhujia",
-        "bg_left_image": "shopify://shop_images/Frame_3.png",
-        "bg_left_image_mobile": "shopify://shop_images/Frame_3.png",
+        "reverse_layout": false,
+        "featured_product": "paraat-bhujia",
+        "bg_left_color": "#570f13",
         "bg_right_image": "shopify://shop_images/Frame_4.png",
         "bg_right_image_mobile": "shopify://shop_images/Frame_4.png",
         "featured-product-left-bg": "shopify://shop_images/Frame_1321319393_3.jpg",
         "top_left_caption": "our first",
-        "heading": "Parat Bhujia",
-        "description": "<p>Paraat Bhujia traces its story to the royal kitchens of Maharaja Dungar Singh Ji, where moth, gram flour and spices came together in a recipe remembered for its lightness of bite and savoury depth. The paraat, the bhatti and the careful judgement of the hand each held their place in its making.</p><p>Our Paraat Bhujia stays close to that inheritance. Made with 45% moth flour, a considered blend of spices, high oleic sunflower oil and low-sodium salt, it carries forward a taste shaped by the land of Bikaner and the generations of hands that made it their own.</p>",
+        "heading": "Paraat Bhujia",
+        "description": "<p>Paraat Bhujia traces its story to the royal kitchens of Maharaja Dungar Singh Ji, where moth, gram flour and spices came together in a recipe remembered for its lightness of bite and savoury depth.</p>",
         "size": "350 gm",
+        "tax_note": "(Inclusive of all taxes.)",
         "icon": "shopify://shop_images/Vector_1.png",
         "cta": "BUY NOW",
-        "top_right_caption": "BIKANERI BHUJIA"
+        "top_right_caption": "PARAAT BHUJIA"
+      }
+    },
+    "custom_home_values_Fk3bUf": {
+      "type": "custom-home-values",
+      "blocks": {
+        "value_DE3bCT": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_27_59_PM_1.png",
+            "title": "Made in high Oleic sunflower oil",
+            "floater": "High oleic sunflower oil is used for its clean flavour and stability, helping retain the distinct taste of bhujia."
+          }
+        },
+        "value_iXAcUw": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_29_49_PM_1.png",
+            "title": "No re-use of oil, for purity of taste",
+            "floater": "Fresh oil is used for every batch, keeping the flavour clean and balanced."
+          }
+        },
+        "value_8pQkUR": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_31_29_PM_1.png",
+            "title": "Slow-cooked in traditional Bhatti",
+            "floater": "Each batch is slow-cooked in a traditional bhatti, allowing the heat to be carefully controlled throughout."
+          }
+        },
+        "value_W467ek": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_33_11_PM_1.png",
+            "title": "Made with low sodium salt",
+            "floater": "Low sodium salt keeps the seasoning measured, allowing the flavour of the ingredients to remain clear."
+          }
+        },
+        "value_8mgV7n": {
+          "type": "value",
+          "settings": {
+            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_35_34_PM_1.png",
+            "title": "Prepared by skilled hands in batches",
+            "floater": "Each batch is prepared by experienced hands, carrying forward a craft passed down through generations."
+          }
+        }
+      },
+      "block_order": [
+        "value_DE3bCT",
+        "value_iXAcUw",
+        "value_8pQkUR",
+        "value_W467ek",
+        "value_8mgV7n"
+      ],
+      "name": "Custom Home Values",
+      "settings": {
+        "section_heading": "Prepared with discipline that remains unchanged."
+      }
+    },
+    "custom_featured_product_mrRVQp": {
+      "type": "custom-featured-product",
+      "name": "Custom Featured Product",
+      "settings": {
+        "reverse_layout": true,
+        "featured_product": "handmade-bhujia",
+        "bg_left_color": "#570F13",
+        "bg_right_image": "shopify://shop_images/Frame_4.png",
+        "bg_right_image_mobile": "shopify://shop_images/Frame_4.png",
+        "featured-product-left-bg": "shopify://shop_images/Frame_1321319393_3.jpg",
+        "top_left_caption": "our classic",
+        "heading": "Handmade Bhujia",
+        "description": "<p>Paraat Bhujia traces its story to the royal kitchens of Maharaja Dungar Singh Ji, where moth, gram flour and spices came together in a recipe remembered for its lightness of bite and savoury depth.</p>",
+        "size": "120 gm X 3",
+        "tax_note": "(Inclusive of all taxes.)",
+        "icon": "shopify://shop_images/Vector_1.png",
+        "cta": "BUY NOW",
+        "top_right_caption": "HANDMADE BHUJIA"
       }
     },
     "custom_featured_collection_TzThmV": {
       "type": "custom-featured-collection",
+      "disabled": true,
       "name": "Custom Featured Coll",
       "settings": {
         "collection": "frontpage",
@@ -146,62 +224,6 @@
       "name": "Custom Image Carousel",
       "settings": {
         "images_per_view": 4
-      }
-    },
-    "custom_home_values_Fk3bUf": {
-      "type": "custom-home-values",
-      "blocks": {
-        "value_DE3bCT": {
-          "type": "value",
-          "settings": {
-            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_27_59_PM_1.png",
-            "title": "Made in high Oleic sunflower oil",
-            "floater": "High oleic sunflower oil is used for its clean flavour and stability, helping retain the distinct taste of bhujia."
-          }
-        },
-        "value_iXAcUw": {
-          "type": "value",
-          "settings": {
-            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_29_49_PM_1.png",
-            "title": "No re-use of oil, for purity of taste",
-            "floater": "Fresh oil is used for every batch, keeping the flavour clean and balanced."
-          }
-        },
-        "value_8pQkUR": {
-          "type": "value",
-          "settings": {
-            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_31_29_PM_1.png",
-            "title": "Slow-cooked in traditional Bhatti",
-            "floater": "Each batch is slow-cooked in a traditional bhatti, allowing the heat to be carefully controlled throughout."
-          }
-        },
-        "value_W467ek": {
-          "type": "value",
-          "settings": {
-            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_33_11_PM_1.png",
-            "title": "Made with low sodium salt",
-            "floater": "Low sodium salt keeps the seasoning measured, allowing the flavour of the ingredients to remain clear."
-          }
-        },
-        "value_8mgV7n": {
-          "type": "value",
-          "settings": {
-            "icon": "shopify://shop_images/ChatGPT_Image_Jul_9_2026_05_35_34_PM_1.png",
-            "title": "Prepared by skilled hands in batches",
-            "floater": "Each batch is prepared by experienced hands, carrying forward a craft passed down through generations."
-          }
-        }
-      },
-      "block_order": [
-        "value_DE3bCT",
-        "value_iXAcUw",
-        "value_8pQkUR",
-        "value_W467ek",
-        "value_8mgV7n"
-      ],
-      "name": "Custom Home Values",
-      "settings": {
-        "section_heading": "Prepared with discipline that remains unchanged."
       }
     },
     "custom_blogs_carousel_LcgrGA": {
@@ -445,11 +467,12 @@
   "order": [
     "custom_banner_WXTigg",
     "custom_featured_product_rwnxPP",
+    "custom_home_values_Fk3bUf",
+    "custom_featured_product_mrRVQp",
     "custom_featured_collection_TzThmV",
     "custom_audio_player_hKJxNx",
     "custom_banner_text_jUVQVz",
     "custom_images_grid_carousal_9HXCxw",
-    "custom_home_values_Fk3bUf",
     "custom_blogs_carousel_LcgrGA",
     "custom_home_testimonials_hpAUPY",
     "custom_image_content_cDqBtQ",

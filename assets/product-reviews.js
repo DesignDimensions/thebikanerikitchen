@@ -6,6 +6,7 @@ if (!customElements.get('product-reviews-carousel')) {
 
       connectedCallback() {
         this.items = Array.from(this.querySelectorAll('.product-reviews__item'));
+        this.list = this.querySelector('.product-reviews__list');
         this.prevButton = this.querySelector('.product-reviews__nav--prev');
         this.nextButton = this.querySelector('.product-reviews__nav--next');
         this.currentEl = this.querySelector('.product-reviews__pagination-current');
@@ -98,30 +99,50 @@ if (!customElements.get('product-reviews-carousel')) {
 
       // Opacity-only crossfade — no translate or scale, per feedback that
       // the previous motion (position slide + scale pop) read as too loud.
+      // The list's height tweens from the outgoing review to the incoming one
+      // in the same timeline, so a longer or shorter review never jumps the
+      // section or leaves blank space under it.
       animateWithGsap(outgoing, incoming) {
-        incoming.el.classList.add('is-active');
-        incoming.el.style.zIndex = 2;
+        const list = this.list;
+        const from = list ? list.getBoundingClientRect().height : 0;
+
+        // Pin the current height first: the swap below takes the outgoing
+        // review out of flow, which would otherwise snap the list straight to
+        // the new size. overflow:hidden lets the box reveal/trim the reviews
+        // cleanly while it resizes.
+        if (list) gsap.set(list, { height: from, overflow: 'hidden' });
+
+        gsap.set(outgoing.el, { opacity: 1 });
+        outgoing.el.classList.remove('is-active');
+        outgoing.el.classList.add('is-leaving');
         outgoing.el.style.zIndex = 1;
 
-        gsap.set(incoming.el, { opacity: 0 });
-        gsap.set(incoming.quote, { opacity: 0 });
-        gsap.set(incoming.stars, { opacity: 0 });
-        gsap.set(incoming.author, { opacity: 0 });
+        incoming.el.classList.add('is-active');
+        incoming.el.style.zIndex = 2;
+        gsap.set([incoming.el, incoming.quote, incoming.stars, incoming.author], { opacity: 0 });
 
-        gsap
-          .timeline({
-            defaults: { ease: 'power2.out' },
-            onComplete: () => {
-              outgoing.el.classList.remove('is-active');
-              outgoing.el.style.zIndex = '';
-              incoming.el.style.zIndex = '';
-              gsap.set(outgoing.el, { clearProps: 'opacity' });
-              gsap.set([incoming.el, incoming.quote, incoming.stars, incoming.author], {
-                clearProps: 'opacity',
-              });
-              this.isAnimating = false;
-            },
-          })
+        // Measured after the swap, now that the incoming review is the one in flow.
+        const to = incoming.el.getBoundingClientRect().height;
+
+        const tl = gsap.timeline({
+          defaults: { ease: 'power2.out' },
+          onComplete: () => {
+            outgoing.el.classList.remove('is-leaving');
+            outgoing.el.style.zIndex = '';
+            incoming.el.style.zIndex = '';
+            gsap.set(outgoing.el, { clearProps: 'opacity' });
+            gsap.set([incoming.el, incoming.quote, incoming.stars, incoming.author], {
+              clearProps: 'opacity',
+            });
+            // Back to auto, so the list keeps following its review on resize.
+            if (list) gsap.set(list, { clearProps: 'height,overflow' });
+            this.isAnimating = false;
+          },
+        });
+
+        if (list) tl.to(list, { height: to, duration: 0.6, ease: 'power2.inOut' }, 0);
+
+        tl
           .to(outgoing.el, { opacity: 0, duration: 0.35 }, 0)
           .to(incoming.el, { opacity: 1, duration: 0.1 }, 0.2)
           .to(incoming.quote, { opacity: 1, duration: 0.45 }, 0.2)

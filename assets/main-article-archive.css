@@ -70,8 +70,10 @@
 
 @media screen and (min-width: 750px) {
   .archive-article__hero-caption {
-    font-size: var(--font-archive-hero-caption-size-tablet);
-    letter-spacing: var(--font-archive-hero-caption-letter-spacing-tablet);
+    font-size: var(--font-label-size);
+    line-height: var(--font-label-line-height);
+    font-weight: var(--font-eyebrow-weight);
+    letter-spacing: var(--font-label-letter-spacing);
   }
 }
 
@@ -136,8 +138,8 @@
   margin: 0;
   font-family: var(--font-family-display);
   font-weight: var(--font-weight-regular);
-  font-size: var(--font-archive-intro-heading-size);
-  line-height: 1.15;
+  font-size: var(--font-section-heading-size);
+  line-height: var(--font-section-heading-line-height);
   width: 70%;
   color: #181818;
 }
@@ -165,9 +167,10 @@
 .archive-article__intro-body p {
   margin: 0;
   font-family: var(--font-family-body);
-  font-weight: var(--font-copy-weight);
-  font-size: var(--font-archive-body-size);
-  line-height: 1.7;
+  font-weight: var(--font-body-copy-weight);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  letter-spacing: var(--font-body-letter-spacing);
   color: #181818;
 }
 
@@ -199,7 +202,8 @@
   }
 
   .archive-article__intro-heading {
-    font-size: var(--font-archive-intro-heading-size-mobile);
+    font-size: var(--font-section-heading-size-mobile);
+    line-height: var(--font-section-heading-line-height-mobile);
     width: unset;
   }
 }
@@ -236,13 +240,15 @@
 
 .under_reflection_copy p {
   color: #181818;
-  font-size: var(--font-archive-split-body-size);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  letter-spacing: var(--font-body-letter-spacing);
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: start;
   font-family: var(--font-family-body);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-body-copy-weight);
 }
 
 .under_reflection_copy strong {
@@ -266,9 +272,10 @@
 .archive-article__split-col p {
   margin: 0;
   font-family: var(--font-family-body);
-  font-weight: var(--font-copy-weight);
-  font-size: var(--font-archive-split-body-size);
-  line-height: 1.75;
+  font-weight: var(--font-body-copy-weight);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  letter-spacing: var(--font-body-letter-spacing);
   color: #181818;
 }
 
@@ -278,9 +285,10 @@
 
 .archive-article__split-col--quote p {
   font-family: var(--font-family-body);
-  font-size: var(--font-archive-quote-body-size);
-  font-weight: var(--font-weight-regular);
-  line-height: 1.4;
+  font-size: var(--font-body-size);
+  font-weight: var(--font-body-copy-weight);
+  line-height: var(--font-body-line-height);
+  letter-spacing: var(--font-body-letter-spacing);
   color: #181818;
 }
 
@@ -370,19 +378,20 @@
 .archive-article__note-label {
   margin: 0 0 16px;
   font-family: var(--font-family-label);
-  font-size: var(--font-archive-note-label-size);
-  letter-spacing: var(--font-archive-note-label-letter-spacing);
+  font-size: var(--font-label-size);
+  line-height: var(--font-label-line-height);
+  letter-spacing: var(--font-label-letter-spacing);
   text-transform: uppercase;
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-eyebrow-weight);
 }
 
 .archive-article__note-body p {
   margin: 0;
   font-family: var(--font-family-body);
-  font-weight: var(--font-weight-extralight);
-  font-size: var(--font-archive-note-body-size);
-  line-height: 1.6;
-  letter-spacing: 1.25px;
+  font-weight: var(--font-body-copy-weight);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 @media screen and (max-width: 749px) {
@@ -396,5 +405,30 @@
 
   .archive-article__intro-col {
     width: 100%;
+  }
+}
+
+/* ---- Mobile type scale (font-variables 3b-3d) ----
+   The article's running copy all takes the body role and its two labels the
+   eyebrow role. Decorative runs (the Devanagari quote marks, inline <em>) and
+   the photo-duo caption keep their own styling. */
+@media screen and (max-width: 749px) {
+  .archive-article__hero-caption,
+  .archive-article__note-label {
+    font-size: var(--font-label-size-mobile);
+    line-height: var(--font-label-line-height-mobile);
+    font-weight: var(--font-label-weight-mobile);
+    letter-spacing: var(--font-label-letter-spacing-mobile);
+  }
+
+  .archive-article__intro-body p,
+  .under_reflection_copy p,
+  .archive-article__split-col p,
+  .archive-article__split-col--quote p,
+  .archive-article__note-body p {
+    font-size: var(--font-body-size-mobile);
+    line-height: var(--font-body-line-height-mobile);
+    font-weight: var(--font-body-weight-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
   }
 }

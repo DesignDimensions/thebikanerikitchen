@@ -80,9 +80,10 @@
   display: block;
   margin: 0 0 0.4em;
   font-family: var(--font-body-family);
-  font-size: var(--font-continue-exploring-number-size);
-  font-weight: 600;
-  letter-spacing: var(--font-continue-exploring-number-letter-spacing);
+  font-size: var(--font-label-size);
+  line-height: var(--font-label-line-height);
+  font-weight: var(--font-eyebrow-weight);
+  letter-spacing: var(--font-label-letter-spacing);
   text-transform: uppercase;
   color: currentColor;
 }
@@ -200,6 +201,14 @@
   }
 
   .continue-exploring__title {
-    font-size: var(--font-continue-exploring-title-size-mobile);
+    font-size: var(--font-subheading-size-mobile);
+    line-height: var(--font-subheading-line-height-mobile);
+  }
+
+  .continue-exploring__number {
+    font-size: var(--font-label-size-mobile);
+    line-height: var(--font-label-line-height-mobile);
+    font-weight: var(--font-label-weight-mobile);
+    letter-spacing: var(--font-label-letter-spacing-mobile);
   }
 }

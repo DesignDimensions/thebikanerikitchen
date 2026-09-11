@@ -152,3 +152,108 @@ variant-selects {
 }
 
 /* End custom styles for Swatch display type */
+
+/* ---- Variant cards (variant picker "cards") ----
+   Each variant as a bordered card: pack + weight, a rule, then price + tax
+   note -- the design's variant/price strip. The radio underneath is Dawn's
+   own (hidden by the rule above), so selection still runs through
+   <variant-selects>. */
+.product-form__input--cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.variant-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 8px;
+  border: 1px solid rgba(24, 24, 24, 0.25);
+  color: #181818;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color var(--duration-short, 100ms) ease;
+}
+
+.product-form__input--cards input[type='radio']:checked + .variant-card {
+  border-color: #181818;
+}
+
+.product-form__input--cards input[type='radio']:focus-visible + .variant-card {
+  outline: 1px solid #181818;
+  outline-offset: 3px;
+}
+
+.product-form__input--cards input[type='radio'].disabled + .variant-card {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.variant-card__detail,
+.variant-card__pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.variant-card__detail {
+  font-size: var(--font-variant-card-detail-size);
+  line-height: var(--font-variant-card-detail-line-height);
+  letter-spacing: var(--font-variant-card-detail-letter-spacing);
+}
+
+.variant-card__pack {
+  font-family: var(--font-family-accent);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.variant-card__option {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-light);
+}
+
+.variant-card__rule {
+  display: block;
+  width: 150px;
+  height: 1px;
+  background: #000;
+}
+
+.variant-card__pricing {
+  white-space: nowrap;
+}
+
+.variant-card__price {
+  font-family: var(--font-family-accent);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-variant-card-price-size);
+  line-height: var(--font-variant-card-price-line-height);
+}
+
+.variant-card__tax {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-regular);
+  font-size: var(--font-variant-card-tax-size);
+  line-height: var(--font-variant-card-tax-line-height);
+  letter-spacing: var(--font-variant-card-tax-letter-spacing);
+}
+
+@media screen and (max-width: 749px) {
+  .variant-card__detail {
+    font-size: var(--font-body-size-mobile);
+    line-height: var(--font-body-line-height-mobile);
+  }
+
+  .variant-card__price {
+    font-size: var(--font-price-size-mobile);
+    line-height: var(--font-price-line-height-mobile);
+  }
+}

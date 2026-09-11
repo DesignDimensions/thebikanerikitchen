@@ -27,10 +27,20 @@
   margin-right: 0;
 }
 
+/* Price role (font-variables 3d). This had no mobile size at all, so the
+   desktop 35px carried straight onto phones. */
 product-info .price-item--regular {
   font-family: var(--font-family-accent);
-  font-size: var(--font-pdp-price-size);
-  line-height: 28px;
+  font-size: var(--font-price-size);
+  line-height: var(--font-price-line-height);
+  font-weight: var(--font-price-weight);
+}
+
+@media screen and (max-width: 749px) {
+  product-info .price-item--regular {
+    font-size: var(--font-price-size-mobile);
+    line-height: var(--font-price-line-height-mobile);
+  }
 }
 
 .price:not(.price--show-badge) .price-item--last:last-of-type {

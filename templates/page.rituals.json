@@ -67,47 +67,47 @@
         "heading": "<p>From <em>the </em>royal Kitchen to <em>your </em>Celebrations</p>"
       }
     },
-    "custom_images_grid_carousal_TcYrrr": {
+    "custom_images_grid_carousal_NcW3di": {
       "type": "custom-images-grid_carousal",
       "blocks": {
-        "image_WiBUG7": {
+        "image_wEcfkY": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_11_1.jpg",
+            "desktop_image": "shopify://shop_images/Frame_9.png",
             "link": "",
             "open_in_new_tab": false
           }
         },
-        "image_hFYm9e": {
+        "image_hkamY4": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_9.jpg",
+            "desktop_image": "shopify://shop_images/Frame_10.png",
             "link": "",
             "open_in_new_tab": false
           }
         },
-        "image_aRDBP9": {
+        "image_kmDp4R": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_10.jpg",
+            "desktop_image": "shopify://shop_images/Frame_11.png",
             "link": "",
             "open_in_new_tab": false
           }
         },
-        "image_Cc664F": {
+        "image_9BqfUK": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_8.jpg",
+            "desktop_image": "shopify://shop_images/Frame_8.png",
             "link": "",
             "open_in_new_tab": false
           }
         }
       },
       "block_order": [
-        "image_WiBUG7",
-        "image_hFYm9e",
-        "image_aRDBP9",
-        "image_Cc664F"
+        "image_wEcfkY",
+        "image_hkamY4",
+        "image_kmDp4R",
+        "image_9BqfUK"
       ],
       "name": "Custom Image Carousel",
       "settings": {
@@ -130,7 +130,7 @@
     "blog_listing_header",
     "blog_listing_grid",
     "custom_banner_text_JgCy7f",
-    "custom_images_grid_carousal_TcYrrr",
+    "custom_images_grid_carousal_NcW3di",
     "custom_bg_heading_xfjNxk"
   ]
 }

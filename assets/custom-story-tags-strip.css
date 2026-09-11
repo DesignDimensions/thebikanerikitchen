@@ -14,9 +14,10 @@
 .story-tags-strip__label {
   margin: 0;
   font-family: var(--font-family-label);
-  font-size: var(--font-story-tags-label-size);
-  font-weight: var(--font-weight-regular);
-  letter-spacing: var(--font-story-tags-label-letter-spacing);
+  font-size: var(--font-label-size);
+  line-height: var(--font-label-line-height);
+  font-weight: var(--font-eyebrow-weight);
+  letter-spacing: var(--font-label-letter-spacing);
   text-transform: uppercase;
   color: #fffdee;
 }
@@ -105,5 +106,12 @@
 
   .story-tags-strip__tag {
     padding: 7px 16px;
+  }
+
+  .story-tags-strip__label {
+    font-size: var(--font-label-size-mobile);
+    line-height: var(--font-label-line-height-mobile);
+    font-weight: var(--font-label-weight-mobile);
+    letter-spacing: var(--font-label-letter-spacing-mobile);
   }
 }

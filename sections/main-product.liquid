@@ -86,6 +86,19 @@
           >
             {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
+            {%- liquid
+              # Variant cards carry each variant's price, so they stand in for the
+              # price block -- but only when the picker actually renders. A product
+              # with a single default variant gets no picker, and keeps its price.
+              assign price_in_variant_cards = false
+              unless product.has_only_default_variant
+                for picker_block in section.blocks
+                  if picker_block.type == 'variant_picker' and picker_block.settings.picker_type == 'cards'
+                    assign price_in_variant_cards = true
+                  endif
+                endfor
+              endunless
+            -%}
             {%- for block in section.blocks -%}
               {%- case block.type -%}
                 {%- when '@app' -%}
@@ -107,6 +120,12 @@
                     </a>
                   </div>
                 {%- when 'price' -%}
+                  {%- comment -%}
+                    Only the price display gives way to the variant cards; the
+                    installment form further down still renders, so Shop Pay
+                    installments keep working if they're switched on.
+                  {%- endcomment -%}
+                  {%- unless price_in_variant_cards -%}
                   <div class="pdp-prices-container">
                     <div id="price-{{ section.id }}" role="status" {{ block.shopify_attributes }}>
                       {%- render 'price',
@@ -118,6 +137,7 @@
                     </div>
                     <p class="pdp-price-note-text">(Inclusive of all taxes.)</p>
                   </div>
+                  {%- endunless -%}
                   {%- if product.quantity_price_breaks_configured? -%}
                     <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
                       <span>{{ 'products.product.volume_pricing.note' | t }}</span>
@@ -982,8 +1002,13 @@
             {
               "value": "button",
               "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.options__2.label"
+            },
+            {
+              "value": "cards",
+              "label": "Variant cards"
             }
           ],
+          "info": "Variant cards show each variant's pack (variant metafield custom.pack_size), weight and price, and replace the separate price block.",
           "default": "button",
           "label": "t:sections.main-product.blocks.variant_picker.settings.picker_type.label"
         },

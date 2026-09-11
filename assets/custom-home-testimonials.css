@@ -229,17 +229,33 @@
   min-height: 0;
 }
 
+/* Mobile body role (see font-variables 3b), switching at the same 989px
+   breakpoint the reference section uses rather than this file's 749px one.
+   Colour matches the reference card's #181818, since this quote also sits on
+   a light (#F7EEE5) ground. */
 .custom-home-testimonials-quote p {
   margin: 0;
-  font-family: var(--font-family-display);
-  font-size: var(--font-testimonial-quote-size);
-  line-height: var(--font-testimonial-quote-line-height);
-  color: #2b1810;
+  font-family: var(--font-family-body);
+  font-weight: var(--font-body-weight-mobile);
+  font-size: var(--font-body-size-mobile);
+  line-height: var(--font-body-line-height-mobile);
+  letter-spacing: var(--font-body-letter-spacing-mobile);
+  text-transform: none;
+  color: #181818;
   display: -webkit-box;
   -webkit-line-clamp: 6;
   line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+@media screen and (min-width: 990px) {
+  .custom-home-testimonials-quote p {
+    font-size: var(--font-body-size);
+    font-weight: 300;
+    line-height: var(--font-body-line-height);
+    letter-spacing: var(--font-body-letter-spacing);
+  }
 }
 
 .custom-home-testimonials-quote p:first-child::before {
@@ -336,7 +352,6 @@
 @media screen and (max-width: 749px) {
   .custom-home-testimonials-quote p {
     margin: 0 0 50px !important;
-    font-size: var(--font-testimonial-quote-size-mobile);
   }
 
   .custom-home-testimonials-person {
@@ -356,6 +371,9 @@
 
   .custom-home-testimonials-caption {
     font-size: var(--font-label-size-mobile);
+    line-height: var(--font-label-line-height-mobile);
+    font-weight: var(--font-label-weight-mobile);
+    letter-spacing: var(--font-label-letter-spacing-mobile);
     margin-bottom: 5px !important;
   }
 }

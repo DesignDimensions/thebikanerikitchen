@@ -64,3 +64,24 @@
         width: 85%;
     }
 }
+
+/* Phones only (Dawn's 749px, so 768px tablets keep the full-height strip).
+   The strip is capped at 600px, and each image sits in the vertical middle
+   of its slot: the tall 720x1480 shots are cropped evenly top and bottom,
+   shorter ones get even room above and below. */
+@media screen and (max-width: 749px) {
+    /* overflow-y has to be stated: with overflow-x: auto the browser computes
+       overflow-y to auto as well, so a fixed height alone would turn the strip
+       into a vertical scroller for every image taller than it. */
+    .custom-images-grid_carousal-container {
+        height: 600px;
+        overflow-y: hidden;
+    }
+
+    .custom-images-grid_carousal-item {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        overflow: hidden;
+    }
+}

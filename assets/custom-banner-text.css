@@ -56,8 +56,8 @@
 
     .custom-banner-text-container p {
         width: 85%;
-        font-size: var(--font-banner-text-heading-size-mobile);
-        line-height: var(--font-banner-text-heading-line-height-mobile);
+        font-size: var(--font-section-heading-size-mobile);
+        line-height: var(--font-section-heading-line-height-mobile);
     }
 }
 

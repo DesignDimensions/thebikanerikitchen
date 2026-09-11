@@ -37,23 +37,28 @@
 
 .error-404__eyebrow {
   margin: 0 0 15px;
-  font-size: var(--font-404-eyebrow-size);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--font-404-eyebrow-letter-spacing);
+  font-size: var(--font-label-size);
+  line-height: var(--font-label-line-height);
+  font-weight: var(--font-eyebrow-weight);
+  letter-spacing: var(--font-label-letter-spacing);
   text-transform: uppercase;
   font-family: var(--font-family-label);
 }
 
+/* Size comes from .section-heading; only its line-height is restated,
+   since this rule out-orders the shared one in base.css. */
 .error-404__heading {
   margin: 0 0 24px;
-  line-height: 1.15;
+  line-height: var(--font-section-heading-line-height);
 }
 
 .error-404__subtext {
   margin: 0 0 24px;
-  font-size: var(--font-404-subtext-size);
   font-family: var(--font-family-body);
-  font-weight: var(--font-copy-weight);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  font-weight: var(--font-body-copy-weight);
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .error-404__button {
@@ -73,5 +78,29 @@
 @media screen and (min-width: 750px) {
   .error-404__card {
     padding: 88px 96px;
+  }
+}
+
+/* ---- Mobile type scale (font-variables 3a-3c) ----
+   The heading is a .section-heading, so it already takes that size; only
+   its line-height needs restating, since the rule above out-orders the
+   shared mobile rule in base.css. The button keeps its own styling. */
+@media screen and (max-width: 749px) {
+  .error-404__eyebrow {
+    font-size: var(--font-label-size-mobile);
+    line-height: var(--font-label-line-height-mobile);
+    font-weight: var(--font-label-weight-mobile);
+    letter-spacing: var(--font-label-letter-spacing-mobile);
+  }
+
+  .error-404__heading {
+    line-height: var(--font-section-heading-line-height-mobile);
+  }
+
+  .error-404__subtext {
+    font-size: var(--font-body-size-mobile);
+    line-height: var(--font-body-line-height-mobile);
+    font-weight: var(--font-body-weight-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
   }
 }

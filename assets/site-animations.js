@@ -232,15 +232,20 @@
       ctx.caption = $('.custom-featured-product-left-inner_upper > p:first-child', s);
       ctx.heading = prepHeading($('.custom-featured-product-left-inner_upper > p:nth-child(2)', s));
       ctx.description = $$('.custom-featured-product-left-description p', s);
+      ctx.purchase = $$('.custom-featured-product__purchase > *', s);
       ctx.lower = $$('.custom-featured-product-left-inner_lower > *', s);
       ctx.rule = $('.custom-featured-product-right hr', s);
       ctx.rail = $('.custom-featured-product-right p', s);
+      // Reversed layout pins the caption to the left, so the keyline
+      // has to grow the other way to keep reading as one gesture.
+      const reversed = s.classList.contains('custom-featured-product-container--reversed');
 
       prep([ctx.card], { autoAlpha: 0, y: -64, scale: 0.985 });
       prep([ctx.caption], { autoAlpha: 0, y: -22 });
       prep(ctx.description, { autoAlpha: 0, y: -26 });
+      prep(ctx.purchase, { autoAlpha: 0, y: -22 });
       prep(ctx.lower, { autoAlpha: 0, y: -22 });
-      prep([ctx.rule], { scaleX: 0, transformOrigin: 'left center' });
+      prep([ctx.rule], { scaleX: 0, transformOrigin: reversed ? 'right center' : 'left center' });
       prep([ctx.rail], { autoAlpha: 0, y: -14 });
     },
     build(ctx) {
@@ -255,7 +260,8 @@
           fadeRise(tl, ctx.caption, 0.35, { duration: 0.8 });
           maskRise(tl, ctx.heading, 0.45);
           fadeRise(tl, ctx.description, 0.65, { stagger: 0.12 });
-          fadeRise(tl, ctx.lower, 0.95, { duration: 0.85, stagger: 0.1 });
+          fadeRise(tl, ctx.purchase, 0.85, { duration: 0.85, stagger: 0.1 });
+          fadeRise(tl, ctx.lower, 1.05, { duration: 0.85, stagger: 0.1 });
         },
         'top 82%'
       );

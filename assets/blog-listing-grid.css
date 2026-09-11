@@ -211,9 +211,10 @@
   color: #181818;
   margin: 0 0 16px;
   font-family: var(--font-family-label);
-  font-size: var(--font-blog-grid-subtitle-size);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: 4px;
+  font-size: var(--font-label-size);
+  line-height: var(--font-label-line-height);
+  font-weight: var(--font-eyebrow-weight);
+  letter-spacing: var(--font-label-letter-spacing);
   text-transform: uppercase;
 }
 
@@ -221,9 +222,9 @@
   text-align: center;
   font-family: var(--font-family-display);
   color: #181818;
-  font-size: var(--font-blog-grid-title-size);
+  font-size: var(--font-section-heading-size);
   font-weight: var(--font-weight-medium);
-  line-height: var(--font-blog-grid-title-line-height);
+  line-height: var(--font-section-heading-line-height);
   letter-spacing: var(--font-blog-grid-title-letter-spacing);
   max-width: unset;
   margin: 0 0 24px;
@@ -239,8 +240,10 @@
 .blog-listing-grid-description p {
   margin: 0;
   font-family: var(--font-family-body);
-  font-size: var(--font-blog-grid-description-size);
-  font-weight: var(--font-copy-weight);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  font-weight: var(--font-body-copy-weight);
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 @media(max-width:768px) {
@@ -249,18 +252,22 @@
   }
 
   .blog-listing-grid-subtitle {
-    font-size: var(--font-blog-grid-subtitle-size-mobile);
-    font-weight: var(--font-weight-medium);
-    letter-spacing: 4px;
+    font-size: var(--font-label-size-mobile);
+    line-height: var(--font-label-line-height-mobile);
+    font-weight: var(--font-label-weight-mobile);
+    letter-spacing: var(--font-label-letter-spacing-mobile);
     margin-bottom: 8px;
   }
 
   .blog-listing-grid-title {
-    font-size: var(--font-blog-grid-title-size-mobile);
-    line-height: var(--font-blog-grid-title-line-height-mobile);
+    font-size: var(--font-section-heading-size-mobile);
+    line-height: var(--font-section-heading-line-height-mobile);
   }
 
   .blog-listing-grid-description p {
-    font-size: var(--font-blog-grid-description-size-mobile);
+    font-size: var(--font-body-size-mobile);
+    line-height: var(--font-body-line-height-mobile);
+    font-weight: var(--font-body-weight-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
   }
 }

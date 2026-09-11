@@ -80,6 +80,43 @@
       help_text: help_text,
       additional_props: input_dataset
     %}
+  {%- elsif picker_type == 'cards' -%}
+    {%- liquid
+      # value.variant is the variant this value selects alongside the other
+      # currently selected options -- with a single option, simply its variant
+      assign card_variant = value.variant | default: product.selected_or_first_available_variant
+      assign card_pack = card_variant.metafields.custom.pack_size.value
+    -%}
+    <input
+      type="radio"
+      id="{{ input_id }}"
+      name="{{ input_name | escape }}"
+      value="{{ escaped_value }}"
+      form="{{ product_form_id }}"
+      {% if value.selected %}
+        checked
+      {% endif %}
+      {% if option_disabled %}
+        class="disabled"
+      {% endif %}
+      {{ input_dataset }}
+    >
+    <label for="{{ input_id }}" class="variant-card">
+      <span class="variant-card__detail">
+        {%- if card_pack != blank -%}
+          <span class="variant-card__pack">{{ card_pack }}</span>
+        {%- endif -%}
+        <span class="variant-card__option">{{ value }}</span>
+      </span>
+      <span class="variant-card__rule" aria-hidden="true"></span>
+      <span class="variant-card__pricing">
+        <span class="variant-card__price">
+          {{- card_variant.price | money_without_trailing_zeros | replace: '₹', '₹ ' -}}
+        </span>
+        <span class="variant-card__tax">(Inclusive of all taxes.)</span>
+      </span>
+      {{ label_unavailable }}
+    </label>
   {%- elsif picker_type == 'button' -%}
     <input
       type="radio"

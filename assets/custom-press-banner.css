@@ -35,9 +35,10 @@
 
 .press-banner__eyebrow {
   margin: 0 0 20px;
-  font-size: var(--font-press-eyebrow-size);
-  font-weight: var(--font-weight-medium);
-  letter-spacing: var(--font-press-eyebrow-letter-spacing);
+  font-size: var(--font-label-size);
+  line-height: var(--font-label-line-height);
+  font-weight: var(--font-eyebrow-weight);
+  letter-spacing: var(--font-label-letter-spacing);
   text-transform: uppercase;
   text-align: left;
   font-family: var(--font-family-label);
@@ -51,10 +52,11 @@
 .press-banner__body {
   text-align: left;
   margin: 0;
-  font-size: var(--font-press-body-size);
-  line-height: 1.5;
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
   font-family: var(--font-family-body);
-  font-weight: var(--font-copy-weight);
+  font-weight: var(--font-body-copy-weight);
+  letter-spacing: var(--font-body-letter-spacing);
   width: 80%;
 }
 
@@ -63,7 +65,17 @@
     padding: 0 15px 30px;
   }
 
+  .press-banner__eyebrow {
+    font-size: var(--font-label-size-mobile);
+    line-height: var(--font-label-line-height-mobile);
+    font-weight: var(--font-label-weight-mobile);
+    letter-spacing: var(--font-label-letter-spacing-mobile);
+  }
+
   .press-banner__body {
-    font-size: var(--font-press-body-size-mobile);
+    font-size: var(--font-body-size-mobile);
+    line-height: var(--font-body-line-height-mobile);
+    font-weight: var(--font-body-weight-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
   }
 }

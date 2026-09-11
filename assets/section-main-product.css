@@ -13,8 +13,9 @@ product-info variant-selects {
 
 .pdp-price-note-text {
   font-family: var(--font-family-body);
-  font-size: var(--font-pdp-price-note-size);
-  line-height: 28px;
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-line-height);
+  letter-spacing: var(--font-small-letter-spacing);
   font-weight: var(--font-copy-weight);
   color: #181818;
   margin: 0;
@@ -251,7 +252,8 @@ product-info variant-selects {
 
 .product__info-container .product__title h1 {
   font-family: var(--font-family-display);
-  font-size: var(--font-product-title-size);
+  font-size: var(--font-section-heading-size);
+  line-height: var(--font-section-heading-line-height);
   text-transform: uppercase;
 }
 
@@ -261,8 +263,10 @@ product-info variant-selects {
 
 .product__info-container .product__description {
   font-family: var(--font-family-body);
-  font-size: var(--font-product-description-size);
-  line-height: 28px;
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  font-weight: var(--font-body-copy-weight);
+  letter-spacing: var(--font-body-letter-spacing);
   color: #181818;
 }
 
@@ -298,7 +302,8 @@ product-info variant-selects {
   border: none;
   background: none;
   font: inherit;
-  font-size: var(--font-product-description-size);
+  font-size: var(--font-small-size);
+  line-height: var(--font-small-line-height);
   color: #181818;
   text-decoration: underline;
   text-underline-offset: 0.3rem;
@@ -482,8 +487,8 @@ a.product__text {
 
 .product-form__quantity-cart-row .quantity__label {
   font-family: var(--font-family-body);
-  font-weight: var(--font-quantity-label-weight);
-  font-size: var(--font-quantity-label-size);
+  font-weight: var(--font-copy-weight);
+  font-size: var(--font-pdp-price-note-size);
   color: #181818;
 }
 
@@ -579,6 +584,8 @@ a.product__text {
   .product-form__quantity-cart-row .quantity__label {
     text-wrap: nowrap;
     letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 400;
   }
 
   .discount-callout__icon {
@@ -607,9 +614,10 @@ a.product__text {
   }
 
   .product-reviews__quote p {
-    font-size: var(--font-reviews-quote-size-mobile) !important;
-    line-height: 21px !important;
-    font-weight: var(--font-reviews-quote-weight-mobile) !important;
+    font-size: var(--font-body-size-mobile) !important;
+    line-height: var(--font-body-line-height-mobile) !important;
+    font-weight: var(--font-body-weight-mobile) !important;
+    letter-spacing: var(--font-body-letter-spacing-mobile) !important;
   }
 
   .price__regular .price-item--regular {
@@ -645,14 +653,28 @@ a.product__text {
 
   .product__info-container .product__title h1 {
     font-weight: var(--font-product-title-weight-mobile);
-    font-size: var(--font-product-title-size-mobile);
+    font-size: var(--font-section-heading-size-mobile);
+    line-height: var(--font-section-heading-line-height-mobile);
     margin-top: 20px;
+    margin-bottom: 5px;
   }
 
   .product__info-container .product__description {
-    font-size: var(--font-product-description-size);
-    line-height: 24px;
-    letter-spacing: 0px;
+    font-size: var(--font-body-size-mobile);
+    line-height: var(--font-body-line-height-mobile);
+    font-weight: var(--font-body-weight-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
+  }
+
+  /* "Inclusive of taxes" under the price: the reference's small-print role. */
+  .pdp-price-note-text {
+    font-size: var(--font-small-size-mobile);
+    line-height: var(--font-small-line-height-mobile);
+    letter-spacing: var(--font-small-letter-spacing-mobile);
+  }
+
+  .product__description-toggle {
+    font-size: var(--font-body-size-mobile);
   }
 
   .product__info-container {
@@ -858,7 +880,7 @@ a.product__text {
    Applied to the container as well, so the same gesture can't be started from
    the padding around the image. */
 .product__media,
-.product__media > img {
+.product__media>img {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
@@ -870,7 +892,7 @@ a.product__text {
    needs to receive pointer input at all. The :not() guards the hover-magnify
    mode, which does read pointer position off the image (magnify.js targets
    .image-magnify-hover); this shop runs image_zoom: none, so nothing uses it. */
-.product__media > img:not(.image-magnify-hover) {
+.product__media>img:not(.image-magnify-hover) {
   pointer-events: none;
 }
 
@@ -1715,6 +1737,7 @@ a.product__text {
 }
 
 @media screen and (max-width: 749px) {
+
   /* The gallery swallows vertical swipes and rubber-bands instead of letting
      the page scroll.
      component-slider.css sets overflow-x: auto on .slider--mobile and leaves
@@ -2028,7 +2051,7 @@ a.product__text {
   border-radius: 50%;
   border: none;
   cursor: pointer;
-  background-color: #18181866;
+  background-color: #181818;
   color: #FFFDEE;
 }
 
@@ -2055,40 +2078,56 @@ a.product__text {
   transform: rotate(-90deg);
 }
 
+/* Only the active review is in flow, so the list is always exactly its
+   height -- stacking every review in one grid cell sized the list to the
+   longest one and left blank space under shorter reviews. The rest sit
+   absolutely on top for the crossfade, and product-reviews.js tweens the
+   list's height between reviews so the change is animated, not a jump. */
 .product-reviews__list {
   flex: 1;
   min-width: 0;
-  display: grid;
+  position: relative;
+  display: block;
 }
 
 .product-reviews__item {
-  grid-area: 1 / 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
 }
 
 .product-reviews__item.is-active {
+  position: relative;
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
 
+/* The outgoing review during a crossfade: still painted while it fades, but
+   out of flow so it doesn't hold the list at its height. */
+.product-reviews__item.is-leaving {
+  visibility: visible;
+}
+
 .product-reviews__quote {
-  margin: 0 0 13px 0;
+  margin: 0 0 5px 0;
   border: none;
   padding: 0;
 }
 
 .product-reviews__quote p {
   margin: 0;
-  font-size: var(--font-reviews-quote-size);
-  line-height: 1.6;
+  font-size: var(--font-small-size);
+  line-height: 24px;
   color: #181818;
   font-family: var(--font-family-body);
   font-style: normal;
-  font-weight: var(--font-reviews-quote-weight);
-  letter-spacing: .5px;
+  font-weight: var(--font-body-copy-weight);
+  letter-spacing: var(--font-body-letter-spacing);
 }
 
 .product-reviews__rating {
@@ -2186,4 +2225,113 @@ a.product__text {
 
 .product-reviews__trust-row.is-marquee .product-reviews__trust-divider--loop {
   display: inline;
+}
+
+/* ---- Buy box spacing (desktop), from the design (Figma 1518:3349) ----
+   Three groups 40px apart: the intro (title, description, variant cards),
+   the buy row, and reviews + trust row. Inside the intro the title's 76px
+   line box does the title-to-description spacing, "Read More" sits flush
+   under the copy, and the cards come 24px below it.
+   Margins rather than a flex gap on purpose: the installment block renders
+   empty when installments are off, and an empty block's margins collapse
+   through it, where a flex gap would still spend a full gap on it. */
+@media screen and (min-width: 750px) {
+  .product__info-container {
+    --pdp-gap-group: 40px;
+    --pdp-gap-cards: 24px;
+    /* Not in the design: the discount callout is tied to the buy row it
+       belongs to, rather than given a full group gap of its own. */
+    --pdp-gap-callout: 20px;
+    --pdp-title-line-height: 76px;
+  }
+
+  .product__info-container > * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .product__info-container > * + * {
+    margin-top: var(--pdp-gap-group);
+  }
+
+  .product__info-container .product__title h1 {
+    line-height: var(--pdp-title-line-height);
+  }
+
+  /* Custom elements default to inline, which ignores vertical margins. */
+  .product__info-container > product-description-toggle {
+    display: block;
+  }
+
+  .product__info-container > .product__title + product-description-toggle {
+    margin-top: 0;
+  }
+
+  .product__description-toggle-wrap {
+    margin-top: 0;
+  }
+
+  .product__description-toggle {
+    line-height: 24px;
+  }
+
+  /* Out-specifies the all-widths !important rule at the top of this file,
+     so phones keep their spacing. */
+  product-info .product__info-container > variant-selects {
+    margin-top: var(--pdp-gap-cards) !important;
+    margin-bottom: 0 !important;
+  }
+
+  .product__info-container variant-selects .product-form__input {
+    margin-bottom: 0;
+  }
+
+  .product__info-container > discount-callout-copy {
+    margin-top: var(--pdp-gap-callout);
+  }
+
+  .product__info-container > .product-reviews-wrapper {
+    margin-top: var(--pdp-gap-group);
+    margin-bottom: var(--pdp-gap-group) !important;
+    margin-bottom: 0;
+  }
+
+  .product-form__quantity-cart-row .quantity__label {
+    margin-bottom: 5px;
+  }
+
+  /* Its own bottom margin would collapse with (and outrank) the gap below
+     the buy row. */
+  .product__info-container product-form.product-form {
+    margin-bottom: 0;
+  }
+
+  /* Reviews: the two .product-reviews__divider elements are empty divs that
+     base.css's div:empty reset hides, so the visible rules are the header's
+     bottom border and the trust row's top border -- the gaps live on those. */
+  .product-reviews__header {
+    padding-bottom: 7px;
+  }
+
+  .product-reviews__body {
+    gap: 37.5px;
+    padding: 20px 0;
+  }
+
+  .product-reviews__nav {
+    width: 32px;
+    height: 32px;
+  }
+
+  .product-reviews__quote {
+    margin-bottom: 5px;
+  }
+
+  .product-reviews__author {
+    margin-top: 4px;
+  }
+
+  .product-reviews__trust-row {
+    padding-top: 12px;
+  }
 }

@@ -73,9 +73,9 @@
   gap: 16px;
   margin: 0;
   font-family: var(--font-family-body);
-  font-size: var(--font-contact-body-size);
-  line-height: var(--font-contact-body-line-height);
-  letter-spacing: var(--font-contact-body-letter-spacing);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  letter-spacing: var(--font-body-letter-spacing);
   font-weight: var(--font-contact-label-weight);
   color: #202020;
 }
@@ -93,10 +93,10 @@
 
 .contact-page__rich-text {
   font-family: var(--font-family-body);
-  font-size: var(--font-contact-body-size);
-  line-height: var(--font-contact-body-line-height);
-  letter-spacing: var(--font-contact-body-letter-spacing);
-  font-weight: var(--font-copy-weight);
+  font-size: var(--font-body-size);
+  line-height: var(--font-body-line-height);
+  font-weight: var(--font-body-copy-weight);
+  letter-spacing: var(--font-body-letter-spacing);
   color: #202020;
   display: flex;
   flex-direction: column;
@@ -223,5 +223,18 @@ textarea.contact-page__field-input {
   }
   .contact-page__row--bottom{
     flex-direction: column-reverse;
+  }
+
+  /* Body role. The info heads are labels, so they keep their medium weight;
+     form fields, the submit button and status messages keep their own. */
+  .contact-page__info-head,
+  .contact-page__rich-text {
+    font-size: var(--font-body-size-mobile);
+    line-height: var(--font-body-line-height-mobile);
+    letter-spacing: var(--font-body-letter-spacing-mobile);
+  }
+
+  .contact-page__rich-text {
+    font-weight: var(--font-body-weight-mobile);
   }
 }

@@ -1976,7 +1976,7 @@ input[type='checkbox'] {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: var(--font-label-letter-spacing);
-  font-weight: var(--font-label-weight);
+  font-weight: 400;
   margin-bottom: 10px;
 }
 
@@ -1987,7 +1987,8 @@ input[type='checkbox'] {
   text-align: center;
   text-transform: uppercase;
   letter-spacing: var(--font-label-letter-spacing);
-  font-weight: var(--font-label-weight);
+  line-height: var(--font-label-line-height);
+  font-weight: var(--font-eyebrow-weight);
   margin-top: 60px !important;
   margin-bottom: 12px !important;
 }
@@ -2593,8 +2594,15 @@ input[type='checkbox'] {
   }
 
   .clp-section-heading {
-    font-size: 35px !important;
+    font-size: var(--font-section-heading-size-mobile) !important;
     line-height: var(--font-section-heading-line-height-mobile) !important;
+  }
+
+  .clp-collection__subtitle {
+    font-size: var(--font-label-size-mobile);
+    line-height: var(--font-label-line-height-mobile);
+    font-weight: var(--font-label-weight-mobile);
+    letter-spacing: var(--font-label-letter-spacing-mobile);
   }
 }
 
