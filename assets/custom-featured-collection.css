@@ -2,10 +2,6 @@
     background-color: #FFFDEE;
 }
 
-.custom-featured-collection__grid .shop-card__media {
-    aspect-ratio: 1 / 1;
-}
-
 slider-component product-component .card-wrapper .card .card__information {
     padding: 0px;
 }
