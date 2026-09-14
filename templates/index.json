@@ -462,6 +462,22 @@
         "heading_color": "#ff6344",
         "background_color": "#570f13"
       }
+    },
+    "custom_intro_popup": {
+      "type": "custom-intro-popup",
+      "name": "Custom Intro Popup",
+      "settings": {
+        "enabled": true,
+        "delay_seconds": 5,
+        "frequency": "once",
+        "heading": "Welcome to\nThe Bikaneri Kitchen!",
+        "body": "A place where preparations are crafted by hand and stories are preserved through time.",
+        "image": "shopify://shop_images/tbk-intro-popup.png",
+        "cta_1_label": "Explore The Shop",
+        "cta_1_link": "/collections/the-bhandaar",
+        "cta_2_label": "Visit The Archive",
+        "cta_2_link": "/pages/archives"
+      }
     }
   },
   "order": [
@@ -476,6 +492,7 @@
     "custom_blogs_carousel_LcgrGA",
     "custom_home_testimonials_hpAUPY",
     "custom_image_content_cDqBtQ",
-    "custom_bg_heading_ykifF8"
+    "custom_bg_heading_ykifF8",
+    "custom_intro_popup"
   ]
 }

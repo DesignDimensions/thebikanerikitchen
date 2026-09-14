@@ -1,0 +1,304 @@
+/* First-visit introduction popup.
+ *
+ * The overlay is moved to <body> by the JS on init, so it is a child of the
+ * document rather than of the section's <div> inside <main>. Sections on this
+ * site get GSAP transforms applied to them, and a transformed ancestor turns
+ * position:fixed into position:absolute — which would let the backdrop scroll
+ * away with the page. Re-parenting avoids that class of bug entirely.
+ *
+ * `hidden` is the closed state (the attribute is on the markup from render, so
+ * the popup never flashes before the JS runs). [hidden] gets display:none from
+ * the UA sheet, which `display:flex` here would override, hence the explicit
+ * !important rule at the bottom.
+ */
+.custom-intro-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.custom-intro-popup__dialog {
+  position: relative;
+  display: flex;
+  /* Content column left, media right — the DOM order is media-then-content so
+     that plain `column` gives the mobile stacking (image above text) with no
+     reversal, and the tab order still runs heading → body → buttons. */
+  flex-direction: row-reverse;
+  width: 864px;
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 4px;
+  background: #570f13;
+}
+
+/* ---- Media ---- */
+
+.custom-intro-popup__media {
+  position: relative;
+  flex: 1 1 50%;
+  min-width: 0;
+  overflow: hidden;
+  background: #570f13;
+}
+
+/* The design's 504px dialog height comes from this column's 432:504 crop, not
+   from the text beside it (which only runs to ~446px). `aspect-ratio` on the
+   column itself would do nothing: as a stretched flex item its height is taken
+   from the flex line. A ratio-sized spacer instead sets the column's
+   *content* height, which is what the line measures — so the line becomes 504
+   and the text column stretches to meet it. Longer copy still wins: if the
+   text ever exceeds the ratio, the line grows and the image stretches with it
+   rather than leaving a maroon gap below itself. */
+.custom-intro-popup__media::before {
+  content: '';
+  display: block;
+  aspect-ratio: 432 / 504;
+}
+
+.custom-intro-popup__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  /* The design crops this frame hard to the right and just below centre —
+     that is what keeps the held tin and the two Paraat tins in shot. */
+  object-fit: cover;
+  object-position: 100% 57%;
+}
+
+/* ---- Close ---- */
+
+.custom-intro-popup__close {
+  position: absolute;
+  /* Offsets are (design inset − padding) so the glyph itself lands 48px from
+     the dialog's top/right while the button keeps a comfortable hit area. */
+  top: 34px;
+  right: 34px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  border: 0;
+  background: none;
+  color: #fffdee;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.custom-intro-popup__close:hover {
+  opacity: 0.7;
+}
+
+.custom-intro-popup__close:focus-visible {
+  outline: 2px solid #fffdee;
+  outline-offset: -2px;
+}
+
+.custom-intro-popup__close-icon {
+  display: block;
+  width: 26px;
+  height: auto;
+}
+
+/* ---- Content ---- */
+
+.custom-intro-popup__content {
+  display: flex;
+  flex: 1 1 50%;
+  min-width: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+  padding: 48px;
+}
+
+.custom-intro-popup__text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.custom-intro-popup__heading {
+  margin: 0;
+  color: #fffdee;
+  font-family: var(--font-family-display);
+  font-size: var(--font-intro-popup-heading-size);
+  font-weight: var(--font-intro-popup-heading-weight);
+  line-height: var(--font-intro-popup-heading-line-height);
+  letter-spacing: var(--font-intro-popup-heading-letter-spacing);
+}
+
+.custom-intro-popup__body {
+  margin: 0;
+  color: #fffdee;
+  font-family: var(--font-family-body);
+  font-size: var(--font-intro-popup-body-size);
+  font-weight: var(--font-body-copy-weight);
+  line-height: var(--font-intro-popup-body-line-height);
+}
+
+/* ---- Buttons ---- */
+
+.custom-intro-popup__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.custom-intro-popup__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 41px;
+  padding: 6px 16px;
+  border: 1px solid transparent;
+  font-family: var(--font-family-body);
+  font-size: var(--font-intro-popup-cta-size);
+  font-weight: var(--font-body-copy-weight);
+  line-height: var(--font-intro-popup-cta-line-height);
+  letter-spacing: var(--font-intro-popup-cta-letter-spacing);
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.custom-intro-popup__cta--primary {
+  border-color: #fffdee;
+  background: #fffdee;
+  color: #570f13;
+}
+
+.custom-intro-popup__cta--secondary {
+  border-color: #fffdee;
+  background: transparent;
+  color: #fffdee;
+}
+
+/* The pair inverts on hover, so whichever button is hovered reads as the
+   filled one and the other as the outline. */
+.custom-intro-popup__cta--primary:hover {
+  background: transparent;
+  color: #fffdee;
+}
+
+.custom-intro-popup__cta--secondary:hover {
+  background: #fffdee;
+  color: #570f13;
+}
+
+.custom-intro-popup__cta:focus-visible {
+  outline: 2px solid #fffdee;
+  outline-offset: 2px;
+}
+
+/* ---- Mobile ---- */
+
+@media screen and (max-width: 749px) {
+  .custom-intro-popup {
+    padding: 16px;
+  }
+
+  .custom-intro-popup__dialog {
+    flex-direction: column;
+    gap: 24px;
+    width: 354px;
+    padding: 24px 12px;
+  }
+
+  .custom-intro-popup__media {
+    flex: 0 0 auto;
+    width: 100%;
+    aspect-ratio: 330 / 326;
+    /* Short phones would otherwise push the buttons below the fold; the image
+       gives up height first, and object-fit keeps the crop sensible. */
+    max-height: 38vh;
+  }
+
+  /* Stacked, so height is along the main axis and the ratio can sit on the
+     column itself — the desktop spacer would fight it. */
+  .custom-intro-popup__media::before {
+    display: none;
+  }
+
+  .custom-intro-popup__image {
+    object-position: 79% 51%;
+  }
+
+  .custom-intro-popup__close {
+    top: 12px;
+    right: 0;
+    padding: 12px;
+  }
+
+  .custom-intro-popup__close-icon {
+    width: 13px;
+  }
+
+  .custom-intro-popup__content {
+    flex: 0 0 auto;
+    gap: 16px;
+    padding: 0;
+    text-align: center;
+  }
+
+  .custom-intro-popup__heading {
+    font-size: var(--font-intro-popup-heading-size-mobile);
+    line-height: var(--font-intro-popup-heading-line-height-mobile);
+    letter-spacing: var(--font-intro-popup-heading-letter-spacing-mobile);
+  }
+
+  /* The heading's forced break is a desktop-only line split; on mobile the
+     single sentence wraps on its own. */
+  .custom-intro-popup__break {
+    display: none;
+  }
+
+  .custom-intro-popup__body {
+    font-size: var(--font-intro-popup-body-size-mobile);
+    line-height: var(--font-intro-popup-body-line-height-mobile);
+    letter-spacing: var(--font-intro-popup-body-letter-spacing-mobile);
+  }
+
+  .custom-intro-popup__actions {
+    gap: 16px;
+  }
+
+  .custom-intro-popup__cta--primary {
+    border-color: #570f13;
+  }
+}
+
+/* Between the mobile breakpoint and the dialog's natural 864px, the two
+   columns would squeeze the 40px heading into a very narrow measure — scale
+   the type down with the box rather than letting it wrap awkwardly. */
+@media screen and (min-width: 750px) and (max-width: 900px) {
+  .custom-intro-popup__content {
+    padding: 32px;
+  }
+
+  .custom-intro-popup__heading {
+    font-size: 32px;
+    line-height: 44px;
+  }
+
+  .custom-intro-popup__body {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+
+/* Beats the UA sheet's [hidden] rule being overridden by display:flex above. */
+.custom-intro-popup[hidden] {
+  display: none !important;
+}
