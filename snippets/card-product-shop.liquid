@@ -18,6 +18,11 @@
   if card_product.tags contains 'bestseller'
     assign is_bestseller = true
   endif
+
+  # Every image on the product, so the card can slide through them. Videos and
+  # 3D models are filtered out: this is a flat image track, not a media player.
+  assign card_media = card_product.media | where: 'media_type', 'image'
+  assign media_count = card_media.size
 -%}
 
 {%- comment -%}
@@ -55,29 +60,69 @@
 
 <product-component class="shop-card-wrapper" view-event-payload="{{ card_product | standard_event_data: 'view', context: 'collection' | escape }}">
   <div class="shop-card">
-    <a href="{{ card_product.url }}" class="shop-card__media" tabindex="-1" aria-hidden="true">
-      {%- if card_product.featured_media -%}
-        <img
-          srcset="
-            {%- if card_product.featured_media.width >= 360 -%}{{ card_product.featured_media | image_url: width: 360 }} 360w,{%- endif -%}
-            {%- if card_product.featured_media.width >= 533 -%}{{ card_product.featured_media | image_url: width: 533 }} 533w,{%- endif -%}
-            {%- if card_product.featured_media.width >= 720 -%}{{ card_product.featured_media | image_url: width: 720 }} 720w,{%- endif -%}
-            {{ card_product.featured_media | image_url }} {{ card_product.featured_media.width }}w
-          "
-          src="{{ card_product.featured_media | image_url: width: 533 }}"
-          sizes="(min-width: 750px) 40vw, 90vw"
-          alt="{{ card_product.featured_media.alt | escape }}"
-          class="shop-card__image"
-          {% unless lazy_load == false %}
-            loading="lazy"
-          {% endunless %}
-          width="{{ card_product.featured_media.width }}"
-          height="{{ card_product.featured_media.height }}"
+    {%- comment -%}
+      The link keeps the .shop-card__media class and stays the slide container,
+      because wishlist.js rebuilds cards client-side and looks that class up by
+      name to set the href. The arrows sit OUTSIDE it — partly so a click on one
+      doesn't navigate to the product, partly because the link is aria-hidden
+      and the arrows must stay reachable.
+    {%- endcomment -%}
+    <div class="shop-card__media-wrap">
+      <a
+        href="{{ card_product.url }}"
+        class="shop-card__media{% if media_count > 1 %} shop-card__media--slider{% endif %}"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        {%- if media_count > 0 -%}
+          <div class="shop-card__track" data-shop-card-track style="--shop-card-index: 0;">
+            {%- for media in card_media -%}
+              <img
+                srcset="
+                  {%- if media.preview_image.width >= 360 -%}{{ media.preview_image | image_url: width: 360 }} 360w,{%- endif -%}
+                  {%- if media.preview_image.width >= 533 -%}{{ media.preview_image | image_url: width: 533 }} 533w,{%- endif -%}
+                  {%- if media.preview_image.width >= 720 -%}{{ media.preview_image | image_url: width: 720 }} 720w,{%- endif -%}
+                  {{ media.preview_image | image_url }} {{ media.preview_image.width }}w
+                "
+                src="{{ media.preview_image | image_url: width: 533 }}"
+                sizes="(min-width: 750px) 40vw, 90vw"
+                alt="{{ media.alt | escape }}"
+                class="shop-card__image"
+                {% if forloop.first %}
+                  {% unless lazy_load == false %}loading="lazy"{% endunless %}
+                {% else %}
+                  loading="lazy"
+                {% endif %}
+                decoding="async"
+                width="{{ media.preview_image.width }}"
+                height="{{ media.preview_image.height }}"
+              >
+            {%- endfor -%}
+          </div>
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'shop-card__image placeholder-svg' }}
+        {%- endif -%}
+      </a>
+
+      {%- if media_count > 1 -%}
+        <button
+          type="button"
+          class="shop-card__nav shop-card__nav--prev"
+          data-shop-card-nav="-1"
+          aria-label="{{ 'general.slider.previous_slide' | t }}"
         >
-      {%- else -%}
-        {{ 'product-1' | placeholder_svg_tag: 'shop-card__image placeholder-svg' }}
+          <span class="shop-card__nav-icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+        </button>
+        <button
+          type="button"
+          class="shop-card__nav shop-card__nav--next"
+          data-shop-card-nav="1"
+          aria-label="{{ 'general.slider.next_slide' | t }}"
+        >
+          <span class="shop-card__nav-icon">{{- 'icon-caret.svg' | inline_asset_content -}}</span>
+        </button>
       {%- endif -%}
-    </a>
+    </div>
 
     {%- if card_product.tags contains 'bestseller' -%}
       <span class="shop-card__badge">Bestseller</span>
