@@ -42,34 +42,51 @@
         data-custom-intro-popup-close
         aria-label="{{ 'accessibility.close' | t }}"
       >
-        <svg class="custom-intro-popup__close-icon" viewBox="0 0 28.0722 25.4583" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1.00001 24.4583L27.0722 1.00001M1.00001 1.00001L27.0722 24.4583" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <svg class="custom-intro-popup__close-icon" viewBox="0 0 14.5 13.5" fill="none" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0.750004 12.75L13.75 0.750004M0.750004 0.750004L13.75 12.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
       </button>
 
       <div class="custom-intro-popup__media">
         {%- if section.settings.image != blank -%}
           {%- comment -%}
+            Both images arrive already cropped to their frame (864x1008 and
+            660x652, exactly 2x the design's windows), so nothing here re-crops
+            them — the CSS just fills the frame, which is the same ratio.
+
             Eager, despite being off-screen: the overlay starts at display:none,
             and browsers don't fetch lazy images inside a hidden box — the photo
             would only start downloading as the popup opened, and pop in late.
             fetchpriority=low keeps it out of the way of the banner's LCP.
           {%- endcomment -%}
-          <img
-            class="custom-intro-popup__image"
-            src="{{ section.settings.image | image_url: width: 900 }}"
-            srcset="
-              {{ section.settings.image | image_url: width: 432 }} 432w,
-              {{ section.settings.image | image_url: width: 660 }} 660w,
-              {{ section.settings.image | image_url: width: 900 }} 900w
-            "
-            sizes="(max-width: 749px) 100vw, 432px"
-            width="{{ section.settings.image.width }}"
-            height="{{ section.settings.image.height }}"
-            alt="{{ section.settings.image.alt | escape }}"
-            loading="eager"
-            fetchpriority="low"
-          >
+          <picture class="custom-intro-popup__picture">
+            {%- if section.settings.image_mobile != blank -%}
+              <source
+                media="(max-width: 749px)"
+                srcset="
+                  {{ section.settings.image_mobile | image_url: width: 330 }} 330w,
+                  {{ section.settings.image_mobile | image_url: width: 660 }} 660w
+                "
+                sizes="330px"
+                width="{{ section.settings.image_mobile.width }}"
+                height="{{ section.settings.image_mobile.height }}"
+              >
+            {%- endif -%}
+            <img
+              class="custom-intro-popup__image"
+              src="{{ section.settings.image | image_url: width: 864 }}"
+              srcset="
+                {{ section.settings.image | image_url: width: 432 }} 432w,
+                {{ section.settings.image | image_url: width: 864 }} 864w
+              "
+              sizes="432px"
+              width="{{ section.settings.image.width }}"
+              height="{{ section.settings.image.height }}"
+              alt="{{ section.settings.image.alt | escape }}"
+              loading="eager"
+              fetchpriority="low"
+            >
+          </picture>
         {%- endif -%}
       </div>
 
@@ -166,7 +183,14 @@
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image"
+      "label": "Image (desktop)",
+      "info": "Shown at 432×504, so supply it already cropped at that ratio — it is not cropped again."
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Image (mobile)",
+      "info": "Shown at 330×326. Falls back to the desktop image, which would letterbox — supply this one."
     },
     {
       "type": "header",
