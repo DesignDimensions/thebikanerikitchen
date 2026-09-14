@@ -67,26 +67,18 @@
         "heading": "<p>From <em>the </em>royal Kitchen to <em>your </em>Celebrations</p>"
       }
     },
-    "custom_images_grid_carousal_NcW3di": {
+    "custom_images_grid_carousal_dNeKD6": {
       "type": "custom-images-grid_carousal",
       "blocks": {
-        "image_wEcfkY": {
+        "image_4caUPm": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_9.png",
+            "desktop_image": "shopify://shop_images/Frame_12.png",
             "link": "",
             "open_in_new_tab": false
           }
         },
-        "image_hkamY4": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_10.png",
-            "link": "",
-            "open_in_new_tab": false
-          }
-        },
-        "image_kmDp4R": {
+        "image_a3RrcW": {
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_11.png",
@@ -94,7 +86,15 @@
             "open_in_new_tab": false
           }
         },
-        "image_9BqfUK": {
+        "image_wgXjga": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_10.png",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "image_hYt9AM": {
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_8.png",
@@ -104,10 +104,10 @@
         }
       },
       "block_order": [
-        "image_wEcfkY",
-        "image_hkamY4",
-        "image_kmDp4R",
-        "image_9BqfUK"
+        "image_4caUPm",
+        "image_a3RrcW",
+        "image_wgXjga",
+        "image_hYt9AM"
       ],
       "name": "Custom Image Carousel",
       "settings": {
@@ -130,7 +130,7 @@
     "blog_listing_header",
     "blog_listing_grid",
     "custom_banner_text_JgCy7f",
-    "custom_images_grid_carousal_NcW3di",
+    "custom_images_grid_carousal_dNeKD6",
     "custom_bg_heading_xfjNxk"
   ]
 }
