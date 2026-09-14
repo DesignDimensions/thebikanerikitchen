@@ -16,6 +16,13 @@
   assign image_1 = article.metafields.custom.image_1.value
   assign image_1_alt = image_1.alt | default: article.title | escape
 
+  # Optional portrait crops for phones. Both are supplied already cropped to
+  # their frame, so nothing re-crops them here — the <picture> just swaps which
+  # file loads. Left blank (as on every archive story) the desktop image is
+  # used at all widths, exactly as before.
+  assign hero_image_mobile = article.metafields.custom.hero_image_mobile.value
+  assign image_1_mobile = article.metafields.custom.image_1_mobile.value
+
   assign quote_intro = article.metafields.custom.quote_intro
   assign quote_text = article.metafields.custom.quote_text
 
@@ -44,17 +51,34 @@
           <source src="{{ hero_video_source.url }}" type="{{ hero_video_source.mime_type }}">
         </video>
       {%- elsif hero_image -%}
-        {{
-          hero_image
-          | image_url: width: 2600
-          | image_tag:
-            class: 'archive-article__hero-media',
-            alt: hero_alt,
-            loading: 'eager',
-            fetchpriority: 'high',
-            sizes: '100vw',
-            widths: '750, 1100, 1500, 2000, 2600'
-        }}
+        <picture class="archive-article__hero-picture">
+          {%- if hero_image_mobile != blank -%}
+            <source
+              media="(max-width: 749px)"
+              srcset="
+                {{ hero_image_mobile | image_url: width: 402 }} 402w,
+                {{ hero_image_mobile | image_url: width: 804 }} 804w,
+                {{ hero_image_mobile | image_url: width: 1206 }} 1206w
+              "
+              sizes="100vw"
+            >
+          {%- endif -%}
+          <img
+            class="archive-article__hero-media"
+            src="{{ hero_image | image_url: width: 2600 }}"
+            srcset="
+              {{ hero_image | image_url: width: 750 }} 750w,
+              {{ hero_image | image_url: width: 1100 }} 1100w,
+              {{ hero_image | image_url: width: 1500 }} 1500w,
+              {{ hero_image | image_url: width: 2000 }} 2000w,
+              {{ hero_image | image_url: width: 2600 }} 2600w
+            "
+            sizes="100vw"
+            alt="{{ hero_alt }}"
+            loading="eager"
+            fetchpriority="high"
+          >
+        </picture>
       {%- elsif article.image -%}
         {{
           article.image
@@ -101,16 +125,32 @@
 
     {%- if image_1 != blank -%}
       <div class="archive-article__image page-width">
-        {{
-          image_1
-          | image_url: width: 2000
-          | image_tag:
-            class: 'archive-article__image-media',
-            alt: image_1_alt,
-            loading: 'lazy',
-            sizes: '(min-width: 750px) calc(100vw - 10rem), 100vw',
-            widths: '750, 1100, 1500, 2000'
-        }}
+        <picture class="archive-article__image-picture">
+          {%- if image_1_mobile != blank -%}
+            <source
+              media="(max-width: 749px)"
+              srcset="
+                {{ image_1_mobile | image_url: width: 354 }} 354w,
+                {{ image_1_mobile | image_url: width: 708 }} 708w,
+                {{ image_1_mobile | image_url: width: 1062 }} 1062w
+              "
+              sizes="100vw"
+            >
+          {%- endif -%}
+          <img
+            class="archive-article__image-media"
+            src="{{ image_1 | image_url: width: 2000 }}"
+            srcset="
+              {{ image_1 | image_url: width: 750 }} 750w,
+              {{ image_1 | image_url: width: 1100 }} 1100w,
+              {{ image_1 | image_url: width: 1500 }} 1500w,
+              {{ image_1 | image_url: width: 2000 }} 2000w
+            "
+            sizes="(min-width: 750px) calc(100vw - 10rem), 100vw"
+            alt="{{ image_1_alt }}"
+            loading="lazy"
+          >
+        </picture>
       </div>
     {%- endif -%}
 

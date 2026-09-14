@@ -38,6 +38,14 @@
   transform-origin: center center;
 }
 
+/* <picture> is an inline box and would otherwise sit in the flow between the
+   hero and its caption. It carries no styling of its own — the absolutely
+   positioned <img> inside keeps every rule above, including the parallax
+   transform archive-hero-parallax.js applies to .archive-article__hero-media. */
+.archive-article__hero-picture {
+  display: contents;
+}
+
 /* Darkens as the content sheet rises to cover the hero; opacity is driven by
    scroll progress in archive-hero-parallax.js. */
 .archive-article__hero-veil {
@@ -209,6 +217,10 @@
 }
 
 /* Single full width image */
+.archive-article__image-picture {
+  display: contents;
+}
+
 .archive-article__image-media {
   display: block;
   width: 100%;
