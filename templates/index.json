@@ -103,8 +103,8 @@
         "reverse_layout": true,
         "featured_product": "handmade-bhujia",
         "bg_left_color": "#570f13",
-        "bg_right_image": "shopify://shop_images/Codex_Image_Sep_11_2026_05_51_49_PM.png",
-        "bg_right_image_mobile": "shopify://shop_images/Codex_Image_Sep_11_2026_05_51_49_PM.png",
+        "bg_right_image": "shopify://shop_images/Frame_4_77881c9d-3024-4964-9e21-b704c7fe1794.png",
+        "bg_right_image_mobile": "shopify://shop_images/Frame_4_77881c9d-3024-4964-9e21-b704c7fe1794.png",
         "featured-product-left-bg": "shopify://shop_images/Frame_1321319393_3.jpg",
         "top_left_caption": "our classic",
         "heading": "Handmade Bhujia",
@@ -185,15 +185,7 @@
         "image_hUxcYN": {
           "type": "image",
           "settings": {
-            "desktop_image": "shopify://shop_images/Frame_9.png",
-            "link": "",
-            "open_in_new_tab": false
-          }
-        },
-        "image_RNaA8A": {
-          "type": "image",
-          "settings": {
-            "desktop_image": "shopify://shop_images/Frame_10.png",
+            "desktop_image": "shopify://shop_images/Frame_12.png",
             "link": "",
             "open_in_new_tab": false
           }
@@ -202,6 +194,14 @@
           "type": "image",
           "settings": {
             "desktop_image": "shopify://shop_images/Frame_11.png",
+            "link": "",
+            "open_in_new_tab": false
+          }
+        },
+        "image_RNaA8A": {
+          "type": "image",
+          "settings": {
+            "desktop_image": "shopify://shop_images/Frame_10.png",
             "link": "",
             "open_in_new_tab": false
           }
@@ -217,8 +217,8 @@
       },
       "block_order": [
         "image_hUxcYN",
-        "image_RNaA8A",
         "image_fnmVPi",
+        "image_RNaA8A",
         "image_Q8mn7i"
       ],
       "name": "Custom Image Carousel",
@@ -232,7 +232,7 @@
         "slide_7xGQwy": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_46.jpg",
+            "image": "shopify://shop_images/Frame_46.png",
             "tag_1": "CULTURE",
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
@@ -246,7 +246,7 @@
         "slide_amw3Ht": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_46.jpg",
+            "image": "shopify://shop_images/Frame_46_1.png",
             "tag_1": "CULTURE",
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
@@ -260,7 +260,7 @@
         "slide_U3kqPV": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_46.jpg",
+            "image": "shopify://shop_images/Frame_54.png",
             "tag_1": "CULTURE",
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
@@ -274,7 +274,7 @@
         "slide_4LjnHX": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_46.jpg",
+            "image": "shopify://shop_images/Frame_46_2.png",
             "tag_1": "CULTURE",
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
@@ -288,7 +288,7 @@
         "slide_KtFEnP": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_46.jpg",
+            "image": "shopify://shop_images/Frame_55.png",
             "tag_1": "CULTURE",
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",

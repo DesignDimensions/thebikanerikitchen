@@ -20,7 +20,9 @@
     "page_top_banner_JWFV3E": {
       "type": "page-top_banner",
       "name": "Page Top Banner",
-      "settings": {}
+      "settings": {
+        "media_type": "image"
+      }
     },
     "custom_story_text_intro": {
       "type": "custom-story-text",
@@ -35,8 +37,8 @@
       "type": "custom-inset-image",
       "name": "Custom Inset Image",
       "settings": {
-        "image": "shopify://shop_images/Frame_1321319356.jpg",
-        "image_mobile": "shopify://shop_images/Frame_1321319356.jpg"
+        "image": "shopify://shop_images/tbk-about-inset-1-desktop.png",
+        "image_mobile": "shopify://shop_images/tbk-about-inset-1-mobile.png"
       }
     },
     "custom_story_text_places": {
@@ -52,8 +54,8 @@
       "type": "custom-inset-image",
       "name": "Custom Inset Image",
       "settings": {
-        "image": "shopify://shop_images/Wireframe_-_7.jpg",
-        "image_mobile": "shopify://shop_images/Wireframe_-_7.jpg"
+        "image": "shopify://shop_images/tbk-about-inset-2-desktop.png",
+        "image_mobile": "shopify://shop_images/tbk-about-inset-2-mobile.png"
       }
     },
     "custom_practices_main": {
@@ -106,8 +108,8 @@
       "settings": {
         "heading": "We are not historians.\nWe are practitioners.",
         "body": "<p>Our responsibility is not to recreate nostalgia. It is to preserve methods whose value continues to reveal itself with time. Every batch is an opportunity to ask a simple question: Has anything unnecessary changed? If the answer is yes - we begin again.</p>",
-        "image": "shopify://shop_images/Frame_1321319356.jpg",
-        "image_mobile": "shopify://shop_images/Frame_1321319356.jpg",
+        "image": "shopify://shop_images/tbk-about-practices-desktop.png",
+        "image_mobile": "shopify://shop_images/tbk-about-practices-mobile.png",
         "background_color": "#fffdee"
       }
     },

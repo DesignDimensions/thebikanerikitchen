@@ -20,7 +20,9 @@
     "page_top_banner_8XrMf7": {
       "type": "page-top_banner",
       "name": "Page Top Banner",
-      "settings": {}
+      "settings": {
+        "media_type": "image"
+      }
     },
     "blog_listing_header_cdQy3z": {
       "type": "blog-listing-header",
