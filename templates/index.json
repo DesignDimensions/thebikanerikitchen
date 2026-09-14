@@ -231,6 +231,7 @@
       "blocks": {
         "slide_7xGQwy": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Frame_46.png",
             "tag_1": "CULTURE",
@@ -245,6 +246,7 @@
         },
         "slide_amw3Ht": {
           "type": "slide",
+          "disabled": true,
           "settings": {
             "image": "shopify://shop_images/Frame_46_1.png",
             "tag_1": "CULTURE",
