@@ -37,8 +37,8 @@
       "type": "custom-inset-image",
       "name": "Custom Inset Image",
       "settings": {
-        "image": "shopify://shop_images/tbk-about-inset-1-desktop.png",
-        "image_mobile": "shopify://shop_images/tbk-about-inset-1-mobile.png"
+        "image": "shopify://shop_images/tbk-about-inset-1-desktop-v2.png",
+        "image_mobile": "shopify://shop_images/tbk-about-inset-1-mobile-v2.png"
       }
     },
     "custom_story_text_places": {
@@ -54,8 +54,8 @@
       "type": "custom-inset-image",
       "name": "Custom Inset Image",
       "settings": {
-        "image": "shopify://shop_images/tbk-about-inset-2-desktop.png",
-        "image_mobile": "shopify://shop_images/tbk-about-inset-2-mobile.png"
+        "image": "shopify://shop_images/tbk-about-inset-2-desktop-v2.png",
+        "image_mobile": "shopify://shop_images/tbk-about-inset-2-mobile-v2.png"
       }
     },
     "custom_practices_main": {
@@ -108,8 +108,8 @@
       "settings": {
         "heading": "We are not historians.\nWe are practitioners.",
         "body": "<p>Our responsibility is not to recreate nostalgia. It is to preserve methods whose value continues to reveal itself with time. Every batch is an opportunity to ask a simple question: Has anything unnecessary changed? If the answer is yes - we begin again.</p>",
-        "image": "shopify://shop_images/tbk-about-practices-desktop.png",
-        "image_mobile": "shopify://shop_images/tbk-about-practices-mobile.png",
+        "image": "shopify://shop_images/tbk-about-practices-desktop-v2.png",
+        "image_mobile": "shopify://shop_images/tbk-about-practices-mobile-v2.png",
         "background_color": "#fffdee"
       }
     },
@@ -123,6 +123,17 @@
         "eyebrow_color": "#FFFDEE",
         "heading_color": "#FFFDEE",
         "background_color": "#C0A959"
+      }
+    },
+    "custom_people_craft": {
+      "type": "custom-people-craft",
+      "name": "Custom People Craft",
+      "settings": {
+        "image": "shopify://shop_images/tbk-about-people-craft-frame.png",
+        "heading": "People Behind The Craft",
+        "text": "We have carried the taste of Bikaner with us all our lives. In our homes, our memories and around our tables. The Bikaneri Kitchen is our way of sharing what has always been ours with you.",
+        "text_color": "#FFFDEE",
+        "background_color": "#4A4A49"
       }
     },
     "custom_bg_heading_gwzayb": {
@@ -144,6 +155,7 @@
     "custom_inset_image_2",
     "custom_practices_main",
     "custom_highlight_banner_ambition",
+    "custom_people_craft",
     "custom_bg_heading_gwzayb"
   ]
 }

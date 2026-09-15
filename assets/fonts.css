@@ -129,6 +129,15 @@
   font-display: swap;
 }
 
+/* Caveat -- handwritten accent (variable, wght 400-700), about page note */
+@font-face {
+  font-family: 'Caveat';
+  src: url('{{ "Caveat-VariableFont_wght.ttf" | asset_url }}') format('truetype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Beaurencourt FY -- script accent, footer note */
 @font-face {
   font-family: 'Beaurencourt FY';

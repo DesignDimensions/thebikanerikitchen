@@ -22,8 +22,8 @@
       "name": "Custom Banner",
       "settings": {
         "media_type": "image",
-        "banner_image": "shopify://shop_images/Wireframe_-_4_2.jpg",
-        "mobile_banner_image": "shopify://shop_images/Frame_5_1.jpg"
+        "banner_image": "shopify://shop_images/Wireframe_-_4_3.png",
+        "mobile_banner_image": "shopify://shop_images/Frame_1321317942_1.png"
       }
     },
     "blog_listing_header": {

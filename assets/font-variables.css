@@ -30,6 +30,7 @@
    --font-family-wordmark: 'Aurum';
    --font-family-devanagari: 'Ouma Devanagari', serif;
    --font-family-script: 'Beaurencourt FY', cursive;
+   --font-family-handwritten: 'Caveat', cursive;
 
    /* 3a. Shared — Section heading (.section-heading / .clp-section-heading,
      custom-bg-heading; big Baskervville display heading reused sitewide) */
@@ -445,4 +446,14 @@
    --font-intro-popup-cta-size: var(--font-small-size);
    --font-intro-popup-cta-line-height: var(--font-small-line-height);
    --font-intro-popup-cta-letter-spacing: var(--font-small-letter-spacing);
+
+   /* ---- People behind the craft (about, custom-people-craft) ---- */
+   /* Handwritten note under the heading: Caveat Bold 24/32 with 2% tracking,
+     Figma node 2771:3423. The heading itself uses the shared section role. */
+   --font-people-craft-note-size: 24px;
+   --font-people-craft-note-line-height: 32px;
+   --font-people-craft-note-letter-spacing: 0.48px;
+   --font-people-craft-note-weight: 700;
+   --font-people-craft-note-size-mobile: 20px;
+   --font-people-craft-note-line-height-mobile: 28px;
 }

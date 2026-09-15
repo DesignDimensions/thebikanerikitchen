@@ -1,0 +1,115 @@
+.custom-people-craft {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: var(--people-craft-bg);
+  color: var(--people-craft-text);
+}
+
+.custom-people-craft-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+/* Figma's column is 616px, but the site's Baskervville sets wider than
+   Figma's Baskerville and the heading would wrap onto two lines there. */
+.custom-people-craft-content {
+  width: 100%;
+  max-width: 680px;
+  padding-top: 60px;
+}
+
+.custom-people-craft-heading {
+  color: inherit;
+  text-align: left;
+  max-width: none;
+  margin: 0 0 8px;
+}
+
+.custom-people-craft-note {
+  margin: 0;
+  font-family: var(--font-family-handwritten);
+  font-size: var(--font-people-craft-note-size);
+  line-height: var(--font-people-craft-note-line-height);
+  font-weight: 600;
+  letter-spacing: var(--font-people-craft-note-letter-spacing);
+}
+
+.custom-people-craft-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.custom-people-craft-img,
+.custom-people-craft-media .placeholder-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* The image is the Figma frame itself (1440x867, text hidden), so at the
+     frame's aspect it shows exactly the design. Where min-height forces extra
+     height, anchoring right keeps the standing figure's head clear of the
+     right-hand text column. */
+  object-position: 100% 0;
+}
+
+/* Height follows the frame's aspect (867/1440 = 60.21vw), so from ~1262px up
+   the frame shows uncropped. The 760px floor keeps the seated figure's head
+   below the text block at narrower desktops. Not aspect-ratio + min-height:
+   that pair transfers the min-height into a min-width and the section
+   overflows the viewport. */
+@media screen and (min-width: 990px) {
+  .custom-people-craft {
+    min-height: max(760px, 60.21vw);
+  }
+}
+
+@media screen and (max-width: 989px) {
+  .custom-people-craft-content {
+    max-width: none;
+    padding: 56px 0 8px;
+  }
+
+  .custom-people-craft-media {
+    position: relative;
+    inset: auto;
+    aspect-ratio: 1440 / 867;
+  }
+
+  /* Fades the photo's top edge into the text band so there's no hard seam. */
+  .custom-people-craft-media::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 1;
+    height: 22%;
+    background: linear-gradient(var(--people-craft-bg), transparent);
+    pointer-events: none;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .custom-people-craft-content {
+    padding: 40px 0 4px;
+  }
+
+  .custom-people-craft-note {
+    font-size: var(--font-people-craft-note-size-mobile);
+    line-height: var(--font-people-craft-note-line-height-mobile);
+  }
+
+  /* Narrow crop around the two figures (frame x 240-1330) so they don't
+     shrink to thumbnails. */
+  .custom-people-craft-media {
+    aspect-ratio: 1090 / 867;
+  }
+
+  .custom-people-craft-img {
+    object-position: 69% 0;
+  }
+}

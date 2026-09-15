@@ -1,0 +1,98 @@
+{{ 'custom-people-craft.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%}
+  Full-bleed photo with a heading and a handwritten (Caveat) note pinned to the
+  right edge of page-width. From 990px up the text overlays the photo's empty
+  top-right, as in the Figma frame; below that the photo is too small to hold
+  it without covering the people, so the text sits on a solid band above it.
+{%- endcomment -%}
+<div
+  class="custom-people-craft"
+  style="--people-craft-bg: {{ section.settings.background_color }}; --people-craft-text: {{ section.settings.text_color }};"
+>
+  <div class="page-width custom-people-craft-inner">
+    <div class="custom-people-craft-content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="section-heading custom-people-craft-heading">
+          {{- section.settings.heading | newline_to_br -}}
+        </h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="custom-people-craft-note">
+          {{- section.settings.text | newline_to_br -}}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="custom-people-craft-media">
+    {%- if section.settings.image != blank -%}
+      {{
+        section.settings.image
+        | image_url: width: 2400
+        | image_tag:
+          class: 'custom-people-craft-img',
+          widths: '450, 750, 1100, 1500, 1920, 2400',
+          sizes: '100vw',
+          loading: 'lazy',
+          alt: section.settings.image.alt
+      }}
+    {%- elsif request.design_mode -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'custom-people-craft-img placeholder-svg' }}
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom People Craft",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image",
+      "info": "Keep the top-right of the photo clear: the text sits there on desktop."
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "People Behind The Craft",
+      "info": "Press Enter/Return to force a line break."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Handwritten note",
+      "default": "We have carried the taste of Bikaner with us all our lives. In our homes, our memories and around our tables. The Bikaneri Kitchen is our way of sharing what has always been ours with you."
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#FFFDEE"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background color",
+      "info": "Shows behind the text on tablet and mobile, where it sits above the photo. Match the photo's top edge (#4A4A49 for the founders photo).",
+      "default": "#4A4A49"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom People Craft"
+    }
+  ]
+}
+{% endschema %}

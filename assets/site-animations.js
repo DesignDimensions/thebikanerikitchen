@@ -632,6 +632,28 @@
     },
   });
 
+  /* ---- People behind the craft (about) ---- */
+  register('.custom-people-craft', {
+    prep(ctx) {
+      ctx.img = $('.custom-people-craft-img', ctx.root);
+      ctx.heading = prepHeading($('.custom-people-craft-heading', ctx.root));
+      ctx.note = prep([$('.custom-people-craft-note', ctx.root)], { autoAlpha: 0, y: -24 });
+      prep([ctx.img], { scale: 1.08 });
+    },
+    build(ctx) {
+      onEnter(
+        ctx.root,
+        () => {
+          const tl = gsap.timeline();
+          if (ctx.img) tl.to(ctx.img, { scale: 1, duration: 1.9, ease: 'expo.out' }, 0);
+          maskRise(tl, ctx.heading, 0.15);
+          fadeRise(tl, ctx.note, 0.45);
+        },
+        'top 80%'
+      );
+    },
+  });
+
   /* ---- Blog listing header (rituals, archives) ---- */
   register('.blog-listing-header', {
     prep(ctx) {
