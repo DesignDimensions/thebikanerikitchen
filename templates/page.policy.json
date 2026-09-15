@@ -34,6 +34,13 @@
             "link": "shopify://pages/terms-conditions"
           }
         },
+        "link_mKJttG": {
+          "type": "link",
+          "settings": {
+            "label": "Shipping Policy",
+            "link": "shopify://pages/shipping-policy"
+          }
+        },
         "link_xnVc8E": {
           "type": "link",
           "settings": {
@@ -45,6 +52,7 @@
       "block_order": [
         "link_CdmPjg",
         "link_T8dXGi",
+        "link_mKJttG",
         "link_xnVc8E"
       ],
       "settings": {
