@@ -2910,9 +2910,9 @@ details[open]>.header__submenu {
   text-decoration: none;
   color: rgba(var(--color-foreground), 0.75);
   text-transform: uppercase;
-  font-weight: var(--font-weight-medium);
+  font-weight: 400;
   font-style: normal;
-  font-size: var(--font-header-menu-item-size);
+  font-size: 16px;
   letter-spacing: var(--font-header-menu-item-letter-spacing);
 }
 
