@@ -13,12 +13,6 @@ if (!customElements.get('media-gallery')) {
         if (!this.elements.thumbnails) return;
 
         this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
-        // On desktop thumbnail layouts the viewer shows only the active item, so
-        // there is nothing for slider-component to scroll. Catch the arrow clicks
-        // on the way down (capture) and step through the media instead.
-        this.elements.viewer.addEventListener('click', this.onDesktopArrowClick.bind(this), true);
-        this.mql.addEventListener('change', this.updateDesktopArrows.bind(this));
-        this.updateDesktopArrows();
         this.elements.thumbnails.querySelectorAll('[data-target]').forEach((mediaToSwitch) => {
           mediaToSwitch
             .querySelector('button')
@@ -45,7 +39,6 @@ if (!customElements.get('media-gallery')) {
           element.classList.remove('is-active');
         });
         activeMedia?.classList?.add('is-active');
-        this.updateDesktopArrows();
 
         if (prepend) {
           activeMedia.parentElement.firstChild !== activeMedia && activeMedia.parentElement.prepend(activeMedia);
@@ -75,38 +68,6 @@ if (!customElements.get('media-gallery')) {
         const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
         this.setActiveThumbnail(activeThumbnail);
         this.announceLiveRegion(activeMedia, activeThumbnail.dataset.mediaPosition);
-      }
-
-      usesDesktopArrows() {
-        return this.mql.matches && this.dataset.desktopLayout.includes('thumbnail');
-      }
-
-      getViewerItems() {
-        return Array.from(this.elements.viewer.querySelectorAll('.product__media-item[data-media-id]'));
-      }
-
-      onDesktopArrowClick(event) {
-        const button = event.target.closest('.slider-buttons .slider-button');
-        if (!button || !this.usesDesktopArrows()) return;
-        event.preventDefault();
-        event.stopPropagation();
-
-        const items = this.getViewerItems();
-        const current = items.findIndex((item) => item.classList.contains('is-active'));
-        const target = items[current + (button.name === 'next' ? 1 : -1)];
-        if (target) this.setActiveMedia(target.dataset.mediaId, false);
-      }
-
-      updateDesktopArrows() {
-        if (!this.usesDesktopArrows()) return;
-        const prev = this.elements.viewer.querySelector('.slider-buttons button[name="previous"]');
-        const next = this.elements.viewer.querySelector('.slider-buttons button[name="next"]');
-        if (!prev || !next) return;
-
-        const items = this.getViewerItems();
-        const current = items.findIndex((item) => item.classList.contains('is-active'));
-        prev.toggleAttribute('disabled', current <= 0);
-        next.toggleAttribute('disabled', current === -1 || current >= items.length - 1);
       }
 
       setActiveThumbnail(thumbnail) {
