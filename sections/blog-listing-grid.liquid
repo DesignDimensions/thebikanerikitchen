@@ -45,14 +45,15 @@
               assign global_index = paginate.current_offset | plus: forloop.index
               assign padded_index = '00' | append: global_index | slice: -3, 3
 
-              # The card shows the same image that opens the post — its hero
-              # metafield — rather than the article's own featured image, which
-              # stays as the fallback for posts that have no hero set.
-              # Always the desktop hero, at every width: the portrait mobile
-              # hero is framed for a full-bleed phone screen and cropped badly
-              # inside these much smaller cards. The desktop frame centre-cropped
-              # holds up at both sizes.
-              assign card_image = article.metafields.custom.hero_image.value | default: article.image
+              # card_image / card_image_mobile are 2x exports of the Figma card
+              # frames (text and icons hidden), so a post that has them shows the
+              # designed cover as-is. Without them the card falls back to the
+              # desktop hero, then the featured image, centre-cropped. The mobile
+              # hero is never used here: it is framed for a full-bleed phone
+              # screen and crops badly inside these smaller cards.
+              assign designed_card_image = article.metafields.custom.card_image.value
+              assign card_image_mobile = article.metafields.custom.card_image_mobile.value
+              assign card_image = designed_card_image | default: article.metafields.custom.hero_image.value | default: article.image
               assign card_alt = card_image.alt | default: article.title | escape
             -%}
             <div
@@ -65,26 +66,42 @@
               <a href="{{ article.url }}" class="blog-listing-grid-item-link">
                 <div class="blog-listing-grid-item-media">
                   {%- if card_image != blank -%}
-                    <img
-                      class="blog-listing-grid-item-image"
-                      src="{{ card_image | image_url: width: 1600 }}"
-                      srcset="
-                        {{ card_image | image_url: width: 375 }} 375w,
-                        {{ card_image | image_url: width: 550 }} 550w,
-                        {{ card_image | image_url: width: 750 }} 750w,
-                        {{ card_image | image_url: width: 1100 }} 1100w,
-                        {{ card_image | image_url: width: 1500 }} 1500w,
-                        {{ card_image | image_url: width: 2000 }} 2000w
-                      "
-                      sizes="(min-width: 750px) 70vw, 100vw"
-                      alt="{{ card_alt }}"
-                      loading="lazy"
-                    >
+                    <picture>
+                      {%- if card_image_mobile != blank -%}
+                        <source
+                          media="(max-width: 749px)"
+                          srcset="
+                            {{ card_image_mobile | image_url: width: 354 }} 354w,
+                            {{ card_image_mobile | image_url: width: 708 }} 708w
+                          "
+                          sizes="100vw"
+                        >
+                      {%- endif -%}
+                      <img
+                        class="blog-listing-grid-item-image"
+                        src="{{ card_image | image_url: width: 1600 }}"
+                        srcset="
+                          {{ card_image | image_url: width: 375 }} 375w,
+                          {{ card_image | image_url: width: 550 }} 550w,
+                          {{ card_image | image_url: width: 750 }} 750w,
+                          {{ card_image | image_url: width: 1100 }} 1100w,
+                          {{ card_image | image_url: width: 1500 }} 1500w,
+                          {{ card_image | image_url: width: 2000 }} 2000w,
+                          {{ card_image | image_url: width: 2560 }} 2560w
+                        "
+                        sizes="(min-width: 750px) 70vw, 100vw"
+                        alt="{{ card_alt }}"
+                        loading="lazy"
+                      >
+                    </picture>
                   {%- else -%}
                     {{ 'lifestyle-1' | placeholder_svg_tag: 'blog-listing-grid-item-image placeholder-svg' }}
                   {%- endif -%}
 
-                  <div class="blog-listing-grid-item-scrim"></div>
+                  {%- comment -%} The Figma card has no gradient; any tint is already baked into the export. {%- endcomment -%}
+                  {%- if designed_card_image == blank -%}
+                    <div class="blog-listing-grid-item-scrim"></div>
+                  {%- endif -%}
 
                   <div class="blog-listing-grid-item-text">
                     <p class="blog-listing-grid-item-index">{{ padded_index }}</p>
@@ -202,7 +219,7 @@
         },
         {
           "value": "alternating",
-          "label": "Two-column alternating (narrow/wide, wide/narrow)"
+          "label": "Rituals rhythm (narrow/wide, full-width)"
         }
       ],
       "default": "three_up"

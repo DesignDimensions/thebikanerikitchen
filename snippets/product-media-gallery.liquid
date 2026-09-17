@@ -125,7 +125,7 @@
         {%- endunless -%}
       {%- endfor -%}
     </ul>
-    <div class="slider-buttons quick-add-hidden{% if hide_mobile_slider %} small-hide{% endif %}">
+    <div class="slider-buttons quick-add-hidden{% if hide_mobile_slider %} small-hide{% endif %}{% if media_count < 2 or single_media_visible %} medium-hide large-up-hide{% endif %}">
       <button
         type="button"
         class="slider-button slider-button--prev"
