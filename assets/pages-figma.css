@@ -1,0 +1,179 @@
+/*
+ * About / Contact / Archives / Rituals — the home page's font language.
+ *
+ * Not a Figma board of their own: these four pages were asked to speak the
+ * same type language as the home page, in the equivalent places. The rule the
+ * owner set is three-way:
+ *
+ *   prose / paragraphs  -> Cormorant Garamond, at home's body size
+ *   labels, form fields -> Helvetica Neue (left exactly as they were)
+ *   CTAs, read-more     -> IBM Plex Serif, as home's BUY NOW
+ *
+ * Headings keep each page's OWN sizes and only take home's Baskervville
+ * Regular weight (they were Medium). Sizes were deliberately not moved onto
+ * home's 72/64/56 steps: these pages were not designed for them, and the
+ * contact heading in particular has its own 64/72 from its own Figma.
+ *
+ * Scope: body.figma-type-page, set in theme.liquid for exactly these four
+ * page suffixes, and this file is loaded only there. That matters because
+ * three sections in play also render on pages that must not change —
+ * custom-bg-heading (on 7 other templates), custom-inset-image (wishlist) and
+ * custom-audio-player (product). Never widen a selector here to a bare class.
+ *
+ * Proxima Nova A weights go through the --font-proxima-* aliases, never the
+ * generic --font-weight-* tokens: the theme's @font-face ladder is shifted one
+ * cut heavy. See font-variables.css section 2b.
+ *
+ * Desktop and mobile mirror the home split: >=990px takes home's desktop body
+ * role, <=749px takes home's mobile one. 750-989px is untouched, as on home.
+ */
+
+/* ===================================================================
+   Everything below is size-independent: family and weight only.
+   =================================================================== */
+
+/* -- Headings: Baskervville Regular, each page's own size kept ------- */
+body.figma-type-page .section-heading,
+body.figma-type-page .blog-listing-header-heading,
+body.figma-type-page .blog-listing-grid-title,
+body.figma-type-page .blog-listing-grid-item-title,
+body.figma-type-page .custom-bg-heading {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-home-heading-weight);
+}
+
+/* -- Eyebrows: Proxima Nova A at the corrected weight and tracking --- */
+body.figma-type-page .custom-highlight-banner-eyebrow,
+body.figma-type-page .blog-listing-grid-subtitle {
+  font-family: var(--font-family-label);
+  letter-spacing: var(--font-home-eyebrow-letter-spacing);
+  font-weight: var(--font-home-eyebrow-weight);
+  text-transform: uppercase;
+}
+
+/* -- CTAs: IBM Plex Serif, matching home's BUY NOW ------------------- */
+/* .blog-listing-header-toggle is the "Read more" link on the archive and
+   rituals listing headers; .contact-page__submit is the form's send button.
+   The toggle's label is a nested span, and the anchor is underlined, so the
+   family is set on both — a span does not inherit through an atomic inline
+   box, the same trap as the featured-product button on home. */
+body.figma-type-page .blog-listing-header-toggle,
+body.figma-type-page .blog-listing-header-toggle-label,
+body.figma-type-page .contact-page__submit {
+  font-family: var(--font-family-product-meta);
+  font-weight: var(--font-home-product-cta-weight);
+}
+
+/* The listing title sits immediately beside that "Read more" toggle on the
+   archive and rituals headers, and was asked to read as its twin: same
+   family, weight, size and leading. Its own Baskervville 24/36 at 400 is
+   replaced outright, so it is deliberately NOT in the headings group above.
+   Values are restated here rather than folded into the rule above, because
+   that rule also covers .contact-page__submit, which keeps its own size.
+   Desktop only — the title is display: none below 768px. */
+body.figma-type-page .blog-listing-header-title {
+  font-family: var(--font-family-product-meta);
+  font-weight: var(--font-home-product-cta-weight);
+  font-size: var(--font-cta-size);
+  line-height: 1;
+}
+
+/* -- The note under "People behind the craft" (about) ---------------- */
+/* It is no longer a handwritten accent, so it is not styled as its own thing:
+   it joins the prose group below and takes family, size, leading, tracking
+   and weight from it. Its old 24/32 at 600 in 2% tracking was tuned for
+   Caveat. Caveat is now unused on this page — --font-family-handwritten is
+   left defined for anything else that wants it.
+
+   The heading also sat only 8px above it, from the same era. Now that the note
+   reads as body copy it takes the 24px the highlight banner puts between its
+   heading and body, so the two sections breathe alike. */
+body.figma-type-page .custom-people-craft-heading {
+  margin-bottom: 24px;
+}
+
+/* -- Labels and form controls stay Helvetica Neue -------------------- */
+/* Restated rather than left implicit: the contact info pairs sit inside
+   blocks whose prose is being moved to the serif, and a future edit to the
+   prose rules could otherwise catch them. */
+body.figma-type-page .contact-page__info-head-label,
+body.figma-type-page .contact-page__info-head-value,
+body.figma-type-page .contact-page__field-input,
+body.figma-type-page .blog-listing-grid-item-index {
+  font-family: var(--font-family-body);
+}
+
+/* ===================================================================
+   Prose -> Cormorant Garamond. Family everywhere; size only at the two
+   breakpoints the home boards cover.
+   =================================================================== */
+
+body.figma-type-page .custom-people-craft-note,
+body.figma-type-page .custom-practices-row-label,
+body.figma-type-page .custom-story-text-body p,
+body.figma-type-page .custom-practices-body p,
+body.figma-type-page .custom-practices-row-description,
+body.figma-type-page .custom-highlight-banner-body p,
+body.figma-type-page .blog-listing-header-description p,
+body.figma-type-page .blog-listing-grid-description p,
+body.figma-type-page .contact-page__rich-text,
+body.figma-type-page .contact-page__intro {
+  font-family: var(--font-family-serif-body);
+}
+
+@media screen and (min-width: 990px) {
+  body.figma-type-page .custom-people-craft-note,
+  body.figma-type-page .custom-practices-row-label,
+  body.figma-type-page .custom-story-text-body p,
+  body.figma-type-page .custom-practices-body p,
+  body.figma-type-page .custom-practices-row-description,
+  body.figma-type-page .custom-highlight-banner-body p,
+  body.figma-type-page .blog-listing-header-description p,
+  body.figma-type-page .blog-listing-grid-description p,
+  body.figma-type-page .contact-page__rich-text,
+  body.figma-type-page .contact-page__intro {
+    font-size: var(--font-home-copy-size);
+    line-height: var(--font-home-copy-line-height);
+    letter-spacing: var(--font-home-copy-letter-spacing);
+    font-weight: var(--font-home-copy-weight);
+  }
+}
+
+@media screen and (max-width: 749px) {
+  body.figma-type-page .custom-people-craft-note,
+  body.figma-type-page .custom-practices-row-label,
+  body.figma-type-page .custom-story-text-body p,
+  body.figma-type-page .custom-practices-body p,
+  body.figma-type-page .custom-practices-row-description,
+  body.figma-type-page .custom-highlight-banner-body p,
+  body.figma-type-page .blog-listing-header-description p,
+  body.figma-type-page .blog-listing-grid-description p,
+  body.figma-type-page .contact-page__rich-text,
+  body.figma-type-page .contact-page__intro {
+    font-size: var(--font-home-m-copy-size);
+    line-height: var(--font-home-m-copy-line-height);
+    letter-spacing: var(--font-home-m-copy-letter-spacing);
+    font-weight: var(--font-home-m-copy-weight);
+  }
+}
+
+/* ===================================================================
+   Practices rows: the label is the one piece of prose that is not set
+   at the prose weight.
+   =================================================================== */
+
+/* The label/description pair is a deliberate heavy/light contrast, pushed to
+   the heaviest cut the face has.
+
+   NOT 900: Cormorant Garamond's variable axis runs 300-700, and Google Fonts
+   refuses a 900 request outright ("the requested font families are not
+   available"). A declared 900 would clamp to 700 and render exactly as this
+   does, so the real value is written instead of one the font cannot honour.
+   If a true 900 is wanted here it needs a different face.
+
+   Declared after the prose blocks on purpose: those set font-weight inside
+   media queries, so at equal specificity this has to come later in the file
+   to win at both breakpoints. */
+body.figma-type-page .custom-practices-row-label {
+  font-weight: var(--font-weight-bold);
+}

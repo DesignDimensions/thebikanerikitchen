@@ -93,7 +93,7 @@
       ],
       "name": "Custom Home Values",
       "settings": {
-        "section_heading": "Prepared with discipline that remains unchanged."
+        "section_heading": "Prepared with discipline that\nremains unchanged."
       }
     },
     "custom_featured_product_mrRVQp": {
@@ -262,7 +262,7 @@
         "slide_U3kqPV": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_54.png",
+            "image": "shopify://shop_images/tbk-rituals-3-i-had-only-come-for-tea.png",
             "tag_1": "CULTURE",
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
@@ -276,7 +276,7 @@
         "slide_4LjnHX": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_46_2.png",
+            "image": "shopify://shop_images/tbk-rituals-4-the-hour-between.png",
             "tag_1": "CULTURE",
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
@@ -290,7 +290,7 @@
         "slide_KtFEnP": {
           "type": "slide",
           "settings": {
-            "image": "shopify://shop_images/Frame_55_1.png",
+            "image": "shopify://shop_images/tbk-rituals-5-baithak.png",
             "tag_1": "CULTURE",
             "tag_2": "TECHNIQUES",
             "tag_3": "Traditions",
@@ -474,8 +474,8 @@
         "frequency": "once",
         "heading": "Welcome to\nThe Bikaneri Kitchen!",
         "body": "A place where preparations are crafted by hand and stories are preserved through time.",
-        "image": "shopify://shop_images/Frame_1321318114.png",
-        "image_mobile": "shopify://shop_images/Frame_1321318114_1.png",
+        "image": "shopify://shop_images/tbk-intro-popup-desktop.png",
+        "image_mobile": "shopify://shop_images/tbk-intro-popup-mobile.png",
         "cta_1_label": "Explore The Shop",
         "cta_1_link": "/collections/the-bhandaar",
         "cta_2_label": "Visit The Archive",

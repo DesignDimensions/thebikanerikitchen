@@ -3,15 +3,21 @@
 
   Accepts:
   - input_id: {String} Id for the search input element (required)
-  - popular_searches: {String} Newline-separated search shortcuts shown in the modal (optional)
 
   Usage:
-  {% render 'header-search', input_id: 'My-Id', popular_searches: section.settings.popular_searches %}
+  {% render 'header-search', input_id: 'My-Id' %}
 {% endcomment %}
 
-{% capture newline_char %}
-{% endcapture %}
-{%- assign popular_search_list = popular_searches | split: newline_char -%}
+{%- comment -%}
+  The shortcut list is the store's own catalogue, read live from
+  collections.all, rather than a typed-in list of terms. The old
+  section setting held free text and had already drifted from the
+  products it named, so new or renamed products silently never
+  appeared. Liquid caps an unpaginated collection loop at 50; that is
+  stated explicitly below so the ceiling is visible rather than a
+  surprise if the catalogue grows.
+{%- endcomment -%}
+{%- assign search_shortcut_products = collections.all.products -%}
 
 <details-modal class="header__search">
   <details>
@@ -100,17 +106,16 @@
           </search-form>
         {%- endif -%}
 
-        {%- if popular_search_list.size > 0 -%}
+        {%- if search_shortcut_products.size > 0 -%}
           <div class="search-modal__popular">
             <p class="search-modal__popular-label">Popular searches:</p>
             <ul class="search-modal__popular-list" role="list">
-              {%- for term in popular_search_list -%}
-                {%- assign term = term | strip -%}
-                {%- if term != blank -%}
-                  <li class="search-modal__popular-item">
-                    <a href="{{ routes.search_url }}?q={{ term | url_encode }}" class="search-modal__popular-link">{{ term }}</a>
-                  </li>
-                {%- endif -%}
+              {%- for product in search_shortcut_products limit: 50 -%}
+                <li class="search-modal__popular-item">
+                  <a href="{{ product.url }}" class="search-modal__popular-link">
+                    {{- product.title | escape -}}
+                  </a>
+                </li>
               {%- endfor -%}
             </ul>
           </div>

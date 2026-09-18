@@ -24,13 +24,42 @@
    --font-weight-regular: 400;
    --font-weight-medium: 500;
    --font-weight-semibold: 600;
+   --font-weight-bold: 700;
    --font-weight-extrabold: 800;
+
+   /* 2b. Proxima Nova A weights — USE THESE, not the generic tokens above,
+     on any 'Proxima Nova A' text.
+
+     The @font-face ladder in theme.liquid is shifted: each slot loads a file
+     one cut HEAVIER than its number claims. Verified from every file's OS/2
+     usWeightClass (ProximaNovaA-400.ttf is Semibold/600, -500 is Bold/700,
+     -600 is Extrabold/800, -700 is Black/900). So font-weight: 600 renders
+     Extrabold and 700 renders Black — which is why Figma's "Semibold" and
+     "Bold" eyebrows came out far too heavy when set with the generic tokens.
+
+     Correcting the ladder itself would silently re-weight every existing
+     Proxima usage on every page, so it is deliberately left alone and these
+     aliases carry the offset instead. A Figma "Proxima Nova Alt Semibold"
+     is --font-proxima-semibold (400 here), not --font-weight-semibold. */
+   --font-proxima-thin: 100;
+   --font-proxima-light: 200;
+   --font-proxima-regular: 300;
+   --font-proxima-semibold: 400;
+   --font-proxima-bold: 500;
+   --font-proxima-extrabold: 600;
+   --font-proxima-black: 700;
 
    /* 1b. Extra families used by a single component each */
    --font-family-wordmark: 'Aurum';
    --font-family-devanagari: 'Ouma Devanagari', serif;
    --font-family-script: 'Beaurencourt FY', cursive;
    --font-family-handwritten: 'Caveat', cursive;
+   /* Added with the home-page Figma (2887:3776). Cormorant Garamond is the
+     new body serif for home copy; IBM Plex Serif is the featured-product
+     size/price/CTA face; American Scribe is the footer note. */
+   --font-family-serif-body: 'Cormorant Garamond', serif;
+   --font-family-product-meta: 'IBM Plex Serif', serif;
+   --font-family-note: 'American Scribe', cursive;
 
    /* 3a. Shared — Section heading (.section-heading / .clp-section-heading,
      custom-bg-heading; big Baskervville display heading reused sitewide) */
@@ -110,6 +139,194 @@
    --font-small-size-mobile: 12px;
    --font-small-line-height-mobile: 20px;
    --font-small-letter-spacing-mobile: 0.64px;
+
+   /* 3e. HOME PAGE (desktop) — Figma "Web_TBK Homepage" 2887:3776, 1440 wide.
+     The home page was re-typeset against that frame; these roles are applied
+     only there, by home-figma.css, and only at >=990px; the mobile board's
+     roles are in section 3f below. Figma names the
+     display face "Baskerville" and the label face "Proxima Nova Alt"; those
+     are the same families the theme already loads as Baskervville and
+     Proxima Nova A, so the family tokens are reused unchanged.
+
+     Three heading steps, all Baskervville Regular with 4% tracking. */
+   --font-home-heading-size: 72px;
+   --font-home-heading-line-height: 80px;
+   --font-home-heading-letter-spacing: 2.88px;
+   --font-home-heading-lg-size: 64px;
+   --font-home-heading-lg-line-height: 72px;
+   --font-home-heading-lg-letter-spacing: 2.56px;
+   --font-home-heading-sm-size: 56px;
+   --font-home-heading-sm-line-height: 74px;
+   --font-home-heading-sm-letter-spacing: 2.24px;
+   --font-home-heading-weight: var(--font-weight-regular);
+
+   /* Eyebrow / counter / photo tag — Proxima Nova A, uppercase. */
+   --font-home-eyebrow-size: 16px;
+   --font-home-eyebrow-line-height: 24px;
+   --font-home-eyebrow-letter-spacing: 2.4px;
+   --font-home-eyebrow-weight: var(--font-proxima-semibold);
+   --font-home-counter-size: 16px;
+   --font-home-counter-line-height: 32px;
+   --font-home-counter-letter-spacing: 6.4px;
+   --font-home-counter-weight: var(--font-proxima-bold);
+   --font-home-tag-size: 12px;
+   --font-home-tag-line-height: 28px;
+   --font-home-tag-letter-spacing: 4.8px;
+   --font-home-tag-weight: var(--font-proxima-bold);
+
+   /* Body copy — Cormorant Garamond. Medium on the light sections, Regular
+     on the blogs carousel; no tracking in the design. */
+   --font-home-copy-size: 20px;
+   --font-home-copy-line-height: 32px;
+   --font-home-copy-letter-spacing: 0;
+   --font-home-copy-weight: var(--font-weight-medium);
+   --font-home-copy-weight-regular: var(--font-weight-regular);
+
+   /* custom-home-values: title under each icon */
+   --font-home-value-title-size: 16px;
+   --font-home-value-title-line-height: 20px;
+   --font-home-value-title-weight: var(--font-weight-semibold);
+
+   /* custom-home-testimonials: quote, name, location */
+   --font-home-quote-size: 22px;
+   --font-home-quote-line-height: 29px;
+   --font-home-quote-weight: var(--font-weight-regular);
+   --font-home-name-size: 22px;
+   --font-home-name-line-height: 34px;
+   --font-home-name-weight: var(--font-weight-semibold);
+   --font-home-location-size: 14px;
+   --font-home-location-line-height: 20px;
+   --font-home-location-weight: var(--font-weight-regular);
+
+   /* custom-featured-product: size + price row and the BUY NOW CTA, both
+     IBM Plex Serif Medium. Taken from the upper card (2887:4217/4218/4232)
+     and applied to both cards. */
+   --font-home-product-meta-size: 28px;
+   --font-home-product-meta-line-height: 40px;
+   --font-home-product-meta-weight: var(--font-weight-medium);
+   --font-home-product-cta-size: 32px;
+   --font-home-product-cta-line-height: 48px;
+   --font-home-product-cta-weight: var(--font-weight-medium);
+   /* Vertical caption over the photo (Piazzolla) */
+   --font-home-product-caption-size: 16px;
+   --font-home-product-caption-line-height: 28px;
+   --font-home-product-caption-letter-spacing: 1.92px;
+   --font-home-product-caption-weight: var(--font-weight-regular);
+   /* The panel is half the viewport, so the card's three large steps scale
+     with vw between 990px and the 1440 board instead of holding the board's
+     px and overflowing smaller laptops. Each vw figure is the Figma px at
+     1440 (56/1440 = 3.889vw, 28 = 1.944vw, 32 = 2.222vw), so at exactly
+     1440 they resolve to the design values. Line heights go unitless at the
+     Figma ratio (74/56, 40/28, 48/32) so they scale with the size. */
+   --font-home-product-heading-size-fluid: clamp(36px, 3.889vw, 56px);
+   --font-home-product-heading-line-height-fluid: 1.321;
+   --font-home-product-meta-size-fluid: clamp(20px, 1.944vw, 28px);
+   --font-home-product-meta-line-height-fluid: 1.429;
+   --font-home-product-cta-size-fluid: clamp(22px, 2.222vw, 32px);
+   --font-home-product-cta-line-height-fluid: 1.5;
+
+   /* Helvetica Neue small print: tax note and the image-content "Read More" */
+   --font-home-small-size: 16px;
+   --font-home-small-line-height: 28px;
+   --font-home-small-letter-spacing: 0.64px;
+   --font-home-small-weight: var(--font-weight-regular);
+
+   /* custom-audio-player: transcript body and the EN/HI switch */
+   --font-home-transcript-size: 16px;
+   --font-home-transcript-line-height: 24px;
+   --font-home-transcript-weight: var(--font-weight-regular);
+   --font-home-language-hi-size: 24px;
+   --font-home-language-hi-line-height: 28px;
+   --font-home-language-hi-letter-spacing: 0;
+   --font-home-language-en-size: 16px;
+   --font-home-language-en-line-height: 32px;
+   --font-home-language-en-letter-spacing: 6.4px;
+   --font-home-language-weight: var(--font-proxima-bold);
+
+   /* custom-blogs-carousel: "Read More" (Piazzolla) */
+   --font-home-blogs-cta-size: 28px;
+   --font-home-blogs-cta-line-height: 40px;
+   --font-home-blogs-cta-letter-spacing: 0;
+   --font-home-blogs-cta-weight: var(--font-weight-medium);
+
+   /* custom-bg-heading on home only ("Follow Us", 2887:3960) */
+   --font-home-bg-heading-size: 52px;
+   --font-home-bg-heading-line-height: 60px;
+   --font-home-bg-heading-letter-spacing: 2.08px;
+
+   /* 3f. HOME PAGE (mobile) — Figma "Mobile_TBK Homepage" 3061:3615, 402 wide.
+     Applied by home-figma.css at <=749px. Not a scaled-down desktop: several
+     roles change FACE between the boards, so they are separate tokens rather
+     than a mobile size on the desktop role.
+       - testimonials quote/name/location are Baskervville + Piazzolla here,
+         where desktop uses Cormorant Garamond throughout
+       - custom-image-content body copy is Helvetica Neue here, Cormorant
+         Garamond on desktop
+       - the featured-product description is Cormorant Garamond REGULAR here,
+         Medium on desktop
+     Proxima weights use the --font-proxima-* aliases (section 2b). */
+
+   /* One dominant heading step: 32/36 at 4% tracking, used by values, blogs,
+     testimonials, image-content and the lower product card. The hero and the
+     upper product card are the two exceptions. */
+   --font-home-m-heading-size: 32px;
+   --font-home-m-heading-line-height: 36px;
+   --font-home-m-heading-letter-spacing: 1.28px;
+   --font-home-m-hero-size: 48px;
+   --font-home-m-hero-line-height: 56px;
+
+   /* Eyebrow / counter / photo tag — Proxima Nova A Bold 10/16 at 40%. */
+   --font-home-m-eyebrow-size: 10px;
+   --font-home-m-eyebrow-line-height: 16px;
+   --font-home-m-eyebrow-letter-spacing: 4px;
+   --font-home-m-eyebrow-weight: var(--font-proxima-bold);
+   --font-home-m-tag-line-height: 28px;
+
+   /* Body copy — Cormorant Garamond Regular 14/22 (product cards) */
+   --font-home-m-copy-size: 14px;
+   --font-home-m-copy-line-height: 22px;
+   --font-home-m-copy-letter-spacing: 0.56px;
+   --font-home-m-copy-weight: var(--font-weight-regular);
+
+   /* Helvetica Neue body — audio transcript and image-content copy, 14/20 */
+   --font-home-m-body-size: 14px;
+   --font-home-m-body-line-height: 20px;
+   --font-home-m-body-letter-spacing: 0.56px;
+
+   /* Small print — tax note, 12/16 */
+   --font-home-m-small-size: 12px;
+   --font-home-m-small-line-height: 16px;
+   --font-home-m-small-letter-spacing: 0.48px;
+
+   /* custom-home-values: title 16/24, icon box 96x164 */
+   --font-home-m-value-title-size: 16px;
+   --font-home-m-value-title-line-height: 24px;
+
+   /* custom-featured-product */
+   --font-home-m-product-heading-line-height: 42px;
+   --font-home-m-product-eyebrow-letter-spacing: 1.5px;
+   --font-home-m-product-eyebrow-weight: var(--font-proxima-semibold);
+   --font-home-m-product-cta-size: 20px;
+   --font-home-m-product-cta-line-height: 32px;
+
+   /* custom-banner-text: same 32px, but on a 48px leading */
+   --font-home-m-banner-text-line-height: 48px;
+
+   /* custom-home-testimonials: Baskervville quote, Piazzolla attribution */
+   --font-home-m-quote-size: 24px;
+   --font-home-m-quote-line-height: 32px;
+   --font-home-m-quote-letter-spacing: 0.96px;
+   --font-home-m-name-size: 16px;
+   --font-home-m-name-line-height: 24px;
+   --font-home-m-location-size: 12px;
+   --font-home-m-location-line-height: 16px;
+
+   /* custom-blogs-carousel: "Read More" */
+   --font-home-m-blogs-cta-size: 20px;
+   --font-home-m-blogs-cta-line-height: 36px;
+
+   /* custom-bg-heading "Follow Us": 32/40 */
+   --font-home-m-bg-heading-line-height: 40px;
 
    /* 4. Section-specific — kept distinct because their weight/line-height
      make them a deliberately different style, not incidental drift. */
@@ -387,23 +604,40 @@
    /* ---- Burger menu (menu-drawer) + desktop header nav ---- */
    --font-menu-drawer-item-size: 22px;
    --font-menu-drawer-item-weight: var(--font-weight-extralight);
-   --font-header-menu-item-size: 12px;
-   --font-header-menu-item-letter-spacing: 2px;
+   /* Header nav, from the home Figma (2887:3782): Helvetica Neue Medium
+     16/40 at 12% tracking. Applied sitewide so the nav does not change
+     between pages. */
+   --font-header-menu-item-size: 16px;
+   --font-header-menu-item-line-height: 40px;
+   --font-header-menu-item-letter-spacing: 1.92px;
 
    /* ---- Footer ---- */
-   --font-footer-link-size: 20px;
-   --font-footer-link-weight: var(--font-weight-extralight);
+   /* Figma 2887:3980 / 2887:3993 / 2887:4000, applied sitewide alongside the
+     header. Links and copyright are Proxima Nova Alt Light; the note moves
+     off Beaurencourt FY onto American Scribe 24/38 with no tracking. */
+   --font-footer-link-size: 24px;
+   --font-footer-link-weight: var(--font-proxima-light);
    --font-footer-link-line-height: 32px;
    --font-footer-link-letter-spacing: 0.96px;
-   --font-footer-copyright-size: 16px;
-   --font-footer-copyright-weight: var(--font-weight-thin);
+   /* Phones keep the sizes they had. The Figma selection is the desktop
+     board only, and the links sit in a two-column grid below 750px where
+     24px overflows "Return and Refund". */
+   --font-footer-link-size-mobile: 16px;
+   --font-footer-link-line-height-mobile: 20px;
+   --font-footer-copyright-size-mobile: 12px;
+   --font-footer-copyright-size: 12px;
+   --font-footer-copyright-weight: var(--font-proxima-light);
    --font-footer-copyright-line-height: 20px;
    --font-footer-copyright-letter-spacing: 0.48px;
-   --font-footer-note-size: 20px;
-   --font-footer-note-line-height: 32px;
-   --font-footer-note-letter-spacing: 0.4px;
-   --font-footer-note-size-mobile: 18px;
-   --font-footer-note-line-height-mobile: 28px;
+   --font-footer-note-size: 24px;
+   --font-footer-note-line-height: 38px;
+   --font-footer-note-letter-spacing: 0;
+   --font-footer-note-size-mobile: 20px;
+   --font-footer-note-line-height-mobile: 32px;
+   /* Wordmark: 142/100 at the 1440 artboard. Kept fluid so it still fits
+     narrow viewports -- 9.861vw is 142px at 1440. */
+   --font-footer-brand-size: clamp(3.8rem, 9.861vw, 14.2rem);
+   --font-footer-brand-line-height: 0.704;
 
    /* ---- 404 page ---- */
    --font-404-button-size: 16px;
@@ -432,14 +666,18 @@
      the Figma text styles. The buttons map exactly onto the shared "small"
      role (3d), which is also what the contact form's submit reads. */
    --font-intro-popup-heading-size: 40px;
-   --font-intro-popup-heading-line-height: 58px;
+   --font-intro-popup-heading-line-height: 52px;
    --font-intro-popup-heading-letter-spacing: 1.6px;
    --font-intro-popup-heading-weight: var(--font-weight-regular);
    --font-intro-popup-heading-size-mobile: 32px;
    --font-intro-popup-heading-line-height-mobile: 36px;
    --font-intro-popup-heading-letter-spacing-mobile: 1.28px;
+   /* Body is Cormorant Garamond 24/38 on the desktop board (3061:3941) and
+     Helvetica Neue 14/20 on the mobile one (3086:4076) -- a face change
+     between boards, not just a size, so the family is switched in the
+     section's own CSS at the breakpoint. */
    --font-intro-popup-body-size: 24px;
-   --font-intro-popup-body-line-height: 32px;
+   --font-intro-popup-body-line-height: 38px;
    --font-intro-popup-body-size-mobile: 14px;
    --font-intro-popup-body-line-height-mobile: 20px;
    --font-intro-popup-body-letter-spacing-mobile: 0.56px;

@@ -62,8 +62,8 @@
   color: rgb(var(--color-foreground));
   text-transform: uppercase;
   letter-spacing: 0.01em;
-  line-height: 0.94;
-  font-size: clamp(3.4rem, 8.4vw, 8.8rem);
+  line-height: var(--font-footer-brand-line-height);
+  font-size: var(--font-footer-brand-size);
 }
 
 .custom-footer__brand--image img {
@@ -127,12 +127,13 @@
 }
 
 /* Note — script paragraph sitting opposite the menu columns.
-   Figma: 505px column, Beaurencourt FY 20/32, 0.4px tracking, accent colour. */
+   Figma 2887:3993: 443px column, American Scribe 24/38, no tracking, accent
+   colour. Was Beaurencourt FY 20/32 before the home-page type pass. */
 .custom-footer__note {
   flex: 0 1 50.5rem;
   max-width: 50.5rem;
   color: var(--custom-footer-accent);
-  font-family: var(--font-family-script);
+  font-family: var(--font-family-note);
   font-weight: var(--font-weight-regular);
   font-size: var(--font-footer-note-size);
   line-height: var(--font-footer-note-line-height);
@@ -197,5 +198,16 @@
     max-width: none;
     font-size: var(--font-footer-note-size-mobile);
     line-height: var(--font-footer-note-line-height-mobile);
+  }
+
+  /* Phone sizes now come from the mobile board (3061:3790 / 3061:3818):
+     links 16/20 and copyright 12/20, both Proxima Nova A Light. */
+  .custom-footer__link {
+    font-size: var(--font-footer-link-size-mobile);
+    line-height: var(--font-footer-link-line-height-mobile);
+  }
+
+  .custom-footer__copyright {
+    font-size: var(--font-footer-copyright-size-mobile);
   }
 }

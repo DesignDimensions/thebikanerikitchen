@@ -7,28 +7,69 @@
   data-section-id="{{ section.id }}"
   data-animations-enabled="{{ settings.animations_reveal_on_scroll }}"
 >
+  {%- comment -%}
+    product.json is a single template shared by every product, so the FAQ
+    cannot live in block settings if the answers differ per product -- both
+    products would show whichever copy was typed last. The content therefore
+    comes from two per-product list metafields, paired by index:
+
+      custom.faq_questions  list.single_line_text_field
+      custom.faq_answers    list.single_line_text_field
+
+    The section's blocks stay as the fallback, so a product with no metafields
+    set (or a merchant preferring the editor) still renders. Pairing is by
+    position, so the two lists must stay the same length -- any question
+    without a matching answer is skipped rather than rendered empty.
+  {%- endcomment -%}
+  {%- assign faq_questions = product.metafields.custom.faq_questions.value -%}
+  {%- assign faq_answers = product.metafields.custom.faq_answers.value -%}
+
   <div class="pdp-faqs-left">
     <h2 class="pdp-faqs-heading">{{ section.settings.heading }}</h2>
     <div class="pdp-faqs-list">
-      {% for block in section.blocks %}
-        <details
-          class="pdp-faqs-item"
-          name="pdp-faqs-accordion-{{ section.id }}"
-          {% if forloop.first %}open{% endif %}
-          {{ block.shopify_attributes }}
-        >
-          <summary class="pdp-faqs-item-summary">
-            <span class="pdp-faqs-item-question">{{ block.settings.question }}</span>
-            <span class="pdp-faqs-item-icon" aria-hidden="true">
-              <span class="pdp-faqs-item-icon-bar pdp-faqs-item-icon-bar--h"></span>
-              <span class="pdp-faqs-item-icon-bar pdp-faqs-item-icon-bar--v"></span>
-            </span>
-          </summary>
-          <div class="pdp-faqs-item-content">
-            <div class="pdp-faqs-item-answer">{{ block.settings.answer }}</div>
-          </div>
-        </details>
-      {% endfor %}
+      {%- if faq_questions != blank and faq_questions.size > 0 -%}
+        {%- for question in faq_questions -%}
+          {%- assign answer = faq_answers[forloop.index0] -%}
+          {%- if question != blank and answer != blank -%}
+            <details
+              class="pdp-faqs-item"
+              name="pdp-faqs-accordion-{{ section.id }}"
+              {% if forloop.first %}open{% endif %}
+            >
+              <summary class="pdp-faqs-item-summary">
+                <span class="pdp-faqs-item-question">{{ question }}</span>
+                <span class="pdp-faqs-item-icon" aria-hidden="true">
+                  <span class="pdp-faqs-item-icon-bar pdp-faqs-item-icon-bar--h"></span>
+                  <span class="pdp-faqs-item-icon-bar pdp-faqs-item-icon-bar--v"></span>
+                </span>
+              </summary>
+              <div class="pdp-faqs-item-content">
+                <div class="pdp-faqs-item-answer"><p>{{ answer }}</p></div>
+              </div>
+            </details>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {% for block in section.blocks %}
+          <details
+            class="pdp-faqs-item"
+            name="pdp-faqs-accordion-{{ section.id }}"
+            {% if forloop.first %}open{% endif %}
+            {{ block.shopify_attributes }}
+          >
+            <summary class="pdp-faqs-item-summary">
+              <span class="pdp-faqs-item-question">{{ block.settings.question }}</span>
+              <span class="pdp-faqs-item-icon" aria-hidden="true">
+                <span class="pdp-faqs-item-icon-bar pdp-faqs-item-icon-bar--h"></span>
+                <span class="pdp-faqs-item-icon-bar pdp-faqs-item-icon-bar--v"></span>
+              </span>
+            </summary>
+            <div class="pdp-faqs-item-content">
+              <div class="pdp-faqs-item-answer">{{ block.settings.answer }}</div>
+            </div>
+          </details>
+        {% endfor %}
+      {%- endif -%}
     </div>
   </div>
   <div class="pdp-faqs-right">

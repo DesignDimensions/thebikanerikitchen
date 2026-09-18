@@ -29,60 +29,48 @@
 .custom-intro-popup__dialog {
   position: relative;
   display: flex;
-  /* Content column left, media right — the DOM order is media-then-content so
-     that plain `column` gives the mobile stacking (image above text) with no
-     reversal, and the tab order still runs heading → body → buttons. */
-  flex-direction: row-reverse;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   width: 864px;
   max-width: 100%;
+  /* 864x504 in the design (3061:3908). Held as a ratio rather than a fixed
+     height so the whole card scales together when the viewport is narrower
+     than 864 -- the photo is the background, so letting the box grow taller
+     than the design would just reveal more of the crop. */
+  aspect-ratio: 864 / 504;
   margin: auto;
+  padding: 48px;
   overflow: hidden;
   border-radius: 4px;
   background: #570f13;
 }
 
-/* ---- Media ---- */
+/* ---- Media: the photo is the card's background, not a column ---- */
 
+/* The export is the Figma frame with the copy and close icon hidden, so the
+   blurred maroon scrim behind the text (3086:4087) is baked into the image
+   rather than rebuilt in CSS. That keeps the falloff exactly as designed
+   instead of approximating a 49px blur with a gradient. */
 .custom-intro-popup__media {
-  position: relative;
-  flex: 1 1 50%;
-  min-width: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   overflow: hidden;
   background: #570f13;
+  pointer-events: none;
 }
 
-/* The design's 504px dialog height comes from this column's 432:504 crop, not
-   from the text beside it (which only runs to ~446px). `aspect-ratio` on the
-   column itself would do nothing: as a stretched flex item its height is taken
-   from the flex line. A ratio-sized spacer instead sets the column's
-   *content* height, which is what the line measures — so the line becomes 504
-   and the text column stretches to meet it. Longer copy still wins: if the
-   text ever exceeds the ratio, the line grows and the image stretches with it
-   rather than leaving a maroon gap below itself. */
-.custom-intro-popup__media::before {
-  content: '';
-  display: block;
-  aspect-ratio: 432 / 504;
-}
-
-/* No cropping happens here. Each breakpoint is supplied with an image already
-   cropped to its frame — 864x1008 for desktop, 660x652 for mobile, exactly 2x
-   the design's 432x504 and 330x326 windows — and the frame carries the same
-   ratio, so filling it shows the whole image edge to edge. `cover` rather than
-   `fill` only so that sub-pixel rounding trims an invisible sliver instead of
-   stretching the photo; with matching ratios the two are otherwise identical.
-
-   That is also why the two frames get their ratios from the design rather than
-   from the image: swap in an image of some other ratio and it will be cropped
-   to fit. Supply it pre-cropped instead. */
-/* <picture> is an inline box by default, which would contribute a stray line
-   box inside the frame — it takes the fill so the <img> can be a plain block. */
 .custom-intro-popup__picture {
   position: absolute;
   inset: 0;
   display: block;
 }
 
+/* Both exports match their frame's ratio exactly (1728x1008 and 708x1304, 2x
+   the 864x504 and 354x652 windows), so `cover` shows the whole image and only
+   trims sub-pixel rounding. Supply replacements pre-cropped to the same ratio
+   or they will be cropped to fit. */
 .custom-intro-popup__image {
   display: block;
   width: 100%;
@@ -93,13 +81,13 @@
 
 /* ---- Close ---- */
 
+/* Design puts the glyph 37px down with its right edge 48px in (3077:3995).
+   The offsets subtract the button's own padding and the stroke's 0.75px cap
+   bleed so the drawn X lands there, while the padding keeps a ~42px hit area. */
 .custom-intro-popup__close {
   position: absolute;
-  /* Offsets are (design inset − padding − the glyph's 0.75px stroke bleed) so
-     the X itself lands where the design puts it: 38px down and 35px in from
-     the dialog's right edge, with a ~42px hit area around it. */
   top: 23px;
-  right: 20px;
+  right: 33px;
   z-index: 2;
   display: flex;
   align-items: center;
@@ -123,23 +111,26 @@
 
 /* 14.5, not 13: the viewBox pads the 13x12 glyph by the round cap's 0.75px
    radius on each side, so sizing the SVG to 13 would draw the X at 11.7px.
-   Same size at both breakpoints — the design uses one icon for both. */
+   Same size at both breakpoints -- the design uses one icon for both. */
 .custom-intro-popup__close-icon {
   display: block;
   width: 14.5px;
   height: auto;
 }
 
-/* ---- Content ---- */
+/* ---- Content: overlaid on the photo, left column ---- */
 
 .custom-intro-popup__content {
+  position: relative;
+  z-index: 1;
   display: flex;
-  flex: 1 1 50%;
-  min-width: 0;
   flex-direction: column;
   justify-content: center;
   gap: 24px;
-  padding: 48px;
+  /* 336px column (3061:3938). max-width rather than width so it collapses
+     rather than overflowing once the card is scaled down. */
+  width: 336px;
+  max-width: 100%;
 }
 
 .custom-intro-popup__text {
@@ -161,9 +152,9 @@
 .custom-intro-popup__body {
   margin: 0;
   color: #fffdee;
-  font-family: var(--font-family-body);
+  font-family: var(--font-family-serif-body);
   font-size: var(--font-intro-popup-body-size);
-  font-weight: var(--font-body-copy-weight);
+  font-weight: var(--font-weight-regular);
   line-height: var(--font-intro-popup-body-line-height);
 }
 
@@ -224,66 +215,58 @@
   outline-offset: 2px;
 }
 
-/* ---- Mobile ---- */
+/* ---- Between the mobile board and the desktop card's natural width ---- */
+
+/* The 336px column plus 96px of padding needs 432px; below roughly 900 the
+   40px heading starts to crowd it, so the type steps down with the box rather
+   than wrapping awkwardly. */
+@media screen and (min-width: 750px) and (max-width: 900px) {
+  .custom-intro-popup__dialog {
+    padding: 32px;
+  }
+
+  .custom-intro-popup__heading {
+    font-size: 32px;
+    line-height: 44px;
+  }
+
+  .custom-intro-popup__body {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
+/* ---- Mobile (3077:3997) ---- */
 
 @media screen and (max-width: 749px) {
   .custom-intro-popup {
     padding: 16px;
   }
 
+  /* 354x652 card. Content is bottom-aligned over the photo, which fills the
+     card; the scrim baked into the mobile export darkens the lower half where
+     the copy sits. */
   .custom-intro-popup__dialog {
-    flex-direction: column;
-    gap: 24px;
     width: 354px;
-    /* Square here — the 4px radius is desktop-only in the design. */
+    aspect-ratio: 354 / 652;
+    justify-content: flex-end;
+    align-items: stretch;
+    /* Square here -- the 4px radius is desktop-only in the design. */
     border-radius: 0;
-    /* 60px of head room, not 24: in the design the X is a flex child in its own
-       band (24 padding + 12 glyph + 24 gap) and the photo starts below it at
-       y=60. The X is absolute here, to keep a touch-sized hit area, so that
-       band has to come from padding instead or the photo slides up under it. */
-    padding: 60px 12px 24px;
-  }
-
-  .custom-intro-popup__media {
-    flex: 0 0 auto;
-    width: 100%;
-    aspect-ratio: 330 / 326;
-  }
-
-  /* Stacked, so height is along the main axis and the ratio can sit on the
-     column itself — the desktop spacer would fight it. */
-  .custom-intro-popup__media::before {
-    display: none;
-  }
-
-  /* The frame switches ratio here; <picture> switches the image to match, so
-     the base rule still just fills it — no mobile image rule needed. */
-
-  /* Design puts the X 24px down and 12px in from the dialog edge here. */
-  .custom-intro-popup__close {
-    top: 11px;
-    right: 0;
-    padding: 12px;
+    padding: 48px 16px;
   }
 
   .custom-intro-popup__content {
-    flex: 0 0 auto;
+    width: 100%;
+    /* 18px between the copy and the buttons (3077:3997 gap). */
     gap: 18px;
-    padding: 0;
     text-align: center;
   }
 
-  /* 16 on mobile against 8 on desktop — the design opens the heading/body gap
+  /* 16 on mobile against 8 on desktop -- the design opens the heading/body gap
      up here rather than reusing the desktop value. */
   .custom-intro-popup__text {
     gap: 16px;
-  }
-
-  /* 42 rather than desktop's 41: the mobile buttons carry 6px of vertical
-     padding on top of the 28px line and the 1px border. */
-  .custom-intro-popup__cta {
-    min-height: 42px;
-    padding: 6px 16px;
   }
 
   .custom-intro-popup__heading {
@@ -298,8 +281,11 @@
     display: none;
   }
 
+  /* Helvetica Neue here, not the desktop board's Cormorant Garamond. */
   .custom-intro-popup__body {
+    font-family: var(--font-family-body);
     font-size: var(--font-intro-popup-body-size-mobile);
+    font-weight: var(--font-body-copy-weight);
     line-height: var(--font-intro-popup-body-line-height-mobile);
     letter-spacing: var(--font-intro-popup-body-letter-spacing-mobile);
   }
@@ -308,27 +294,21 @@
     gap: 16px;
   }
 
+  /* 42 rather than desktop's 41: the mobile buttons carry 6px of vertical
+     padding on top of the 28px line and the 1px border. */
+  .custom-intro-popup__cta {
+    min-height: 42px;
+    padding: 6px 16px;
+  }
+
   .custom-intro-popup__cta--primary {
     border-color: #570f13;
   }
-}
 
-/* Between the mobile breakpoint and the dialog's natural 864px, the two
-   columns would squeeze the 40px heading into a very narrow measure — scale
-   the type down with the box rather than letting it wrap awkwardly. */
-@media screen and (min-width: 750px) and (max-width: 900px) {
-  .custom-intro-popup__content {
-    padding: 32px;
-  }
-
-  .custom-intro-popup__heading {
-    font-size: 32px;
-    line-height: 44px;
-  }
-
-  .custom-intro-popup__body {
-    font-size: 18px;
-    line-height: 26px;
+  /* Design puts the X 37px down and 16px in from the card edge here. */
+  .custom-intro-popup__close {
+    top: 23px;
+    right: 1px;
   }
 }
 

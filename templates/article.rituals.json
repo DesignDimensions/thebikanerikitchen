@@ -12,6 +12,7 @@
     "main": {
       "type": "main-article-archive",
       "settings": {
+        "hero_media": "image",
         "hero_text_top": 70,
         "hero_text_left": 10,
         "show_share_button": true,

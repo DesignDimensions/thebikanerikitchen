@@ -250,7 +250,7 @@
       endif
 
       if section.settings.logo_position == 'top-center' or section.settings.menu == blank
-        render 'header-search', input_id: 'Search-In-Modal-1', popular_searches: section.settings.popular_searches
+        render 'header-search', input_id: 'Search-In-Modal-1'
       endif
     -%}
 
@@ -360,7 +360,7 @@
           nav_class: 'header__inline-menu--secondary'
         %}
       {%- endif -%}
-      {% render 'header-search', input_id: 'Search-In-Modal', popular_searches: section.settings.popular_searches %}
+      {% render 'header-search', input_id: 'Search-In-Modal' %}
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         <span class="svg-wrapper">
           <img
@@ -689,17 +689,6 @@
       "id": "show_line_separator",
       "default": true,
       "label": "t:sections.header.settings.show_line_separator.label"
-    },
-    {
-      "type": "header",
-      "content": "Search"
-    },
-    {
-      "type": "textarea",
-      "id": "popular_searches",
-      "label": "Popular searches",
-      "info": "One per line. Shown as shortcuts in the full-screen search.",
-      "default": "Bikaneri Bhujia\nParat Bhujia\nArchive story"
     },
     {
       "type": "header",

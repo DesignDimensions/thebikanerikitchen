@@ -37,6 +37,8 @@
       "type": "custom-inset-image",
       "name": "Custom Inset Image",
       "settings": {
+        "video": "shopify://files/videos/TBK (1).mp4",
+        "video_ratio_desktop": "2.5",
         "image": "shopify://shop_images/tbk-about-inset-1-desktop-v2.png",
         "image_mobile": "shopify://shop_images/tbk-about-inset-1-mobile-v2.png"
       }

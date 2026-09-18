@@ -1,0 +1,644 @@
+/*
+ * Home page — matched to the two Figma boards for it, section by section:
+ *   desktop  "Web_TBK Homepage"    2887:3776, 402->1440 artboard
+ *   mobile   "Mobile_TBK Homepage" 3061:3615, 402 artboard
+ *
+ * Why this is a separate file rather than edits to each section's own CSS:
+ * six of the thirteen home sections also render on other templates
+ * (custom-bg-heading on twelve of them, custom-audio-player and
+ * custom-featured-collection on the product page, custom-banner,
+ * custom-banner-text and custom-images-grid_carousal on Rituals). The home
+ * page was re-typeset on its own, so the new type is applied here, scoped to
+ * body.template-index, and every other page keeps the type it has.
+ *
+ * Loaded from theme.liquid on the index template only. It comes from <head>,
+ * while section stylesheets load in <body> and would otherwise win on order,
+ * so every selector is prefixed with body.template-index — that also buys the
+ * specificity to beat the section rule it overrides.
+ *
+ * Two media blocks, one per board: min-width 990px for desktop, max-width
+ * 749px for mobile. 750-989px (tablet) is in neither board and is deliberately
+ * left with the type it already had.
+ *
+ * Proxima Nova A weights go through the --font-proxima-* aliases, never the
+ * generic --font-weight-* tokens: the theme's @font-face ladder is shifted one
+ * cut heavy, so a Figma "Bold" is --font-proxima-bold (500). See
+ * font-variables.css section 2b.
+ *
+ * Positional selectors use the child combinator (> p:first-child). These
+ * sections mark their eyebrow up as a bare positional selector, and as a
+ * descendant selector it also matches the body copy further down the tree.
+ *
+ * Values are tokens from font-variables.css section 3e. Figma's "Baskerville"
+ * and "Proxima Nova Alt" are the families the theme already loads as
+ * Baskervville and Proxima Nova A.
+ */
+
+@media screen and (min-width: 990px) {
+  /* ---------------------------------------------------------------
+     Shared heading steps
+     --------------------------------------------------------------- */
+
+  /* 72/80 — custom-home-values (2887:3839), custom-audio-player
+     (I2887:3895;1181:1221) and custom-home-testimonials
+     (I2887:3939;1181:1148;1140:781).
+
+     All three carry .section-heading, but that class is targeted here only
+     through each section's own class. custom-featured-collection ("The
+     Bhandaar") also renders .section-heading on this page and is not in the
+     Figma frame, so a bare .section-heading rule would resize a heading the
+     design never specified. */
+  body.template-index .custom-home_values-heading,
+  body.template-index .custom-home-testimonials-heading {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-heading-size);
+    line-height: var(--font-home-heading-line-height);
+    letter-spacing: var(--font-home-heading-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-banner-text — "From the royal Kitchen to your Celebrations"
+     (I2887:3913;1181:1427). Same 72/80 step as the headings above, but
+     Regular rather than the Thin this section used, and the <em> spans in
+     the setting render as true Baskervville italic.
+     --------------------------------------------------------------- */
+  body.template-index .custom-banner-text-container p {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-heading-size);
+    line-height: var(--font-home-heading-line-height);
+    letter-spacing: var(--font-home-heading-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+    /* 1440 less the frame's 417px gutters (2887:3912). The section's own
+       510px was sized for the old 50px type; at 72px it is too narrow to
+       hold "Kitchen to your" on one line, which dropped the italic "your"
+       onto a line of its own and made four lines out of the design's three. */
+    width: 606px;
+  }
+
+  body.template-index .custom-banner-text-container em,
+  body.template-index .custom-banner-text-container i {
+    font-style: italic;
+    font-weight: var(--font-home-heading-weight);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-featured-product (2887:4206 upper card, 2887:3866 lower card)
+     The two cards are typeset differently in the Figma; the upper card is
+     the reference and both are styled from it.
+     --------------------------------------------------------------- */
+
+  /* Eyebrow — "our FIRST" / "our classic" (2887:4208) */
+  body.template-index .custom-featured-product-left-inner_upper > p:nth-child(1) {
+    font-family: var(--font-family-label);
+    font-size: var(--font-home-eyebrow-size);
+    line-height: var(--font-home-eyebrow-line-height);
+    letter-spacing: var(--font-home-eyebrow-letter-spacing);
+    font-weight: var(--font-home-eyebrow-weight);
+    text-transform: uppercase;
+  }
+
+  /* Product name — 56/74 (2887:4212), fluid below the 1440 board */
+  body.template-index .custom-featured-product-left-inner_upper > p:nth-child(2) {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-product-heading-size-fluid);
+    line-height: var(--font-home-product-heading-line-height-fluid);
+    letter-spacing: var(--font-home-heading-sm-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+
+  /* Description — Cormorant Garamond Medium 20/32 (2887:4214) */
+  body.template-index .custom-featured-product-left .custom-featured-product-left-description p {
+    font-family: var(--font-family-serif-body);
+    font-size: var(--font-home-copy-size);
+    line-height: var(--font-home-copy-line-height);
+    letter-spacing: var(--font-home-copy-letter-spacing);
+    font-weight: var(--font-home-copy-weight);
+  }
+
+  /* Size + price — IBM Plex Serif Medium 28/40 (2887:4217, 2887:4218) */
+  body.template-index .custom-featured-product-left .custom-featured-product__size,
+  body.template-index .custom-featured-product-left .custom-featured-product__meta-divider,
+  body.template-index .custom-featured-product-left .custom-featured-product__price {
+    font-family: var(--font-family-product-meta);
+    font-size: var(--font-home-product-meta-size-fluid);
+    line-height: var(--font-home-product-meta-line-height-fluid);
+    font-weight: var(--font-home-product-meta-weight);
+  }
+
+  /* Tax note — Helvetica Neue Regular 16/28 (2887:4219) */
+  body.template-index .custom-featured-product-left .custom-featured-product__tax-note {
+    font-family: var(--font-family-body);
+    font-size: var(--font-home-small-size);
+    line-height: var(--font-home-small-line-height);
+    letter-spacing: var(--font-home-small-letter-spacing);
+    font-weight: var(--font-home-small-weight);
+  }
+
+  /* BUY NOW — IBM Plex Serif Medium 32/48, underlined (2887:4232). */
+  body.template-index .custom-featured-product-left-inner_lower button {
+    font-family: var(--font-family-product-meta);
+    font-size: var(--font-home-product-cta-size-fluid);
+    line-height: var(--font-home-product-cta-line-height-fluid);
+    font-weight: var(--font-home-product-cta-weight);
+    text-transform: uppercase;
+  }
+
+  /* The underline has to go on the span, not the button. The label lives in
+     .custom-featured-product__button-text, which is display: inline-block so
+     the loading state can hide it without collapsing the button — and text
+     decoration is not propagated into an atomic inline box, so an underline
+     set on the button stops at this span and never draws.
+     from-font sits the rule on the face's own underline metrics. */
+  body.template-index .custom-featured-product-left-inner_lower button,
+  body.template-index .custom-featured-product__button-text {
+    text-decoration: underline;
+    text-decoration-thickness: from-font;
+    text-underline-position: from-font;
+  }
+
+  /* Vertical caption over the photo — Piazzolla Regular 16/28 (2887:3837) */
+  body.template-index .custom-featured-product-right p {
+    font-family: var(--font-family-accent);
+    font-size: var(--font-home-product-caption-size);
+    line-height: var(--font-home-product-caption-line-height);
+    letter-spacing: var(--font-home-product-caption-letter-spacing);
+    font-weight: var(--font-home-product-caption-weight);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-home-values — "Website Look 4" (2887:3838)
+
+     Figma: a 781px band, #FFFDEE, 80/64 padding, heading and icon row
+     stacked with a 40px gap. The row is five fixed 156x262 icons with a
+     36px gap, centred — not spread. The theme was spreading them across
+     the full page width with space-between, which is what pushed the gaps
+     open and re-wrapped both the heading and the titles.
+     --------------------------------------------------------------- */
+  body.template-index .custom-home_values-container {
+    background-color: #fffdee;
+  }
+
+  body.template-index .custom-home_values-inner {
+    gap: 40px;
+    min-height: 781px;
+    justify-content: center;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  /* The heading's own 120px top padding was doing the section's spacing;
+     that now comes from the inner's padding, so it resets to nothing. The
+     1312px measure is the Figma text box (1440 less the 64px gutters) and
+     is what breaks the line after "that" rather than after "discipline". */
+  /* The break after "that" is explicit in the Figma (two separate text lines,
+     2887:3839), so it is explicit here too: the setting in index.json carries
+     a newline and pre-line honours it. Leaving it to natural wrapping put the
+     break after "discipline" instead, and where it lands depends on
+     Baskervville's metrics rather than on the design. Desktop only — below
+     990px the newline collapses to an ordinary space and mobile wraps as it
+     always did. */
+  body.template-index .custom-home_values-heading {
+    width: 100%;
+    max-width: 1312px;
+    padding: 0;
+    margin: 0;
+    white-space: pre-line;
+  }
+
+  body.template-index .custom-home_values-item-container {
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 36px;
+    width: 100%;
+  }
+
+  body.template-index .custom-home_values-item {
+    width: 156px;
+    flex: 0 0 156px;
+  }
+
+  /* contain rather than a bare height so a source image whose aspect is not
+     exactly 156:262 is letterboxed instead of stretched. */
+  body.template-index .custom-home_values-icon {
+    width: 156px;
+    height: 262px;
+    object-fit: contain;
+  }
+
+  /* Title under each icon — Cormorant Garamond SemiBold 16/20 (2887:3843),
+     two lines, centred, and the 28px gap from the icon (Figma gap-[28px]
+     on the item, applied here as the title's top margin). */
+  body.template-index .custom-home_values-title {
+    font-family: var(--font-family-serif-body);
+    font-size: var(--font-home-value-title-size);
+    line-height: var(--font-home-value-title-line-height);
+    letter-spacing: var(--font-home-copy-letter-spacing);
+    font-weight: var(--font-home-value-title-weight);
+    text-align: center;
+    width: 100%;
+    margin: 28px 0 0;
+  }
+
+  /* ---------------------------------------------------------------
+     custom-audio-player — DELIBERATELY NOT RESTYLED.
+
+     Its heading, transcript and EN/HI switch are in the Figma frame, but the
+     section's layout is built around a fixed paper graphic and a 606px
+     column: at the Figma's 72px the heading runs to three lines and pushes
+     the transcript out of the paper. It also renders on the product page.
+     Leave it to a pass of its own, with the layout reworked alongside the
+     type -- not to a type-only sweep.
+     --------------------------------------------------------------- */
+
+  /* ---------------------------------------------------------------
+     custom-blogs-carousel (2887:3924 photo side, 2887:4085 text side)
+     --------------------------------------------------------------- */
+
+  /* Photo overlay tags — Proxima Nova A Bold 12/28 at 40% (2887:3927) */
+  body.template-index .custom-blogs-carousel-tag {
+    font-family: var(--font-family-label);
+    font-size: var(--font-home-tag-size);
+    line-height: var(--font-home-tag-line-height);
+    letter-spacing: var(--font-home-tag-letter-spacing);
+    font-weight: var(--font-home-tag-weight);
+    text-transform: uppercase;
+  }
+
+  /* Eyebrow "rituals" (2887:4088) and counter "1|5" (2887:4089) sit on the
+     same row but are a different weight, size and tracking from each other. */
+  body.template-index .custom-blogs-carousel-caption {
+    font-family: var(--font-family-label);
+    font-size: var(--font-home-eyebrow-size);
+    line-height: var(--font-home-eyebrow-line-height);
+    letter-spacing: var(--font-home-eyebrow-letter-spacing);
+    font-weight: var(--font-home-eyebrow-weight);
+    text-transform: uppercase;
+  }
+
+  body.template-index .custom-blogs-carousel-counter {
+    font-family: var(--font-family-label);
+    font-size: var(--font-home-counter-size);
+    line-height: var(--font-home-counter-line-height);
+    letter-spacing: var(--font-home-counter-letter-spacing);
+    font-weight: var(--font-home-counter-weight);
+  }
+
+  /* Slide heading — 64/72, the middle step (2887:4090) */
+  body.template-index .custom-blogs-carousel-heading {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-heading-lg-size);
+    line-height: var(--font-home-heading-lg-line-height);
+    letter-spacing: var(--font-home-heading-lg-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+
+  /* Body — Cormorant Garamond Regular here, not the Medium used on the
+     light sections (2887:4092) */
+  body.template-index .custom-blogs-carousel-description p {
+    font-family: var(--font-family-serif-body);
+    font-size: var(--font-home-copy-size);
+    line-height: var(--font-home-copy-line-height);
+    letter-spacing: var(--font-home-copy-letter-spacing);
+    font-weight: var(--font-home-copy-weight-regular);
+  }
+
+  /* "Read More" — Piazzolla Medium 28/40 (2887:4094) */
+  body.template-index .custom-blogs-carousel-cta-text {
+    font-family: var(--font-family-accent);
+    font-size: var(--font-home-blogs-cta-size);
+    line-height: var(--font-home-blogs-cta-line-height);
+    letter-spacing: var(--font-home-blogs-cta-letter-spacing);
+    font-weight: var(--font-home-blogs-cta-weight);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-home-testimonials (2887:4144 card, I2887:3939 header)
+     Quote, name and location are all Cormorant Garamond at three steps.
+     --------------------------------------------------------------- */
+  body.template-index .custom-home-testimonials-caption {
+    font-family: var(--font-family-label);
+    font-size: var(--font-home-eyebrow-size);
+    line-height: var(--font-home-eyebrow-line-height);
+    letter-spacing: var(--font-home-eyebrow-letter-spacing);
+    font-weight: var(--font-home-eyebrow-weight);
+    text-transform: uppercase;
+  }
+
+  body.template-index .custom-home-testimonials-quote p {
+    font-family: var(--font-family-serif-body);
+    font-size: var(--font-home-quote-size);
+    line-height: var(--font-home-quote-line-height);
+    letter-spacing: var(--font-home-copy-letter-spacing);
+    font-weight: var(--font-home-quote-weight);
+  }
+
+  body.template-index .custom-home-testimonials-name {
+    font-family: var(--font-family-serif-body);
+    font-size: var(--font-home-name-size);
+    line-height: var(--font-home-name-line-height);
+    font-weight: var(--font-home-name-weight);
+  }
+
+  body.template-index .custom-home-testimonials-location {
+    font-family: var(--font-family-serif-body);
+    font-size: var(--font-home-location-size);
+    line-height: var(--font-home-location-line-height);
+    font-weight: var(--font-home-location-weight);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-image-content — "The Karigars" (2887:4165)
+     --------------------------------------------------------------- */
+  body.template-index .custom-image-content-inner-container > p:first-child {
+    font-family: var(--font-family-label);
+    font-size: var(--font-home-eyebrow-size);
+    line-height: var(--font-home-eyebrow-line-height);
+    letter-spacing: var(--font-home-eyebrow-letter-spacing);
+    font-weight: var(--font-home-eyebrow-weight);
+    text-transform: uppercase;
+  }
+
+  /* 56/74, the same step as the featured-product name (2887:4167) */
+  body.template-index .custom-image-content-inner-container h3 {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-heading-sm-size);
+    line-height: var(--font-home-heading-sm-line-height);
+    letter-spacing: var(--font-home-heading-sm-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+
+  body.template-index .custom-image-content-inner-container .custom-image-content-description p {
+    font-family: var(--font-family-serif-body);
+    font-size: var(--font-home-copy-size);
+    line-height: var(--font-home-copy-line-height);
+    letter-spacing: var(--font-home-copy-letter-spacing);
+    font-weight: var(--font-home-copy-weight);
+  }
+
+  /* "Read More" drops back to Helvetica Neue small print here, unlike the
+     blogs carousel's Piazzolla one (2887:4170). It is authored inside the
+     rich-text description, so it is targeted as the link within it. */
+  body.template-index .custom-image-content-description a {
+    font-family: var(--font-family-body);
+    font-size: var(--font-home-small-size);
+    line-height: var(--font-home-small-line-height);
+    letter-spacing: var(--font-home-small-letter-spacing);
+    font-weight: var(--font-home-small-weight);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-bg-heading — "Follow Us" (2887:3960). 52/60, its own step,
+     smaller than the three above. Home only: this section also renders on
+     eleven other templates.
+     --------------------------------------------------------------- */
+  body.template-index .custom-bg-heading {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-bg-heading-size);
+    line-height: var(--font-home-bg-heading-line-height);
+    letter-spacing: var(--font-home-bg-heading-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+}
+
+/* =================================================================
+   MOBILE — Figma "Mobile_TBK Homepage" (3061:3615), 402 artboard.
+
+   Not a scaled desktop: the testimonials block and the image-content
+   body copy change FACE between the two boards, so those are set here
+   in full rather than inheriting a size from the desktop rule.
+
+   custom-audio-player is again left out. Its heading, transcript and
+   EN/HI switch are on this board too, but the section is off-limits to
+   sweeps like this one — see the note in the desktop block.
+   ================================================================= */
+
+@media screen and (max-width: 749px) {
+  /* ---------------------------------------------------------------
+     Shared heading step — 32/36 at 4%. Values, blogs, testimonials and
+     image-content all land here (3061:3640, I3061:3739;1213:1346,
+     I3061:3745;1340:1235, I3061:3764;1213:1346).
+     --------------------------------------------------------------- */
+  body.template-index .custom-home_values-heading,
+  body.template-index .custom-home-testimonials-heading,
+  body.template-index .custom-blogs-carousel-heading,
+  body.template-index .custom-image-content-inner-container h3 {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-m-heading-size);
+    line-height: var(--font-home-m-heading-line-height);
+    letter-spacing: var(--font-home-m-heading-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+
+  /* Shared eyebrow — Proxima Nova A Bold 10/16 at 40%, every section but
+     the upper product card. */
+  body.template-index .custom-home-testimonials-caption,
+  body.template-index .custom-blogs-carousel-caption,
+  body.template-index .custom-blogs-carousel-counter,
+  body.template-index .custom-image-content-inner-container > p:first-child {
+    font-family: var(--font-family-label);
+    font-size: var(--font-home-m-eyebrow-size);
+    line-height: var(--font-home-m-eyebrow-line-height);
+    letter-spacing: var(--font-home-m-eyebrow-letter-spacing);
+    font-weight: var(--font-home-m-eyebrow-weight);
+    text-transform: uppercase;
+  }
+
+  /* Photo overlay tags keep the 28px leading they have on desktop (3061:3735) */
+  body.template-index .custom-blogs-carousel-tag {
+    font-family: var(--font-family-label);
+    font-size: var(--font-home-m-eyebrow-size);
+    line-height: var(--font-home-m-tag-line-height);
+    letter-spacing: var(--font-home-m-eyebrow-letter-spacing);
+    font-weight: var(--font-home-m-eyebrow-weight);
+    text-transform: uppercase;
+  }
+
+  /* ---------------------------------------------------------------
+     custom-banner-text — 32px on a 48px leading (I3061:3721;1288:1106).
+     The desktop rule's fixed 606px width must not leak down here.
+     --------------------------------------------------------------- */
+  body.template-index .custom-banner-text-container p {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-m-heading-size);
+    line-height: var(--font-home-m-banner-text-line-height);
+    letter-spacing: var(--font-home-m-heading-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-featured-product (3061:3630 upper card)
+     --------------------------------------------------------------- */
+
+  /* The upper card's eyebrow is Semibold at 1.5px where every other
+     eyebrow on the board is Bold at 4px. Kept as the design has it,
+     following the standing "upper card is the reference" rule for this
+     section — flip it to the shared eyebrow above if that reads wrong. */
+  body.template-index .custom-featured-product-left-inner_upper > p:nth-child(1) {
+    font-family: var(--font-family-label);
+    font-size: var(--font-home-m-eyebrow-size);
+    line-height: var(--font-home-m-eyebrow-line-height);
+    letter-spacing: var(--font-home-m-product-eyebrow-letter-spacing);
+    font-weight: var(--font-home-m-product-eyebrow-weight);
+    text-transform: uppercase;
+  }
+
+  body.template-index .custom-featured-product-left-inner_upper > p:nth-child(2) {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-m-heading-size);
+    line-height: var(--font-home-m-product-heading-line-height);
+    letter-spacing: var(--font-home-m-heading-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+
+  /* Cormorant Garamond REGULAR here, Medium on desktop (I3061:3631;1213:1347) */
+  body.template-index .custom-featured-product-left .custom-featured-product-left-description p {
+    font-family: var(--font-family-serif-body);
+    font-size: var(--font-home-m-copy-size);
+    line-height: var(--font-home-m-copy-line-height);
+    letter-spacing: var(--font-home-m-copy-letter-spacing);
+    font-weight: var(--font-home-m-copy-weight);
+  }
+
+  body.template-index .custom-featured-product-left .custom-featured-product__tax-note {
+    font-family: var(--font-family-body);
+    font-size: var(--font-home-m-small-size);
+    line-height: var(--font-home-m-small-line-height);
+    letter-spacing: var(--font-home-m-small-letter-spacing);
+    font-weight: var(--font-home-small-weight);
+  }
+
+  /* BUY NOW — IBM Plex Serif Medium 20/32 (3061:3638). The underline goes
+     on the span for the same reason as on desktop: the label is an
+     inline-block, which text decoration does not propagate into. */
+  body.template-index .custom-featured-product-left-inner_lower button,
+  body.template-index .custom-featured-product__button-text {
+    font-family: var(--font-family-product-meta);
+    font-size: var(--font-home-m-product-cta-size);
+    line-height: var(--font-home-m-product-cta-line-height);
+    font-weight: var(--font-home-product-cta-weight);
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-thickness: from-font;
+    text-underline-position: from-font;
+  }
+
+  /* ---------------------------------------------------------------
+     custom-home-values (3061:3639)
+     Two rows inside a 322px column: three icons, then two with the
+     decorative vector between them. Icons are a fixed 96px box.
+     --------------------------------------------------------------- */
+  body.template-index .custom-home_values-container {
+    background-color: #fffdee;
+  }
+
+  body.template-index .custom-home_values-inner {
+    gap: 40px;
+    padding: 64px 40px;
+  }
+
+  body.template-index .custom-home_values-heading {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+
+  body.template-index .custom-home_values-item-container {
+    width: 100%;
+    max-width: 322px;
+    margin: 0 auto;
+    row-gap: 24px;
+    align-items: flex-start;
+  }
+
+  body.template-index .custom-home_values-item {
+    width: 96px;
+  }
+
+  body.template-index .custom-home_values-icon {
+    width: 96px;
+    height: 162px;
+    object-fit: contain;
+  }
+
+  /* The decorative sixth tile that only appears on mobile (3061:3664) */
+  body.template-index .custom-home_values-item--extra {
+    width: 52px !important;
+  }
+
+  body.template-index .custom-home_values-title {
+    font-family: var(--font-family-serif-body);
+    font-size: var(--font-home-m-value-title-size);
+    line-height: var(--font-home-m-value-title-line-height);
+    letter-spacing: 0;
+    font-weight: var(--font-home-value-title-weight);
+    text-align: center;
+    width: 100%;
+    margin: 12px 0 0;
+  }
+
+  /* ---------------------------------------------------------------
+     custom-blogs-carousel — "Read More" (I3061:3740;1213:1349).
+     The slide body copy is not on the mobile board, so it is left alone.
+     --------------------------------------------------------------- */
+  body.template-index .custom-blogs-carousel-cta-text {
+    font-family: var(--font-family-accent);
+    font-size: var(--font-home-m-blogs-cta-size);
+    line-height: var(--font-home-m-blogs-cta-line-height);
+    letter-spacing: 0;
+    font-weight: var(--font-home-blogs-cta-weight);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-home-testimonials (3061:3750)
+     The one place the two boards disagree on face: Baskervville for the
+     quote and Piazzolla for the attribution, where desktop runs Cormorant
+     Garamond through all three.
+     --------------------------------------------------------------- */
+  body.template-index .custom-home-testimonials-quote p {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-m-quote-size);
+    line-height: var(--font-home-m-quote-line-height);
+    letter-spacing: var(--font-home-m-quote-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+
+  body.template-index .custom-home-testimonials-name {
+    font-family: var(--font-family-accent);
+    font-size: var(--font-home-m-name-size);
+    line-height: var(--font-home-m-name-line-height);
+    font-weight: var(--font-weight-regular);
+  }
+
+  body.template-index .custom-home-testimonials-location {
+    font-family: var(--font-family-accent);
+    font-size: var(--font-home-m-location-size);
+    line-height: var(--font-home-m-location-line-height);
+    font-weight: var(--font-weight-regular);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-image-content — body copy is Helvetica Neue here, not the
+     Cormorant Garamond the desktop board uses (I3061:3764;1213:1347).
+     --------------------------------------------------------------- */
+  body.template-index .custom-image-content-inner-container .custom-image-content-description p {
+    font-family: var(--font-family-body);
+    font-size: var(--font-home-m-body-size);
+    line-height: var(--font-home-m-body-line-height);
+    letter-spacing: var(--font-home-m-body-letter-spacing);
+    font-weight: var(--font-home-small-weight);
+  }
+
+  /* ---------------------------------------------------------------
+     custom-bg-heading "Follow Us" — 32/40 (3061:3766)
+     --------------------------------------------------------------- */
+  body.template-index .custom-bg-heading {
+    font-family: var(--font-family-display);
+    font-size: var(--font-home-m-heading-size);
+    line-height: var(--font-home-m-bg-heading-line-height);
+    letter-spacing: var(--font-home-m-heading-letter-spacing);
+    font-weight: var(--font-home-heading-weight);
+  }
+}

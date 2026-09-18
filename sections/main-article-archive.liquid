@@ -4,6 +4,18 @@
 {%- liquid
   assign hero_video = article.metafields.custom.hero_video.value
   assign hero_video_source = hero_video.sources | sort: 'width' | last
+  # Which hero the layout uses. The video used to win automatically wherever a
+  # hero_video metafield existed, which meant a story could not be switched to
+  # its still without clearing the metafield and losing the video reference.
+  # This setting decides instead; the metafields stay untouched either way.
+  # The branch below is gated on this rather than blanking hero_video_source:
+  # in Liquid only false and nil are falsy, so an emptied variable would still
+  # test as true and the video would keep winning.
+  assign hero_media = section.settings.hero_media | default: 'image'
+  assign use_hero_video = false
+  if hero_media == 'video' and hero_video_source
+    assign use_hero_video = true
+  endif
   # Still image hero, for stories with no hero video (the Rituals layout). Kept
   # separate from article.image so the hero and the listing-card cover can differ.
   assign hero_image = article.metafields.custom.hero_image.value
@@ -44,9 +56,9 @@
 -%}
 
 <article class="archive-article">
-  {%- if hero_video_source or hero_image or article.image or request.design_mode -%}
+  {%- if use_hero_video or hero_image or article.image or request.design_mode -%}
     <div class="archive-article__hero">
-      {%- if hero_video_source -%}
+      {%- if use_hero_video -%}
         <video class="archive-article__hero-media" autoplay muted loop playsinline preload="auto">
           <source src="{{ hero_video_source.url }}" type="{{ hero_video_source.mime_type }}">
         </video>
@@ -252,6 +264,17 @@
     {
       "type": "paragraph",
       "content": "The story content on this layout (video, images, quotes, captions) comes from this article's metafields (namespace: custom). Fill them in from the article's edit page in Shopify admin."
+    },
+    {
+      "type": "select",
+      "id": "hero_media",
+      "label": "Hero media",
+      "options": [
+        { "value": "image", "label": "Image (custom.hero_image)" },
+        { "value": "video", "label": "Video (custom.hero_video)" }
+      ],
+      "default": "image",
+      "info": "Applies to every article on this template. Choosing Image leaves any hero_video metafield in place, unused."
     },
     {
       "type": "header",
