@@ -710,6 +710,34 @@ a.product__text {
   .product--mobile-columns .product__media-item {
     width: calc(50% - 1.5rem - var(--grid-mobile-horizontal-spacing));
   }
+
+  /* With mobile thumbnails on, the viewer shows one image at a time like desktop */
+  media-gallery[data-mobile-layout='show'] .product__media-list {
+    overflow: hidden;
+    isolation: isolate;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  media-gallery[data-mobile-layout='show'] .product__media-item:not(.is-active):not(.is-leaving) {
+    display: none;
+  }
+
+  media-gallery[data-mobile-layout='show'] .product__media-item.is-active {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/*
+  Image change in the single-image gallery (media-gallery.js): the outgoing
+  image stays on screen underneath the incoming one while it slides out. The
+  script pins its top/left/width to where it sat; the list clips both, and its
+  isolation keeps the z-index here from lifting either over the thumbnail rail.
+*/
+.product__media-item.is-leaving {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
 }
 
 @media screen and (min-width: 750px) {
@@ -723,9 +751,21 @@ a.product__text {
     padding-right: calc(var(--media-shadow-horizontal-offset) * var(--media-shadow-visible));
   }
 
-  .product--thumbnail .product__media-item:not(.is-active),
-  .product--thumbnail_slider .product__media-item:not(.is-active) {
+  .product--thumbnail .product__media-item:not(.is-active):not(.is-leaving),
+  .product--thumbnail_slider .product__media-item:not(.is-active):not(.is-leaving) {
     display: none;
+  }
+
+  media-gallery[data-desktop-layout*='thumbnail'] .product__media-list {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  media-gallery[data-desktop-layout*='thumbnail'] .product__media-item.is-active {
+    position: relative;
+    z-index: 1;
   }
 
   .product-media-modal__content>.product__media-item--variant.product__media-item--variant {
@@ -1317,11 +1357,6 @@ a.product__text {
     transition: transform 0.25s ease;
   }
 
-  /* The active thumbnail should stay visible in the mobile overlay picker */
-  .thumbnail-list__item.slider__slide:has(.thumbnail[aria-current]) {
-    display: block;
-  }
-
   .thumbnail-slider .thumbnail-list__item .thumbnail {
     opacity: 0.6;
     transition: opacity 0.25s ease;
@@ -1629,10 +1664,6 @@ a.product__text {
 
 .thumbnail-list__item {
   position: relative;
-}
-
-.thumbnail-list__item:has(.thumbnail[aria-current]) {
-  display: none;
 }
 
 .thumbnail-list__item::before {

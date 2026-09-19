@@ -231,11 +231,20 @@ variant-selects {
   white-space: nowrap;
 }
 
+/* Same typeface as the home featured product's price (custom-featured-product.css
+   + home-figma.css): Piazzolla SemiBold below 990px, IBM Plex Serif Medium above. */
 .variant-card__price {
   font-family: var(--font-family-accent);
-  font-weight: var(--font-weight-medium);
+  font-weight: var(--font-weight-semibold);
   font-size: var(--font-variant-card-price-size);
   line-height: var(--font-variant-card-price-line-height);
+}
+
+@media screen and (min-width: 990px) {
+  .variant-card__price {
+    font-family: var(--font-family-product-meta);
+    font-weight: var(--font-home-product-meta-weight);
+  }
 }
 
 .variant-card__tax {
