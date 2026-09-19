@@ -152,9 +152,9 @@
 .custom-intro-popup__body {
   margin: 0;
   color: #fffdee;
-  font-family: var(--font-family-serif-body);
+  font-family: var(--font-family-body);
   font-size: var(--font-intro-popup-body-size);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-body-copy-weight);
   line-height: var(--font-intro-popup-body-line-height);
 }
 
@@ -231,8 +231,8 @@
   }
 
   .custom-intro-popup__body {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 18px;
+    line-height: 26px;
   }
 }
 
@@ -281,11 +281,8 @@
     display: none;
   }
 
-  /* Helvetica Neue here, not the desktop board's Cormorant Garamond. */
   .custom-intro-popup__body {
-    font-family: var(--font-family-body);
     font-size: var(--font-intro-popup-body-size-mobile);
-    font-weight: var(--font-body-copy-weight);
     line-height: var(--font-intro-popup-body-line-height-mobile);
     letter-spacing: var(--font-intro-popup-body-letter-spacing-mobile);
   }

@@ -437,16 +437,6 @@
         font-display: swap;
       }
 
-      /* American Scribe -- footer note (Figma 2887:3993). Not on Google Fonts,
-         so the file ships with the theme. */
-      @font-face {
-        font-family: 'American Scribe';
-        src: url('{{ "AmericanScribe-Regular.ttf" | asset_url }}') format('truetype');
-        font-weight: 400;
-        font-style: normal;
-        font-display: swap;
-      }
-
       /* Beaurencourt FY -- script accent, footer note */
       @font-face {
         font-family: 'Beaurencourt FY';
@@ -533,15 +523,14 @@
     {{ 'base.css' | asset_url | stylesheet_tag }}
     {{ 'custom-loading-screen.css' | asset_url | stylesheet_tag }}
     {%- comment -%}
-      Home page was re-typeset against its Figma boards. Several of its sections
-      also render on other templates, so the new type is scoped to the index
-      template and loaded only here.
-
-      About / Contact / Archives / Rituals then took the same font language
-      (Cormorant Garamond prose, Helvetica Neue labels, IBM Plex Serif CTAs).
-      Those four share one stylesheet and one body class, because three of their
-      sections -- custom-bg-heading, custom-inset-image, custom-audio-player --
-      also render on pages that must NOT change.
+      Per-template overrides left over from the home-page Figma pass. That pass
+      re-typeset home and gave About / Contact / Archives / Rituals the same
+      font language, and re-gridded the home values band; all of it has since
+      been reverted. What is left is the featured product's purchase-block type
+      on home, and one spacing rule on the four pages. Both files stay scoped
+      to their own templates because several of the sections involved --
+      custom-bg-heading, custom-inset-image, custom-audio-player -- also render
+      on pages that must NOT change.
     {%- endcomment -%}
     {%- liquid
       assign figma_type_suffixes = 'about,contact,archives,rituals' | split: ','
@@ -611,7 +600,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-      href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400..700;1,400..700&family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@0,400..700;1,400..700&family=IBM+Plex+Serif:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap"
       rel="stylesheet"
     >
   </head>

@@ -2913,7 +2913,6 @@ details[open]>.header__submenu {
   font-weight: var(--font-weight-medium);
   font-style: normal;
   font-size: var(--font-header-menu-item-size);
-  line-height: var(--font-header-menu-item-line-height);
   letter-spacing: var(--font-header-menu-item-letter-spacing);
 }
 
